@@ -44,3 +44,13 @@ autocmd InsertEnter * highlight StatusLine ctermfg=255 ctermbg=232
 nnoremap <silent> <C-n> :noh<CR>
 autocmd InsertEnter * let @/=""
 
+" Vundle の設定
+filetype off
+set runtimepath+=~/.vim/bundle/vundle/
+call vundle#rc()
+" Vundle で管理するプラグイン
+Bundle 'gmarik/vundle'
+Bundle 'Shougo/neocomplcache'
+Bundle 'Smooth-Scroll'
+Bundle 'rails.vim'
+filetype plugin indent on
