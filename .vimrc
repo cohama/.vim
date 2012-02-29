@@ -54,3 +54,12 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Smooth-Scroll'
 Bundle 'rails.vim'
 filetype plugin indent on
+
+" neocomplcache の設定
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_auto_completion_start_length = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+
+" 補完メニューの設定
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
