@@ -37,8 +37,7 @@ set wildmenu
 set wildmode=full
 
 " ステータスラインの色をモードで切り替え
-autocmd InsertLeave * highlight StatusLine ctermfg=232 ctermbg=255
-autocmd InsertEnter * highlight StatusLine ctermfg=255 ctermbg=232
+let hi_insert = 'highlight StatusLine ctermbg=DarkBlue ctermfg=White cterm=none'
 
 " ハイライトを消す
 nnoremap <silent> <C-n> :noh<CR>
