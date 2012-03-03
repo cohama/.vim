@@ -3,7 +3,7 @@ set helplang=ja
 
 " カラースキーム
 set t_Co=256
-colorscheme cohama
+colorscheme molokai
 
 " 「日本語入力固定モード」切り替えキー
 inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
