@@ -52,6 +52,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Smooth-Scroll'
 Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
 filetype plugin indent on
 
 " neocomplcache の設定
@@ -61,4 +62,9 @@ let g:neocomplcache_enable_camel_case_completion = 1
 
 " 補完メニューの設定
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
+" vim-ruby の設定
+let g:rubycomplete_buffer_loadding = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
 
