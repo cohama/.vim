@@ -60,6 +60,11 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_auto_completion_start_length = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
 " 補完メニューの設定
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
