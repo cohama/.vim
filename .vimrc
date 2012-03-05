@@ -51,7 +51,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Smooth-Scroll'
-Bundle 'rails.vim'
+Bundle 'tpope/vim-rails'
 filetype plugin indent on
 
 " neocomplcache の設定
