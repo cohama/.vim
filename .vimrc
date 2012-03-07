@@ -74,3 +74,10 @@ let g:rubycomplete_buffer_loadding = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
+" NERDTree の設定
+map <silent> <C-p> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\~$', '\.swp']
+let NERDTreeQuitOnOpen = 0
+let NERDTreeWinSize = 36
+let NERDTreeMinimalUI = 1
+
