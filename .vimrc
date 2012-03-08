@@ -58,6 +58,17 @@ nmap <silent> <C-T><C-N> :tabnew<CR>
 nmap <silent> <C-T>n :tabnew<CR>
 set showtabline=2
 
+" ヤンクした文字列でカーソル位置の単語置き換え
+nnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
+vnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
+nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
+
+" カーソル位置の単語を置換
+nnoremap g/ yiw:s/<C-R>0/
+
+" カーソル位置の単語をハイライト
+nnoremap <silent> gn yiw:let@/='<C-R>0'<CR>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
