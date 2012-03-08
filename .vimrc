@@ -64,7 +64,7 @@ vnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
-nnoremap g/ yiw:s/<C-R>0/
+nnoremap g/ yiw:s/<C-R>0//g<Left><Left>
 
 " カーソル位置の単語をハイライト
 nnoremap <silent> gn yiw:let@/='<C-R>0'<CR>
