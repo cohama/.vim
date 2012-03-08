@@ -30,7 +30,7 @@ set smartcase
 set smartindent
 set smarttab
 set softtabstop=2
-set statusline=%<%f\ (%n)%m%r%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=Line:\ %l,\ Col:\ %c%V%8P
+set statusline=%<%f\ (%n)%m%r%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']'}%=Line:\ %l,\ Col:\ %c%V%8P
 set tabstop=2
 set whichwrap+=h,l
 set wildmenu
