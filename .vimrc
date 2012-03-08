@@ -93,6 +93,7 @@ Bundle 'Smooth-Scroll'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'scrooloose/nerdtree'
+Bundle 'vim-scripts/Align'
 filetype plugin indent on
 
 " neocomplcache の設定
