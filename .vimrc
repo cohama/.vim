@@ -95,6 +95,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/Align'
 Bundle 'tpope/vim-surround'
+Bundle 'mattn/zencoding-vim'
 filetype plugin indent on
 
 " neocomplcache の設定
@@ -128,3 +129,23 @@ let g:surround_45 = "<% \r %>"
 let g:surround_61 = "<%= \r %>"
 let g:surround_104 = "<%=h \r %>"
 
+" zencoding の設定
+" let g:use_zen_complete_tag = 1
+" let g:user_zen_settings = {
+" \  'lang' : 'ja',
+" \  'html' : {
+" \    'filters' : 'html',
+" \    'indentation' : '  '
+" \  },
+" \  'css' : {
+" \    'filters' : 'fc',
+" \  },
+" \  'javascript' : {
+" \    'snippets' : {
+" \      'jq' : "$(function() {\n\t${cursor}${child}\n});",
+" \      'jq:each' : "$.each(arr, function(index, item)\n\t${child}\n});",
+" \      'fn' : "(function() {\n\t${cursor}\n})();",
+" \      'tm' : "setTimeout(function() {\n\t${cursor}\n}, 100);",
+" \    },
+" \  },
+" \ }
