@@ -75,6 +75,9 @@ function! HilightWordAtCursor()
 endfunction
 nnoremap <silent> gn :call HilightWordAtCursor()<CR>:set hlsearch<CR>
 
+" % コマンドの拡張
+runtime macros/matchit.vim
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
