@@ -78,6 +78,10 @@ nnoremap <silent> gn :call HilightWordAtCursor()<CR>:set hlsearch<CR>
 " % コマンドの拡張
 runtime macros/matchit.vim
 
+" ビジュアルモードでのインデントを連続でできるようにする
+vnoremap < <gv
+vnoremap > >gv
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
