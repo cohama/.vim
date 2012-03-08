@@ -67,7 +67,7 @@ nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 nnoremap g/ yiw:s/<C-R>0//g<Left><Left>
 
 " カーソル位置の単語をハイライト
-nnoremap <silent> gn yiw:let@/='<C-R>0'<CR>
+nnoremap <silent> gn yiw:let@/='<C-R>0'<CR>:set hls<CR>
 
 " Vundle の設定
 filetype off
