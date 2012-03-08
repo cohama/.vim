@@ -122,3 +122,9 @@ let NERDTreeQuitOnOpen = 0
 let NERDTreeWinSize = 36
 let NERDTreeMinimalUI = 1
 
+" surrond.vim の設定
+let g:surround_36 = "$(\r)"
+let g:surround_45 = "<% \r %>"
+let g:surround_61 = "<%= \r %>"
+let g:surround_104 = "<%=h \r %>"
+
