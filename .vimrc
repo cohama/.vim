@@ -96,6 +96,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/Align'
 Bundle 'tpope/vim-surround'
 Bundle 'mattn/zencoding-vim'
+Bundle 'Shougo/neocomplcache-snippets-complete'
 filetype plugin indent on
 
 " neocomplcache の設定
@@ -125,6 +126,11 @@ if !exists('g:neocomplcache_omni_patterns')
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+" neocomplcache-snippets-complete の設定
+let g:neocomplcache_snippets_dir = '~/.vim/snippets'
+imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 
 " 補完メニューの設定
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
