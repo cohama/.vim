@@ -3,7 +3,7 @@ set helplang=ja
 
 " カラースキーム
 set t_Co=256
-colorscheme molokai
+colorscheme cohama
 
 " 「日本語入力固定モード」切り替えキー
 inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
@@ -14,6 +14,7 @@ let IM_CtrlIBusPython = 1
 set autoindent
 set backspace=indent,eol,start
 set clipboard=autoselect,unnamed
+set cursorline
 set cmdheight=3
 set expandtab
 set hidden
@@ -37,7 +38,7 @@ set wildmenu
 set wildmode=full
 
 " ステータスラインの色をモードで切り替え
-let hi_insert = 'highlight StatusLine ctermbg=DarkBlue ctermfg=White cterm=none'
+let hi_insert = 'highlight StatusLine ctermbg=196 ctermfg=255 cterm=bold'
 
 " ハイライトを消す
 nnoremap <silent> <C-n> :noh<CR>
