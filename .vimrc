@@ -83,6 +83,9 @@ runtime macros/matchit.vim
 vnoremap < <gv
 vnoremap > >gv
 
+" カーソル位置の単語をヘルプで検索
+nnoremap <silent> gh yiw:help <C-r>0<CR>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
