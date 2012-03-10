@@ -17,7 +17,7 @@ set clipboard=autoselect,unnamed
 set cursorline
 set cmdheight=3
 set expandtab
-set hidden
+set nohidden
 set hlsearch
 set ignorecase
 set incsearch
