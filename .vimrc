@@ -191,3 +191,6 @@ let g:user_zen_settings = {
 \    },
 \  },
 \ }
+
+" git-vim の設定
+nnoremap <silent> <Leader>gc :GitCommit -v<CR>:set filetype=gitcommit<CR><C-w>H
