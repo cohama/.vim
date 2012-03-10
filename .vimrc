@@ -45,18 +45,18 @@ nnoremap <silent> <C-n> :noh<CR>
 autocmd InsertEnter * let @/=""
 
 " タブページの設定
-nmap <silent> <C-T><C-L> :tabn<CR>
-nmap <silent> <C-T>l :tabn<CR>
-nmap <silent> <C-L> :tabn<CR>
-nmap <silent> <C-T><C-H> :tabp<CR>
-nmap <silent> <C-T>h :tabp<CR>
-nmap <silent> <C-H> :tabp<CR>
-nmap <silent> <C-T><C-W> :tabclose<CR>
-nmap <silent> <C-T>w :tabclose<CR>
-nmap <silent> <C-T><C-O> :tabonly<CR>
-nmap <silent> <C-T>o :tabonly<CR>
-nmap <silent> <C-T><C-N> :tabnew<CR>
-nmap <silent> <C-T>n :tabnew<CR>
+nnoremap <silent> <C-T><C-L> :tabn<CR>
+nnoremap <silent> <C-T>l :tabn<CR>
+nnoremap <silent> <C-L> :tabn<CR>
+nnoremap <silent> <C-T><C-H> :tabp<CR>
+nnoremap <silent> <C-T>h :tabp<CR>
+nnoremap <silent> <C-H> :tabp<CR>
+nnoremap <silent> <C-T><C-W> :tabclose<CR>
+nnoremap <silent> <C-T>w :tabclose<CR>
+nnoremap <silent> <C-T><C-O> :tabonly<CR>
+nnoremap <silent> <C-T>o :tabonly<CR>
+nnoremap <silent> <C-T><C-N> :tabnew<CR>
+nnoremap <silent> <C-T>n :tabnew<CR>
 set showtabline=2
 
 " ヤンクした文字列でカーソル位置の単語置き換え
