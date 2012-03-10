@@ -86,6 +86,18 @@ vnoremap > >gv
 " カーソル位置の単語をヘルプで検索
 nnoremap <silent> gh yiw:help <C-r>0<CR>
 
+" 戦闘力を測定
+function! Scouter(file, ...)
+  let pat = '^\s*$\|^\s*"'
+  let lines = readfile(a:file)
+  if !a:0 || !a:1
+    let lines = split(substitute(join(lines, "\n"), '\n\s*\\', '', 'g'), "\n")
+  endif
+  return len(filter(lines,'v:val !~ pat'))
+endfunction
+command! -bar -bang -nargs=? -complete=file Scouter
+\        echo Scouter(empty(<q-args>) ? '/home/cohama/.vim/.vimrc' : expand(<q-args>), <bang>0)
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
