@@ -8,3 +8,16 @@ nnoremap <silent> <M-h> :tabprevious<CR>
 nnoremap <silent> <M-n> :tabnew<CR>
 nnoremap <silent> <M-w> :tabclose<CR>
 nnoremap <silent> <M-W> :tabonly<CR>
+
+" zencoding の設定
+map <expr> <C-CR> (g:user_zen_leader_key).','
+imap <expr> <C-CR> (g:user_zen_leader_key).','
+
+" ステータスラインの色をモードで切り替え
+let hi_insert = 'highlight StatusLine guifg=#EB1515 guibg=#FFFFFF cterm=bold'
+
+" 補完候補を逆にたどる
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" surround.vim のキーバインド
+nmap <M-s> ysiw
