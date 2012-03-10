@@ -113,6 +113,7 @@ Bundle 'vim-scripts/Align'
 Bundle 'tpope/vim-surround'
 Bundle 'mattn/zencoding-vim'
 Bundle 'Shougo/neocomplcache-snippets-complete'
+Bundle 'motemen/git-vim'
 filetype plugin indent on
 
 " neocomplcache の設定
