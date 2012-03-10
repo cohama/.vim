@@ -198,5 +198,8 @@ let g:user_zen_settings = {
 nnoremap <silent> <Leader>gc :GitCommit -v<CR>:set filetype=gitcommit<CR><C-w>H
 
 " vimshell の設定
-nnoremap <silent> <Leader>sh :VimShellInteractive bash<CR>
+nnoremap <silent> <Leader>vimsh :VimShell<CR>
+nnoremap <silent> <Leader>bash :VimShellInteractive bash<CR>
+nnoremap <silent> <Leader>zsh :VimShellInteractive zsh<CR>
+nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
 
