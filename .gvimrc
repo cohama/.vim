@@ -1,3 +1,2 @@
-set guifont=Ricty\ 12
-
+set guifont=Migu\ 2M\ 12
 
