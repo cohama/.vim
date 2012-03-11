@@ -98,6 +98,9 @@ endfunction
 command! -bar -bang -nargs=? -complete=file Scouter
 \        echo Scouter(empty(<q-args>) ? '/home/cohama/.vim/.vimrc' : expand(<q-args>), <bang>0)
 
+" .vimrc, .gvimrc をすぐに適用
+nnoremap <silent> <Leader>s :source ~/.vimrc<CR>:source ~/.gvimrc<CR>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
