@@ -209,3 +209,5 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>ga :Gwrite<CR>
 nnoremap <Leader>gc :Gcommit -v<CR><C-w>H
+nnoremap <Leader>gps :Git push<CR>
+nnoremap <Leader>gpl :Git pull<CR>
