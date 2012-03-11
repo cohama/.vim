@@ -3,7 +3,7 @@ set helplang=ja
 
 " カラースキーム
 set t_Co=256
-colorscheme molokai
+colorscheme cohama
 
 " 「日本語入力固定モード」切り替えキー
 inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
@@ -12,11 +12,13 @@ let IM_CtrlIBusPython = 1
 
 " Vim options
 set autoindent
+set autoread
 set backspace=indent,eol,start
 set clipboard=autoselect,unnamed
+set cursorline
 set cmdheight=3
 set expandtab
-set hidden
+set nohidden
 set hlsearch
 set ignorecase
 set incsearch
@@ -30,32 +32,32 @@ set smartcase
 set smartindent
 set smarttab
 set softtabstop=2
-set statusline=%<%f\ (%n)%m%r%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']'}%=Line:\ %l,\ Col:\ %c%V%8P
+set statusline=%<%f\ (%n)%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']'}\ %{fugitive#statusline()}%=Line:\ %l,\ Col:\ %c%V%8P
 set tabstop=2
 set whichwrap+=h,l
 set wildmenu
 set wildmode=full
 
 " ステータスラインの色をモードで切り替え
-let hi_insert = 'highlight StatusLine ctermbg=DarkBlue ctermfg=White cterm=none'
+let hi_insert = 'highlight StatusLine ctermbg=196 ctermfg=255 cterm=bold'
 
 " ハイライトを消す
 nnoremap <silent> <C-n> :noh<CR>
 autocmd InsertEnter * let @/=""
 
 " タブページの設定
-nmap <silent> <C-T><C-L> :tabn<CR>
-nmap <silent> <C-T>l :tabn<CR>
-nmap <silent> <C-L> :tabn<CR>
-nmap <silent> <C-T><C-H> :tabp<CR>
-nmap <silent> <C-T>h :tabp<CR>
-nmap <silent> <C-H> :tabp<CR>
-nmap <silent> <C-T><C-W> :tabclose<CR>
-nmap <silent> <C-T>w :tabclose<CR>
-nmap <silent> <C-T><C-O> :tabonly<CR>
-nmap <silent> <C-T>o :tabonly<CR>
-nmap <silent> <C-T><C-N> :tabnew<CR>
-nmap <silent> <C-T>n :tabnew<CR>
+nnoremap <silent> <C-T><C-L> :tabn<CR>
+nnoremap <silent> <C-T>l :tabn<CR>
+nnoremap <silent> <C-L> :tabn<CR>
+nnoremap <silent> <C-T><C-H> :tabp<CR>
+nnoremap <silent> <C-T>h :tabp<CR>
+nnoremap <silent> <C-H> :tabp<CR>
+nnoremap <silent> <C-T><C-W> :tabclose<CR>
+nnoremap <silent> <C-T>w :tabclose<CR>
+nnoremap <silent> <C-T><C-O> :tabonly<CR>
+nnoremap <silent> <C-T>o :tabonly<CR>
+nnoremap <silent> <C-T><C-N> :tabnew<CR>
+nnoremap <silent> <C-T>n :tabnew<CR>
 set showtabline=2
 
 " ヤンクした文字列でカーソル位置の単語置き換え
@@ -82,6 +84,24 @@ runtime macros/matchit.vim
 vnoremap < <gv
 vnoremap > >gv
 
+" カーソル位置の単語をヘルプで検索
+nnoremap <silent> gh yiw:help <C-r>0<CR>
+
+" 戦闘力を測定
+function! Scouter(file, ...)
+  let pat = '^\s*$\|^\s*"'
+  let lines = readfile(a:file)
+  if !a:0 || !a:1
+    let lines = split(substitute(join(lines, "\n"), '\n\s*\\', '', 'g'), "\n")
+  endif
+  return len(filter(lines,'v:val !~ pat'))
+endfunction
+command! -bar -bang -nargs=? -complete=file Scouter
+\        echo Scouter(empty(<q-args>) ? '/home/cohama/.vim/.vimrc' : expand(<q-args>), <bang>0)
+
+" .vimrc, .gvimrc をすぐに適用
+nnoremap <silent> <Leader>s :source ~/.vimrc<CR>:source ~/.gvimrc<CR>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
@@ -96,17 +116,44 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/Align'
 Bundle 'tpope/vim-surround'
 Bundle 'mattn/zencoding-vim'
+Bundle 'Shougo/neocomplcache-snippets-complete'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell'
+Bundle 'tpope/vim-fugitive'
 filetype plugin indent on
 
 " neocomplcache の設定
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_auto_completion_start_length = 1
 let g:neocomplcache_enable_camel_case_completion = 1
-
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_syntax_length = 3
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+" neocomplcache-snippets-complete の設定
+let g:neocomplcache_snippets_dir = '~/.vim/snippets'
+imap <C-k> <Plug>(neocomplcache_snippets_jump)
+smap <C-k> <Plug>(neocomplcache_snippets_jump)
 
 " 補完メニューの設定
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -150,3 +197,17 @@ let g:user_zen_settings = {
 \    },
 \  },
 \ }
+
+" vimshell の設定
+nnoremap <silent> <Leader>vimsh :VimShell<CR>
+nnoremap <silent> <Leader>bash :VimShellInteractive bash<CR>
+nnoremap <silent> <Leader>zsh :VimShellInteractive zsh<CR>
+nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
+
+" fugitive の設定
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>ga :Gwrite<CR>
+nnoremap <Leader>gc :Gcommit -v<CR><C-w>H
+nnoremap <Leader>gps :Git push<CR>
+nnoremap <Leader>gpl :Git pull<CR>
