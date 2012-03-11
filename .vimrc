@@ -31,7 +31,7 @@ set smartcase
 set smartindent
 set smarttab
 set softtabstop=2
-set statusline=%<%f\ (%n)%m%r%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']'}%=Line:\ %l,\ Col:\ %c%V%8P
+set statusline=%<%f\ (%n)%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']'}\ %{fugitive#statusline()}%=Line:\ %l,\ Col:\ %c%V%8P
 set tabstop=2
 set whichwrap+=h,l
 set wildmenu
@@ -116,7 +116,6 @@ Bundle 'vim-scripts/Align'
 Bundle 'tpope/vim-surround'
 Bundle 'mattn/zencoding-vim'
 Bundle 'Shougo/neocomplcache-snippets-complete'
-Bundle 'motemen/git-vim'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 Bundle 'tpope/vim-fugitive'
@@ -197,9 +196,6 @@ let g:user_zen_settings = {
 \    },
 \  },
 \ }
-
-" git-vim の設定
-nnoremap <silent> <Leader>gc :GitCommit -v<CR>:set filetype=gitcommit<CR><C-w>H
 
 " vimshell の設定
 nnoremap <silent> <Leader>vimsh :VimShell<CR>
