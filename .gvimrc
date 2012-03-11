@@ -13,8 +13,8 @@ inoremap <silent> <M-l> <Esc>:tabnext<CR>
 inoremap <silent> <M-h> <Esc>:tabprevious<CR>
 
 " zencoding の設定
-map <expr> <C-CR> (g:user_zen_leader_key).','
-imap <expr> <C-CR> (g:user_zen_leader_key).','
+execute 'map <C-CR> ' . g:user_zen_leader_key . ','
+execute 'imap <C-CR> ' . g:user_zen_leader_key . ','
 
 " ステータスラインの色をモードで切り替え
 let hi_insert = 'highlight StatusLine guifg=#EB1515 guibg=#FFFFFF cterm=bold'
