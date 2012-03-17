@@ -211,3 +211,4 @@ nnoremap <Leader>ga :Gwrite<CR>
 nnoremap <Leader>gc :Gcommit -v<CR><C-w>H
 nnoremap <Leader>gps :Git push<CR>
 nnoremap <Leader>gpl :Git pull<CR>
+nnoremap <Leader>gb :Gblame<CR>
