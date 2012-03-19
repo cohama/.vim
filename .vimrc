@@ -207,6 +207,11 @@ nnoremap <silent> <Leader>zsh :VimShellInteractive zsh<CR>
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
 let g:vimshell_prompt = '% '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+autocmd FileType vimshell call MyVimshSettings()
+function! MyVimshSettings()
+  call vimshell#altercmd#define('l', 'ls -F')
+  call vimshell#altercmd#define('la', 'ls -FA')
+endfunction
 
 " fugitive の設定
 nnoremap <Leader>gs :Gstatus<CR>
