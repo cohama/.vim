@@ -122,6 +122,7 @@ Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 Bundle 'tpope/vim-fugitive'
+Bundle 'Shougo/unite.vim'
 filetype plugin indent on
 
 " neocomplcache の設定
