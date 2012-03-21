@@ -227,3 +227,4 @@ nnoremap <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>ub :Unite buffer<CR>
 nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>uf :Unite file_rec<CR>
+let g:unite_update_time = 200
