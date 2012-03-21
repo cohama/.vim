@@ -99,8 +99,10 @@ endfunction
 command! -bar -bang -nargs=? -complete=file Scouter
 \        echo Scouter(empty(<q-args>) ? '/home/cohama/.vim/.vimrc' : expand(<q-args>), <bang>0)
 
-" .vimrc, .gvimrc をすぐに適用
+" .vimrc .gvimrc に関する設定
 nnoremap <silent> <Leader>s :source ~/.vimrc<CR>:source ~/.gvimrc<CR>
+nnoremap <silent> <Leader>vimrc :tabe ~/.vim/.vimrc<CR>
+nnoremap <silent> <Leader>gvimrc :tabe ~/.vim/.gvimrc<CR>
 
 " Vundle の設定
 filetype off
@@ -120,6 +122,7 @@ Bundle 'Shougo/neocomplcache-snippets-complete'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 Bundle 'tpope/vim-fugitive'
+Bundle 'Shougo/unite.vim'
 filetype plugin indent on
 
 " neocomplcache の設定
@@ -203,6 +206,13 @@ nnoremap <silent> <Leader>vimsh :VimShell<CR>
 nnoremap <silent> <Leader>bash :VimShellInteractive bash<CR>
 nnoremap <silent> <Leader>zsh :VimShellInteractive zsh<CR>
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
+let g:vimshell_prompt = '% '
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+autocmd FileType vimshell call MyVimshSettings()
+function! MyVimshSettings()
+  call vimshell#altercmd#define('l', 'ls -F')
+  call vimshell#altercmd#define('la', 'ls -FA')
+endfunction
 
 " fugitive の設定
 nnoremap <Leader>gs :Gstatus<CR>
@@ -211,3 +221,10 @@ nnoremap <Leader>ga :Gwrite<CR>
 nnoremap <Leader>gc :Gcommit -v<CR><C-w>H
 nnoremap <Leader>gps :Git push<CR>
 nnoremap <Leader>gpl :Git pull<CR>
+nnoremap <Leader>gb :Gblame<CR>
+
+" unite の設定
+nnoremap <silent> <Leader>ub :Unite buffer<CR>
+nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
+nnoremap <silent> <Leader>uf :Unite file_rec<CR>
+let g:unite_update_time = 200
