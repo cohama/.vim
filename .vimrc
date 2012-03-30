@@ -129,6 +129,7 @@ Bundle 'Shougo/vimshell'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-endwise'
+Bundle 'tomtom/tcomment_vim'
 filetype plugin indent on
 
 " neocomplcache の設定
