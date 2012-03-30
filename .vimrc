@@ -106,7 +106,7 @@ command! -bar -bang -nargs=? -complete=file Scouter
 \        echo Scouter(empty(<q-args>) ? '/home/cohama/.vim/.vimrc' : expand(<q-args>), <bang>0)
 
 " .vimrc .gvimrc に関する設定
-nnoremap <silent> <Leader>s :source ~/.vimrc<CR>:source ~/.gvimrc<CR>
+nnoremap <silent> <Leader>so :source ~/.vimrc<CR>:source ~/.gvimrc<CR>
 nnoremap <silent> <Leader>vimrc :tabe ~/.vim/.vimrc<CR>
 nnoremap <silent> <Leader>gvimrc :tabe ~/.vim/.gvimrc<CR>
 
