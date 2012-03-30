@@ -18,7 +18,6 @@ set clipboard=autoselect,unnamed
 set cursorline
 set cmdheight=3
 set expandtab
-set foldmethod=indent
 set nohidden
 set hlsearch
 set ignorecase
