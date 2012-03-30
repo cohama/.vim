@@ -232,7 +232,7 @@ nnoremap <Leader>gpl :Git pull<CR>
 nnoremap <Leader>gb :Gblame<CR>
 
 " unite の設定
-nnoremap <silent> <Leader>ub :Unite buffer<CR>
+nnoremap <silent> <Leader>b :Unite buffer<CR>
 nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>uf :Unite file_rec<CR>
 let g:unite_update_time = 200
