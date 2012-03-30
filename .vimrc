@@ -38,12 +38,17 @@ set whichwrap+=h,l
 set wildmenu
 set wildmode=full
 
+" 自分用 augroup
+augroup CohamaAutoCmd
+  autocmd!
+augroup END
+
 " ステータスラインの色をモードで切り替え
 let hi_insert = 'highlight StatusLine ctermbg=196 ctermfg=255 cterm=bold'
 
 " ハイライトを消す
 nnoremap <silent> <C-n> :noh<CR>
-autocmd InsertEnter * let @/=""
+autocmd CohamaAutoCmd InsertEnter * let @/=""
 
 " タブページの設定
 nnoremap <silent> <C-T><C-L> :tabn<CR>
