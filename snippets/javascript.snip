@@ -1,19 +1,56 @@
 snippet fn
     function(${1:attribute}) {
-      ${0}
-    }
+      ${2:// body}
+    }${0}
 
 snippet it
     it("${1:explanation}", function() {
-      ${0}
-    });
+      ${2:// body}
+    });${0}
 
 snippet beforeEach
     beforeEach(function() {
-      ${0}
-    }
+      ${2:// body}
+    });${0}
 
 snippet describe
     describe("${1:description}", function() {
+      ${2:// body}
+    });${0}
+
+snippet BackboneModels
+    Backbone.Models.extend({
+      ${2:// body}
+    });${0}
+
+snippet BackboneCollections
+    Backbone.Collections.extend({
+      model: ${1:model},
       ${0}
     });
+
+snippet BackboneViews
+    Backbone.Views.extend({
+      ${0}
+    });
+
+snippet BackboneRouters
+    Backbone.Routers.extend({
+      ${0}
+    });
+
+snippet bbf
+    ${1:attribute}: function(${2:arguments}) {
+      ${3:// body}
+    }${0}
+
+snippet hash
+    ${1:key}: ${2:value}
+
+snippet _each
+    _.each(${1:list}, function(${2:iter}) {
+      ${3:// body}
+    });${0}
+
+snippet console
+    console.log(${0});
