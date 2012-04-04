@@ -3,6 +3,7 @@ set helplang=ja
 
 " カラースキーム
 set t_Co=256
+syntax on
 colorscheme cohama
 
 " 「日本語入力固定モード」切り替えキー
@@ -130,6 +131,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tomtom/tcomment_vim'
+Bundle 'kchmck/vim-coffee-script'
 filetype plugin indent on
 
 " neocomplcache の設定
