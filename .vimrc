@@ -72,7 +72,7 @@ vnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
-nnoremap g/ yiw:s/<C-R>0//g<Left><Left>
+nnoremap g/ yiw:%s/<C-R>0//g<Left><Left>
 
 " カーソル位置の単語をハイライト
 function! HilightWordAtCursor()
@@ -235,5 +235,5 @@ nnoremap <Leader>gb :Gblame<CR>
 " unite の設定
 nnoremap <silent> <Leader>b :Unite buffer<CR>
 nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
-nnoremap <silent> <Leader>uf :Unite file_rec<CR>
+nnoremap <silent> <Leader>f :Unite file_rec<CR>
 let g:unite_update_time = 100

@@ -6,22 +6,22 @@ snippet fn
 snippet it
     it("${1:explanation}", function() {
       ${2:// body}
-    });${0}
+    });
 
 snippet beforeEach
     beforeEach(function() {
-      ${2:// body}
-    });${0}
+      ${1:// body}
+    });
 
 snippet describe
     describe("${1:description}", function() {
       ${2:// body}
-    });${0}
+    });
 
 snippet BackboneModels
     Backbone.Models.extend({
-      ${2:// body}
-    });${0}
+      ${1:// body}
+    });
 
 snippet BackboneCollections
     Backbone.Collections.extend({
@@ -42,15 +42,15 @@ snippet BackboneRouters
 snippet bbf
     ${1:attribute}: function(${2:arguments}) {
       ${3:// body}
-    }${0}
+    }
 
 snippet hash
     ${1:key}: ${2:value}
 
 snippet _each
     _.each(${1:list}, function(${2:iter}) {
-      ${3:// body}
-    });${0}
+      ${4:// body}
+    }${3:, this});
 
 snippet console
     console.log(${0});
