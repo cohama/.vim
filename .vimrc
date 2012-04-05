@@ -235,5 +235,5 @@ nnoremap <Leader>gb :Gblame<CR>
 " unite の設定
 nnoremap <silent> <Leader>b :Unite buffer<CR>
 nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
-nnoremap <silent> <Leader>uf :Unite file_rec<CR>
+nnoremap <silent> <Leader>f :Unite file_rec<CR>
 let g:unite_update_time = 100
