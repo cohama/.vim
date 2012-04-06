@@ -15,7 +15,7 @@ let IM_CtrlIBusPython = 1
 set autoindent
 set autoread
 set backspace=indent,eol,start
-set clipboard=autoselect,unnamed
+set clipboard=unnamed
 set cursorline
 set cmdheight=3
 set expandtab
@@ -201,6 +201,7 @@ let g:rubycomplete_rails = 1
 
 " NERDTree の設定
 map <silent> <C-p> :NERDTreeToggle<CR>
+map <silent> <Leader><C-p> :NERDTreeFind<CR>
 let NERDTreeIgnore = ['\~$', '\.swp']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 36
