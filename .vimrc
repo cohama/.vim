@@ -126,6 +126,14 @@ highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 autocmd WinEnter * match WhitespaceEOL /\s\+$/
 
+" ruby コードを実行するコマンド
+function! ExecuteRuby(file)
+  execute "!ruby ".a:file
+endfunction
+command! -nargs=? -complete=file RubyExec call ExecuteRuby(empty(<q-args>) ? expand('%') : expand(<q-args>))
+autocmd CohamaAutoCmd FileType * nnoremap <F6> <Nop>
+autocmd CohamaAutoCmd FileType ruby nnoremap <buffer> <F6> :<C-u>RubyExec<CR>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
