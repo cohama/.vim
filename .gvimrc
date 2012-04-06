@@ -1,6 +1,7 @@
 set guifont=Migu\ 2M\ 12
 set guioptions-=T
 set guioptions-=m
+set guioptions-=a
 
 " tabpage の設定
 nnoremap <silent> <M-l> :tabnext<CR>
