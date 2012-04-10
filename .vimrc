@@ -237,6 +237,7 @@ autocmd FileType vimshell call MyVimshSettings()
 function! MyVimshSettings()
   call vimshell#altercmd#define('l', 'ls -F')
   call vimshell#altercmd#define('la', 'ls -FA')
+  call vimshell#altercmd#define('jasmine', 'bundle exec jasmine-headless-webkit')
 endfunction
 
 " fugitive の設定
