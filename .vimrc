@@ -110,6 +110,22 @@ nnoremap <silent> <Leader>so :source ~/.vimrc<CR>:source ~/.gvimrc<CR>
 nnoremap <silent> <Leader>vimrc :tabe ~/.vim/.vimrc<CR>
 nnoremap <silent> <Leader>gvimrc :tabe ~/.vim/.gvimrc<CR>
 
+" magic comment
+function! MagicComment()
+  let magic_comment = "# encoding: utf-8\n"
+  let pos = getpos(".")
+  call cursor(1, 0)
+  execute ":normal O" . magic_comment
+  call setpos(".", pos)
+endfunction
+
+nnoremap <silent> <F12> :call MagicComment()<CR>
+
+" 行末の空白をハイライト
+highlight WhitespaceEOL ctermbg=red guibg=red
+match WhitespaceEOL /\s\+$/
+autocmd WinEnter * match WhitespaceEOL /\s\+$/
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
@@ -221,6 +237,7 @@ autocmd FileType vimshell call MyVimshSettings()
 function! MyVimshSettings()
   call vimshell#altercmd#define('l', 'ls -F')
   call vimshell#altercmd#define('la', 'ls -FA')
+  call vimshell#altercmd#define('jasmine', 'bundle exec jasmine-headless-webkit')
 endfunction
 
 " fugitive の設定
