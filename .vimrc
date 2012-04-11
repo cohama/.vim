@@ -255,3 +255,9 @@ nnoremap <silent> <Leader>b :Unite buffer<CR>
 nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>f :Unite file_rec<CR>
 let g:unite_update_time = 100
+let g:unite_enable_start_insert = 1
+nnoremap <silent><buffer><expr> t unite#do_action('tabopen')
+nnoremap <silent><buffer><expr> o unite#do_action('open')
+nnoremap <silent><buffer><expr> s unite#do_action('vsplit')
+nnoremap <silent><buffer><expr> S unite#do_action('split')
+nnoremap <silent><buffer><expr> n unite#do_action('insert')
