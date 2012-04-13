@@ -133,6 +133,10 @@ command! -nargs=? -complete=file RubyExec call ExecuteRuby(empty(<q-args>) ? exp
 autocmd CohamaAutoCmd FileType * nnoremap <F6> <Nop>
 autocmd CohamaAutoCmd FileType ruby nnoremap <buffer> <F6> :<C-u>RubyExec<CR>
 
+" console.log をハイライト
+highlight JSConsoleLog ctermbg=red guibg=red
+autocmd CohamaAutoCmd FileType javascript match JSConsoleLog /console.log/
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
