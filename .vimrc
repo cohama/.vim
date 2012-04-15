@@ -268,8 +268,11 @@ nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>f :Unite file_rec<CR>
 let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
-nnoremap <silent><buffer><expr> t unite#do_action('tabopen')
-nnoremap <silent><buffer><expr> o unite#do_action('open')
-nnoremap <silent><buffer><expr> s unite#do_action('vsplit')
-nnoremap <silent><buffer><expr> S unite#do_action('split')
-nnoremap <silent><buffer><expr> n unite#do_action('insert')
+autocmd CohamaAutoCmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  inoremap <silent><buffer><expr> t unite#smart_map("t", unite#do_action('tabopen'))
+  inoremap <silent><buffer><expr> o unite#smart_map("o", unite#do_action('open'))
+  inoremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
+  inoremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
+  inoremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
+endfunction
