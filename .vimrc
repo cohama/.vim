@@ -68,7 +68,6 @@ set showtabline=2
 
 " ヤンクした文字列でカーソル位置の単語置き換え
 nnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
-vnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
@@ -240,9 +239,12 @@ let g:user_zen_settings = {
 \ }
 
 " vimshell の設定
-nnoremap <silent> <Leader>sh :VimShell<CR>
-nnoremap <silent> <Leader>bash :VimShellInteractive bash<CR>
-nnoremap <silent> <Leader>zsh :VimShellInteractive zsh<CR>
+nnoremap <silent> <Leader>sh :tabnew<CR>:VimShell<CR>
+autocmd CohamaAutoCmd FileType vimshell call s:vimshell_my_settings()
+function! s:vimshell_my_settings()
+  nmap <buffer> Q <Plug>(vimshell_exit):q<CR>:tabp<CR>
+  imap <buffer> <C-q> <Esc>Q
+endfunction
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
 let g:vimshell_prompt = '% '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
@@ -268,8 +270,12 @@ nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>f :Unite file_rec<CR>
 let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
-nnoremap <silent><buffer><expr> t unite#do_action('tabopen')
-nnoremap <silent><buffer><expr> o unite#do_action('open')
-nnoremap <silent><buffer><expr> s unite#do_action('vsplit')
-nnoremap <silent><buffer><expr> S unite#do_action('split')
-nnoremap <silent><buffer><expr> n unite#do_action('insert')
+autocmd CohamaAutoCmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  imap <silent><buffer> <C-q> <Plug>(unite_exit)
+  noremap <silent><buffer><expr> t unite#smart_map("t", unite#do_action('tabopen'))
+  noremap <silent><buffer><expr> o unite#smart_map("o", unite#do_action('open'))
+  noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
+  noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
+  noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
+endfunction
