@@ -245,8 +245,6 @@ function! s:vimshell_my_settings()
   nmap <buffer> Q <Plug>(vimshell_exit):q<CR>:tabp<CR>
   imap <buffer> <C-q> <Esc>Q
 endfunction
-nnoremap <silent> <Leader>bash :VimShellInteractive bash<CR>
-nnoremap <silent> <Leader>zsh :VimShellInteractive zsh<CR>
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
 let g:vimshell_prompt = '% '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
