@@ -269,6 +269,7 @@ let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
 autocmd CohamaAutoCmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
+  imap <silent><buffer> <C-q> <Plug>(unite_exit)
   noremap <silent><buffer><expr> t unite#smart_map("t", unite#do_action('tabopen'))
   noremap <silent><buffer><expr> o unite#smart_map("o", unite#do_action('open'))
   noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
