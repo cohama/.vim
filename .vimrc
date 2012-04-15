@@ -240,6 +240,11 @@ let g:user_zen_settings = {
 
 " vimshell の設定
 nnoremap <silent> <Leader>sh :tabnew<CR>:VimShell<CR>
+autocmd CohamaAutoCmd FileType vimshell call s:vimshell_my_settings()
+function! s:vimshell_my_settings()
+  nmap <buffer> Q <Plug>(vimshell_exit):q<CR>:tabp<CR>
+  imap <buffer> <C-q> <Esc>Q
+endfunction
 nnoremap <silent> <Leader>bash :VimShellInteractive bash<CR>
 nnoremap <silent> <Leader>zsh :VimShellInteractive zsh<CR>
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
