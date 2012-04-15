@@ -68,7 +68,6 @@ set showtabline=2
 
 " ヤンクした文字列でカーソル位置の単語置き換え
 nnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
-vnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
