@@ -15,27 +15,28 @@ snippet beforeEach
 
 snippet describe
     describe("${1:description}", function() {
+
       ${2:// body}
     });
 
-snippet BackboneModels
-    Backbone.Models.extend({
+snippet BackboneModel
+    Backbone.Model.extend({
       ${1:// body}
     });
 
-snippet BackboneCollections
-    Backbone.Collections.extend({
+snippet BackboneCollection
+    Backbone.Collection.extend({
       model: ${1:model},
       ${0}
     });
 
-snippet BackboneViews
-    Backbone.Views.extend({
+snippet BackboneView
+    Backbone.View.extend({
       ${0}
     });
 
-snippet BackboneRouters
-    Backbone.Routers.extend({
+snippet BackboneRouter
+    Backbone.Router.extend({
       ${0}
     });
 
