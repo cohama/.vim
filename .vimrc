@@ -123,8 +123,7 @@ nnoremap <silent> <F12> :call MagicComment()<CR>
 
 " 行末の空白をハイライト
 highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
-autocmd WinEnter * match WhitespaceEOL /\s\+$/
+autocmd CohamaAutoCmd WinEnter * match WhitespaceEOL /\s\+$/
 
 " ruby コードを実行するコマンド
 function! ExecuteRuby(file)
@@ -133,6 +132,10 @@ endfunction
 command! -nargs=? -complete=file RubyExec call ExecuteRuby(empty(<q-args>) ? expand('%') : expand(<q-args>))
 autocmd CohamaAutoCmd FileType * nnoremap <F6> <Nop>
 autocmd CohamaAutoCmd FileType ruby nnoremap <buffer> <F6> :<C-u>RubyExec<CR>
+
+" console.log をハイライト
+highlight JSConsoleLog ctermbg=red guibg=red
+autocmd CohamaAutoCmd FileType javascript match JSConsoleLog /console.log/
 
 " Vundle の設定
 filetype off
