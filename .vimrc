@@ -270,9 +270,9 @@ let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
 autocmd CohamaAutoCmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
-  inoremap <silent><buffer><expr> t unite#smart_map("t", unite#do_action('tabopen'))
-  inoremap <silent><buffer><expr> o unite#smart_map("o", unite#do_action('open'))
-  inoremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
-  inoremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
-  inoremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
+  noremap <silent><buffer><expr> t unite#smart_map("t", unite#do_action('tabopen'))
+  noremap <silent><buffer><expr> o unite#smart_map("o", unite#do_action('open'))
+  noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
+  noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
+  noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
 endfunction
