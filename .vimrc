@@ -15,7 +15,7 @@ let IM_CtrlIBusPython = 1
 set autoindent
 set autoread
 set backspace=indent,eol,start
-set clipboard=autoselect,unnamed
+set clipboard=unnamed
 set cursorline
 set cmdheight=3
 set expandtab
@@ -126,6 +126,14 @@ highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 autocmd WinEnter * match WhitespaceEOL /\s\+$/
 
+" ruby コードを実行するコマンド
+function! ExecuteRuby(file)
+  execute "!ruby ".a:file
+endfunction
+command! -nargs=? -complete=file RubyExec call ExecuteRuby(empty(<q-args>) ? expand('%') : expand(<q-args>))
+autocmd CohamaAutoCmd FileType * nnoremap <F6> <Nop>
+autocmd CohamaAutoCmd FileType ruby nnoremap <buffer> <F6> :<C-u>RubyExec<CR>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
@@ -193,6 +201,7 @@ let g:rubycomplete_rails = 1
 
 " NERDTree の設定
 map <silent> <C-p> :NERDTreeToggle<CR>
+map <silent> <Leader><C-p> :NERDTreeFind<CR>
 let NERDTreeIgnore = ['\~$', '\.swp']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 36
