@@ -280,3 +280,7 @@ function! s:unite_my_settings()
   noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
 endfunction
+
+" gitv の設定
+autocmd CohamaAutoCmd FileType git :setlocal foldlevel=99
+
