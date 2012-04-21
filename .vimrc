@@ -210,6 +210,7 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 36
 let NERDTreeMinimalUI = 1
 map <silent> <C-@> :NERDTreeFind<CR>
+map <silent> <Leader><C-p> :NERDTreeFind<CR>
 
 " surrond.vim の設定
 let g:surround_36 = "$(\r)"
