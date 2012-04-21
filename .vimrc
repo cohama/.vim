@@ -158,6 +158,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'gregsexton/gitv'
 filetype plugin indent on
 
 " neocomplcache の設定
@@ -209,6 +210,7 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 36
 let NERDTreeMinimalUI = 1
 map <silent> <C-@> :NERDTreeFind<CR>
+map <silent> <Leader><C-p> :NERDTreeFind<CR>
 
 " surrond.vim の設定
 let g:surround_36 = "$(\r)"
@@ -242,18 +244,16 @@ let g:user_zen_settings = {
 nnoremap <silent> <Leader>sh :tabnew<CR>:VimShell<CR>
 autocmd CohamaAutoCmd FileType vimshell call s:vimshell_my_settings()
 function! s:vimshell_my_settings()
-  nmap <buffer> Q <Plug>(vimshell_exit):q<CR>:tabp<CR>
-  imap <buffer> <C-q> <Esc>Q
+  nmap <buffer> q <Plug>(vimshell_exit):q<CR>:tabp<CR>
+  imap <buffer> <C-q> <Esc>q
+  call vimshell#altercmd#define('l', 'ls -F')
+  call vimshell#altercmd#define('la', 'ls -FA')
+  call vimshell#altercmd#define('ll', 'ls -alF')
+  call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
 endfunction
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
 let g:vimshell_prompt = '% '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-autocmd FileType vimshell call MyVimshSettings()
-function! MyVimshSettings()
-  call vimshell#altercmd#define('l', 'ls -F')
-  call vimshell#altercmd#define('la', 'ls -FA')
-  call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
-endfunction
 
 " fugitive の設定
 nnoremap <Leader>gs :Gstatus<CR>
@@ -279,3 +279,12 @@ function! s:unite_my_settings()
   noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
 endfunction
+
+" gitv の設定
+autocmd CohamaAutoCmd FileType git :setlocal foldlevel=99
+autocmd CohamaAutoCmd FileType gitv call s:gitv_my_settings()
+function! s:gitv_my_settings()
+  nnoremap <C-l> :tabn<CR>
+endfunction
+nnoremap <Leader>gv :Gitv --all<CR>
+
