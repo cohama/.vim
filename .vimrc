@@ -209,6 +209,7 @@ let NERDTreeIgnore = ['\~$', '\.swp']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 36
 let NERDTreeMinimalUI = 1
+let NERDTreeChDirMode = 1
 map <silent> <C-@> :NERDTreeFind<CR>
 map <silent> <Leader><C-p> :NERDTreeFind<CR>
 
