@@ -243,19 +243,16 @@ let g:user_zen_settings = {
 nnoremap <silent> <Leader>sh :tabnew<CR>:VimShell<CR>
 autocmd CohamaAutoCmd FileType vimshell call s:vimshell_my_settings()
 function! s:vimshell_my_settings()
-  nmap <buffer> Q <Plug>(vimshell_exit):q<CR>:tabp<CR>
-  imap <buffer> <C-q> <Esc>Q
-endfunction
-nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
-let g:vimshell_prompt = '% '
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-autocmd FileType vimshell call MyVimshSettings()
-function! MyVimshSettings()
+  nmap <buffer> q <Plug>(vimshell_exit):q<CR>:tabp<CR>
+  imap <buffer> <C-q> <Esc>q
   call vimshell#altercmd#define('l', 'ls -F')
   call vimshell#altercmd#define('la', 'ls -FA')
   call vimshell#altercmd#define('ll', 'ls -alF')
   call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
 endfunction
+nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
+let g:vimshell_prompt = '% '
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 " fugitive の設定
 nnoremap <Leader>gs :Gstatus<CR>
