@@ -253,6 +253,7 @@ autocmd FileType vimshell call MyVimshSettings()
 function! MyVimshSettings()
   call vimshell#altercmd#define('l', 'ls -F')
   call vimshell#altercmd#define('la', 'ls -FA')
+  call vimshell#altercmd#define('ll', 'ls -alF')
   call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
 endfunction
 
