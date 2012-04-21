@@ -282,9 +282,6 @@ endfunction
 
 " gitv の設定
 autocmd CohamaAutoCmd FileType git :setlocal foldlevel=99
-autocmd CohamaAutoCmd FileType gitv call s:gitv_my_settings()
-function! s:gitv_my_settings()
-  nnoremap <C-l> :tabn<CR>
-endfunction
-nnoremap <Leader>gv :Gitv --all<CR>
+nnoremap <Leader>gk :Gitv --all<CR>
+let g:Gitv_DoNotMapCtrlKey = 1
 
