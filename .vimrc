@@ -161,6 +161,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'gregsexton/gitv'
+Bundle 'derekwyatt/vim-scala'
 filetype plugin indent on
 
 " neocomplcache の設定
