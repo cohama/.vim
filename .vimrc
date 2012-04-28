@@ -26,6 +26,8 @@ set incsearch
 set laststatus=2
 set nrformats-=octal
 set number
+set list
+set listchars=tab:>-
 set scrolloff=5
 set shiftwidth=2
 set showcmd
