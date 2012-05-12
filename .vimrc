@@ -164,6 +164,9 @@ Bundle 'gregsexton/gitv'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'groenewege/vim-less'
 Bundle 'sudo.vim'
+Bundle 'IndentAnything'
+Bundle 'serverhorror/javascript.vim'
+Bundle 'Javascript-Indentation'
 filetype plugin indent on
 
 " neocomplcache の設定
