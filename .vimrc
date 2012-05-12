@@ -163,6 +163,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'gregsexton/gitv'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'groenewege/vim-less'
+Bundle 'sudo.vim'
 filetype plugin indent on
 
 " neocomplcache の設定
