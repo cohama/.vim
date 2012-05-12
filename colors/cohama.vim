@@ -128,14 +128,14 @@ end
 if &t_Co > 255
    hi Boolean         ctermfg=135
    hi Character       ctermfg=144
-   hi Number          ctermfg=135
-   hi String          ctermfg=144
-   hi Conditional     ctermfg=161               cterm=bold
+   hi Number          ctermfg=213
+   hi String          ctermfg=167
+   hi Conditional     ctermfg=198               cterm=bold
    hi Constant        ctermfg=135               cterm=bold
    hi Cursor          ctermfg=16  ctermbg=253
    hi Debug           ctermfg=225               cterm=bold
-   hi Define          ctermfg=81
-   hi Delimiter       ctermfg=241
+   hi Define          ctermfg=198               cterm=bold
+   hi Delimiter       ctermfg=167
 
    hi DiffAdd                     ctermbg=24
    hi DiffChange      ctermfg=181 ctermbg=239
@@ -154,7 +154,7 @@ if &t_Co > 255
    hi Ignore          ctermfg=244 ctermbg=232
    hi IncSearch       ctermfg=193 ctermbg=16
 
-   hi Keyword         ctermfg=161               cterm=bold
+   hi Keyword         ctermfg=198               cterm=bold
    hi Label           ctermfg=229               cterm=none
    hi Macro           ctermfg=193
    hi SpecialKey      ctermfg=81
@@ -162,7 +162,7 @@ if &t_Co > 255
    hi MatchParen      ctermfg=255  ctermbg=53 cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161
+   hi Operator        ctermfg=198
 
    " complete menu
    hi Pmenu           ctermfg=232  ctermbg=255
@@ -173,22 +173,22 @@ if &t_Co > 255
    hi PreCondit       ctermfg=118               cterm=bold
    hi PreProc         ctermfg=118
    hi Question        ctermfg=81
-   hi Repeat          ctermfg=161               cterm=bold
+   hi Repeat          ctermfg=198               cterm=bold
    hi Search          ctermfg=253 ctermbg=66
 
    " marks column
    hi SignColumn      ctermfg=118 ctermbg=235
-   hi SpecialChar     ctermfg=161               cterm=bold
+   hi SpecialChar     ctermfg=198               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
    hi Special         ctermfg=81  ctermbg=232
    hi SpecialKey      ctermfg=245
 
-   hi Statement       ctermfg=161               cterm=bold
+   hi Statement       ctermfg=198               cterm=bold
    hi StatusLine      ctermfg=255 ctermbg=16
    hi StatusLineNC    ctermfg=233 ctermbg=240
    hi StorageClass    ctermfg=208
    hi Structure       ctermfg=81
-   hi Tag             ctermfg=161
+   hi Tag             ctermfg=198
    hi Title           ctermfg=166
    hi Todo            ctermfg=231 ctermbg=232   cterm=bold
 
@@ -203,8 +203,8 @@ if &t_Co > 255
    hi WildMenu        ctermfg=81  ctermbg=16
 
    hi Normal          ctermfg=252 ctermbg=16
-   hi Comment         ctermfg=243
-   hi CursorLine                  ctermbg=236 cterm=none
+   hi Comment         ctermfg=22
+   hi CursorLine                  ctermbg=234 cterm=none
    hi CursorColumn                ctermbg=236
    hi LineNr          ctermfg=250 ctermbg=16
    hi NonText         ctermfg=250 ctermbg=16
