@@ -167,6 +167,7 @@ Bundle 'sudo.vim'
 Bundle 'IndentAnything'
 Bundle 'serverhorror/javascript.vim'
 Bundle 'Javascript-Indentation'
+Bundle 'nathanaelkane/vim-indent-guides'
 filetype plugin indent on
 
 " neocomplcache の設定
@@ -293,4 +294,12 @@ endfunction
 autocmd CohamaAutoCmd FileType git :setlocal foldlevel=99
 nnoremap <Leader>gk :Gitv --all<CR>
 let g:Gitv_DoNotMapCtrlKey = 1
+
+"indent-guides の設定
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
+let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
 
