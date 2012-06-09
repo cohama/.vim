@@ -306,3 +306,5 @@ hi IndentGuidesOdd ctermbg=235
 hi IndentGuidesEven ctermbg=233
 let g:indent_guides_color_change_percent = 30
 
+" powerline
+let g:Powerline_symbols='fancy'
