@@ -169,6 +169,7 @@ Bundle 'serverhorror/javascript.vim'
 Bundle 'Javascript-Indentation'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'camelcasemotion'
+Bundle 'EasyMotion'
 filetype plugin indent on
 
 " neocomplcache の設定
