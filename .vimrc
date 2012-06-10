@@ -35,7 +35,6 @@ set smartcase
 set smartindent
 set smarttab
 set softtabstop=2
-set statusline=%<%f\ (%n)%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']'}\ %{fugitive#statusline()}%=Line:\ %l,\ Col:\ %c%V%8P
 set tabstop=2
 set whichwrap+=h,l
 set wildmenu
@@ -45,9 +44,6 @@ set wildmode=full
 augroup CohamaAutoCmd
   autocmd!
 augroup END
-
-" ステータスラインの色をモードで切り替え
-let hi_insert = 'highlight StatusLine ctermbg=196 ctermfg=255 cterm=bold'
 
 " ハイライトを消す
 nnoremap <silent> <C-n> :noh<CR>
