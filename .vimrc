@@ -171,6 +171,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'camelcasemotion'
 Bundle 'EasyMotion'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'manalang/jshint.vim'
 filetype plugin indent on
 
 " neocomplcache の設定
