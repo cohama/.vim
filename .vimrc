@@ -254,7 +254,7 @@ let g:user_zen_settings = {
 nnoremap <silent> <Leader>sh :tabnew<CR>:VimShell<CR>
 autocmd CohamaAutoCmd FileType vimshell call s:vimshell_my_settings()
 function! s:vimshell_my_settings()
-  nmap <buffer> q <Plug>(vimshell_exit):q<CR>:tabp<CR>
+  nmap <buffer> q <Plug>(vimshell_exit):q<CR>
   imap <buffer> <C-q> <Esc>q
   call vimshell#altercmd#define('l', 'ls -F')
   call vimshell#altercmd#define('la', 'ls -FA')
