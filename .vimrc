@@ -305,3 +305,11 @@ let g:indent_guides_color_change_percent = 30
 
 " powerline
 let g:Powerline_symbols='fancy'
+
+" coffeescript
+let coffee_make_options = '--bare'
+let coffee_compiler = '/usr/bin/coffee'
+let coffee_linter = '/usr/bin/coffeelint'
+nnoremap <Leader>cc :CoffeeCompile<CR>
+nnoremap <Leader>cm :CoffeeMake<CR>
+nnoremap <Leader>cl :CoffeeLint<CR>
