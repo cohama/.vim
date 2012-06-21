@@ -261,6 +261,7 @@ function! s:vimshell_my_settings()
   call vimshell#altercmd#define('ll', 'ls -alF')
   call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
 endfunction
+inoremap <buffer> <expr><silent> <C-p> unite#sources#vimshell_history#start_complete()
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
 let g:vimshell_prompt = '% '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
