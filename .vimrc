@@ -19,7 +19,7 @@ set clipboard=unnamed
 set cmdheight=3
 set cursorline
 set expandtab
-set formatoptions-=o
+set formatoptions=crql
 set hlsearch
 set ignorecase
 set incsearch
