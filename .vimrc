@@ -39,6 +39,7 @@ set tabstop=2
 set whichwrap+=h,l
 set wildmenu
 set wildmode=full
+set formatoptions-=o
 
 " 自分用 augroup
 augroup CohamaAutoCmd
