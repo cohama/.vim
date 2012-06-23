@@ -26,6 +26,7 @@ set incsearch
 set laststatus=2
 set nrformats-=octal
 set number
+set lazyredraw
 set list
 set listchars=tab:>-
 set scrolloff=5
