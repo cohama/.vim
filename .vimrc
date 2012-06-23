@@ -16,19 +16,20 @@ set autoindent
 set autoread
 set backspace=indent,eol,start
 set clipboard=unnamed
-set cursorline
 set cmdheight=3
+set cursorline
 set expandtab
-set nohidden
+set formatoptions-=o
 set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set nrformats-=octal
-set number
 set lazyredraw
 set list
 set listchars=tab:>-
+set nohidden
+set nrformats-=octal
+set number
 set scrolloff=5
 set shiftwidth=2
 set showcmd
@@ -40,7 +41,6 @@ set tabstop=2
 set whichwrap+=h,l
 set wildmenu
 set wildmode=full
-set formatoptions-=o
 
 " 自分用 augroup
 augroup CohamaAutoCmd
