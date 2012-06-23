@@ -70,7 +70,7 @@ nnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
-nnoremap g/ yiw:%s/\<<C-R>0\>//g<Left><Left>
+nnoremap g/ :%s/\<<C-R><C-w>\>//g<Left><Left>
 
 " カーソル位置の単語をハイライト
 function! HilightWordAtCursor()
@@ -89,7 +89,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " カーソル位置の単語をヘルプで検索
-nnoremap <silent> gh yiw:help <C-r>0<CR>
+nnoremap <silent> gh :help <C-r><C-w><CR>
 
 " 戦闘力を測定
 function! Scouter(file, ...)
