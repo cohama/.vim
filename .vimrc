@@ -169,6 +169,7 @@ Bundle 'camelcasemotion'
 Bundle 'EasyMotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'manalang/jshint.vim'
+Bundle 'Shougo/vimfiler'
 filetype plugin indent on
 
 " neocomplcache の設定
@@ -316,3 +317,6 @@ let coffee_linter = '/usr/bin/coffeelint'
 nnoremap <Leader>cc :CoffeeCompile<CR>
 nnoremap <Leader>cm :CoffeeMake<CR>
 nnoremap <Leader>cl :CoffeeLint<CR>
+
+" vimfiler
+let g:vimfiler_safe_mode_by_default = 0
