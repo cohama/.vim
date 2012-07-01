@@ -170,6 +170,7 @@ Bundle 'EasyMotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'manalang/jshint.vim'
 Bundle 'Shougo/vimfiler'
+Bundle 'thinca/vim-quickrun'
 filetype plugin indent on
 
 " neocomplcache の設定
