@@ -38,6 +38,7 @@ set smartindent
 set smarttab
 set softtabstop=2
 set tabstop=2
+set notagbsearch
 set whichwrap+=h,l
 set wildmenu
 set wildmode=full
