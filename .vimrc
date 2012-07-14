@@ -137,6 +137,10 @@ autocmd CohamaAutoCmd FileType ruby nnoremap <buffer> <F6> :<C-u>RubyExec<CR>
 highlight JSConsoleLog ctermbg=red guibg=red
 autocmd CohamaAutoCmd WinEnter *.js match JSConsoleLog /console.log/
 
+" カーソルの桁座標が動かない gj, gk
+nnoremap gj lhgj
+nnoremap gk lhgk
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
