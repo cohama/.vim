@@ -141,6 +141,10 @@ autocmd CohamaAutoCmd WinEnter *.js match JSConsoleLog /console.log/
 nnoremap gj lhgj
 nnoremap gk lhgk
 
+" 検索結果で画面を真ん中に
+nnoremap n nzz
+nnoremap N Nzz
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
