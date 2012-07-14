@@ -145,6 +145,17 @@ nnoremap gk lhgk
 nnoremap n nzz
 nnoremap N Nzz
 
+" インサートモードから出るときにカーソルを後退させない
+function! FixedInsertLeave()
+  " 行末だった場合は通常と同じく後退させる
+  let cursorPos = col(".")
+  let maxColumn = col("$")
+  if cursorPos + 1 < maxColumn
+    normal l
+  endif
+endfunction
+inoremap <silent> <Esc> <Esc>:call FixedInsertLeave()<Esc>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
