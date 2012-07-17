@@ -166,6 +166,9 @@ endfunction
 command! Only call ExtendedOnly()
 cabbrev On Only
 
+" help は縦に分割して開きたい
+autocmd CohamaAutoCmd FileType help normal H
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
