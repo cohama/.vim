@@ -158,6 +158,14 @@ function! FixedInsertLeave()
 endfunction
 inoremap <silent><expr> <Esc> FixedInsertLeave()
 
+" すごい :only
+function! ExtendedOnly()
+  tabonly
+  only
+endfunction
+command! Only call ExtendedOnly()
+cabbrev On Only
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
