@@ -150,11 +150,13 @@ function! FixedInsertLeave()
   " 行末だった場合は通常と同じく後退させる
   let cursorPos = col(".")
   let maxColumn = col("$")
-  if cursorPos + 1 < maxColumn
-    normal l
+  if cursorPos < maxColumn
+    return "\<Esc>l"
+  else
+    return "\<Esc>"
   endif
 endfunction
-inoremap <silent> <Esc> <Esc>:call FixedInsertLeave()<Esc>
+inoremap <silent><expr> <Esc> FixedInsertLeave()
 
 " Vundle の設定
 filetype off
