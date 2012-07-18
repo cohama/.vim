@@ -209,6 +209,20 @@ cnoremap <C-a> <Home>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 
+" タブページの移動
+function! MoveTabPage(dir)
+  if a:dir == "right"
+    let n = tabpagenr()
+  elseif a:dir == "left"
+    let n = tabpagenr() - 2
+  endif
+  if n >= 0
+    execute "tabm " . n
+  endif
+endfunction
+nnoremap <silent> <C-t>L :call MoveTabPage("right")<CR>
+nnoremap <silent> <C-t>H :call MoveTabPage("left")<CR>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
