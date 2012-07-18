@@ -169,6 +169,34 @@ cabbrev On Only
 " help は縦に分割して開きたい
 autocmd CohamaAutoCmd FileType help normal H
 
+" cohama smooth scroll
+let s:scroll_time_ms = 100
+let s:scroll_precision = 8
+function! CohamaSmoothScroll(dir, windiv, factor)
+  let height = winheight(0) / a:windiv
+  let n = height / s:scroll_precision
+  if n <= 0
+    let n = 1
+  endif
+  let i = 0
+  while i < s:scroll_precision
+    let i = i + 1
+    if a:dir == "d"
+      execute "normal " . n . "" . n ."j"
+    else
+      execute "normal " . n . "" . n ."k"
+    endif
+    let wait_per_one_move_ms = s:scroll_time_ms / s:scroll_precision * a:factor
+    execute "sleep " . wait_per_one_move_ms . "m"
+    redraw
+  endwhile
+  echo "CohamaSmoothScroll"
+endfunction
+nnoremap <silent> <C-d> :call CohamaSmoothScroll("d", 2, 1)<CR>
+nnoremap <silent> <C-u> :call CohamaSmoothScroll("u", 2, 1)<CR>
+nnoremap <silent> <C-f> :call CohamaSmoothScroll("d", 1, 2)<CR>
+nnoremap <silent> <C-b> :call CohamaSmoothScroll("u", 1, 2)<CR>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
