@@ -204,6 +204,11 @@ vnoremap / y:%s/<C-r>"//g<Left><Left>
 " 行末までをヤンク
 nnoremap Y y$
 
+" コマンドモードのマッピング
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
