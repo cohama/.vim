@@ -198,6 +198,9 @@ nnoremap <silent> <C-u> :call CohamaSmoothScroll("u", 2, 1)<CR>
 nnoremap <silent> <C-f> :call CohamaSmoothScroll("d", 1, 2)<CR>
 nnoremap <silent> <C-b> :call CohamaSmoothScroll("u", 1, 2)<CR>
 
+" ビジュアルモードで選択した部分を置換
+vnoremap / y:%s/<C-r>"//g<Left><Left>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
