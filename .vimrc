@@ -227,6 +227,31 @@ endfunction
 nnoremap <silent> <C-t>L :call MoveTabPage("right")<CR>
 nnoremap <silent> <C-t>H :call MoveTabPage("left")<CR>
 
+" 右側のタブをすべて閉じる
+function! CloseAllRightTabs()
+  let current_tabnr = tabpagenr()
+  let last_tabnr = tabpagenr("$")
+  let num_close = last_tabnr - current_tabnr
+  let i = 0
+  while i < num_close
+    execute "tabclose " . (current_tabnr + 1)
+    let i = i + 1
+  endwhile
+endfunction
+nnoremap <silent> <C-t>dl :call CloseAllRightTabs()<CR>
+
+" 左側のタブをすべて閉じる
+function! CloseAllLeftTabs()
+  let current_tabnr = tabpagenr()
+  let num_close = current_tabnr - 1
+  let i = 0
+  while i < num_close
+    execute "tabclose 1"
+    let i = i + 1
+  endwhile
+endfunction
+nnoremap <silent> <C-t>dh :call CloseAllLeftTabs()<CR>
+
 " Vundle の設定
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
