@@ -167,8 +167,12 @@ endfunction
 command! Only call ExtendedOnly()
 cabbrev On Only
 
-" help は縦に分割して開きたい
-autocmd CohamaAutoCmd FileType help normal H
+" help を開いたとき
+function! WhenHelpOpened()
+  normal H
+  nnoremap <buffer> q :q<CR>
+endfunction
+autocmd CohamaAutoCmd FileType help call WhenHelpOpened()
 
 " cohama smooth scroll
 let s:scroll_time_ms = 100
