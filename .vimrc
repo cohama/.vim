@@ -62,6 +62,7 @@ nnoremap <silent> <C-T>h :tabp<CR>
 nnoremap <silent> <C-H> :tabp<CR>
 nnoremap <silent> <C-T><C-W> :tabclose<CR>
 nnoremap <silent> <C-T>w :tabclose<CR>
+nnoremap <silent> <C-T>W :tabclose!<CR>
 nnoremap <silent> <C-T><C-O> :tabonly<CR>
 nnoremap <silent> <C-T>o :tabonly<CR>
 nnoremap <silent> <C-T><C-N> :tabnew<CR>
