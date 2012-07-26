@@ -383,6 +383,9 @@ function! s:vimshell_my_settings()
   call vimshell#altercmd#define('la', 'ls -FA')
   call vimshell#altercmd#define('ll', 'ls -alF')
   call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
+  nnoremap <buffer> <silent> <C-l> :tabn<CR>
+  inoremap <buffer> <silent> <C-l> <Esc>:tabn<CR>
+  inoremap <buffer> <silent> <C-h> <Esc>:tabp<CR>
   inoremap <buffer> <expr><silent> <C-p> unite#sources#vimshell_history#start_complete(!0)
 endfunction
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
