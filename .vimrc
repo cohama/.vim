@@ -135,9 +135,11 @@ command! -nargs=? -complete=file RubyExec call ExecuteRuby(empty(<q-args>) ? exp
 autocmd CohamaAutoCmd FileType * nnoremap <F6> <Nop>
 autocmd CohamaAutoCmd FileType ruby nnoremap <buffer> <F6> :<C-u>RubyExec<CR>
 
-" console.log をハイライト
-highlight JSConsoleLog ctermbg=red guibg=red
-autocmd CohamaAutoCmd WinEnter *.js match JSConsoleLog /console.log/
+" JavaScript を開いたとき
+function! WhenJavaScriptOpened()
+  syntax match SpellBad /console\.log/
+endfunction
+autocmd CohamaAutoCmd FileType javascript call WhenJavaScriptOpened()
 
 " カーソルの桁座標が動かない gj, gk
 nnoremap gj lhgj
