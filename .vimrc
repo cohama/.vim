@@ -400,7 +400,7 @@ nnoremap <Leader>gc :Gcommit -v<CR><C-w>H
 nnoremap <Leader>gps :Git push<CR>
 nnoremap <Leader>gpl :Git pull<CR>
 nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Space> :Git 
+nnoremap <Space> :Git<Space>
 
 " unite の設定
 nnoremap <silent> <Leader>b :Unite buffer<CR>
