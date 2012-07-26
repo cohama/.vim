@@ -406,6 +406,7 @@ nnoremap <Space> :Git
 nnoremap <silent> <Leader>b :Unite buffer<CR>
 nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>f :Unite file_rec<CR>
+nnoremap <silent> <Leader>ur :UniteResume<CR>
 let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
 autocmd CohamaAutoCmd FileType unite call s:unite_my_settings()
