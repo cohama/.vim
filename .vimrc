@@ -262,7 +262,6 @@ call vundle#rc()
 " Vundle で管理するプラグイン
 Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
-Bundle 'Smooth-Scroll'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'scrooloose/nerdtree'
