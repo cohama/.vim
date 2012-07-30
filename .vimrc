@@ -280,7 +280,6 @@ Bundle 'gregsexton/gitv'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'groenewege/vim-less'
 Bundle 'sudo.vim'
-Bundle 'JavaScript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'camelcasemotion'
@@ -289,6 +288,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'manalang/jshint.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'thinca/vim-quickrun'
+Bundle 'jelera/vim-javascript-syntax'
 filetype plugin indent on
 
 " neocomplcache の設定
