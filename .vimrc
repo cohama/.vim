@@ -307,7 +307,6 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'wookiehangover/jshint.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'thinca/vim-quickrun'
-Bundle 'jelera/vim-javascript-syntax'
 filetype plugin indent on
 
 " neocomplcache の設定
