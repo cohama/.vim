@@ -159,6 +159,10 @@ if &t_Co > 255
    hi Macro           ctermfg=193
    hi SpecialKey      ctermfg=81
 
+if has("spell")
+    hi SpellBad       ctermbg=52
+endif
+
    hi MatchParen      ctermfg=255  ctermbg=53 cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
