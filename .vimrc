@@ -40,6 +40,7 @@ set smarttab
 set softtabstop=2
 set tabstop=2
 set notagbsearch
+set whichwrap&
 set whichwrap+=h,l
 set wildmenu
 set wildmode=full
@@ -257,6 +258,7 @@ nnoremap <silent> <C-t>dh :call CloseAllLeftTabs()<CR>
 
 " Vundle の設定
 filetype off
+set runtimepath&
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 " Vundle で管理するプラグイン
