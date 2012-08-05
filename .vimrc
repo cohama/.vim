@@ -22,6 +22,7 @@ set expandtab
 set foldcolumn=1
 set foldlevel=99
 set foldmethod=marker
+set foldtext=CohamaFoldText()
 set formatoptions=crql
 set hlsearch
 set ignorecase
@@ -259,6 +260,16 @@ function! CloseAllLeftTabs()
   endwhile
 endfunction
 nnoremap <silent> <C-t>dh :call CloseAllLeftTabs()<CR>
+
+" オリジナル foldtext
+function! CohamaFoldText()
+  let line = getline(v:foldstart)
+  let marker_removed = substitute(line, '{{{', '', 'g') "}}}
+  let line_count = v:foldend - v:foldstart
+  let lines = line_count > 1 ? ' lines' : ' line'
+  let count_in_brace = substitute(marker_removed, '{\s*$', '{ ('.line_count.lines.') }', '')
+  return count_in_brace
+endfunction
 "}}}
 
 " Plugins {{{
