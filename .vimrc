@@ -144,6 +144,7 @@ autocmd CohamaAutoCmd FileType ruby nnoremap <buffer> <F6> :<C-u>RubyExec<CR>
 " JavaScript を開いたとき
 function! WhenJavaScriptOpened()
   syntax match SpellBad /console\.log/
+  setlocal foldmethod=syntax
 endfunction
 autocmd CohamaAutoCmd FileType javascript call WhenJavaScriptOpened()
 
