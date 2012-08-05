@@ -11,7 +11,7 @@ inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
 " Python による IBus の制御
 let IM_CtrlIBusPython = 1
 
-" Vim options
+" Vim options {{{
 set autoindent
 set autoread
 set backspace=indent,eol,start
@@ -20,6 +20,8 @@ set cmdheight=3
 set cursorline
 set expandtab
 set foldcolumn=1
+set foldlevel=99
+set foldmethod=marker
 set formatoptions=crql
 set hlsearch
 set ignorecase
@@ -44,7 +46,9 @@ set whichwrap&
 set whichwrap+=h,l
 set wildmenu
 set wildmode=full
+"}}}
 
+" 色々な設定、キーマップなど{{{
 " 自分用 augroup
 augroup CohamaAutoCmd
   autocmd!
@@ -255,7 +259,9 @@ function! CloseAllLeftTabs()
   endwhile
 endfunction
 nnoremap <silent> <C-t>dh :call CloseAllLeftTabs()<CR>
+"}}}
 
+" Plugins {{{
 " Vundle の設定
 filetype off
 set runtimepath&
@@ -448,3 +454,4 @@ nnoremap <Leader>cl :CoffeeLint<CR>
 
 " vimfiler
 let g:vimfiler_safe_mode_by_default = 0
+"}}}
