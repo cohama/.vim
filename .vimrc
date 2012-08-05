@@ -133,14 +133,6 @@ nnoremap <silent> <F12> :call MagicComment()<CR>
 highlight WhitespaceEOL ctermbg=red guibg=red
 autocmd CohamaAutoCmd WinEnter * match WhitespaceEOL /\s\+$/
 
-" ruby コードを実行するコマンド
-function! ExecuteRuby(file)
-  execute "!ruby ".a:file
-endfunction
-command! -nargs=? -complete=file RubyExec call ExecuteRuby(empty(<q-args>) ? expand('%') : expand(<q-args>))
-autocmd CohamaAutoCmd FileType * nnoremap <F6> <Nop>
-autocmd CohamaAutoCmd FileType ruby nnoremap <buffer> <F6> :<C-u>RubyExec<CR>
-
 " JavaScript を開いたとき
 function! WhenJavaScriptOpened()
   syntax match SpellBad /console\.log/
