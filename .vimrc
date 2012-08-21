@@ -303,6 +303,9 @@ Bundle 'thinca/vim-quickrun'
 filetype plugin indent on
 
 " neocomplcache の設定
+if has('patch418')
+  let g:neocomplcache_enable_cursor_hold_i = 1
+endif
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_auto_completion_start_length = 1
 let g:neocomplcache_enable_camel_case_completion = 1
@@ -319,16 +322,17 @@ inoremap <expr><C-l>     neocomplcache#complete_common_string()
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd CohamaAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd CohamaAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd CohamaAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd CohamaAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+let g:neocomplcache_omni_patterns.javascript = '[^. \t]\.\%(\h\w*\)\?'
+autocmd CohamaAutoCmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd CohamaAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " neocomplcache-snippets-complete の設定
 let g:neocomplcache_snippets_dir = '~/.vim/snippets'
