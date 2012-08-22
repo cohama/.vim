@@ -273,6 +273,10 @@ function! WhenGitCommitOpened()
   nnoremap <buffer> Q ggdG:x<CR>
 endfunction
 autocmd CohamaAutoCmd FileType gitcommit call WhenGitCommitOpened()
+
+" 改行だけを入力する
+nnoremap go o<Esc>
+nnoremap gO O<Esc>
 "}}}
 
 " Plugins {{{
