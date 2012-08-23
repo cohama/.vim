@@ -277,6 +277,18 @@ autocmd CohamaAutoCmd FileType gitcommit call WhenGitCommitOpened()
 " 改行だけを入力する
 nnoremap go o<Esc>
 nnoremap gO O<Esc>
+
+" Insert モードの時に行番号の色を変える
+function! ToBrightLineNr()
+  highlight LineNr ctermfg=16 ctermbg=250 guifg=#000000 guibg=#BCBCBC
+  highlight CursorLineNr term=bold ctermbg=11 ctermbg=250 gui=bold guifg=#000000 guibg=#E6DB74
+endfunction
+function! ToDarkLineNr()
+  highlight LineNr ctermfg=250 ctermbg=16 guifg=#BCBCBC guibg=#000000
+  highlight CursorLineNr term=bold ctermfg=11 ctermbg=16 gui=bold guifg=#E6DB74 guibg=#000000
+endfunction
+autocmd CohamaAutoCmd InsertEnter * call ToBrightLineNr()
+autocmd CohamaAutoCmd InsertLeave * call ToDarkLineNr()
 "}}}
 
 " Plugins {{{
