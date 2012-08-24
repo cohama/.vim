@@ -339,9 +339,6 @@ if neobundle#exists_not_installed_bundles()
 endif
 
 " neocomplcache の設定
-if has('patch418')
-  let g:neocomplcache_enable_cursor_hold_i = 1
-endif
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_auto_completion_start_length = 1
 let g:neocomplcache_enable_camel_case_completion = 1
