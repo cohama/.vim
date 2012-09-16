@@ -277,42 +277,49 @@ endfunction
 autocmd CohamaAutoCmd FileType gitcommit call WhenGitCommitOpened()
 
 " Plugins {{{
-" Vundle の設定
+" NeoBundle の設定
 filetype off
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/vundle/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call vundle#rc()
-" Vundle で管理するプラグイン
-Bundle 'gmarik/vundle'
-Bundle 'Shougo/neocomplcache'
-Bundle 'tpope/vim-rails'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/Align'
-Bundle 'tpope/vim-surround'
-Bundle 'mattn/zencoding-vim'
-Bundle 'Shougo/neocomplcache-snippets-complete'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Shougo/unite.vim'
-Bundle 'tpope/vim-endwise'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'gregsexton/gitv'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'groenewege/vim-less'
-Bundle 'sudo.vim'
-Bundle 'cohama/vim-javascript'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'camelcasemotion'
-Bundle 'EasyMotion'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'wookiehangover/jshint.vim'
-Bundle 'Shougo/vimfiler'
-Bundle 'thinca/vim-quickrun'
+call neobundle#rc(expand('~/.vim/bundle/'))
+" NeoBundle で管理するプラグイン
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'vim-scripts/Align'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'sudo.vim'
+NeoBundle 'cohama/vim-javascript'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'camelcasemotion'
+NeoBundle 'EasyMotion'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'wookiehangover/jshint.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'thinca/vim-quickrun'
 filetype plugin indent on
+" Installation check.
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+        \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+  "finish
+endif
 
 " neocomplcache の設定
 if has('patch418')
