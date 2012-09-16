@@ -23,7 +23,9 @@ set foldcolumn=1
 set foldlevel=99
 set foldmethod=marker
 set foldtext=CohamaFoldText()
-set formatoptions=crql
+set formatoptions&
+set formatoptions-=o
+set formatoptions+=ctrqlm
 set hlsearch
 set ignorecase
 set incsearch
@@ -42,6 +44,7 @@ set smartindent
 set smarttab
 set softtabstop=2
 set tabstop=2
+set textwidth=0
 set notagbsearch
 set whichwrap&
 set whichwrap+=h,l
