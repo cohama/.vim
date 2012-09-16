@@ -268,6 +268,14 @@ function! CohamaFoldText()
 endfunction
 "}}}
 
+" gitcommit を開いた時
+function! WhenGitCommitOpened()
+  nnoremap <buffer> q :x<CR>
+  " commit cancel
+  nnoremap <buffer> Q ggdG:x<CR>
+endfunction
+autocmd CohamaAutoCmd FileType gitcommit call WhenGitCommitOpened()
+
 " Plugins {{{
 " Vundle の設定
 filetype off
