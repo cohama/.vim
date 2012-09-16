@@ -279,8 +279,9 @@ autocmd CohamaAutoCmd FileType gitcommit call WhenGitCommitOpened()
 " Plugins {{{
 " Vundle の設定
 filetype off
-set runtimepath&
-set runtimepath+=~/.vim/bundle/vundle/
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/vundle/
+endif
 call vundle#rc()
 " Vundle で管理するプラグイン
 Bundle 'gmarik/vundle'
