@@ -138,7 +138,6 @@ autocmd CohamaAutoCmd BufRead,BufNewFile * match WhitespaceEOL /\s\+$/
 
 " JavaScript を開いたとき
 function! WhenJavaScriptOpened()
-  syntax match SpellBad /console\.log/
   setlocal foldmethod=syntax
 endfunction
 autocmd CohamaAutoCmd FileType javascript call WhenJavaScriptOpened()
