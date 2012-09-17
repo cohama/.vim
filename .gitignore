@@ -1,4 +1,4 @@
 bundle/*
 !bundle/.gitkeep
-!bundle/vundle.sh
+!bundle/neobundle.sh
 .netrwhist
