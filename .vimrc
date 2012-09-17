@@ -480,5 +480,6 @@ nnoremap <Leader>cm :CoffeeMake<CR>
 nnoremap <Leader>cl :CoffeeLint<CR>
 
 " vimfiler
+nnoremap <Leader>F :VimFiler<CR>
 let g:vimfiler_safe_mode_by_default = 0
 "}}}
