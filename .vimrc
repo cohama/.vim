@@ -265,7 +265,6 @@ function! CohamaFoldText()
   let count_in_brace = substitute(marker_removed, '{\s*$', '{ ('.line_count.lines.') }', '')
   return count_in_brace
 endfunction
-"}}}
 
 " gitcommit を開いた時
 function! WhenGitCommitOpened()
@@ -274,6 +273,7 @@ function! WhenGitCommitOpened()
   nnoremap <buffer> Q ggdG:x<CR>
 endfunction
 autocmd CohamaAutoCmd FileType gitcommit call WhenGitCommitOpened()
+"}}}
 
 " Plugins {{{
 " NeoBundle の設定
