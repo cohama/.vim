@@ -423,6 +423,7 @@ function! s:vimshell_my_settings()
   inoremap <buffer> <silent> <C-h> <Esc>:tabp<CR>
   inoremap <buffer> <expr><silent> <C-p> unite#sources#vimshell_history#start_complete(!0)
 endfunction
+nnoremap <Leader>si :VimShellInteractive<Space>
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
 let g:vimshell_prompt = '% '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
