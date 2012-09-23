@@ -1,2 +1,2 @@
-git clone git://github.com/Shougo/neobundle.git
+git clone git://github.com/Shougo/neobundle.vim
 
