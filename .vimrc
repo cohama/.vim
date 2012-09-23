@@ -308,7 +308,11 @@ NeoBundle 'vim-scripts/Align'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'Shougo/neocomplcache-snippets-complete'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+      \     'build': {
+      \        'unix': 'make -f make_unix.mak'
+      \     }
+      \   }
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Shougo/unite.vim'
