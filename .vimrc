@@ -328,10 +328,10 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'camelcasemotion'
 NeoBundle 'EasyMotion'
 NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'wookiehangover/jshint.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-smartinput'
+NeoBundleLazy 'wookiehangover/jshint.vim'
 
 filetype plugin indent on
 " Installation check.
