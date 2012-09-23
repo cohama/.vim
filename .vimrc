@@ -362,9 +362,9 @@ autocmd CohamaAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.javascript = '[^. \t]\.\%(\h\w*\)\?'
-autocmd CohamaAutoCmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+" autocmd CohamaAutoCmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd CohamaAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " neocomplcache-snippets-complete の設定
