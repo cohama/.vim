@@ -311,6 +311,8 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'wookiehangover/jshint.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'kana/vim-smartinput'
+
 filetype plugin indent on
 " Installation check.
 if neobundle#exists_not_installed_bundles()
