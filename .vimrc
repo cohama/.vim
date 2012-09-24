@@ -365,6 +365,7 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'YankRing.vim'
+NeoBundle 'cohama/rsense'
 NeoBundleLazy 'wookiehangover/jshint.vim'
 
 filetype plugin indent on
@@ -383,6 +384,7 @@ let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_max_list = 200
 if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
 endif
@@ -401,11 +403,11 @@ if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.javascript = '[^. \t]\.\%(\h\w*\)\?'
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
 if !exists('g:neocomplcache_omni_functions')
   let g:neocomplcache_omni_functions = {}
 endif
-" autocmd CohamaAutoCmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
 autocmd CohamaAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " neocomplcache-snippets-complete の設定
@@ -550,4 +552,15 @@ autocmd CohamaAutoCmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 let g:yankring_replace_n_pkey = '<Leader>p'
 let g:yankring_replace_n_nkey = '<Leader>n'
 nnoremap <Leader>y :YRShow<CR>
+
+" Rsense
+let g:rsenseUseOmniFunc = 1
+let g:rsenseHome = expand('$HOME/.vim/bundle/rsense')
+function! SetUpRubySetting()
+  " setlocal completefunc=RSenseCompleteFunction
+  nmap <buffer>tj :RSenseJumpToDefinition<CR>
+  nmap <buffer>tk :RSenseWhereIs<CR>
+  nmap <buffer>td :RSenseTypeHelp<CR>
+endfunction
+autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 "}}}
