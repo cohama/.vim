@@ -1,3 +1,5 @@
+let g:COHAMA_VIMRC = expand('%:p')
+
 " 日本語ヘルプ
 set helplang=ja
 
@@ -116,13 +118,13 @@ function! Scouter(file, ...)
   return len(filter(lines,'v:val !~ pat'))
 endfunction
 command! -bar -bang -nargs=? -complete=file Scouter
-\        echo Scouter(empty(<q-args>) ? '/home/cohama/.vim/.vimrc' : expand(<q-args>), <bang>0)
+\        echo Scouter(empty(<q-args>) ? g:COHAMA_VIMRC : expand(<q-args>), <bang>0)
 
 " .vimrc .gvimrc に関する設定
 if has('gui')
-  nnoremap <silent> <Leader>so :source ~/.vimrc<CR>:source ~/.gvimrc<CR>
+  nnoremap <silent> <Leader>so :source $MYVIMRC<CR>:source $MYGVIMRC<CR>
 else
-  nnoremap <silent> <Leader>so :source ~/.vimrc<CR>
+  nnoremap <silent> <Leader>so :source $MYVIMRC<CR>
 endif
 nnoremap <silent> <Leader>vimrc :tabe ~/.vim/.vimrc<CR>
 nnoremap <silent> <Leader>gvimrc :tabe ~/.vim/.gvimrc<CR>
