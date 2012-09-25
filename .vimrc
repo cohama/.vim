@@ -165,6 +165,15 @@ function! FixedInsertLeave()
 endfunction
 inoremap <silent><expr> <Esc> FixedInsertLeave()
 
+" 指定したタブをすべて閉じる
+function! CloseTabsByNrList(closing_tabnr_list)
+  let offset = 0
+  for i in a:closing_tabnr_list
+    exec 'tabclose ' . (str2nr(i) - offset)
+    let offset = offset + 1
+  endfor
+endfunction
+
 " すごい :only
 function! ExtendedOnly()
   tabonly
