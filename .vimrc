@@ -176,7 +176,22 @@ endfunction
 
 " すごい :only
 function! ExtendedOnly()
-  tabonly
+  let tabcount = tabpagenr('$')
+  let current_tabnr = tabpagenr()
+  let deleting_tabs = []
+  for t in range(1, tabcount)
+    let wincount = tabpagewinnr(t, '$')
+    for w in range(1, wincount)
+      let filetype = gettabwinvar(t, w, '&filetype')
+      if filetype !=? 'vimshell' && filetype !=? 'git' && filetype !=? 'gitv'
+        if current_tabnr !=# t
+          call add(deleting_tabs, t)
+          break
+        endif
+      endif
+    endfor
+  endfor
+  call CloseTabsByNrList(deleting_tabs)
   only
 endfunction
 command! Only call ExtendedOnly()
