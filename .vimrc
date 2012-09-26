@@ -364,6 +364,7 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
+NeoBundle 'YankRing.vim'
 NeoBundleLazy 'wookiehangover/jshint.vim'
 
 filetype plugin indent on
