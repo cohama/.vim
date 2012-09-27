@@ -1,0 +1,24 @@
+snippet describe
+    describe ${1:description} do
+      ${2:// body}
+    end
+
+snippet context
+    context '${1:description}' do
+      ${2:// body}
+    end
+
+snippet before
+    before {${1:// body}}
+
+snippet beforedo
+    before do
+      ${1:// body}
+    end
+
+snippet it
+    it {should${1:// body}}
+
+snippet subject
+    subject {${1:// body}}
+
