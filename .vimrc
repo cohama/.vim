@@ -539,6 +539,13 @@ nnoremap <Leader>cl :CoffeeLint<CR>
 nnoremap <Leader>F :VimFiler<CR>
 let g:vimfiler_safe_mode_by_default = 0
 
+" quickrun
+let g:quickrun_config = {}
+let g:quickrun_config['ruby.rspec'] = {
+      \ 'command': 'bundle',
+      \ 'exec': '%c exec rspec -f d %s'}
+autocmd CohamaAutoCmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+
 " YankRing
 let g:yankring_replace_n_pkey = '<Leader>p'
 let g:yankring_replace_n_nkey = '<Leader>n'
