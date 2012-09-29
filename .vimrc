@@ -365,7 +365,11 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'YankRing.vim'
-NeoBundle 'cohama/rsense'
+NeoBundle 'cohama/rsense', {
+      \     'build': {
+      \        'unix': '/bin/sh install.sh'
+      \      }
+      \    }
 NeoBundleLazy 'wookiehangover/jshint.vim'
 
 filetype plugin indent on
@@ -558,9 +562,9 @@ let g:rsenseUseOmniFunc = 1
 let g:rsenseHome = expand('$HOME/.vim/bundle/rsense')
 function! SetUpRubySetting()
   " setlocal completefunc=RSenseCompleteFunction
-  nmap <buffer>tj :RSenseJumpToDefinition<CR>
-  nmap <buffer>tk :RSenseWhereIs<CR>
-  nmap <buffer>td :RSenseTypeHelp<CR>
+  nmap <buffer>Kd :RSenseJumpToDefinition<CR>
+  nmap <buffer>Kw :RSenseWhereIs<CR>
+  nmap <buffer>Kt :RSenseTypeHelp<CR>
 endfunction
 autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 "}}}
