@@ -319,6 +319,9 @@ function! ToDarkLineNr()
 endfunction
 autocmd CohamaAutoCmd InsertEnter * call ToBrightLineNr()
 autocmd CohamaAutoCmd InsertLeave * call ToDarkLineNr()
+
+" インサートモードのマッピング
+inoremap <C-e> <C-o>$
 "}}}
 
 " Plugins {{{
@@ -393,10 +396,8 @@ endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
-" inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
 autocmd CohamaAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd CohamaAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd CohamaAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
