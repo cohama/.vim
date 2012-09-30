@@ -298,13 +298,13 @@ function! CohamaFoldText()
   return count_in_brace
 endfunction
 
-" gitcommit を開いた時
+" gitcommit, gitrebase を開いた時
 function! WhenGitCommitOpened()
   nnoremap <buffer> q :x<CR>
   " commit cancel
   nnoremap <buffer> Q ggdG:x<CR>
 endfunction
-autocmd CohamaAutoCmd FileType gitcommit call WhenGitCommitOpened()
+autocmd CohamaAutoCmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 
 " 改行だけを入力する
 nnoremap go o<Esc>
