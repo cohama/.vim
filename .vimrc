@@ -346,6 +346,7 @@ NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'Shougo/neocomplcache-snippets-complete'
 NeoBundle 'Shougo/vimproc', {
       \     'build': {
+      \        'windows': 'make_mingw64.mak',
       \        'unix': 'make -f make_unix.mak'
       \     }
       \   }
