@@ -322,6 +322,9 @@ autocmd CohamaAutoCmd InsertLeave * call ToDarkLineNr()
 
 " インサートモードのマッピング
 inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>^
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
 
 " カーソル行を空行化
 nnoremap cc 0D
