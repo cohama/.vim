@@ -376,6 +376,7 @@ NeoBundle 'cohama/rsense', {
       \      }
       \    }
 NeoBundleLazy 'wookiehangover/jshint.vim'
+NeoBundle 'leafgarland/typescript-vim'
 
 filetype plugin indent on
 " Installation check.
