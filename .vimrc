@@ -532,6 +532,7 @@ endfunction
 autocmd CohamaAutoCmd FileType git :setlocal foldlevel=99
 nnoremap <Leader>gk :Gitv --all<CR>
 let g:Gitv_DoNotMapCtrlKey = 1
+let g:Gitv_TruncateCommitSubjects = 1
 
 "indent-guides の設定
 let g:indent_guides_enable_on_vim_startup = 1
