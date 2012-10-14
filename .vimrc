@@ -563,6 +563,7 @@ let g:quickrun_config['ruby.rspec'] = {
 autocmd CohamaAutoCmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 
 " YankRing
+let g:yankring_n_keys = 'D x X'
 let g:yankring_replace_n_pkey = '<Leader>p'
 let g:yankring_replace_n_nkey = '<Leader>n'
 nnoremap <Leader>y :YRShow<CR>
