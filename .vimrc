@@ -161,7 +161,7 @@ function! FixedInsertLeave()
   " 行末だった場合は通常と同じく後退させる
   let cursorPos = col(".")
   let maxColumn = col("$")
-  if cursorPos < maxColumn
+  if cursorPos < maxColumn && cursorPos != 1
     return "\<Esc>l"
   else
     return "\<Esc>"
