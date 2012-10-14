@@ -212,6 +212,8 @@ autocmd CohamaAutoCmd FileType help call WhenHelpOpened()
 let s:scroll_time_ms = 100
 let s:scroll_precision = 8
 function! CohamaSmoothScroll(dir, windiv, factor)
+  let cl = &cursorline
+  set nocursorline
   let height = winheight(0) / a:windiv
   let n = height / s:scroll_precision
   if n <= 0
@@ -229,6 +231,7 @@ function! CohamaSmoothScroll(dir, windiv, factor)
     execute "sleep " . wait_per_one_move_ms . "m"
     redraw
   endwhile
+  let &cursorline = cl
   echo "CohamaSmoothScroll"
 endfunction
 nnoremap <silent> <C-d> :call CohamaSmoothScroll("d", 2, 1)<CR>
