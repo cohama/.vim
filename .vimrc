@@ -331,6 +331,9 @@ inoremap <C-b> <Left>
 
 " カーソル行を空行化
 nnoremap cc 0D
+
+" タブ幅4のもの
+autocmd CohamaAutoCmd FileType typescript,java setl shiftwidth=4 tabstop=4
 "}}}
 
 " Plugins {{{
