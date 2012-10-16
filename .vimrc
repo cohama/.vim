@@ -533,6 +533,10 @@ function! s:unite_my_settings()
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
 endfunction
 
+" endwise
+let g:endwise_no_mappings = 1
+autocmd CohamaAutoCmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR> <CR><Plug>DiscretionaryEnd
+
 " gitv の設定
 autocmd CohamaAutoCmd FileType git :setlocal foldlevel=99
 nnoremap <Leader>gk :Gitv --all<CR>
@@ -567,6 +571,10 @@ let g:quickrun_config['ruby.rspec'] = {
       \ 'command': 'bundle',
       \ 'exec': '%c exec rspec -f d %s'}
 autocmd CohamaAutoCmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+
+" smartinput
+let g:smartinput_no_default_key_mappings = 1
+call smartinput#map_trigger_keys(1)
 
 " YankRing
 let g:yankring_n_keys = 'D x X'
