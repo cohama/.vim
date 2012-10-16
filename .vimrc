@@ -386,6 +386,7 @@ NeoBundle 'cohama/rsense', {
       \    }
 NeoBundleLazy 'wookiehangover/jshint.vim'
 NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'motemen/hatena-vim'
 
 filetype plugin indent on
 " Installation check.
@@ -583,4 +584,7 @@ function! SetUpRubySetting()
   nmap <buffer>Kt :RSenseTypeHelp<CR>
 endfunction
 autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
+
+" hatena-vim
+let g:hatena_user='cohama'
 "}}}
