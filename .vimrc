@@ -572,6 +572,12 @@ let g:quickrun_config['ruby.rspec'] = {
       \ 'exec': '%c exec rspec -f d %s'}
 autocmd CohamaAutoCmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 
+" smartinput
+call smartinput#map_to_trigger('i', '<', '<', '<')
+call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left><Left>', 'filetype': ['javascript']})
+call smartinput#map_to_trigger('i', '%', '%', '%')
+call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
+
 " YankRing
 let g:yankring_n_keys = 'D x X'
 let g:yankring_replace_n_pkey = '<Leader>p'
