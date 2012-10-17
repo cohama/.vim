@@ -572,10 +572,6 @@ let g:quickrun_config['ruby.rspec'] = {
       \ 'exec': '%c exec rspec -f d %s'}
 autocmd CohamaAutoCmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 
-" smartinput
-let g:smartinput_no_default_key_mappings = 1
-call smartinput#map_trigger_keys(1)
-
 " YankRing
 let g:yankring_n_keys = 'D x X'
 let g:yankring_replace_n_pkey = '<Leader>p'
