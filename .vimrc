@@ -76,8 +76,8 @@ nnoremap <silent> <C-T><C-O> :tabonly<CR>
 nnoremap <silent> <C-T>o :tabonly<CR>
 nnoremap <silent> <C-T><C-N> :tabnew<CR>
 nnoremap <silent> <C-T>n :tabnew<CR>
-nnoremap <silent> <C-T><C-e> :tabedit<Space>
-nnoremap <silent> <C-T>e :tabedit<Space>
+nnoremap <C-T><C-e> :tabedit<Space>
+nnoremap <C-T>e :tabedit<Space>
 set showtabline=2
 
 " ヤンクした文字列でカーソル位置の単語置き換え
