@@ -384,7 +384,7 @@ NeoBundle 'cohama/rsense', {
       \        'unix': '/bin/sh install.sh'
       \      }
       \    }
-NeoBundleLazy 'wookiehangover/jshint.vim'
+NeoBundleLazy 'cohama/jshint.vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'motemen/hatena-vim'
 
