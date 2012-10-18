@@ -32,7 +32,7 @@ set incsearch
 set laststatus=2
 set lazyredraw
 set list
-set listchars=tab:>-
+set listchars=tab:\ >
 set nohidden
 set nrformats-=octal
 set number
