@@ -370,7 +370,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimproc', {
       \     'build': {
       \        'windows': 'make_mingw64.mak',
@@ -448,9 +448,9 @@ let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
 autocmd CohamaAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " neocomplcache-snippets-complete の設定
-let g:neocomplcache_snippets_dir = '~/.vim/snippets'
-imap <C-k> <Plug>(neocomplcache_snippets_jump)
-smap <C-k> <Plug>(neocomplcache_snippets_jump)
+let g:neosnippet#snippets_directory = '~/.vim/snippets'
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
 " 補完メニューの設定
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
