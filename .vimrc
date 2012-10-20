@@ -343,6 +343,15 @@ function! TabeditCurrentBuffer()
 endfunction
 command! TabeditCurrentBuffer call TabeditCurrentBuffer()
 abbreviate Tabe TabeditCurrentBuffer
+
+" 今開いているタブページを次のタブページに統合する
+" Window が複数あるときは何もしない
+function! JointNextTabpage()
+  let wincount = winnr('$')
+  if wincount != 1
+    return
+  endif
+endfunction
 "}}}
 
 " Plugins {{{
