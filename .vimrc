@@ -414,7 +414,9 @@ if neobundle#exists_not_installed_bundles()
   echomsg 'Please execute ":NeoBundleInstall" command.'
   "finish
 endif
-nnoremap <Leader>un :Unite neobundle/
+nnoremap <Leader>une :Unite neobundle/
+nmap <Leader>uni <Leader>so:Unite neobundle/install
+nmap <Leader>unI <Leader>so:Unite neobundle/install:!
 
 " neocomplcache の設定
 let g:neocomplcache_enable_at_startup = 1
