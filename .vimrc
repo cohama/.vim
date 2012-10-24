@@ -241,6 +241,7 @@ nnoremap <silent> <C-b> :call CohamaSmoothScroll("u", 1, 2)<CR>
 
 " ビジュアルモードで選択した部分を置換
 xmap / y:%s/<C-r>"//g<Left><Left>
+xmap ? y:%s/<C-r>"//gc<Left><Left>
 
 " 行末までをヤンク
 nnoremap Y y$
