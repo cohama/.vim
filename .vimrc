@@ -356,7 +356,13 @@ function! JointNextTabpage()
   if wincount != 1
     return
   endif
+  let filename = expand('%')
+  quit
+  execute 'vsplit '.filename
 endfunction
+command! TabJoin call JointNextTabpage()
+abbreviate Tabj
+nnoremap <silent> <C-t>J :TabJoin<CR>
 "}}}
 
 " Plugins {{{
