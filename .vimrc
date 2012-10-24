@@ -100,8 +100,8 @@ nnoremap <silent> gn :call HilightWordAtCursor()<CR>:set hlsearch<CR>
 runtime macros/matchit.vim
 
 " ビジュアルモードでのインデントを連続でできるようにする
-vnoremap < <gv
-vnoremap > >gv
+xmap < <gv
+xmap > >gv
 
 " カーソル位置の単語をヘルプで検索
 nnoremap <silent> gh :help <C-r><C-w><CR>
@@ -240,7 +240,7 @@ nnoremap <silent> <C-f> :call CohamaSmoothScroll("d", 1, 2)<CR>
 nnoremap <silent> <C-b> :call CohamaSmoothScroll("u", 1, 2)<CR>
 
 " ビジュアルモードで選択した部分を置換
-vnoremap / y:%s/<C-r>"//g<Left><Left>
+xmap / y:%s/<C-r>"//g<Left><Left>
 
 " 行末までをヤンク
 nnoremap Y y$
