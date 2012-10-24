@@ -363,6 +363,9 @@ endfunction
 command! TabJoin call JointNextTabpage()
 abbreviate Tabj
 nnoremap <silent> <C-t>J :TabJoin<CR>
+
+" dk と dj を対称にする
+nnoremap dk dkk
 "}}}
 
 " Plugins {{{
