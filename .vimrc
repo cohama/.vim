@@ -207,7 +207,7 @@ cabbrev On Only
 
 " help を開いたとき
 function! WhenHelpOpened()
-  normal H
+  normal H82|
   nnoremap <buffer> q :q<CR>
 endfunction
 autocmd CohamaAutoCmd FileType help call WhenHelpOpened()
