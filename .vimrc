@@ -148,9 +148,13 @@ function! WhenJavaScriptOpened()
 endfunction
 autocmd CohamaAutoCmd FileType javascript call WhenJavaScriptOpened()
 
+" 見た目通りに上下移動
+nnoremap j gj
+nnoremap k gk
+
 " カーソルの桁座標が動かない gj, gk
-nmap gj lhgj
-nmap gk lhgk
+nmap gj lhj
+nmap gk lhk
 
 " 検索結果で画面を真ん中に
 nmap n nzz
