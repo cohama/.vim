@@ -81,8 +81,8 @@ nnoremap <C-T>e :tabedit<Space>
 set showtabline=2
 
 " ヤンクした文字列でカーソル位置の単語置き換え
-nnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
-nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
+nmap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
+nmap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
 nnoremap g/ :%s/\<<C-R><C-w>\>//g<Left><Left>
@@ -149,12 +149,12 @@ endfunction
 autocmd CohamaAutoCmd FileType javascript call WhenJavaScriptOpened()
 
 " カーソルの桁座標が動かない gj, gk
-nnoremap gj lhgj
-nnoremap gk lhgk
+nmap gj lhgj
+nmap gk lhgk
 
 " 検索結果で画面を真ん中に
-nnoremap n nzz
-nnoremap N Nzz
+nmap n nzz
+nmap N Nzz
 
 " インサートモードから出るときにカーソルを後退させない
 function! FixedInsertLeave()
@@ -167,7 +167,7 @@ function! FixedInsertLeave()
     return "\<Esc>"
   endif
 endfunction
-inoremap <silent><expr> <Esc> FixedInsertLeave()
+imap <silent><expr> <Esc> FixedInsertLeave()
 
 " 指定したタブをすべて閉じる
 function! CloseTabsByNrList(closing_tabnr_list)
@@ -244,12 +244,12 @@ xmap / y:%s/<C-r>"//g<Left><Left>
 xmap ? y:%s/<C-r>"//gc<Left><Left>
 
 " 行末までをヤンク
-nnoremap Y y$
+nmap Y y$
 
 " コマンドモードのマッピング
-cnoremap <C-a> <Home>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
+cmap <C-a> <Home>
+cmap <C-b> <Left>
+cmap <C-f> <Right>
 
 " タブページの移動
 function! MoveTabPage(dir)
@@ -309,8 +309,8 @@ endfunction
 autocmd CohamaAutoCmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 
 " 改行だけを入力する
-nnoremap go o<Esc>
-nnoremap gO O<Esc>
+nmap go o<Esc>
+nmap gO O<Esc>
 
 " Insert モードの時に行番号の色を変える
 function! ToBrightLineNr()
@@ -331,7 +331,7 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
 " カーソル行を空行化
-nnoremap cc 0D
+nmap cc 0D
 
 " タブ幅4のもの
 autocmd CohamaAutoCmd FileType typescript,java setl shiftwidth=4 tabstop=4
