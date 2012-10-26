@@ -369,6 +369,9 @@ nnoremap dk dkk
 
 " 再描画したい
 nnoremap <Leader><C-l> <C-l>
+
+" ビジュアルモードで選択したところ以外を削除
+xmap D x0D"2p==
 "}}}
 
 " Plugins {{{
