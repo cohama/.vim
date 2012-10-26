@@ -361,7 +361,7 @@ function! JointNextTabpage()
   execute 'vsplit '.filename
 endfunction
 command! TabJoin call JointNextTabpage()
-abbreviate Tabj
+abbreviate Tabj TabJoin
 nnoremap <silent> <C-t>J :TabJoin<CR>
 
 " dk と dj を対称にする
