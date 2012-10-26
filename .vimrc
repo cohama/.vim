@@ -329,7 +329,7 @@ autocmd CohamaAutoCmd InsertEnter * call ToBrightLineNr()
 autocmd CohamaAutoCmd InsertLeave * call ToDarkLineNr()
 
 " インサートモードのマッピング
-inoremap <C-e> <C-o>$
+inoremap <C-e> <End>
 inoremap <C-a> <C-o>^
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
