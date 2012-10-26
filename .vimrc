@@ -470,7 +470,7 @@ let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
 autocmd CohamaAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " neocomplcache-snippets-complete の設定
-let g:neosnippet#snippets_directory = '~/.vim/snippets'
+let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
