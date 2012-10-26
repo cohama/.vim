@@ -116,7 +116,7 @@ function! Scouter(file, ...)
   return len(filter(lines,'v:val !~ pat'))
 endfunction
 command! -bar -bang -nargs=? -complete=file Scouter
-\        echo Scouter(empty(<q-args>) ? '/home/cohama/.vim/.vimrc' : expand(<q-args>), <bang>0)
+\        echo Scouter(empty(<q-args>) ? expand('~/.vim/.vimrc') : expand(<q-args>), <bang>0)
 
 " .vimrc .gvimrc に関する設定
 if has('gui')
