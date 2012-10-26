@@ -617,6 +617,7 @@ call smartinput#map_to_trigger('i', '<', '<', '<')
 call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left><Left>', 'filetype': ['javascript']})
 call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
+smap <CR> <BS>i
 
 " YankRing
 let g:yankring_n_keys = 'D x X'
