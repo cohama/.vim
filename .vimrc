@@ -86,6 +86,7 @@ nmap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
 nnoremap g/ :%s/\<<C-R><C-w>\>//g<Left><Left>
+nnoremap g? :%s/\<<C-R><C-w>\>//gc<Left><Left><Left>
 
 " カーソル位置の単語をハイライト
 function! HilightWordAtCursor()
@@ -245,7 +246,7 @@ nnoremap <silent> <C-b> :call CohamaSmoothScroll("u", 1, 2)<CR>
 
 " ビジュアルモードで選択した部分を置換
 xmap / y:%s/<C-r>"//g<Left><Left>
-xmap ? y:%s/<C-r>"//gc<Left><Left>
+xmap ? y:%s/<C-r>"//gc<Left><Left><Left>
 
 " 行末までをヤンク
 nmap Y y$
