@@ -462,13 +462,13 @@ autocmd CohamaAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.javascript = '[^. \t]\.\%(\h\w*\)\?'
+let g:neocomplcache_omni_patterns.javascript = ''
 let g:neocomplcache_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
 if !exists('g:neocomplcache_omni_functions')
   let g:neocomplcache_omni_functions = {}
 endif
 let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
-autocmd CohamaAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd CohamaAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " neocomplcache-snippets-complete の設定
 let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
