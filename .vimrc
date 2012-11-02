@@ -366,6 +366,9 @@ nnoremap <silent> <C-t>J :TabJoin<CR>
 
 " dk と dj を対称にする
 nnoremap dk dkk
+
+" 再描画したい
+nnoremap <Leader><C-l> <C-l>
 "}}}
 
 " Plugins {{{
