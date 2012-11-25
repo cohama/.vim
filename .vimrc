@@ -433,6 +433,10 @@ nmap yY :%y<CR>
 " カレントウィンドウだけ行のハイライトをする
 autocmd CohamaAutoCmd WinEnter * setlocal cursorline
 autocmd CohamaAutoCmd WinLeave * setlocal nocursorline
+
+" xml の folding
+let g:xml_syntax_folding = 1
+autocmd CohamaAutoCmd FileType xml setl foldmethod=syntax
 "}}}
 
 " Plugins {{{
