@@ -4,7 +4,6 @@ set helplang=ja
 " カラースキーム
 set t_Co=256
 syntax on
-colorscheme cohama
 
 " 「日本語入力固定モード」切り替えキー
 inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
@@ -317,17 +316,71 @@ autocmd CohamaAutoCmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 nmap go o<Esc>
 nmap gO O<Esc>
 
-" Insert モードの時に行番号の色を変える
-function! ToBrightLineNr()
-  highlight LineNr ctermfg=16 ctermbg=250 guifg=#000000 guibg=#BCBCBC
-  highlight CursorLineNr term=bold ctermbg=11 ctermbg=250 gui=bold guifg=#000000 guibg=#E6DB74
+" Insert モードの時に行番号の色を反転
+" 参考 plugin/insert-statusline.vim
+let s:highlight_args = ["ctermfg", "ctermbg", "guifg", "guibg"]
+function! GetHighlight(highlight_group)
+  redir => hl
+  execute 'highlight ' . a:highlight_group
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hi_dict = {}
+  for hi_arg in s:highlight_args
+    let args_list = matchlist(hl, hi_arg . '=\(\S\+\)')
+    if len(args_list) > 1
+      let hi_dict[hi_arg] = args_list[1]
+    endif
+  endfor
+  return hi_dict
 endfunction
-function! ToDarkLineNr()
-  highlight LineNr ctermfg=250 ctermbg=16 guifg=#BCBCBC guibg=#000000
-  highlight CursorLineNr term=bold ctermfg=11 ctermbg=16 gui=bold guifg=#E6DB74 guibg=#000000
+function! InvertFgBg(hi_dict)
+  let inverted = {}
+  if has_key(a:hi_dict, "ctermfg") && has_key(a:hi_dict, "ctermbg")
+    let inverted.ctermfg = a:hi_dict.ctermbg
+    let inverted.ctermbg = a:hi_dict.ctermfg
+  endif
+  if has_key(a:hi_dict, "guifg") && has_key(a:hi_dict, "guibg")
+    let inverted.guifg = a:hi_dict.guibg
+    let inverted.guibg = a:hi_dict.guifg
+  endif
+  return inverted
 endfunction
-autocmd CohamaAutoCmd InsertEnter * call ToBrightLineNr()
-autocmd CohamaAutoCmd InsertLeave * call ToDarkLineNr()
+function! HighlightDictToString(highlight_dict)
+  let str = ""
+  for hi_arg in s:highlight_args
+    if has_key(a:highlight_dict, hi_arg) && a:highlight_dict[hi_arg] != ""
+      let str .= hi_arg . "=" . a:highlight_dict[hi_arg] . " "
+    endif
+  endfor
+  return str
+endfunction
+function! Extend(default_dict, ex_dict)
+  let ret_dict = copy(a:default_dict)
+  for key in keys(a:ex_dict)
+    if has_key(a:ex_dict, key) && a:ex_dict[key] != ''
+      let ret_dict[key] = a:ex_dict[key]
+    endif
+  endfor
+  return ret_dict
+endfunction
+function! InitializeDefaultLineNr()
+  silent! let s:normal_normal = GetHighlight('Normal')
+  silent! let s:normal_linenr = Extend(s:normal_normal, GetHighlight('LineNr'))
+  silent! let s:normal_cursorlinenr = Extend(s:normal_normal, GetHighlight('CursorLineNr'))
+  let s:insert_linenr = InvertFgBg(s:normal_linenr)
+  let s:insert_cursorlinenr = InvertFgBg(s:normal_cursorlinenr)
+endfunction
+function! ToInsertLineNr()
+  silent exec 'highlight LineNr ' . HighlightDictToString(s:insert_linenr)
+  silent exec 'highlight CursorLineNr ' . HighlightDictToString(s:insert_cursorlinenr)
+endfunction
+function! ToNormalLineNr()
+  silent exec 'highlight LineNr ' . HighlightDictToString(s:normal_linenr)
+  silent exec 'highlight CursorLineNr ' . HighlightDictToString(s:normal_cursorlinenr)
+endfunction
+autocmd CohamaAutoCmd ColorScheme * call InitializeDefaultLineNr()
+autocmd CohamaAutoCmd InsertEnter * call ToInsertLineNr()
+autocmd CohamaAutoCmd InsertLeave * call ToNormalLineNr()
 
 " インサートモードのマッピング
 inoremap <C-e> <End>
@@ -437,6 +490,7 @@ NeoBundleLazy 'motemen/hatena-vim'
 " color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'nanotech/jellybeans.vim'
 
 filetype plugin indent on
 " Installation check.
@@ -653,3 +707,5 @@ autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 " hatena-vim
 let g:hatena_user='cohama'
 "}}}
+
+colorscheme molokai
