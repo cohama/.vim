@@ -433,7 +433,10 @@ NeoBundle 'cohama/rsense', {
 NeoBundleLazy 'cohama/jshint.vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundleLazy 'motemen/hatena-vim'
+
+" color schemes
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'tomasr/molokai'
 
 filetype plugin indent on
 " Installation check.
