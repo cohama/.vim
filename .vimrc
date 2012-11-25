@@ -373,6 +373,9 @@ nnoremap <Leader><C-l> <C-l>
 
 " ビジュアルモードで選択したところ以外を削除
 xmap D x0D"2p==
+
+" 全て選択
+nmap yY :%y<CR>
 "}}}
 
 " Plugins {{{
