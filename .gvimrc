@@ -25,5 +25,5 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nmap <M-s> ysiw
 
 " indent-guide の設定
-hi IndentGuidesOdd guibg=#222222
-hi IndentGuidesEven guibg=#444444
+hi IndentGuidesOdd guibg=#444444
+hi IndentGuidesEven guibg=#222222

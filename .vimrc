@@ -658,8 +658,8 @@ let g:Gitv_TruncateCommitSubjects = 1
 "indent-guides の設定
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd ctermbg=235
-hi IndentGuidesEven ctermbg=233
+hi IndentGuidesOdd ctermbg=233
+hi IndentGuidesEven ctermbg=235
 let g:indent_guides_color_change_percent = 30
 
 " powerline
