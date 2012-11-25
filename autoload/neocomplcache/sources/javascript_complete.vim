@@ -20,11 +20,6 @@ function! s:source.get_keyword_pos(cur_text)
 endfunction
 
 function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)
-  echo a:cur_keyword_pos .",". a:cur_keyword_str
-  let list = []
-  for word in split(expand(a:cur_keyword_str.'*'), '\n')
-    call add(list, {'word': word, 'menu': '[JavaScript?]'})
-  endfor
-
-  return list
+  return []
 endfunction
+

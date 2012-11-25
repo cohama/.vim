@@ -469,6 +469,8 @@ if !exists('g:neocomplcache_omni_functions')
 endif
 let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
 " autocmd CohamaAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+let g:neocomplcache_dictionary_filetype_lists = {
+      \ 'javascript': expand('~/.vim/dict/javascript.dict')}
 
 " neocomplcache-snippets-complete の設定
 let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
