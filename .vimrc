@@ -376,6 +376,10 @@ xmap D x0D"2p==
 
 " 全て選択
 nmap yY :%y<CR>
+
+" カレントウィンドウだけ行のハイライトをする
+autocmd CohamaAutoCmd WinEnter * setlocal cursorline
+autocmd CohamaAutoCmd WinLeave * setlocal nocursorline
 "}}}
 
 " Plugins {{{
