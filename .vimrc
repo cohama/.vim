@@ -521,6 +521,45 @@ autocmd myautocmd WinLeave * setlocal nocursorline
 " xml の folding
 let g:xml_syntax_folding = 1
 autocmd myautocmd FileType xml setl foldmethod=syntax
+
+" シンタックス情報の取得
+function! GetSyntaxID(transparent)
+  let synid = synID(line("."), col("."), 1)
+  if a:transparent
+    return synIDtrans(synid)
+  else
+    return synid
+  endif
+endfunction
+function! GetSyntaxAttr(synid)
+  let name = synIDattr(a:synid, "name")
+  let ctermfg = synIDattr(a:synid, "fg", "cterm")
+  let ctermbg = synIDattr(a:synid, "bg", "cterm")
+  let guifg = synIDattr(a:synid, "fg", "gui")
+  let guibg = synIDattr(a:synid, "bg", "gui")
+  return {
+        \ "name": name,
+        \ "ctermfg": ctermfg,
+        \ "ctermbg": ctermbg,
+        \ "guifg": guifg,
+        \ "guibg": guibg}
+endfunction
+function! GetSyntaxInfo()
+  let baseSyn = GetSyntaxAttr(GetSyntaxID(0))
+  echo "name: " . baseSyn.name .
+        \ " ctermfg: " . baseSyn.ctermfg .
+        \ " ctermbg: " . baseSyn.ctermbg .
+        \ " guifg: " . baseSyn.guifg .
+        \ " guibg: " . baseSyn.guibg
+  let linkedSyn = GetSyntaxAttr(GetSyntaxID(1))
+  echo "link to"
+  echo "name: " . linkedSyn.name .
+        \ " ctermfg: " . linkedSyn.ctermfg .
+        \ " ctermbg: " . linkedSyn.ctermbg .
+        \ " guifg: " . linkedSyn.guifg .
+        \ " guibg: " . linkedSyn.guibg
+endfunction
+command! SyntaxInfo call GetSyntaxInfo()
 " }}}
 
 " ------------------ Plugins ------------------ {{{
