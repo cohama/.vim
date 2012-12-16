@@ -1,65 +1,147 @@
-" 日本語ヘルプ
-set helplang=ja
-
-" カラースキーム
-set t_Co=256
-syntax on
-
-" 「日本語入力固定モード」切り替えキー
-inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
-" Python による IBus の制御
-let IM_CtrlIBusPython = 1
-
-" Vim options {{{
+"------------------ Vim options ------------------ {{{
+" ### Indent ### {{{
+" 新しい行のインデントを現在行と同じにする
 set autoindent
-set autoread
-set backspace=indent,eol,start
-set clipboard=unnamed
-set cmdheight=3
-set cursorline
+
+" 高度なインデント
+set smartindent
+
+" タブが対応する空白の数
+set tabstop=2
+
+" インデントでずれる幅
+set shiftwidth=2
+
+" タブキーでカーソルが動く幅
+set softtabstop=2
+
+" タブの代わりに空白を挿入
 set expandtab
+
+" 空白文字をいいかんじで挿入する
+set smarttab
+" }}}
+
+" ### Folding ### {{{
+" 折りたたみを示す列を表示
 set foldcolumn=1
+
+" 最初に折りたたみをなるべく開く
 set foldlevel=99
+
+" デフォルトの折りたたみ方法
 set foldmethod=marker
-set foldtext=CohamaFoldText()
+
+" 折りたたまれたテキストの表示方法
+set foldtext=MyFoldText()
+" }}}
+
+" ### Search ### {{{
+" ハイライトで検索
+set hlsearch
+
+" 大文字小文字を無視
+set ignorecase
+
+" インクリメンタル検索
+set incsearch
+
+" 大文字が入力されたら大文字小文字を区別する
+set smartcase
+" }}}
+
+" ### Buffer ### {{{
+" 外部でファイルが変更されたら自動で読みなおす
+set autoread
+
+" 隠れ状態にしない
+set nohidden
+" }}}
+
+" ### View ### {{{
+" 色数
+set t_Co=256
+
+" コマンドラインの行数
+set cmdheight=3
+
+" 現在行の色を変える
+set cursorline
+
+" ステータス行を常に表示
+set laststatus=2
+
+" 再描画しない (gitv.vim で推奨されている)
+set lazyredraw
+
+" 不可侵文字を可視化
+set list
+set listchars=tab:>\ "
+
+" 行番号を表示
+set number
+
+" 最低でも上下に表示する行数
+set scrolloff=5
+
+" 入力したコマンドを画面下に表示
+set showcmd
+
+" 自動折り返ししない
+set textwidth=0
+
+" タブページのラベルを常に表示
+set showtabline=2
+" }}}
+
+" ### Miscellaneous ### {{{
+" バックスペースで削除できる文字
+set backspace=indent,eol,start
+
+" ヤンクなどで * レジスタにも書き込む
+set clipboard=unnamed
+
+" 自動整形の実行方法 (see also :help fo-table)
 set formatoptions&
 set formatoptions-=o
 set formatoptions+=ctrqlm
-set hlsearch
-set ignorecase
-set incsearch
-set laststatus=2
-set lazyredraw
-set list
-set listchars=tab:>\ "
-set nohidden
+
+" <C-a> や <C-x> で数値を増減させるときに8進数を無効にする
 set nrformats-=octal
-set number
-set scrolloff=5
-set shiftwidth=2
-set showcmd
-set smartcase
-set smartindent
-set smarttab
-set softtabstop=2
-set tabstop=2
-set textwidth=0
+
+" タグ検索で二分探索を無効化 (日本語ヘルプでバグる)
 set notagbsearch
+
+" 行をまたいでカーソル移動
 set whichwrap&
 set whichwrap+=h,l
+
+" コマンドライン補完
 set wildmenu
+
+" コマンドライン補完の方法
 set wildmode=full
-"}}}
+
+" 日本語ヘルプ
+set helplang=ja
+" }}}
+" }}}
 
 " 色々な設定、キーマップなど{{{
+" 「日本語入力固定モード」切り替えキー
+inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+
+" Python による IBus の制御
+let IM_CtrlIBusPython = 1
+
 " 自分用 augroup
-augroup CohamaAutoCmd
+augroup myautocmd
   autocmd!
 augroup END
 
 " ハイライトを消す
-nnoremap <silent> <C-n> :noh<CR>
-autocmd CohamaAutoCmd InsertEnter * let @/=""
+nnoremap <silent> <C-n> :<C-u>noh<CR>
+autocmd myautocmd InsertEnter * let @/=""
 
 " タブページの設定
 nnoremap <silent> <C-T><C-L> :tabn<CR>
@@ -77,15 +159,14 @@ nnoremap <silent> <C-T><C-N> :tabnew<CR>
 nnoremap <silent> <C-T>n :tabnew<CR>
 nnoremap <C-T><C-e> :tabedit<Space>
 nnoremap <C-T>e :tabedit<Space>
-set showtabline=2
 
 " ヤンクした文字列でカーソル位置の単語置き換え
 nmap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 nmap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
-nnoremap g/ :%s/\<<C-R><C-w>\>//g<Left><Left>
-nnoremap g? :%s/\<<C-R><C-w>\>//gc<Left><Left><Left>
+nnoremap g/ :<C-u>%s/\<<C-R><C-w>\>//g<Left><Left>
+nnoremap g? :<C-u>%s/\<<C-R><C-w>\>//gc<Left><Left><Left>
 
 " カーソル位置の単語をハイライト
 function! HilightWordAtCursor()
@@ -94,7 +175,7 @@ function! HilightWordAtCursor()
   let @/ = @0
   call setpos(".", cursor_pos)
 endfunction
-nnoremap <silent> gn :call HilightWordAtCursor()<CR>:set hlsearch<CR>
+nnoremap <silent> gn :<C-u>call HilightWordAtCursor()<CR>:set hlsearch<CR>
 
 " % コマンドの拡張
 runtime macros/matchit.vim
@@ -104,7 +185,7 @@ xmap < <gv
 xmap > >gv
 
 " カーソル位置の単語をヘルプで検索
-nnoremap <silent> gh :help <C-r><C-w><CR>
+nnoremap <silent> gh :<C-u>help <C-r><C-w><CR>
 
 " 戦闘力を測定
 function! Scouter(file, ...)
@@ -120,9 +201,9 @@ command! -bar -bang -nargs=? -complete=file Scouter
 
 " .vimrc .gvimrc に関する設定
 if has('gui')
-  nnoremap <silent> <Leader>so :source $MYVIMRC<CR>:source $MYGVIMRC<CR>
+  nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>
 else
-  nnoremap <silent> <Leader>so :source $MYVIMRC<CR>
+  nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>
 endif
 nnoremap <silent> <Leader>vimrc :tabe ~/.vim/.vimrc<CR>
 nnoremap <silent> <Leader>gvimrc :tabe ~/.vim/.gvimrc<CR>
@@ -140,13 +221,13 @@ nnoremap <silent> <F12> :call MagicComment()<CR>
 
 " 行末の空白をハイライト
 highlight WhitespaceEOL ctermbg=red guibg=red
-autocmd CohamaAutoCmd BufRead,BufNewFile * match WhitespaceEOL /\s\+$/
+autocmd myautocmd BufRead,BufNewFile * match WhitespaceEOL /\s\+$/
 
 " JavaScript を開いたとき
 function! WhenJavaScriptOpened()
   setlocal foldmethod=syntax
 endfunction
-autocmd CohamaAutoCmd FileType javascript call WhenJavaScriptOpened()
+autocmd myautocmd FileType javascript call WhenJavaScriptOpened()
 
 " 見た目通りに上下移動
 nnoremap j gj
@@ -182,7 +263,7 @@ function! CloseTabsByNrList(closing_tabnr_list)
   endfor
 endfunction
 
-" すごい :only
+" 自分と vimshell, git, gitv 以外のウィンドウを全て閉じる
 function! ExtendedOnly()
   let tabcount = tabpagenr('$')
   let current_tabnr = tabpagenr()
@@ -207,12 +288,14 @@ cabbrev On Only
 
 " help を開いたとき
 function! WhenHelpOpened()
-  normal H82|
+  " 左のウィンドウで開く
+  exec "normal " .  "\<C-w>H\<C-w>82|"
+  " q だけで閉じれるようにする
   nnoremap <buffer> q :q<CR>
 endfunction
-autocmd CohamaAutoCmd FileType help call WhenHelpOpened()
+autocmd myautocmd FileType help call WhenHelpOpened()
 
-" cohama smooth scroll
+" my smooth scroll
 let s:scroll_time_ms = 100
 let s:scroll_precision = 8
 function! CohamaSmoothScroll(dir, windiv, factor)
@@ -236,7 +319,7 @@ function! CohamaSmoothScroll(dir, windiv, factor)
     redraw
   endwhile
   let &cursorline = cl
-  echo "CohamaSmoothScroll"
+  echo "My Smooth Scroll"
 endfunction
 nnoremap <silent> <C-d> :call CohamaSmoothScroll("d", 2, 1)<CR>
 nnoremap <silent> <C-u> :call CohamaSmoothScroll("u", 2, 1)<CR>
@@ -280,7 +363,7 @@ function! CloseAllRightTabs()
     let i = i + 1
   endwhile
 endfunction
-nnoremap <silent> <C-t>dl :call CloseAllRightTabs()<CR>
+nnoremap <silent> <C-t>dl :<C-u>call CloseAllRightTabs()<CR>
 
 " 左側のタブをすべて閉じる
 function! CloseAllLeftTabs()
@@ -292,12 +375,12 @@ function! CloseAllLeftTabs()
     let i = i + 1
   endwhile
 endfunction
-nnoremap <silent> <C-t>dh :call CloseAllLeftTabs()<CR>
+nnoremap <silent> <C-t>dh :<C-u>call CloseAllLeftTabs()<CR>
 
 " オリジナル foldtext
-function! CohamaFoldText()
+function! MyFoldText()
   let line = getline(v:foldstart)
-  let marker_removed = substitute(line, '{{{', '', 'g') "}}}
+  let marker_removed = substitute(line, '{{{', '', 'g') " }}}
   let line_count = v:foldend - v:foldstart
   let lines = line_count > 1 ? ' lines' : ' line'
   let count_in_brace = substitute(marker_removed, '{\s*$', '{ ('.line_count.lines.') }', '')
@@ -306,11 +389,12 @@ endfunction
 
 " gitcommit, gitrebase を開いた時
 function! WhenGitCommitOpened()
-  nnoremap <buffer> q :x<CR>
+  " q で保存して終了
+  nnoremap <buffer> q :<C-u>x<CR>
   " commit cancel
   nnoremap <buffer> Q ggdG:x<CR>
 endfunction
-autocmd CohamaAutoCmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
+autocmd myautocmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 
 " 改行だけを入力する
 nmap go o<Esc>
@@ -378,9 +462,9 @@ function! ToNormalLineNr()
   silent exec 'highlight LineNr ' . HighlightDictToString(s:normal_linenr)
   silent exec 'highlight CursorLineNr ' . HighlightDictToString(s:normal_cursorlinenr)
 endfunction
-autocmd CohamaAutoCmd ColorScheme * call InitializeDefaultLineNr()
-autocmd CohamaAutoCmd InsertEnter * call ToInsertLineNr()
-autocmd CohamaAutoCmd InsertLeave * call ToNormalLineNr()
+autocmd myautocmd ColorScheme * call InitializeDefaultLineNr()
+autocmd myautocmd InsertEnter * call ToInsertLineNr()
+autocmd myautocmd InsertLeave * call ToNormalLineNr()
 
 " インサートモードのマッピング
 inoremap <C-e> <End>
@@ -392,7 +476,7 @@ inoremap <C-b> <Left>
 nmap cc 0D
 
 " タブ幅4のもの
-autocmd CohamaAutoCmd FileType typescript,java setl shiftwidth=4 tabstop=4
+autocmd myautocmd FileType typescript,java setl shiftwidth=4 tabstop=4
 
 " 今開いているバッファを新しいタブページで開き直す
 function! TabeditCurrentBuffer()
@@ -416,7 +500,7 @@ function! JointNextTabpage()
 endfunction
 command! TabJoin call JointNextTabpage()
 abbreviate Tabj TabJoin
-nnoremap <silent> <C-t>J :TabJoin<CR>
+nnoremap <silent> <C-t>J :<C-u>TabJoin<CR>
 
 " dk と dj を対称にする
 nnoremap dk dkk
@@ -428,74 +512,149 @@ nnoremap <Leader><C-l> <C-l>
 xmap D x0D"2p==
 
 " 全て選択
-nmap yY :%y<CR>
+nmap yY :<C-u>%y<CR>
 
 " カレントウィンドウだけ行のハイライトをする
-autocmd CohamaAutoCmd WinEnter * setlocal cursorline
-autocmd CohamaAutoCmd WinLeave * setlocal nocursorline
+autocmd myautocmd WinEnter * setlocal cursorline
+autocmd myautocmd WinLeave * setlocal nocursorline
 
 " xml の folding
 let g:xml_syntax_folding = 1
-autocmd CohamaAutoCmd FileType xml setl foldmethod=syntax
-"}}}
+autocmd myautocmd FileType xml setl foldmethod=syntax
+" }}}
 
-" Plugins {{{
+" ------------------ Plugins ------------------ {{{
 " NeoBundle の設定
 filetype off
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 call neobundle#rc(expand('~/.vim/bundle/'))
-" NeoBundle で管理するプラグイン
+" NeoBundle で管理するプラグイン {{{
+" ### fundamental ### {{{
+" プラグイン管理
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'vim-scripts/Align'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'Shougo/neosnippet'
+
+" アレをアレする
+NeoBundle 'Shougo/unite.vim'
+
+" 非同期実行
 NeoBundle 'Shougo/vimproc', {
       \     'build': {
       \        'windows': 'make_mingw64.mak',
       \        'unix': 'make -f make_unix.mak'
       \     }
       \   }
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Shougo/unite.vim'
+" }}}
+
+" ### 入力系 ### {{{
+" 入力補完
+NeoBundle 'Shougo/neocomplcache'
+
+" スニペット補完
+NeoBundle 'Shougo/neosnippet'
+
+" Zen-Coding
+NeoBundle 'mattn/zencoding-vim'
+
+" endfunction とかを自動入力
 NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'sudo.vim'
-NeoBundle 'cohama/vim-javascript'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'bkad/CamelCaseMotion'
-NeoBundle 'EasyMotion'
-NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'thinca/vim-quickrun'
+
+" 対応する括弧の自動入力
 NeoBundle 'kana/vim-smartinput'
-NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
+" }}}
+
+" ### 編集を便利にする ### {{{
+" 整形
+NeoBundle 'vim-scripts/Align'
+
+" テキストオブジェクトのまわりに文字を挿入
+NeoBundle 'tpope/vim-surround'
+
+" コメント化
+NeoBundle 'tomtom/tcomment_vim'
+
+" ヤンク履歴を遡れる
 NeoBundle 'YankRing.vim'
-NeoBundle 'cohama/rsense', {
-      \     'build': {
-      \        'unix': '/bin/sh install.sh'
-      \      }
-      \    }
-NeoBundleLazy 'cohama/jshint.vim'
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundleLazy 'motemen/hatena-vim'
+
+" インデントが同じ物をテキストオブジェクト化
+NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
+" }}}
+
+" ### ファイル操作など ### {{{
+" ディレクトリ、ファイルをツリー表示
+NeoBundle 'scrooloose/nerdtree'
+
+" sudo で保存
+NeoBundle 'sudo.vim'
+
+" ファイラ
+NeoBundle 'Shougo/vimfiler'
+" }}}
+
+" ### 移動 ### {{{
+" CamelCase や snake_case での単語移動
+NeoBundle 'bkad/CamelCaseMotion'
+
+" カーソルを任意の位置にジャンプさせる
+NeoBundle 'EasyMotion'
+" }}}
+
+" ### 見た目、カラースキーム ### {{{
+" かっこいいステータスライン
+NeoBundle 'Lokaltog/vim-powerline'
+
+" インデントの量を可視化
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'nanotech/jellybeans.vim'
+" }}}
 
+" ### Git ### {{{
+" 直接 Git コマンド実行など
+NeoBundle 'tpope/vim-fugitive'
+
+" gitk っぽいものを Vim で
+NeoBundle 'gregsexton/gitv'
+" }}}
+
+" ### Language ### {{{
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'cohama/vim-javascript'
+NeoBundle 'leafgarland/typescript-vim'
+
+" Ruby オムニ補完
+NeoBundle 'cohama/rsense', {
+      \     'build': {
+      \        'unix': '/bin/sh install.sh'
+      \      }
+      \    }
+
+" JavaScript シンタックスチェック
+NeoBundleLazy 'cohama/jshint.vim'
+" }}}
+
+" ### 何かを実行 ### {{{
+" Vim で動く shell
+NeoBundle 'Shougo/vimshell'
+
+" その場で実行
+NeoBundle 'thinca/vim-quickrun'
+" }}}
+
+" ### Miscellaneous ### {{{
+NeoBundleLazy 'motemen/hatena-vim'
+" }}}
+" }}}
+
+" NeoBundle の設定 {{{
 filetype plugin indent on
 " Installation check.
 if neobundle#exists_not_installed_bundles()
@@ -507,8 +666,9 @@ endif
 nnoremap <Leader>une :Unite neobundle/
 nmap <Leader>uni <Leader>so:Unite neobundle/install
 nmap <Leader>unI <Leader>so:Unite neobundle/install:!
+" }}}
 
-" neocomplcache の設定
+" neocomplcache の設定 {{{
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_auto_completion_start_length = 1
 let g:neocomplcache_enable_camel_case_completion = 1
@@ -524,10 +684,10 @@ inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
-autocmd CohamaAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd CohamaAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd CohamaAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd CohamaAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd myautocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd myautocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
@@ -537,24 +697,27 @@ if !exists('g:neocomplcache_omni_functions')
   let g:neocomplcache_omni_functions = {}
 endif
 let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
-" autocmd CohamaAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd myautocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let g:neocomplcache_dictionary_filetype_lists = {
       \ 'javascript': expand('~/.vim/dict/javascript.dict')}
 
-" neocomplcache-snippets-complete の設定
+" 補完メニューの設定
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" }}}
+
+" neosnippet の設定 {{{
 let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
+" }}}
 
-" 補完メニューの設定
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-
-" vim-ruby の設定
+" vim-ruby の設定 {{{
 let g:rubycomplete_buffer_loadding = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
+" }}}
 
-" NERDTree の設定
+" NERDTree の設定 {{{
 map <silent> <C-p> :NERDTreeToggle<CR>
 map <silent> <Leader><C-p> :NERDTreeFind<CR>
 let NERDTreeIgnore = ['\~$', '\.swp']
@@ -564,18 +727,21 @@ let NERDTreeMinimalUI = 1
 let NERDTreeChDirMode = 1
 map <silent> <C-@> :NERDTreeFind<CR>
 map <silent> <Leader><C-p> :NERDTreeFind<CR>
+" }}}
 
-" Align の設定
+" Align の設定 {{{
 map <Leader><Leader>rwp <Plug>RestoreWinPosn
 map <Leader><Leader>swp <Plug>SaveWinPosn
+" }}}
 
-" surrond.vim の設定
+" surrond.vim の設定 {{{
 let g:surround_36 = "$(\r)"
 let g:surround_45 = "<% \r %>"
 let g:surround_61 = "<%= \r %>"
 let g:surround_104 = "<%=h \r %>"
+" }}}
 
-" zencoding の設定
+" zencoding の設定 {{{
 let g:use_zen_complete_tag = 1
 let g:user_zen_leader_key = '<C-C>'
 let g:user_zen_settings = {
@@ -596,10 +762,11 @@ let g:user_zen_settings = {
 \    },
 \  },
 \ }
+" }}}
 
-" vimshell の設定
+" vimshell の設定 {{{
 nnoremap <silent> <Leader>sh :tabnew<CR>:VimShell<CR>
-autocmd CohamaAutoCmd FileType vimshell call s:vimshell_my_settings()
+autocmd myautocmd FileType vimshell call s:vimshell_my_settings()
 function! s:vimshell_my_settings()
   nmap <buffer> q <Plug>(vimshell_exit):q<CR>
   imap <buffer> <C-q> <Esc>q
@@ -616,8 +783,9 @@ nnoremap <Leader>si :VimShellInteractive<Space>
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
 let g:vimshell_prompt = '% '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+" }}}
 
-" fugitive の設定
+" fugitive の設定 {{{
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>ga :Gwrite<CR>
@@ -626,15 +794,16 @@ nnoremap <Leader>gps :Git push<CR>
 nnoremap <Leader>gpl :Git pull<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Space> :Git<Space>
+" }}}
 
-" unite の設定
+" unite の設定 {{{
 nnoremap <silent> <Leader>b :Unite buffer<CR>
 nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>f :Unite file_rec<CR>
 nnoremap <silent> <Leader>ur :UniteResume<CR>
 let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
-autocmd CohamaAutoCmd FileType unite call s:unite_my_settings()
+autocmd myautocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
   imap <silent><buffer> <C-q> <Plug>(unite_exit)
   map <silent><buffer> <Esc> <Plug>(unite_exit)
@@ -644,60 +813,70 @@ function! s:unite_my_settings()
   noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
 endfunction
+" }}}
 
-" endwise
+" endwise {{{
 let g:endwise_no_mappings = 1
-autocmd CohamaAutoCmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR> <CR><Plug>DiscretionaryEnd
+autocmd myautocmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR> <CR><Plug>DiscretionaryEnd
+" }}}
 
-" gitv の設定
-autocmd CohamaAutoCmd FileType git :setlocal foldlevel=99
+" gitv の設定 {{{
+autocmd myautocmd FileType git :setlocal foldlevel=99
 nnoremap <Leader>gk :Gitv --all<CR>
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
+" }}}
 
-"indent-guides の設定
+"indent-guides の設定 {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd ctermbg=233
 hi IndentGuidesEven ctermbg=235
 let g:indent_guides_color_change_percent = 30
+" }}}
 
-" powerline
+" powerline {{{
 let g:Powerline_symbols='fancy'
+" }}}
 
-" coffeescript
+" coffeescript {{{
 let coffee_make_options = '--bare'
 let coffee_compiler = 'coffee'
 let coffee_linter = 'coffeelint'
 nnoremap <Leader>cc :CoffeeCompile<CR>
 nnoremap <Leader>cm :CoffeeMake<CR>
 nnoremap <Leader>cl :CoffeeLint<CR>
+" }}}
 
-" vimfiler
+" vimfiler {{{
 nnoremap <Leader>F :VimFiler<CR>
 let g:vimfiler_safe_mode_by_default = 0
+" }}}
 
-" quickrun
+" quickrun {{{
 let g:quickrun_config = {}
 let g:quickrun_config['ruby.rspec'] = {
       \ 'command': 'bundle',
       \ 'exec': '%c exec rspec -f d %s'}
-autocmd CohamaAutoCmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+" }}}
 
-" smartinput
+" smartinput {{{
 call smartinput#map_to_trigger('i', '<', '<', '<')
 call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left><Left>', 'filetype': ['javascript']})
 call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
 smap <CR> <BS>i
+" }}}
 
-" YankRing
+" YankRing {{{
 let g:yankring_n_keys = 'D x X'
 let g:yankring_replace_n_pkey = '<Leader>p'
 let g:yankring_replace_n_nkey = '<Leader>n'
 nnoremap <Leader>y :YRShow<CR>
+" }}}
 
-" Rsense
+" Rsense {{{
 let g:rsenseUseOmniFunc = 1
 let g:rsenseHome = expand('$HOME/.vim/bundle/rsense')
 function! SetUpRubySetting()
@@ -707,9 +886,11 @@ function! SetUpRubySetting()
   nmap <buffer>Kt :RSenseTypeHelp<CR>
 endfunction
 autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
+" }}}
 
-" hatena-vim
+" hatena-vim {{{
 let g:hatena_user='cohama'
-"}}}
-
-colorscheme molokai
+" }}}
+" }}}
+colorscheme cohama
+syntax on
