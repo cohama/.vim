@@ -839,10 +839,13 @@ nnoremap <Space> :Git<Space>
 " }}}
 
 " unite の設定 {{{
-nnoremap <silent> <Leader>b :Unite buffer<CR>
-nnoremap <silent> <Leader>ug :Unite grep -no-quit<CR>
-nnoremap <silent> <Leader>f :Unite file_rec<CR>
-nnoremap <silent> <Leader>ur :UniteResume<CR>
+nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
+nnoremap <silent> <Leader>ug :<C-u>Unite grep -no-quit<CR>
+nnoremap <silent> <Leader>f :<C-u>Unite file_rec<CR>
+nnoremap <silent> <Leader>ur :<C-u>UniteResume<CR>
+nnoremap <silent> <Leader>uf :<C-u>Unite file_mru<CR>
+nnoremap <silent> <Leader>ub :<C-u>Unite bookmark<CR>
+nnoremap <silent> <Leader>uB :<C-u>UniteBookmarkAdd<CR>
 let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
 autocmd myautocmd FileType unite call s:unite_my_settings()
