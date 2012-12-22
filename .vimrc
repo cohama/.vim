@@ -857,6 +857,8 @@ function! s:unite_my_settings()
   noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
   noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
+  noremap <silent><buffer><expr> f unite#smart_map("f", unite#do_action('vimfiler'))
+  noremap <silent><buffer><expr> F unite#smart_map("f", unite#do_action('tabvimfiler'))
 endfunction
 " }}}
 
