@@ -560,6 +560,9 @@ function! GetSyntaxInfo()
         \ " guibg: " . linkedSyn.guibg
 endfunction
 command! SyntaxInfo call GetSyntaxInfo()
+
+" Window の移動
+nnoremap <Tab> <C-w><C-w>
 " }}}
 
 " ------------------ Plugins ------------------ {{{
