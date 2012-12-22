@@ -1,43 +1,46 @@
-" Vim color file
-"
-" Author: Tomas Restrepo <tomas@winterdom.com>
-"
-" Note: Based on the monokai theme for textmate
-" by Wimer Hazenberg and its darker variant 
-" by Hamish Stuart Macpherson
-"
-
-hi clear
+" My Color Theme
+"   based on molokai
 
 set background=dark
-if version > 580
-    " no guarantees for version 5.8 and below, but this makes it stop
-    " complaining
-    hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
+hi clear
+if exists("syntax_on")
+  syntax reset
 endif
-let g:colors_name="molokai"
+let g:colors_name="cohama"
 
-if exists("g:molokai_original")
-    let s:molokai_original = g:molokai_original
-else
-    let s:molokai_original = 0
-endif
+hi Normal gui=none guifg=#AAAAAA guibg=#121230
+hi CursorLine                    guibg=#1D1D4D
+hi CursorColumn                  guibg=#1D1D4D
+hi Comment         guifg=#505050
+hi LineNr          guifg=#8080FF guibg=#0C0C21
+hi CursorLineNr gui=bold guifg=#FFFFFF guibg=#1D1D4D
+hi NonText guifg=#121230 guibg=#0C0C21
 
-
-hi Boolean         guifg=#AE81FF
-hi Character       guifg=#E6DB74
-hi Number          guifg=#AE81FF
-hi String          guifg=#DC6F10
-hi Conditional     guifg=#F92672               gui=bold
 hi Constant        guifg=#AE81FF               gui=bold
+hi String          guifg=#DC6F10
+hi Character       guifg=#DC9010
+hi Number          guifg=#FF8AF5
+hi default link Float Number
+hi default link Boolean Number
+
+hi Identifier      guifg=#DBDBA9
+hi Function        guifg=#90DB65
+
+hi Statement       gui=none guifg=#E04F83
+hi Conditional     guifg=#F92672
+hi Repeat          guifg=#F92672               gui=bold
+hi Label           guifg=#E6DB74               gui=none
+hi Operator        guifg=#F92672
+hi Keyword gui=none guifg=#E6E695
+hi Exception       guifg=#A6E22E               gui=bold
+
+hi Type gui=none guifg=#8FDB8F
 hi Cursor          guifg=#000000 guibg=#F8F8F0
 hi Debug           guifg=#BCA3A3               gui=bold
 hi Define          guifg=#66D9EF
 hi Delimiter       guifg=#8F8F8F
-hi DiffAdd                       guibg=#13354A
+hi diffAdded       guifg=#E69487
+hi diffRemoved     guifg=#597A7A
 hi DiffChange      guifg=#89807D guibg=#4C4745
 hi DiffDelete      guifg=#960050 guibg=#1E0010
 hi DiffText                      guibg=#4C4745 gui=italic,bold
@@ -45,24 +48,18 @@ hi DiffText                      guibg=#4C4745 gui=italic,bold
 hi Directory       guifg=#A6E22E               gui=bold
 hi Error           guifg=#960050 guibg=#1E0010
 hi ErrorMsg        guifg=#F92672 guibg=#232526 gui=bold
-hi Exception       guifg=#A6E22E               gui=bold
-hi Float           guifg=#AE81FF
 hi FoldColumn      guifg=#465457 guibg=#000000
 hi Folded          guifg=#7684a7 guibg=#000000
-hi Function        guifg=#A6E22E
-hi Identifier      guifg=#FD971F
 hi Ignore          guifg=#808080 guibg=bg
 hi IncSearch       guifg=#C4BE89 guibg=#000000
 
 hi Keyword         guifg=#F92672               gui=bold
-hi Label           guifg=#E6DB74               gui=none
 hi Macro           guifg=#C4BE89               gui=italic
 hi SpecialKey      guifg=#66D9EF               gui=italic
 
 hi MatchParen                    guibg=#28009E gui=bold
 hi ModeMsg         guifg=#E6DB74
 hi MoreMsg         guifg=#E6DB74
-hi Operator        guifg=#F92672
 
 " complete menu
 hi Pmenu           guifg=#002D80 guibg=#C7DBFF
@@ -73,7 +70,6 @@ hi PmenuThumb      guifg=#66D9EF
 hi PreCondit       guifg=#A6E22E               gui=bold
 hi PreProc         guifg=#A6E22E
 hi Question        guifg=#66D9EF
-hi Repeat          guifg=#F92672               gui=bold
 hi Search          guifg=#FFFFFF guibg=#455354
 " marks column
 hi SignColumn      guifg=#A6E22E guibg=#232526
@@ -87,7 +83,6 @@ if has("spell")
     hi SpellLocal  guisp=#70F0F0 gui=undercurl
     hi SpellRare   guisp=#FFFFFF gui=undercurl
 endif
-hi Statement       guifg=#F92672               gui=bold
 hi StatusLine      guifg=#FFFFFF guibg=#000000
 hi StatusLineNC    guifg=#404040 guibg=#000000
 hi StorageClass    guifg=#FD971F               gui=italic
@@ -106,111 +101,4 @@ hi Visual          guifg=#FFFFFF guibg=#669CFF
 hi WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
 hi WildMenu        guifg=#66D9EF guibg=#000000
 
-if s:molokai_original == 1
-   hi Normal          guifg=#F8F8F2 guibg=#272822
-   hi Comment         guifg=#75715E
-   hi CursorLine                    guibg=#3E3D32
-   hi CursorColumn                  guibg=#3E3D32
-   hi LineNr          guifg=#BCBCBC guibg=#3B3A32
-   hi NonText         guifg=#BCBCBC guibg=#3B3A32
-else
-   hi Normal          guifg=#F8F8F2 guibg=#000000
-   hi Comment         guifg=#205820
-   hi CursorLine                    guibg=#181818
-   hi CursorColumn                  guibg=#293739
-   hi LineNr          guifg=#BCBCBC guibg=#000000
-   hi NonText         guifg=#BCBCBC guibg=#000000
-end
-
-"
-" Support for 256-color terminal
-"
-if &t_Co > 255
-   hi Boolean         ctermfg=135
-   hi Character       ctermfg=144
-   hi Number          ctermfg=213
-   hi String          ctermfg=167
-   hi Conditional     ctermfg=198               cterm=bold
-   hi Constant        ctermfg=135               cterm=bold
-   hi Cursor          ctermfg=16  ctermbg=253
-   hi Debug           ctermfg=225               cterm=bold
-   hi Define          ctermfg=198               cterm=bold
-   hi Delimiter       ctermfg=167
-
-   hi DiffAdd                     ctermbg=24
-   hi DiffChange      ctermfg=181 ctermbg=239
-   hi DiffDelete      ctermfg=162 ctermbg=53
-   hi DiffText                    ctermbg=102 cterm=bold
-
-   hi Directory       ctermfg=118               cterm=bold
-   hi Error           ctermfg=219 ctermbg=89
-   hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
-   hi Exception       ctermfg=118               cterm=bold
-   hi Float           ctermfg=135
-   hi FoldColumn      ctermfg=67  ctermbg=16
-   hi Folded          ctermfg=67  ctermbg=16
-   hi Function        ctermfg=118
-   hi Identifier      ctermfg=208
-   hi Ignore          ctermfg=244 ctermbg=232
-   hi IncSearch       ctermfg=193 ctermbg=16
-
-   hi Keyword         ctermfg=198               cterm=bold
-   hi Label           ctermfg=229               cterm=none
-   hi Macro           ctermfg=193
-   hi SpecialKey      ctermfg=81
-
-if has("spell")
-    hi SpellBad       ctermbg=52
-endif
-
-   hi MatchParen      ctermfg=255  ctermbg=53 cterm=bold
-   hi ModeMsg         ctermfg=229
-   hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=198
-
-   " complete menu
-   hi Pmenu           ctermfg=232  ctermbg=255
-   hi PmenuSel        ctermfg=255 ctermbg=21
-   hi PmenuSbar                   ctermbg=32
-   hi PmenuThumb      ctermfg=81
-
-   hi PreCondit       ctermfg=118               cterm=bold
-   hi PreProc         ctermfg=118
-   hi Question        ctermfg=81
-   hi Repeat          ctermfg=198               cterm=bold
-   hi Search          ctermfg=253 ctermbg=66
-
-   " marks column
-   hi SignColumn      ctermfg=118 ctermbg=235
-   hi SpecialChar     ctermfg=198               cterm=bold
-   hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=81  ctermbg=232
-   hi SpecialKey      ctermfg=245
-
-   hi Statement       ctermfg=198               cterm=bold
-   hi StatusLine      ctermfg=255 ctermbg=16
-   hi StatusLineNC    ctermfg=233 ctermbg=240
-   hi StorageClass    ctermfg=208
-   hi Structure       ctermfg=81
-   hi Tag             ctermfg=198
-   hi Title           ctermfg=166
-   hi Todo            ctermfg=231 ctermbg=232   cterm=bold
-
-   hi Typedef         ctermfg=81
-   hi Type            ctermfg=81                cterm=none
-   hi Underlined      ctermfg=244               cterm=underline
-
-   hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-   hi VisualNOS                   ctermbg=235
-   hi Visual                      ctermbg=19
-   hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
-   hi WildMenu        ctermfg=81  ctermbg=16
-
-   hi Normal          ctermfg=252 ctermbg=16
-   hi Comment         ctermfg=22
-   hi CursorLine                  ctermbg=234 cterm=none
-   hi CursorColumn                ctermbg=236
-   hi LineNr          ctermfg=250 ctermbg=16
-   hi NonText         ctermfg=250 ctermbg=16
-end
 
