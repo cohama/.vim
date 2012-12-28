@@ -693,6 +693,12 @@ NeoBundle 'thinca/vim-quickrun'
 
 " ### Miscellaneous ### {{{
 NeoBundleLazy 'motemen/hatena-vim'
+
+" コードを Gist に送るためのプラグイン
+NeoBundle 'mattn/gist-vim', {
+      \     'depends': 'mattn/webapi-vim'
+      \    }
+
 " }}}
 " }}}
 
