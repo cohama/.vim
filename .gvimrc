@@ -1,4 +1,8 @@
-set guifont=Migu\ 2M\ 12
+if has('win32') || has('win64')
+  set guifont=Migu_2M:h12:cSHIFTJIS
+else
+  set guifont=Migu\ 2M\ 12
+endif
 set guioptions&
 set guioptions-=T
 set guioptions-=m
