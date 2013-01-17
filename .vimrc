@@ -841,7 +841,9 @@ nnoremap <Space><Space> :Git<Space>
 nnoremap <Space>s :<C-u>Gstatus<CR>
 nnoremap <Space>d :<C-u>Gdiff<CR>
 nnoremap <Space>a :<C-u>Gwrite<CR>
+nnoremap <Space>A :<C-u>Git add -A<CR>
 nnoremap <Space>c :<C-u>Gcommit -v<CR><C-w>H
+nnoremap <Space>C :<C-u>Gcommit -av<CR><C-w>H
 nnoremap <Space>p :<C-u>Git push<CR>
 nnoremap <Space>f :<C-u>Git fetch<CR>
 nnoremap <Space>b :<C-u>Gblame<CR>
