@@ -306,25 +306,24 @@ function! CohamaSmoothScroll(dir, windiv, factor)
   if n <= 0
     let n = 1
   endif
+  let wait_per_one_move_ms = s:scroll_time_ms / s:scroll_precision * a:factor
   let i = 0
+  let scroll_command = a:dir == "down" ?
+        \ "normal " . n . "\<C-E>" . n ."j" :
+        \ "normal " . n . "\<C-Y>" . n ."k"
   while i < s:scroll_precision
     let i = i + 1
-    if a:dir == "d"
-      execute "normal " . n . "" . n ."j"
-    else
-      execute "normal " . n . "" . n ."k"
-    endif
-    let wait_per_one_move_ms = s:scroll_time_ms / s:scroll_precision * a:factor
+    execute scroll_command
     execute "sleep " . wait_per_one_move_ms . "m"
     redraw
   endwhile
   let &cursorline = cl
   echo "My Smooth Scroll"
 endfunction
-nnoremap <silent> <C-d> :call CohamaSmoothScroll("d", 2, 1)<CR>
-nnoremap <silent> <C-u> :call CohamaSmoothScroll("u", 2, 1)<CR>
-nnoremap <silent> <C-f> :call CohamaSmoothScroll("d", 1, 2)<CR>
-nnoremap <silent> <C-b> :call CohamaSmoothScroll("u", 1, 2)<CR>
+nnoremap <silent> <C-d> :call CohamaSmoothScroll("down", 2, 1)<CR>
+nnoremap <silent> <C-u> :call CohamaSmoothScroll("up", 2, 1)<CR>
+nnoremap <silent> <C-f> :call CohamaSmoothScroll("down", 1, 2)<CR>
+nnoremap <silent> <C-b> :call CohamaSmoothScroll("up", 1, 2)<CR>
 
 " ビジュアルモードで選択した部分を置換
 xmap / y:%s/<C-r>"//g<Left><Left>
