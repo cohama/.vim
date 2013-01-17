@@ -708,8 +708,8 @@ if neobundle#exists_not_installed_bundles()
   "finish
 endif
 nnoremap <Leader>une :Unite neobundle/
-nmap <Leader>uni <Leader>so:Unite neobundle/install
-nmap <Leader>unI <Leader>so:Unite neobundle/install:!
+nmap <Leader>uni <Leader>so:Unite neobundle/install<CR>
+nmap <Leader>unI <Leader>so:Unite neobundle/install:!<CR>
 " }}}
 
 " neocomplcache の設定 {{{
