@@ -224,11 +224,6 @@ endfunction
 
 nnoremap <silent> <F12> :call MagicComment()<CR>
 
-" 行末の空白をハイライト
-highlight WhitespaceEOL ctermbg=red guibg=red
-autocmd myautocmd ColorScheme * highlight WhitespaceEOL ctermbg=red guibg=red
-call matchadd("WhitespaceEOL", '\s\+$', 1)
-
 " JavaScript を開いたとき
 function! WhenJavaScriptOpened()
   setlocal foldmethod=syntax
@@ -565,7 +560,6 @@ nnoremap <Leader><Tab> <C-W>W
 nmap <C-O> <Nop>
 nnoremap <C-O><C-I> <C-O>
 nnoremap <C-O><C-P> <C-I>
-" }}}
 
 " ------------------ Plugins ------------------ {{{
 " NeoBundle の設定
@@ -956,3 +950,8 @@ let g:hatena_user='cohama'
 " }}}
 colorscheme cohama
 syntax on
+
+" 行末の空白と全角スペースをハイライト
+call matchadd("Error", '\s\+$', 1)
+call matchadd("Error", '　', 1)
+" }}}
