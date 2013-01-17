@@ -210,8 +210,8 @@ if has('gui_running')
 else
   nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>
 endif
-nnoremap <silent> <Leader>vimrc :tabe ~/.vim/.vimrc<CR>
-nnoremap <silent> <Leader>gvimrc :tabe ~/.vim/.gvimrc<CR>
+nnoremap <silent> <Leader>v :tabe ~/.vim/.vimrc<CR>
+nnoremap <silent> <Leader>gv :tabe ~/.vim/.gvimrc<CR>
 
 " magic comment
 function! MagicComment()
