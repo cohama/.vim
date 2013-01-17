@@ -225,8 +225,9 @@ endfunction
 nnoremap <silent> <F12> :call MagicComment()<CR>
 
 " 行末の空白をハイライト
+highlight WhitespaceEOL ctermbg=red guibg=red
 autocmd myautocmd ColorScheme * highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
+call matchadd("WhitespaceEOL", '\s\+$', 1)
 
 " JavaScript を開いたとき
 function! WhenJavaScriptOpened()
