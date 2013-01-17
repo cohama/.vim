@@ -551,7 +551,9 @@ endfunction
 command! SyntaxInfo call GetSyntaxInfo()
 
 " Window の移動
-nnoremap <Tab> <C-w><C-w>
+nnoremap <Tab> <C-W>w
+nnoremap <S-Tab> <C-W>W
+nnoremap <Leader><Tab> <C-W>W
 " }}}
 
 " ------------------ Plugins ------------------ {{{
