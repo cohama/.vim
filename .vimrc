@@ -554,6 +554,11 @@ command! SyntaxInfo call GetSyntaxInfo()
 nnoremap <Tab> <C-W>w
 nnoremap <S-Tab> <C-W>W
 nnoremap <Leader><Tab> <C-W>W
+
+" Jump
+nmap <C-O> <Nop>
+nnoremap <C-O><C-I> <C-O>
+nnoremap <C-O><C-P> <C-I>
 " }}}
 
 " ------------------ Plugins ------------------ {{{
