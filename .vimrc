@@ -200,7 +200,7 @@ command! -bar -bang -nargs=? -complete=file Scouter
 \        echo Scouter(empty(<q-args>) ? expand('~/.vim/.vimrc') : expand(<q-args>), <bang>0)
 
 " .vimrc .gvimrc に関する設定
-if has('gui')
+if has('gui_running')
   nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>
 else
   nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>
