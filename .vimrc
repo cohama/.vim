@@ -101,6 +101,11 @@ set backspace=indent,eol,start
 " ヤンクなどで * レジスタにも書き込む
 set clipboard=unnamed
 
+" ヤンクなどで + レジスタにも書き込む
+if has('unnamedplus')
+  set clipboard+=unnamedplus
+endif
+
 " 自動整形の実行方法 (see also :help fo-table)
 set formatoptions&
 set formatoptions-=o
