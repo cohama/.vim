@@ -954,4 +954,7 @@ syntax on
 " 行末の空白と全角スペースをハイライト
 call matchadd("Error", '\s\+$', 1)
 call matchadd("Error", '　', 1)
+
+" JavaScript の console.log をハイライト
+call matchadd("Error", 'console\.log', 1)
 " }}}
