@@ -114,9 +114,6 @@ set formatoptions+=ctrqlm
 " <C-a> や <C-x> で数値を増減させるときに8進数を無効にする
 set nrformats-=octal
 
-" タグ検索で二分探索を無効化 (日本語ヘルプでバグる)
-set notagbsearch
-
 " 行をまたいでカーソル移動
 set whichwrap&
 set whichwrap+=h,l
@@ -129,6 +126,9 @@ set wildmode=longest:full
 
 " 日本語ヘルプ
 set helplang=ja
+
+" K でヘルプを引く
+set keywordprg=:help
 " }}}
 " }}}
 
@@ -176,8 +176,8 @@ nnoremap g? :<C-u>%s/\<<C-R><C-w>\>//gc<Left><Left><Left>
 " カーソル位置の単語をハイライト
 function! HilightWordAtCursor()
   let cursor_pos = getpos(".")
-  normal yiw
-  let @/ = @0
+  normal! yiw
+  let @/ = "\\<" . @0 . "\\>"
   call setpos(".", cursor_pos)
 endfunction
 nnoremap <silent> gn :<C-u>call HilightWordAtCursor()<CR>:set hlsearch<CR>
@@ -189,20 +189,10 @@ runtime macros/matchit.vim
 xmap < <gv
 xmap > >gv
 
-" カーソル位置の単語をヘルプで検索
-nnoremap <silent> gh :<C-u>help <C-r><C-w><CR>
-
-" 戦闘力を測定
-function! Scouter(file, ...)
-  let pat = '^\s*$\|^\s*"'
-  let lines = readfile(a:file)
-  if !a:0 || !a:1
-    let lines = split(substitute(join(lines, "\n"), '\n\s*\\', '', 'g'), "\n")
-  endif
-  return len(filter(lines,'v:val !~ pat'))
+function! MyScouter()
+  Scouter ~/.vim/.vimrc ~/.vim/.gvimrc
 endfunction
-command! -bar -bang -nargs=? -complete=file Scouter
-\        echo Scouter(empty(<q-args>) ? expand('~/.vim/.vimrc') : expand(<q-args>), <bang>0)
+command! MyScouter call MyScouter()
 
 " .vimrc .gvimrc に関する設定
 if has('gui_running')
@@ -218,7 +208,7 @@ function! MagicComment()
   let magic_comment = "# encoding: utf-8\n"
   let pos = getpos(".")
   call cursor(1, 0)
-  execute ":normal O" . magic_comment
+  0put =magic_comment
   call setpos(".", pos)
 endfunction
 
@@ -285,14 +275,13 @@ function! ExtendedOnly()
   only
 endfunction
 command! Only call ExtendedOnly()
-cabbrev On Only
 
 " help を開いたとき
 function! WhenHelpOpened()
   " 左のウィンドウで開く
   exec "normal " .  "\<C-w>H\<C-w>82|"
   " q だけで閉じれるようにする
-  nnoremap <buffer> q :q<CR>
+  nnoremap <buffer> q ZZ
 endfunction
 autocmd myautocmd FileType help call WhenHelpOpened()
 
@@ -390,9 +379,9 @@ endfunction
 " gitcommit, gitrebase を開いた時
 function! WhenGitCommitOpened()
   " q で保存して終了
-  nnoremap <buffer> q :<C-u>x<CR>
+  nnoremap <buffer> q ZZ
   " commit cancel
-  nnoremap <buffer> Q ggdG:x<CR>
+  nnoremap <buffer> Q ggdGZZ
 endfunction
 autocmd myautocmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 
@@ -405,7 +394,7 @@ nmap gO O<Esc>
 let s:highlight_args = ["ctermfg", "ctermbg", "guifg", "guibg"]
 function! GetHighlight(highlight_group)
   redir => hl
-  execute 'highlight ' . a:highlight_group
+  silent execute 'highlight ' . a:highlight_group
   redir END
   let hl = substitute(hl, '[\r\n]', '', 'g')
   let hi_dict = {}
@@ -438,19 +427,10 @@ function! HighlightDictToString(highlight_dict)
   endfor
   return str
 endfunction
-function! Extend(default_dict, ex_dict)
-  let ret_dict = copy(a:default_dict)
-  for key in keys(a:ex_dict)
-    if has_key(a:ex_dict, key) && a:ex_dict[key] != ''
-      let ret_dict[key] = a:ex_dict[key]
-    endif
-  endfor
-  return ret_dict
-endfunction
 function! InitializeDefaultLineNr()
-  silent! let s:normal_normal = GetHighlight('Normal')
-  silent! let s:normal_linenr = Extend(s:normal_normal, GetHighlight('LineNr'))
-  silent! let s:normal_cursorlinenr = Extend(s:normal_normal, GetHighlight('CursorLineNr'))
+  silent let s:normal_normal = GetHighlight('Normal')
+  silent let s:normal_linenr = extend(copy(s:normal_normal), GetHighlight('LineNr'))
+  silent let s:normal_cursorlinenr = extend(copy(s:normal_normal), GetHighlight('CursorLineNr'))
   let s:insert_linenr = InvertFgBg(s:normal_linenr)
   let s:insert_cursorlinenr = InvertFgBg(s:normal_cursorlinenr)
 endfunction
@@ -694,6 +674,11 @@ NeoBundleLazy 'motemen/hatena-vim'
 NeoBundle 'mattn/gist-vim', {
       \     'depends': 'mattn/webapi-vim'
       \    }
+
+" Scouter
+NeoBundleLazy 'thinca/vim-scouter', {
+      \ 'autoload': {'commands': 'Scouter'}
+      \ }
 
 " }}}
 " }}}
@@ -955,9 +940,9 @@ colorscheme cohama
 syntax on
 
 " 行末の空白と全角スペースをハイライト
-call matchadd("Error", '\s\+$', 1)
-call matchadd("Error", '　', 1)
+autocmd myautocmd BufWinEnter,BufNewFile * call matchadd("Error", '\s\+$', 11)
+autocmd myautocmd BufWinEnter,BufNewFile * call matchadd("Error", '　', 11)
 
 " JavaScript の console.log をハイライト
-call matchadd("Error", 'console\.log', 1)
+autocmd myautocmd FileType javascript call matchadd("Error", 'console\.log')
 " }}}
