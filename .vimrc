@@ -856,7 +856,7 @@ nnoremap <silent> <Leader>ug :<C-u>Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>f :<C-u>Unite file_rec<CR>
 nnoremap <silent> <Leader>ur :<C-u>UniteResume<CR>
 nnoremap <silent> <Leader>uf :<C-u>Unite file_mru<CR>
-nnoremap <silent> <Leader>ub :<C-u>Unite bookmark<CR>
+nnoremap <silent> <Leader>ub :<C-u>Unite bookmark -default-action=vimfiler -no-start-insert<CR>
 nnoremap <silent> <Leader>uB :<C-u>UniteBookmarkAdd<CR>
 let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
