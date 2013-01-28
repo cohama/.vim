@@ -551,6 +551,12 @@ nmap <C-O> <Nop>
 nnoremap <C-O><C-I> <C-O>
 nnoremap <C-O><C-P> <C-I>
 
+" Window のサイズ変更を連続でしたい
+nmap <C-W>> <C-W>><C-W>
+nmap <C-W>< <C-W><<C-W>
+nmap <C-W>- <C-W>-<C-W>
+nmap <C-W>+ <C-W>+<C-W>
+
 " ------------------ Plugins ------------------ {{{
 " NeoBundle の設定
 filetype off
