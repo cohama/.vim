@@ -94,7 +94,7 @@ set textwidth=0
 set showtabline=2
 " }}}
 
-" ### Miscellaneous ### {{{
+" ### Input ### {{{
 " バックスペースで削除できる文字
 set backspace=indent,eol,start
 
@@ -106,6 +106,16 @@ if has('unnamedplus')
   set clipboard+=unnamedplus
 endif
 
+" マッピングの受付時間 (<Leader> とか)
+set timeout
+set timeoutlen=3000
+
+" キーコードの受付時間 (<Esc> とか)
+set ttimeoutlen=100
+
+" }}}
+
+" ### Miscellaneous ### {{{
 " 自動整形の実行方法 (see also :help fo-table)
 set formatoptions&
 set formatoptions-=o
