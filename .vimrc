@@ -929,7 +929,7 @@ function! SetUpRubySetting()
   nmap <buffer>Kw :RSenseWhereIs<CR>
   nmap <buffer>Kt :RSenseTypeHelp<CR>
 endfunction
-autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
+autocmd myautocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 " }}}
 
 " hatena-vim {{{
