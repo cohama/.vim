@@ -940,9 +940,13 @@ colorscheme cohama
 syntax on
 
 " 行末の空白と全角スペースをハイライト
-autocmd myautocmd BufWinEnter,BufNewFile * call matchadd("Error", '\s\+$', 11)
-autocmd myautocmd BufWinEnter,BufNewFile * call matchadd("Error", '　', 11)
+function! MatchIllegalSpaces()
+  call matchadd("Error", '\s\+$', 11) 
+  call matchadd("Error", '　', 11)
+endfunction
+autocmd myautocmd WinEnter,BufEnter * call MatchIllegalSpaces()
+autocmd myautocmd FileType help,vimshell,unite call clearmatches()
 
 " JavaScript の console.log をハイライト
-autocmd myautocmd FileType javascript call matchadd("Error", 'console\.log')
+autocmd myautocmd WinEnter,BufEnter *.js call matchadd("Error", 'console\.log')
 " }}}
