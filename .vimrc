@@ -556,6 +556,7 @@ nmap <C-W>> <C-W>><C-W>
 nmap <C-W>< <C-W><<C-W>
 nmap <C-W>- <C-W>-<C-W>
 nmap <C-W>+ <C-W>+<C-W>
+"}}}
 
 " ------------------ Plugins ------------------ {{{
 " NeoBundle の設定
