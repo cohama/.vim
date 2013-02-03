@@ -445,12 +445,16 @@ function! InitializeDefaultLineNr()
   let s:insert_cursorlinenr = InvertFgBg(s:normal_cursorlinenr)
 endfunction
 function! ToInsertLineNr()
-  silent exec 'highlight LineNr ' . HighlightDictToString(s:insert_linenr)
-  silent exec 'highlight CursorLineNr ' . HighlightDictToString(s:insert_cursorlinenr)
+  if exists("s:insert_linenr") && exists("s:insert_cursorlinenr")
+    silent exec 'highlight LineNr ' . HighlightDictToString(s:insert_linenr)
+    silent exec 'highlight CursorLineNr ' . HighlightDictToString(s:insert_cursorlinenr)
+  endif
 endfunction
 function! ToNormalLineNr()
-  silent exec 'highlight LineNr ' . HighlightDictToString(s:normal_linenr)
-  silent exec 'highlight CursorLineNr ' . HighlightDictToString(s:normal_cursorlinenr)
+  if exists("s:normal_linenr") && exists("s:normal_cursorlinenr")
+    silent exec 'highlight LineNr ' . HighlightDictToString(s:normal_linenr)
+    silent exec 'highlight CursorLineNr ' . HighlightDictToString(s:normal_cursorlinenr)
+  endif
 endfunction
 autocmd myautocmd ColorScheme * call InitializeDefaultLineNr()
 autocmd myautocmd InsertEnter * call ToInsertLineNr()
