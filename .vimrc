@@ -657,6 +657,11 @@ NeoBundle 'Lokaltog/vim-powerline'
 " インデントの量を可視化
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
+" GUI 用カラースキームを変換できる
+NeoBundleLazy 'godlygeek/csapprox', {'autoload' : {
+      \   'commands': 'CSApproxSnapshot',
+      \ }}
+
 " color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
