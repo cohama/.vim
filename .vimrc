@@ -556,6 +556,21 @@ nmap <C-W>> <C-W>><C-W>
 nmap <C-W>< <C-W><<C-W>
 nmap <C-W>- <C-W>-<C-W>
 nmap <C-W>+ <C-W>+<C-W>
+
+function! ColorSchemeSettings()
+  syntax on
+  " 行末の空白と全角スペースをハイライト
+  function! MatchIllegalSpaces()
+    call matchadd("Error", '\s\+$', 11) 
+    call matchadd("Error", '　', 11)
+  endfunction
+  autocmd myautocmd WinEnter,BufEnter * call MatchIllegalSpaces()
+  autocmd myautocmd FileType help,vimshell,unite call clearmatches()
+
+  " JavaScript の console.log をハイライト
+  autocmd myautocmd WinEnter,BufEnter *.js call matchadd("Error", 'console\.log')
+endfunction
+autocmd myautocmd ColorScheme * call ColorSchemeSettings()
 "}}}
 
 " ------------------ Plugins ------------------ {{{
@@ -953,17 +968,11 @@ autocmd myautocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 let g:hatena_user='cohama'
 " }}}
 " }}}
-colorscheme cohama
-syntax on
 
-" 行末の空白と全角スペースをハイライト
-function! MatchIllegalSpaces()
-  call matchadd("Error", '\s\+$', 11) 
-  call matchadd("Error", '　', 11)
-endfunction
-autocmd myautocmd WinEnter,BufEnter * call MatchIllegalSpaces()
-autocmd myautocmd FileType help,vimshell,unite call clearmatches()
-
-" JavaScript の console.log をハイライト
-autocmd myautocmd WinEnter,BufEnter *.js call matchadd("Error", 'console\.log')
-" }}}
+if has('win32') || has('win64')
+  colorscheme solarized
+elseif  has('gui_running')
+  colorscheme cohama
+else
+  colorscheme cui_cohama
+endif
