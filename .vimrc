@@ -573,6 +573,7 @@ function! ColorSchemeSettings()
 
   " JavaScript の console.log をハイライト
   autocmd myautocmd WinEnter,BufEnter *.js call matchadd("Error", 'console\.log')
+  autocmd myautocmd FileType javascript call matchadd("Error", 'console\.log')
 endfunction
 autocmd myautocmd ColorScheme * call ColorSchemeSettings()
 "}}}
