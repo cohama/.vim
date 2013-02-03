@@ -155,7 +155,8 @@ augroup myautocmd
 augroup END
 
 " ハイライトを消す
-nnoremap <silent> <Esc> :<C-u>noh<CR><Esc>
+
+nnoremap <silent> <Esc><Esc> :<C-u>noh<CR>
 autocmd myautocmd InsertEnter * let @/=""
 
 " タブページの設定
