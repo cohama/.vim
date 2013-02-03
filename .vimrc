@@ -915,8 +915,8 @@ let g:Gitv_TruncateCommitSubjects = 1
 "indent-guides の設定 {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-autocmd myautocmd ColorScheme * hi IndentGuidesOdd ctermbg=233
-autocmd myautocmd ColorScheme * hi IndentGuidesEven ctermbg=235
+autocmd myautocmd ColorScheme * hi IndentGuidesOdd ctermbg=233 guibg=#0D0D24
+autocmd myautocmd ColorScheme * hi IndentGuidesEven ctermbg=235 guibg=#151538
 let g:indent_guides_color_change_percent = 30
 " }}}
 
