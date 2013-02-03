@@ -132,7 +132,7 @@ set whichwrap+=h,l
 set wildmenu
 
 " コマンドライン補完の方法
-set wildmode=longest:full
+set wildmode=longest:full,full
 
 " 日本語ヘルプ
 set helplang=ja
