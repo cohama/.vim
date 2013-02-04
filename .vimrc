@@ -78,8 +78,8 @@ set lazyredraw
 set list
 set listchars=tab:>\ "
 
-" 行番号を表示
-set number
+" 行番号を表示 (相対)
+set relativenumber
 
 " 最低でも上下に表示する行数
 set scrolloff=5
