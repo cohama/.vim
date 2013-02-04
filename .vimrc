@@ -577,6 +577,26 @@ function! ColorSchemeSettings()
   autocmd myautocmd FileType javascript call matchadd("Error", 'console\.log')
 endfunction
 autocmd myautocmd ColorScheme * call ColorSchemeSettings()
+
+" かしこい Home
+" thanks to Shougo
+function! SmartHome()
+  let str_before_cursor = strpart(getline('.'), 0, col('.') - 1)
+  let wrap_prefix = &wrap ? 'g' : ''
+  if str_before_cursor !~ '^\s*$'
+    return wrap_prefix . '^'
+  else
+    return wrap_prefix . '0'
+  endif
+endfunction
+nnoremap <expr> ^ SmartHome()
+xnoremap <expr> ^ SmartHome()
+nnoremap <expr> H SmartHome()
+xnoremap <expr> H SmartHome()
+
+" かしこい End
+nnoremap L $
+xnoremap L $h
 "}}}
 
 " ------------------ Plugins ------------------ {{{
