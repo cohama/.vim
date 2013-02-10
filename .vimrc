@@ -612,6 +612,9 @@ function! TogglelRelativeNumber()
   endif
 endfunction
 nnoremap M :<C-u>call TogglelRelativeNumber()<CR>
+
+" さっき編集した範囲を選択
+nnoremap gV `[v`]
 "}}}
 
 " ------------------ Plugins ------------------ {{{
