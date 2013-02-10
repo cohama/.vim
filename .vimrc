@@ -563,15 +563,22 @@ function! ColorSchemeSettings()
   syntax on
   " 行末の空白と全角スペースをハイライト
   function! MatchIllegalSpaces()
-    call matchadd("Error", '\s\+$', 11) 
-    call matchadd("Error", '　', 11)
+    if !exists("w:tailing_space")
+      let w:tailing_space = matchadd("Error", '\s\+$', 11) 
+      let w:zenkaku_space = matchadd("Error", '　', 11)
+    endif
   endfunction
   autocmd myautocmd WinEnter,BufEnter * call MatchIllegalSpaces()
   autocmd myautocmd FileType help,vimshell,unite call clearmatches()
 
   " JavaScript の console.log をハイライト
-  autocmd myautocmd WinEnter,BufEnter *.js call matchadd("Error", 'console\.log')
-  autocmd myautocmd FileType javascript call matchadd("Error", 'console\.log')
+  function! MatchConsoleLog()
+    if !exists("w:console_log")
+      let w:console_log = matchadd("Error", 'console\.log')
+    endif
+  endfunction
+  autocmd myautocmd WinEnter,BufEnter *.js call MatchConsoleLog()
+  autocmd myautocmd FileType javascript call MatchConsoleLog()
 endfunction
 autocmd myautocmd ColorScheme * call ColorSchemeSettings()
 
