@@ -559,12 +559,6 @@ nmap <C-O> <Nop>
 nnoremap <C-O><C-I> <C-O>
 nnoremap <C-O><C-P> <C-I>
 
-" Window のサイズ変更を連続でしたい
-nmap <C-W>> <C-W>><C-W>
-nmap <C-W>< <C-W><<C-W>
-nmap <C-W>- <C-W>-<C-W>
-nmap <C-W>+ <C-W>+<C-W>
-
 function! ColorSchemeSettings()
   syntax on
   " 行末の空白と全角スペースをハイライト
@@ -746,6 +740,9 @@ NeoBundle 'Shougo/vimshell'
 
 " その場で実行
 NeoBundle 'thinca/vim-quickrun'
+
+" 独自のモードを設定
+NeoBundle 'thinca/vim-submode'
 " }}}
 
 " ### Miscellaneous ### {{{
@@ -984,6 +981,18 @@ let g:quickrun_config['ruby.rspec'] = {
       \ 'command': 'bundle',
       \ 'exec': '%c exec rspec -f d %s'}
 autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+" }}}
+
+" submode.vim {{{
+let g:submode_leave_with_key = 1
+call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
+call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+call submode#map('winsize', 'n', '', '+', '<C-w>-')
+call submode#map('winsize', 'n', '', '-', '<C-w>+')
 " }}}
 
 " smartinput {{{
