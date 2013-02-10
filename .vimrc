@@ -113,6 +113,8 @@ set timeoutlen=3000
 " キーコードの受付時間 (<Esc> とか)
 set ttimeoutlen=100
 
+" 矩形選択を可能にする
+set virtualedit& virtualedit+=block
 " }}}
 
 " ### Miscellaneous ### {{{
