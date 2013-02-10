@@ -601,12 +601,12 @@ xnoremap L $h
 
 " number, relativenumber の切り替え
 function! TogglelRelativeNumber()
-  if &number
-    set relativenumber
-  elseif &relativenumber
-    set norelativenumber
+  if &relativenumber
+    set norelativenumber number
+  elseif &number
+    set nonumber
   else
-    set number
+    set relativenumber
   endif
 endfunction
 nnoremap M :<C-u>call TogglelRelativeNumber()<CR>
