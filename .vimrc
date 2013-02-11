@@ -800,6 +800,10 @@ NeoBundleLazy 'tyru/open-browser.vim', {
       \ }}
 " }}}
 
+" ### Unite Souceses ### {{{
+NeoBundle "osyo-manga/unite-quickfix"
+" }}}
+
 " ### Miscellaneous ### {{{
 NeoBundleLazy 'motemen/hatena-vim'
 
