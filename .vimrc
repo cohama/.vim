@@ -1059,9 +1059,6 @@ map ge <Plug>(smartword-ge)
 let g:quickrun_config = {}
 let g:quickrun_config['_'] = {
       \ 'hook/close_unite_quickfix/enable_hook_loaded': 1,
-      \ 'hook/unite_quickfix/enable_failure'          : 1,
-      \ 'hook/unite_quickfix/unite-options'           : '-no-quit -direction=botright -winheight=12 -max-multi-lines=32 -no-start-insert',
-      \ 'hook/close_buffer/enable_failure'            : 1,
       \ 'hook/close_buffer/enable_empty_data'         : 1,
       \ 'hook/close_quickfix/enable_exit'             : 1,
       \ 'outputter'                                   : 'multi:buffer:quickfix',
