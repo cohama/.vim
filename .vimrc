@@ -764,6 +764,14 @@ NeoBundle 'thinca/vim-quickrun'
 
 " 独自のモードを設定
 NeoBundle 'thinca/vim-submode'
+
+" Vim から URL を開く
+NeoBundleLazy 'tyru/open-browser.vim', {
+      \ 'autoload': {
+      \   'mappings': [
+      \                 ['n', '<Plug>(openbrowser-smart-search)'],
+      \                 ['v', '<Plug>(openbrowser-smart-search)']]
+      \ }}
 " }}}
 
 " ### Miscellaneous ### {{{
@@ -1021,6 +1029,12 @@ call submode#map('winsize', 'n', '', '>', '<C-w>>')
 call submode#map('winsize', 'n', '', '<', '<C-w><')
 call submode#map('winsize', 'n', '', '+', '<C-w>-')
 call submode#map('winsize', 'n', '', '-', '<C-w>+')
+" }}}
+
+" open-browser {{{
+let g:netrw_nogx = 1
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 " }}}
 
 " smartinput {{{
