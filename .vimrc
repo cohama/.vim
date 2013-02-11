@@ -706,9 +706,6 @@ NeoBundle 'tpope/vim-surround'
 " コメント化
 NeoBundle 'tomtom/tcomment_vim'
 
-" ヤンク履歴を遡れる
-NeoBundle 'YankRing.vim'
-
 " インデントが同じ物をテキストオブジェクト化
 NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
 " }}}
@@ -1069,13 +1066,6 @@ call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left>
 call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
 smap <CR> <BS>i
-" }}}
-
-" YankRing {{{
-let g:yankring_n_keys = 'D x X'
-let g:yankring_replace_n_pkey = '<Leader>p'
-let g:yankring_replace_n_nkey = '<Leader>n'
-nnoremap <Leader>y :YRShow<CR>
 " }}}
 
 " Rsense {{{
