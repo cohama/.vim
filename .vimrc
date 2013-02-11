@@ -621,8 +621,8 @@ nnoremap M :<C-u>call TogglelRelativeNumber()<CR>
 nnoremap gV `[v`]
 
 " set paste 状態でクリップボードから貼り付け
-command! -nargs=0 Paste call CohamaPaste(<f-args>)
-function! CohamaPaste(insertion)
+command! -nargs=0 Paste call CohamaPaste()
+function! CohamaPaste()
   set paste
   normal! "+p
   set nopaste
