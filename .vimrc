@@ -92,6 +92,9 @@ set textwidth=0
 
 " タブページのラベルを常に表示
 set showtabline=2
+
+" 長い行を @ にさせない
+set display=lastline
 " }}}
 
 " ### Input ### {{{
