@@ -698,7 +698,7 @@ NeoBundle 'kana/vim-smartinput'
 
 " ### 編集を便利にする ### {{{
 " 整形
-NeoBundle 'vim-scripts/Align'
+NeoBundle 'h1mesuke/vim-alignta'
 
 " テキストオブジェクトのまわりに文字を挿入
 NeoBundle 'tpope/vim-surround'
