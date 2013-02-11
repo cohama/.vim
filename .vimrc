@@ -798,6 +798,10 @@ NeoBundleLazy 'tyru/open-browser.vim', {
       \                 ['n', '<Plug>(openbrowser-smart-search)'],
       \                 ['v', '<Plug>(openbrowser-smart-search)']]
       \ }}
+
+" vim-quickrun hooks 集
+NeoBundle "osyo-manga/shabadou.vim", {
+      \ 'depends': ['thinca/vim-quickrun', 'Shougo/vimproc', 'Shougo/unite.vim', 'osyo-manga/unite-quickfix']}
 " }}}
 
 " ### Unite Souceses ### {{{
@@ -1043,6 +1047,16 @@ map ge <Plug>(smartword-ge)
 
 " quickrun {{{
 let g:quickrun_config = {}
+let g:quickrun_config['_'] = {
+      \ 'hook/close_unite_quickfix/enable_hook_loaded': 1,
+      \ 'hook/unite_quickfix/enable_failure'          : 1,
+      \ 'hook/close_buffer/enable_failure'            : 1,
+      \ 'hook/close_buffer/enable_empty_data'         : 1,
+      \ 'hook/close_quickfix/enable_exit'             : 1,
+      \ 'outputter'                                   : 'multi:buffer:quickfix',
+      \ 'outputter/buffer/split'                      : 'botright 8',
+      \ 'runner'                                      : 'vimproc',
+      \ 'runner/vimproc/updatetime'                   : 40}
 let g:quickrun_config['ruby.rspec'] = {
       \ 'command': 'bundle',
       \ 'exec': '%c exec rspec -f d %s'}
