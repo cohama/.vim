@@ -627,6 +627,32 @@ function! CohamaPaste(insertion)
   normal! "+p
   set nopaste
 endfunction
+
+" 括弧を扱う textobj を簡単に入力できるようにする
+" thanks to Shogo
+" <angle>
+onoremap aa  a>
+xnoremap aa  a>
+onoremap ia  i>
+xnoremap ia  i>
+
+" [rectangle]
+onoremap ar  a]
+xnoremap ar  a]
+onoremap ir  i]
+xnoremap ir  i]
+
+" 'quote'
+onoremap aq  a'
+xnoremap aq  a'
+onoremap iq  i'
+xnoremap iq  i'
+
+" "double quote"
+onoremap ad  a"
+xnoremap ad  a"
+onoremap id  i"
+xnoremap id  i"
 "}}}
 
 " ------------------ Plugins ------------------ {{{
