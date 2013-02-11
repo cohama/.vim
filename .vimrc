@@ -616,6 +616,14 @@ nnoremap M :<C-u>call TogglelRelativeNumber()<CR>
 
 " さっき編集した範囲を選択
 nnoremap gV `[v`]
+
+" set paste 状態でクリップボードから貼り付け
+command! -nargs=0 Paste call CohamaPaste(<f-args>)
+function! CohamaPaste(insertion)
+  set paste
+  normal! "+p
+  set nopaste
+endfunction
 "}}}
 
 " ------------------ Plugins ------------------ {{{
