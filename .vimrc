@@ -730,6 +730,9 @@ NeoBundle 'EasyMotion'
 
 " 記号とかに邪魔されずに w, b, e できる
 NeoBundle 'kana/vim-smartword'
+
+" f のあと ; のかわりに f 連打で移動できる
+NeoBundle 'rhysd/clever-f.vim'
 " }}}
 
 " ### 見た目、カラースキーム ### {{{
