@@ -751,6 +751,12 @@ NeoBundleLazy 'godlygeek/csapprox', {'autoload' : {
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'nanotech/jellybeans.vim'
+
+" エラー箇所をハイライトする
+NeoBundle 'jceb/vim-hier'
+
+" エラーの原因をコマンドウィンドウに出力
+NeoBundle 'dannyob/quickfixstatus'
 " }}}
 
 " ### Git ### {{{
@@ -802,6 +808,10 @@ NeoBundleLazy 'tyru/open-browser.vim', {
 " vim-quickrun hooks 集
 NeoBundle "osyo-manga/shabadou.vim", {
       \ 'depends': ['thinca/vim-quickrun', 'Shougo/vimproc', 'Shougo/unite.vim', 'osyo-manga/unite-quickfix']}
+
+" 非同期でシンタックスチェック
+NeoBundle 'osyo-manga/vim-watchdogs', {
+      \ 'depends': ['thinca/vim-quickrun', 'Shougo/vimproc', 'osyo-manga/shabadou.vim']}
 " }}}
 
 " ### Unite Souceses ### {{{
@@ -1050,6 +1060,7 @@ let g:quickrun_config = {}
 let g:quickrun_config['_'] = {
       \ 'hook/close_unite_quickfix/enable_hook_loaded': 1,
       \ 'hook/unite_quickfix/enable_failure'          : 1,
+      \ 'hook/unite_quickfix/unite-options'           : '-no-quit -direction=botright -winheight=12 -max-multi-lines=32 -no-start-insert',
       \ 'hook/close_buffer/enable_failure'            : 1,
       \ 'hook/close_buffer/enable_empty_data'         : 1,
       \ 'hook/close_quickfix/enable_exit'             : 1,
@@ -1057,6 +1068,9 @@ let g:quickrun_config['_'] = {
       \ 'outputter/buffer/split'                      : 'botright 8',
       \ 'runner'                                      : 'vimproc',
       \ 'runner/vimproc/updatetime'                   : 40}
+let g:quickrun_config['watchdogs_checker/_'] = {
+      \ 'hook/close_unite_quickfix/enable_exit': 1,
+      \ 'hook/close_quickfix/enable_exit': 1}
 let g:quickrun_config['ruby.rspec'] = {
       \ 'command': 'bundle',
       \ 'exec': '%c exec rspec -f d %s'}
@@ -1079,6 +1093,12 @@ call submode#map('winsize', 'n', '', '-', '<C-w>+')
 let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+" }}}
+
+" watchdogs {{{
+call watchdogs#setup(g:quickrun_config)
+let g:watchdogs_check_BufWritePost_enable = 1
+let g:watchdogs_check_CursorHold_enable = 1
 " }}}
 
 " smartinput {{{
