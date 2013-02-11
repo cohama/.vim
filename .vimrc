@@ -704,6 +704,9 @@ NeoBundle 'bkad/CamelCaseMotion'
 
 " カーソルを任意の位置にジャンプさせる
 NeoBundle 'EasyMotion'
+
+" 記号とかに邪魔されずに w, b, e できる
+NeoBundle 'kana/vim-smartword'
 " }}}
 
 " ### 見た目、カラースキーム ### {{{
@@ -991,6 +994,13 @@ nnoremap <Leader>cl :CoffeeLint<CR>
 " vimfiler {{{
 nnoremap <Leader>F :VimFiler<CR>
 let g:vimfiler_safe_mode_by_default = 0
+" }}}
+
+" smartword{{{
+map w <Plug>(smartword-w)
+map b <Plug>(smartword-b)
+map e <Plug>(smartword-e)
+map ge <Plug>(smartword-ge)
 " }}}
 
 " quickrun {{{
