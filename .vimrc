@@ -816,6 +816,8 @@ NeoBundle 'osyo-manga/vim-watchdogs', {
 
 " ### Unite Souceses ### {{{
 NeoBundle "osyo-manga/unite-quickfix"
+
+NeoBundle 'tsukkee/unite-help'
 " }}}
 
 " ### Miscellaneous ### {{{
