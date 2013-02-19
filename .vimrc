@@ -996,6 +996,7 @@ nnoremap <Space>b :<C-u>Gblame<CR>
 " }}}
 
 " unite の設定 {{{
+nnoremap U :<C-u>Unite<Space>
 nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>f :<C-u>Unite file_rec<CR>
