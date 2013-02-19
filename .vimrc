@@ -602,6 +602,9 @@ nnoremap <C-O><C-P> <C-I>
 
 function! ColorSchemeSettings()
   syntax on
+  if g:colors_name == "solarized"
+    hi Error guibg=#000000
+  endif
   " 行末の空白と全角スペースをハイライト
   function! MatchIllegalSpaces()
     if !exists("w:tailing_space")
@@ -1066,8 +1069,10 @@ let g:Gitv_TruncateCommitSubjects = 1
 "indent-guides の設定 {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-autocmd myautocmd ColorScheme * hi IndentGuidesOdd ctermbg=233 guibg=#0D0D24
-autocmd myautocmd ColorScheme * hi IndentGuidesEven ctermbg=235 guibg=#151538
+let s:indent_guides_odd_guibg = "#0D0D24"
+let s:indent_guides_even_guibg = "#151538"
+autocmd myautocmd ColorScheme * exec "hi IndentGuidesOdd ctermbg=233 guibg=" . s:indent_guides_odd_guibg
+autocmd myautocmd ColorScheme * exec "hi IndentGuidesEven ctermbg=235 guibg=" . s:indent_guides_even_guibg
 let g:indent_guides_color_change_percent = 30
 " }}}
 
@@ -1165,6 +1170,8 @@ let g:hatena_user='cohama'
 " }}}
 
 if has('win32') || has('win64')
+  let s:indent_guides_odd_guibg = "#FFFAEB"
+  let s:indent_guides_even_guibg = "#EEE8D5"
   colorscheme solarized
 elseif  has('gui_running')
   colorscheme cohama
