@@ -254,8 +254,8 @@ nmap gj lhj
 nmap gk lhk
 
 " 検索結果で画面を真ん中に
-nmap n nzz
-nmap N Nzz
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 " インサートモードから出るときにカーソルを後退させない
 function! FixedInsertLeave()
