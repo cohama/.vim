@@ -245,7 +245,9 @@ autocmd myautocmd FileType javascript call WhenJavaScriptOpened()
 " 見た目通りに上下移動
 " thanks to tyru
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 
 " カーソルの桁座標が動かない gj, gk
 nmap gj lhj
@@ -608,8 +610,8 @@ nnoremap <expr> H SmartHome()
 xnoremap <expr> H SmartHome()
 
 " かしこい End
-nnoremap L $
-xnoremap L $h
+nnoremap <expr> L &wrap ? 'g$' : '$'
+xnoremap <expr> L &wrap ? 'g$h' : '$h'
 
 " number, relativenumber の切り替え
 function! TogglelRelativeNumber()
