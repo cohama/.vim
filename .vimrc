@@ -117,7 +117,7 @@ endif
 
 " マッピングの受付時間 (<Leader> とか)
 set timeout
-set timeoutlen=3000
+set timeoutlen=1000
 
 " キーコードの受付時間 (<Esc> とか)
 set ttimeoutlen=100
