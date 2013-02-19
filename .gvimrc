@@ -8,15 +8,6 @@ set guioptions-=T
 set guioptions-=m
 set guioptions-=a
 
-" tabpage の設定
-nnoremap <silent> <M-l> :tabnext<CR>
-nnoremap <silent> <M-h> :tabprevious<CR>
-nnoremap <silent> <M-n> :tabnew<CR>
-nnoremap <silent> <M-w> :tabclose<CR>
-nnoremap <silent> <M-W> :tabonly<CR>
-nnoremap <M-e> :tabedit<Space>
-inoremap <silent> <M-l> <Esc>:tabnext<CR>
-inoremap <silent> <M-h> <Esc>:tabprevious<CR>
 
 " zencoding の設定
 execute 'map <C-CR> ' . g:user_zen_leader_key . ','

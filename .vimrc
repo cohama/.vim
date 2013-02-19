@@ -170,6 +170,27 @@ augroup END
 nnoremap <silent> <Esc><Esc> :<C-u>noh<CR>
 autocmd myautocmd InsertEnter * let @/=""
 
+" terminal でも Meta キーを使いたい
+if has('unix') && !has('gui_running')
+  " Use meta keys in console.
+  function! s:use_meta_keys()  " {{{
+    for i in map(
+    \   range(char2nr('a'), char2nr('z'))
+    \ + range(char2nr('A'), char2nr('Z'))
+    \ + range(char2nr('0'), char2nr('9'))
+    \ , 'nr2char(v:val)')
+      " <ESC>O do not map because used by arrow keys.
+      if i != 'O'
+        execute 'nmap <ESC>' . i '<M-' . i . '>'
+      endif
+    endfor
+  endfunction  " }}}
+
+  call s:use_meta_keys()
+  map <NUL> <C-Space>
+  map! <NUL> <C-Space>
+endif
+
 " タブページの設定
 nnoremap <silent> <C-T><C-L> :tabn<CR>
 nnoremap <silent> <C-T>l :tabn<CR>
@@ -186,6 +207,15 @@ nnoremap <silent> <C-T><C-N> :tabnew<CR>
 nnoremap <silent> <C-T>n :tabnew<CR>
 nnoremap <C-T><C-e> :tabedit<Space>
 nnoremap <C-T>e :tabedit<Space>
+
+nnoremap <silent> <M-l> :tabnext<CR>
+nnoremap <silent> <M-h> :tabprevious<CR>
+nnoremap <silent> <M-n> :tabnew<CR>
+nnoremap <silent> <M-w> :tabclose<CR>
+nnoremap <silent> <M-W> :tabonly<CR>
+nnoremap <M-e> :tabedit<Space>
+inoremap <silent> <M-l> <Esc>:tabnext<CR>
+inoremap <silent> <M-h> <Esc>:tabprevious<CR>
 
 " ヤンクした文字列でカーソル位置の単語置き換え
 nmap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
