@@ -98,6 +98,9 @@ set display=lastline
 
 " 記号とかを2倍の幅で表示
 set ambiwidth=double
+
+" 埋める文字 (Unite neobundle/install のあとおかしくなる対策)
+set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:\ ,diff:-
 " }}}
 
 " ### Input ### {{{
