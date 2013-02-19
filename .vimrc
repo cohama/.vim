@@ -1,4 +1,4 @@
-"------------------ Vim options ------------------ {{{
+" Vim options {{{
 " ### Indent ### {{{
 " 新しい行のインデントを現在行と同じにする
 set autoindent
@@ -693,7 +693,7 @@ onoremap id  i"
 xnoremap id  i"
 "}}}
 
-" ------------------ Plugins ------------------ {{{
+" Plugins {{{
 " NeoBundle の設定
 filetype off
 if has('vim_starting')
