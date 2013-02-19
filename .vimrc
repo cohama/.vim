@@ -712,12 +712,13 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 
 " 非同期実行
-NeoBundle 'Shougo/vimproc', {
-      \     'build': {
-      \        'windows': 'make_mingw64.mak',
-      \        'unix': 'make -f make_unix.mak'
-      \     }
-      \   }
+if has('unix')
+  NeoBundle 'Shougo/vimproc', {
+        \     'build': {
+        \        'unix': 'make -f make_unix.mak'
+        \     }
+        \   }
+endif
 " }}}
 
 " ### 入力系 ### {{{
