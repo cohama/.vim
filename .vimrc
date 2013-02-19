@@ -483,9 +483,9 @@ function! HighlightDictToString(highlight_dict)
   return str
 endfunction
 function! InitializeDefaultLineNr()
-  silent let s:normal_normal = GetHighlight('Normal')
-  silent let s:normal_linenr = extend(copy(s:normal_normal), GetHighlight('LineNr'))
-  silent let s:normal_cursorlinenr = extend(copy(s:normal_normal), GetHighlight('CursorLineNr'))
+  silent! let s:normal_normal = GetHighlight('Normal')
+  silent! let s:normal_linenr = extend(copy(s:normal_normal), GetHighlight('LineNr'))
+  silent! let s:normal_cursorlinenr = extend(copy(s:normal_normal), GetHighlight('CursorLineNr'))
   let s:insert_linenr = InvertFgBg(s:normal_linenr)
   let s:insert_cursorlinenr = InvertFgBg(s:normal_cursorlinenr)
 endfunction
