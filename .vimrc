@@ -538,7 +538,7 @@ nnoremap dk dkk
 nnoremap <Leader><C-l> <C-l>
 
 " ビジュアルモードで選択したところ以外を削除
-xmap D x0D"2p==
+xnoremap D x0"_Dp==
 
 " カレントウィンドウだけ行のハイライトをする
 autocmd myautocmd WinEnter * setlocal cursorline
