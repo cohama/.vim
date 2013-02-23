@@ -540,9 +540,6 @@ nnoremap <Leader><C-l> <C-l>
 " ビジュアルモードで選択したところ以外を削除
 xmap D x0D"2p==
 
-" 全て選択
-nmap yY :<C-u>%y<CR>
-
 " カレントウィンドウだけ行のハイライトをする
 autocmd myautocmd WinEnter * setlocal cursorline
 autocmd myautocmd WinLeave * setlocal nocursorline
@@ -750,6 +747,9 @@ NeoBundle 'tomtom/tcomment_vim'
 
 " インデントが同じ物をテキストオブジェクト化
 NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
+
+" 全体をテキストオブジェクト化
+NeoBundle 'kana/vim-textobj-entire', {'depends': 'kana/vim-textobj-user'}
 " }}}
 
 " ### ファイル操作など ### {{{
