@@ -691,6 +691,9 @@ onoremap ad  a"
 xnoremap ad  a"
 onoremap id  i"
 xnoremap id  i"
+
+" visual mode でレジスタを汚さず削除
+xnoremap x "_x
 "}}}
 
 " Plugins {{{
