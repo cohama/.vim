@@ -538,7 +538,7 @@ nnoremap <silent> <C-t>J :<C-u>TabJoin<CR>
 nnoremap dk dkk
 
 " 再描画したい
-nnoremap <Leader><C-l> <C-l>
+nnoremap <Leader><C-l> :<C-u>redraw!<CR>
 
 " ビジュアルモードで選択したところ以外を削除
 xnoremap D x0"_Dp==
