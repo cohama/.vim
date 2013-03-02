@@ -1191,6 +1191,7 @@ autocmd myautocmd FileType * setlocal formatoptions-=o
 if s:is_windows
   let s:indent_guides_odd_guibg = "#FFFAEB"
   let s:indent_guides_even_guibg = "#EEE8D5"
+  set background=light
   colorscheme solarized
 elseif s:is_gui
   colorscheme cohama
