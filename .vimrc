@@ -4,11 +4,14 @@ augroup myautocmd
   autocmd!
 augroup END
 
-" OS の判定とか
+" condition variables
 let s:is_windows = has('win32') || has('win64')
 let s:is_unix = has('unix')
 let s:is_gui = has('gui_running')
 let s:is_terminal = !s:is_gui
+
+" must be set with multibyte strings
+scriptencoding utf-8
 " }}}
 
 " Vim options {{{
