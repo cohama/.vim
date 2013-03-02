@@ -143,11 +143,6 @@ set virtualedit& virtualedit+=block
 " }}}
 
 " ### Miscellaneous ### {{{
-" 自動整形の実行方法 (see also :help fo-table)
-set formatoptions&
-set formatoptions-=o
-set formatoptions+=ctrqlm
-
 " <C-a> や <C-x> で数値を増減させるときに8進数を無効にする
 set nrformats-=octal
 
@@ -1184,6 +1179,9 @@ xnoremap id  i"
 
 " visual mode でレジスタを汚さず削除
 xnoremap x "_x
+
+" o, O でコメントを継続しない
+autocmd myautocmd FileType * setlocal formatoptions-=o
 "}}}
 
 " ColorScheme {{{
