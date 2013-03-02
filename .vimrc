@@ -667,6 +667,7 @@ function! CohamaPaste()
   normal! "+p
   set nopaste
 endfunction
+inoremap <C-R>+ <C-o>:Paste<CR>
 
 " 括弧を扱う textobj を簡単に入力できるようにする
 " thanks to Shogo
