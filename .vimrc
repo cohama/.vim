@@ -554,7 +554,11 @@ let g:indent_guides_color_change_percent = 30
 " }}}
 
 " powerline {{{
-let g:Powerline_symbols='fancy'
+if s:is_windows
+  let g:Powerline_symbols='compatible'
+else
+  let g:Powerline_symbols='fancy'
+endif
 " }}}
 
 " coffeescript {{{
