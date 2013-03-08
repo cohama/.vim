@@ -1145,7 +1145,9 @@ function! TogglelRelativeNumber()
     set relativenumber
   endif
 endfunction
-nnoremap M :<C-u>call TogglelRelativeNumber()<CR>
+nnoremap [Toggle] <Nop>
+nmap M [Toggle]
+nnoremap [Toggle]n :<C-u>call TogglelRelativeNumber()<CR>
 
 " さっき編集した範囲を選択
 nnoremap gV `[v`]
