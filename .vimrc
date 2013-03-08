@@ -1125,13 +1125,14 @@ function! SmartHome()
     return wrap_prefix . '0'
   endif
 endfunction
-nnoremap <expr> ^ SmartHome()
-xnoremap <expr> ^ SmartHome()
-nnoremap <expr> H SmartHome()
-xnoremap <expr> H SmartHome()
+noremap <expr> ^ SmartHome()
+sunmap ^
+noremap <expr> H SmartHome()
+sunmap H
 
 " かしこい End
 nnoremap <expr> L &wrap ? 'g$' : '$'
+onoremap <expr> L &wrap ? 'g$' : '$'
 xnoremap <expr> L &wrap ? 'g$h' : '$h'
 
 " number, relativenumber の切り替え
