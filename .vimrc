@@ -1205,6 +1205,26 @@ nnoremap <expr> [Toggle]l Toggle("list", "local")
 nnoremap <expr> [Toggle]p Toggle("paste", "local")
 nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
+
+" 全自動保存モード
+function! FullAutoWriteToggle()
+  if exists('s:full_auto_write') && s:full_auto_write == 1
+    let s:full_auto_write = 0
+    set noautowriteall
+    augroup FullAutoWriteToggle
+      autocmd!
+    augroup END
+    echo 'FullAutoWrite Disabled.'
+  else
+    let s:full_auto_write = 1
+    set autowriteall
+    augroup FullAutoWriteToggle
+      autocmd InsertLeave,CursorHold * update
+    augroup END
+    echo 'FullAutoWrite Enabled.'
+  endif
+endfunction
+nnoremap <expr> [Toggle]W FullAutoWriteToggle()
 "}}}
 
 " ColorScheme {{{
