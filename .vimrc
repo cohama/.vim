@@ -1225,6 +1225,19 @@ function! FullAutoWriteToggle()
   endif
 endfunction
 nnoremap <expr> [Toggle]W FullAutoWriteToggle()
+
+" <C-G> で fileformat fileencoding filetype とかもだす
+function! SuperRuler()
+  redir => ruler_out
+    silent file
+  redir END
+  " なぜか改行が入るので
+  let ruler_out = strpart(ruler_out, 1)
+
+  let super_ruler = ruler_out . "    | " . &fileformat . " | " . &fileencoding . " | " . &filetype . " |"
+  echo super_ruler
+endfunction
+nnoremap <C-G> :<C-u>call SuperRuler()<CR>
 "}}}
 
 " ColorScheme {{{
