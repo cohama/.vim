@@ -1245,6 +1245,35 @@ command! Utf8 edit ++enc=utf-8 %
 command! Cp932 edit ++enc=cp932 %
 command! Unix edit ++ff=unix %
 command! Dos edit ++ff=dos %
+
+" インデントを簡単に設定
+" ISetting t4 => tab で幅4
+" ISetting s2 => space で幅2
+function! ISetting(setting)
+  if strlen(a:setting) == 2
+    let expandtab = a:setting[0]
+    let shiftwidth = a:setting[1]
+  else
+    echo "Arg Error"
+    return
+  endif
+  if expandtab ==? "t"
+    set noexpandtab
+  elseif expandtab ==? "s"
+    set expandtab
+  endif
+
+  let &shiftwidth = shiftwidth
+  let &softtabstop = shiftwidth
+  let &tabstop = shiftwidth
+
+  " IndentGuides を再描画させるため
+  doautocmd WinEnter
+
+  let current_indent_setting = "indent: " . ((&expandtab) ? "space" : "tab") . " " . &shiftwidth
+  echo current_indent_setting
+endfunction
+command! -nargs=1 ISetting call ISetting(<f-args>)
 "}}}
 
 " ColorScheme {{{
