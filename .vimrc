@@ -1238,6 +1238,12 @@ function! SuperRuler()
   echo super_ruler
 endfunction
 nnoremap <C-G> :<C-u>call SuperRuler()<CR>
+
+" フォーマット変えて開き直す系
+command! Utf8 edit ++enc=utf-8 %
+command! Cp932 edit ++enc=cp932 %
+command! Unix edit ++ff=unix %
+command! Dos edit ++ff=dos %
 "}}}
 
 " ColorScheme {{{
