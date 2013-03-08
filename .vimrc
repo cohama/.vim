@@ -1192,6 +1192,19 @@ xnoremap x "_x
 
 " o, O でコメントを継続しない
 autocmd myautocmd FileType * setlocal formatoptions-=o
+
+" トグルコマンド
+function! Toggle(option, ...)
+  let local_flag = (a:0 > 1) ? a:1 : ""
+  let set_command = (local_flag ==? "local") ? "setlocal " : "set "
+  execute set_command . a:option . "!"
+  execute set_command . a:option . "?"
+endfunction
+nnoremap <expr> [Toggle]w Toggle("wrap", "local")
+nnoremap <expr> [Toggle]l Toggle("list", "local")
+nnoremap <expr> [Toggle]p Toggle("paste", "local")
+nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
+nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 "}}}
 
 " ColorScheme {{{
