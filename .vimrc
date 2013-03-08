@@ -1162,7 +1162,7 @@ endfunction
 inoremap <C-R>+ <C-o>:Paste<CR>
 
 " 括弧を扱う textobj を簡単に入力できるようにする
-" thanks to Shogo
+" thanks to Shougo
 " <angle>
 onoremap aa  a>
 xnoremap aa  a>
