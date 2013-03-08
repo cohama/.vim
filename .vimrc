@@ -1203,6 +1203,7 @@ endfunction
 nnoremap <expr> [Toggle]w Toggle("wrap", "local")
 nnoremap <expr> [Toggle]l Toggle("list", "local")
 nnoremap <expr> [Toggle]p Toggle("paste", "local")
+nnoremap <expr> [Toggle]t Toggle("expandtab", "local")
 nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 
