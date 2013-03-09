@@ -143,6 +143,9 @@ set ttimeoutlen=100
 
 " 矩形選択を可能にする
 set virtualedit& virtualedit+=block
+
+" 行連結で変なことをさせない
+set nojoinspaces
 " }}}
 
 " ### Miscellaneous ### {{{
