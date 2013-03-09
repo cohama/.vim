@@ -555,8 +555,9 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let s:indent_guides_odd_guibg = "#0D0D24"
 let s:indent_guides_even_guibg = "#151538"
-autocmd myautocmd ColorScheme * exec "hi IndentGuidesOdd ctermbg=233 guibg=" . s:indent_guides_odd_guibg
-autocmd myautocmd ColorScheme * exec "hi IndentGuidesEven ctermbg=235 guibg=" . s:indent_guides_even_guibg
+let s:indent_guides_guifg = "#444466"
+autocmd myautocmd ColorScheme * exec "hi IndentGuidesOdd ctermbg=233 guibg=" . s:indent_guides_odd_guibg . " guifg=" . s:indent_guides_guifg
+autocmd myautocmd ColorScheme * exec "hi IndentGuidesEven ctermbg=235 guibg=" . s:indent_guides_even_guibg . " guifg=" . s:indent_guides_guifg
 let g:indent_guides_color_change_percent = 30
 " }}}
 
