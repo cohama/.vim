@@ -9,6 +9,7 @@ let s:is_windows = has('win32') || has('win64')
 let s:is_unix = has('unix')
 let s:is_gui = has('gui_running')
 let s:is_terminal = !s:is_gui
+let s:is_unicode = (&termencoding ==# 'utf-8' || &encoding == 'utf-8')
 
 " must be set with multibyte strings
 scriptencoding utf-8
@@ -148,10 +149,10 @@ set virtualedit& virtualedit+=block
 set nojoinspaces
 
 " 折り返した行の表示
-if (&termencoding ==# 'utf-8' || &encoding == 'utf-8')
-  let &showbreak = "\u21b3 "
+if s:is_unicode
+  let &showbreak = "\u21b3 " " this shows <↳>
 else
-  let &showbreak = "< "
+  let &showbreak = "+ "
 endif
 " }}}
 
