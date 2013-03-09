@@ -14,7 +14,7 @@ hi CursorColumn                  guibg=#1D1D4D
 hi Comment         guifg=#505050
 hi LineNr          guifg=#8080FF guibg=#0C0C21
 hi CursorLineNr gui=bold guifg=#FFFFFF guibg=#1D1D4D
-hi NonText guifg=#121230 guibg=#0C0C21
+hi NonText gui=none guifg=#303050 guibg=#0C0C21
 
 hi Constant        guifg=#AE81FF               gui=bold
 hi String          guifg=#DC6F10
