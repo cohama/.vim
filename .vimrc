@@ -148,7 +148,11 @@ set virtualedit& virtualedit+=block
 set nojoinspaces
 
 " 折り返した行の表示
-set showbreak=>\ "
+if (&termencoding ==# 'utf-8' || &encoding == 'utf-8')
+  let &showbreak = "\u21b3 "
+else
+  let &showbreak = "< "
+endif
 " }}}
 
 " ### Miscellaneous ### {{{
