@@ -438,10 +438,6 @@ let NERDTreeChDirMode = 1
 map <silent> <C-@> :NERDTreeFind<CR>
 map <silent> <Leader><C-p> :NERDTreeFind<CR>
 " }}}
-
-" Align の設定 {{{
-map <Leader><Leader>rwp <Plug>RestoreWinPosn
-map <Leader><Leader>swp <Plug>SaveWinPosn
 " }}}
 
 " surrond.vim の設定 {{{
