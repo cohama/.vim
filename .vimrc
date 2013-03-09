@@ -146,6 +146,9 @@ set virtualedit& virtualedit+=block
 
 " 行連結で変なことをさせない
 set nojoinspaces
+
+" 折り返した行の表示
+set showbreak=>\ "
 " }}}
 
 " ### Miscellaneous ### {{{
