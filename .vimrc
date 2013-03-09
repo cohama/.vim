@@ -943,8 +943,9 @@ endfunction
 autocmd myautocmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 
 " 改行だけを入力する
-nmap go o<Esc>
-nmap gO O<Esc>
+nmap go mzo<Esc>`z
+nmap gO mzO<Esc>`z
+
 
 " Insert モードの時に行番号の色を反転
 " 参考 plugin/insert-statusline.vim
