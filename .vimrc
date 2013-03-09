@@ -430,7 +430,7 @@ let g:rubycomplete_rails = 1
 " NERDTree の設定 {{{
 map <silent> <C-p> :NERDTreeToggle<CR>
 map <silent> <Leader><C-p> :NERDTreeFind<CR>
-let NERDTreeIgnore = ['\~$', '\.swp']
+let NERDTreeIgnore = ['\~$', '\.swp', '\.', '\.\.']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 36
 let NERDTreeMinimalUI = 1
