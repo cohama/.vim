@@ -489,23 +489,19 @@ let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 " }}}
 
 " fugitive の設定 {{{
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>ga :Gwrite<CR>
-nnoremap <Leader>gc :Gcommit -v<CR><C-w>H
-nnoremap <Leader>gps :Git push<CR>
-nnoremap <Leader>gpl :Git pull<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Space><Space> :Git<Space>
-nnoremap <Space>s :<C-u>Gstatus<CR>
-nnoremap <Space>d :<C-u>Gdiff<CR>
-nnoremap <Space>a :<C-u>Gwrite<CR>
-nnoremap <Space>A :<C-u>Git add -A<CR>
-nnoremap <Space>c :<C-u>Gcommit -v<CR><C-w>H
-nnoremap <Space>C :<C-u>Gcommit -av<CR><C-w>H
-nnoremap <Space>p :<C-u>Git push<CR>
-nnoremap <Space>f :<C-u>Git fetch<CR>
-nnoremap <Space>b :<C-u>Gblame<CR>
+nnoremap [Git] <Nop>
+nmap <Space> [Git]
+nnoremap [Git]<Space> :<C-u>Git<Space>
+nnoremap [Git]<CR> :<C-u>Git<Space>
+nnoremap [Git]s :<C-u>Gstatus<CR>
+nnoremap [Git]d :<C-u>Gdiff<CR>
+nnoremap [Git]a :<C-u>Gwrite<CR>
+nnoremap [Git]A :<C-u>Git add -A<CR>
+nnoremap [Git]c :<C-u>Gcommit -v<CR><C-w>H
+nnoremap [Git]C :<C-u>Gcommit -av<CR><C-w>H
+nnoremap [Git]p :<C-u>Git push<CR>
+nnoremap [Git]f :<C-u>Git fetch<CR>
+nnoremap [Git]b :<C-u>Gblame<CR>
 " }}}
 
 " unite の設定 {{{
@@ -543,8 +539,7 @@ autocmd myautocmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR
 
 " gitv の設定 {{{
 autocmd myautocmd FileType git setlocal foldlevel=99
-nnoremap <Leader>gk :Gitv --all<CR>
-nnoremap <Space>k :Gitv --all<CR>
+nnoremap [Git]k :Gitv --all<CR>
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
 " }}}
