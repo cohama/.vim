@@ -611,7 +611,7 @@ let g:quickrun_config['watchdogs_checker/_'] = {
 let g:quickrun_config['ruby.rspec'] = {
       \ 'command': 'bundle',
       \ 'exec': '%c exec rspec -f d %s'}
-autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec | setlocal syntax=ruby
 " }}}
 
 " submode.vim {{{
