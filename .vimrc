@@ -435,7 +435,6 @@ let NERDTreeChDirMode = 1
 map <silent> <C-@> :NERDTreeFind<CR>
 map <silent> <Leader><C-p> :NERDTreeFind<CR>
 " }}}
-" }}}
 
 " surrond.vim の設定 {{{
 let g:surround_36 = "$(\r)"
