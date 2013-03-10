@@ -23,7 +23,7 @@ hi Number          guifg=#FF8AF5
 hi default link Float Number
 hi default link Boolean Number
 
-hi Identifier      guifg=#DBDBA9
+hi Identifier      guifg=#F2D38A
 hi Function        guifg=#90DB65
 
 hi Statement       gui=none guifg=#E04F83
@@ -34,10 +34,10 @@ hi Operator        guifg=#F92672
 hi Keyword gui=none guifg=#E6E695
 hi Exception       guifg=#A6E22E               gui=bold
 
-hi Type gui=none guifg=#8FDB8F
+hi Type gui=none guifg=#66D9EF
 hi Cursor          guifg=#000000 guibg=#F8F8F0
 hi Debug           guifg=#BCA3A3               gui=bold
-hi Define          guifg=#66D9EF
+hi Define          guifg=#5B88F0               gui=bold
 hi Delimiter       guifg=#8F8F8F
 hi diffAdded       guifg=#E69487
 hi diffRemoved     guifg=#597A7A
@@ -92,7 +92,6 @@ hi Title           guifg=#ef5939
 hi Todo            guifg=#FFFFFF guibg=bg      gui=bold
 
 hi Typedef         guifg=#66D9EF
-hi Type            guifg=#66D9EF               gui=none
 hi Underlined      guifg=#808080               gui=underline
 
 hi VertSplit       guifg=#808080 guibg=#080808 gui=bold

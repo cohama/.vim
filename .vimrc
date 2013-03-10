@@ -556,9 +556,19 @@ let g:indent_guides_auto_colors = 0
 let s:indent_guides_odd_guibg = "#0D0D24"
 let s:indent_guides_even_guibg = "#151538"
 let s:indent_guides_guifg = "#444466"
-autocmd myautocmd ColorScheme * exec "hi IndentGuidesOdd ctermbg=233 guibg=" . s:indent_guides_odd_guibg . " guifg=" . s:indent_guides_guifg
-autocmd myautocmd ColorScheme * exec "hi IndentGuidesEven ctermbg=235 guibg=" . s:indent_guides_even_guibg . " guifg=" . s:indent_guides_guifg
-let g:indent_guides_color_change_percent = 30
+let s:indent_guides_odd_ctermbg = "234"
+let s:indent_guides_even_ctermbg = "232"
+let s:indent_guides_ctermfg = "238"
+autocmd myautocmd ColorScheme * exec "hi IndentGuidesOdd" .
+\ " ctermbg=" . s:indent_guides_odd_ctermbg .
+\ " ctermfg=" . s:indent_guides_ctermfg .
+\ " guibg=" . s:indent_guides_odd_guibg .
+\ " guifg=" . s:indent_guides_guifg
+autocmd myautocmd ColorScheme * exec "hi IndentGuideseven" .
+\ " ctermbg=" . s:indent_guides_even_ctermbg .
+\ " ctermfg=" . s:indent_guides_ctermfg .
+\ " guibg=" . s:indent_guides_even_guibg .
+\ " guifg=" . s:indent_guides_guifg
 " }}}
 
 " powerline {{{
