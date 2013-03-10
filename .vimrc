@@ -300,7 +300,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'groenewege/vim-less'
-NeoBundle 'cohama/vim-javascript'
+NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'leafgarland/typescript-vim'
 " }}}
 
@@ -335,6 +335,13 @@ NeoBundle 'osyo-manga/vim-watchdogs', {
 NeoBundle "osyo-manga/unite-quickfix"
 
 NeoBundle 'tsukkee/unite-help'
+
+NeoBundleLazy 'ujihisa/unite-rake', {
+\ 'autoload' : {
+\   'unite_sources': ['rake']
+\ }}
+
+NeoBundleLazy 'basyura/unite-rails'
 " }}}
 
 " ### Miscellaneous ### {{{
