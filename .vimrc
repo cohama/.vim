@@ -1283,6 +1283,10 @@ function! ISetting(setting)
   echo current_indent_setting
 endfunction
 command! -nargs=1 ISetting call ISetting(<f-args>)
+
+" 矩形選択でなくても複数行入力をしたい
+xnoremap I <C-v>I
+xnoremap A <C-v>A
 "}}}
 
 " ColorScheme {{{
