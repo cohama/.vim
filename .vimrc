@@ -717,8 +717,8 @@ inoremap <silent> <M-l> <Esc>:tabnext<CR>
 inoremap <silent> <M-h> <Esc>:tabprevious<CR>
 
 " ヤンクした文字列でカーソル位置の単語置き換え
-nmap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
-nmap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
+nnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
+nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
 nnoremap g/ :<C-u>%s/\<<C-R><C-w>\>//g<Left><Left>
@@ -737,8 +737,8 @@ nnoremap <silent> gn :<C-u>call HilightWordAtCursor()<CR>:set hlsearch<CR>
 runtime macros/matchit.vim
 
 " ビジュアルモードでのインデントを連続でできるようにする
-xmap < <gv
-xmap > >gv
+xnoremap < <gv
+xnoremap > >gv
 
 function! MyScouter()
   Scouter ~/.vim/.vimrc ~/.vim/.gvimrc
@@ -833,7 +833,7 @@ command! Only call ExtendedOnly()
 " help を開いたとき
 function! WhenHelpOpened()
   " 左のウィンドウで開く
-  exec "normal " .  "\<C-w>H\<C-w>82|"
+  exec "normal! " .  "\<C-w>H\<C-w>82|"
   " q だけで閉じれるようにする
   nnoremap <buffer> q ZZ
 endfunction
@@ -870,16 +870,16 @@ nnoremap <silent> <C-f> :call CohamaSmoothScroll("down", 1, 2)<CR>
 nnoremap <silent> <C-b> :call CohamaSmoothScroll("up", 1, 2)<CR>
 
 " ビジュアルモードで選択した部分を置換
-xmap / y:%s/<C-r>"//g<Left><Left>
-xmap ? y:%s/<C-r>"//gc<Left><Left><Left>
+xnoremap / y:%s/<C-r>"//g<Left><Left>
+xnoremap ? y:%s/<C-r>"//gc<Left><Left><Left>
 
 " 行末までをヤンク
-nmap Y y$
+nnoremap Y y$
 
 " コマンドモードのマッピング
-cmap <C-a> <Home>
-cmap <C-b> <Left>
-cmap <C-f> <Right>
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
 
 " タブページの移動
 function! MoveTabPage(dir)
@@ -940,8 +940,8 @@ endfunction
 autocmd myautocmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 
 " 改行だけを入力する
-nmap go mzo<Esc>`z
-nmap gO mzO<Esc>`z
+nnoremap go mzo<Esc>`z
+nnoremap gO mzO<Esc>`z
 
 
 " Insert モードの時に行番号の色を反転
@@ -1012,7 +1012,7 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
 " カーソル行を空行化
-nmap cc 0D
+nnoremap cc 0D
 
 " タブ幅4のもの
 autocmd myautocmd FileType typescript,java setl shiftwidth=4 tabstop=4
