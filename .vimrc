@@ -588,7 +588,11 @@ nnoremap <Leader>cl :CoffeeLint<CR>
 " }}}
 
 " vimfiler {{{
-nnoremap <Leader>F :VimFiler<CR>
+nnoremap [VimFiler] <Nop>
+nmap <Leader>F [VimFiler]
+nnoremap [VimFiler]<CR> :<C-u>VimFiler<CR>
+nnoremap [VimFiler]b :<C-u>VimFilerBufferDir<CR>
+nnoremap [VimFiler]c :<C-u>VimFilerCurrentDir<CR>
 let g:vimfiler_safe_mode_by_default = 0
 autocmd myautocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
