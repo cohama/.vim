@@ -480,6 +480,7 @@ function! s:vimshell_my_settings()
   call vimshell#altercmd#define('la', 'ls -FA')
   call vimshell#altercmd#define('ll', 'ls -alF')
   call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
+  call vimshell#altercmd#define('be', 'bundle exec')
   nnoremap <buffer> <silent> <C-l> :tabn<CR>
   inoremap <buffer> <silent> <C-l> <Esc>:tabn<CR>
   inoremap <buffer> <silent> <C-h> <Esc>:tabp<CR>
