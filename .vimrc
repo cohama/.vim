@@ -302,16 +302,6 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'cohama/vim-javascript'
 NeoBundle 'leafgarland/typescript-vim'
-
-" Ruby オムニ補完
-NeoBundle 'cohama/rsense', {
-      \     'build': {
-      \        'unix': '/bin/sh install.sh'
-      \      }
-      \    }
-
-" JavaScript シンタックスチェック
-NeoBundleLazy 'cohama/jshint.vim'
 " }}}
 
 " ### 何かを実行 ### {{{
