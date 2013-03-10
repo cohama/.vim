@@ -534,6 +534,8 @@ function! s:unite_my_settings()
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
   noremap <silent><buffer><expr> f unite#smart_map("f", unite#do_action('vimfiler'))
   noremap <silent><buffer><expr> F unite#smart_map("f", unite#do_action('tabvimfiler'))
+  nmap <buffer> ; <Plug>(unite_toggle_mark_current_candidate)
+  xmap <buffer> ; <Plug>(unite_toggle_mark_selected_candidates)
 endfunction
 " }}}
 
@@ -581,6 +583,11 @@ nnoremap <Leader>cl :CoffeeLint<CR>
 " vimfiler {{{
 nnoremap <Leader>F :VimFiler<CR>
 let g:vimfiler_safe_mode_by_default = 0
+autocmd myautocmd FileType vimfiler call s:vimfiler_my_settings()
+function! s:vimfiler_my_settings()
+  nmap <buffer> ; <Plug>(vimfiler_toggle_mark_current_line)
+  xmap <buffer> ; <Plug>(vimfiler_toggle_mark_selected_lines)
+endfunction
 " }}}
 
 " smartword{{{
