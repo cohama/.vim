@@ -8,7 +8,7 @@ if exists("syntax_on")
 endif
 let g:colors_name="cui_cohama"
 
-hi Normal          ctermfg=248 ctermbg=233
+hi Normal          ctermfg=247 ctermbg=233
 hi CursorLine                  ctermbg=235 cterm=none
 hi Boolean         ctermfg=135
 hi Character       ctermfg=144
@@ -19,7 +19,7 @@ hi Constant        ctermfg=135               cterm=bold
 hi Cursor          ctermfg=16  ctermbg=253
 hi Debug           ctermfg=225               cterm=bold
 hi Define          ctermfg=111               cterm=bold
-hi Delimiter       ctermfg=167
+hi Delimiter       ctermfg=255
 
 hi DiffAdd                     ctermbg=17
 hi DiffChange      ctermfg=181 ctermbg=236
@@ -34,7 +34,7 @@ hi Float           ctermfg=135
 hi FoldColumn      ctermfg=67  ctermbg=16
 hi Folded          ctermfg=67  ctermbg=16
 hi Function        ctermfg=41
-hi Identifier      ctermfg=215
+hi Identifier      ctermfg=215 cterm=none
 hi Ignore          ctermfg=244 ctermbg=232
 hi IncSearch       ctermfg=193 ctermbg=16
 
