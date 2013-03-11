@@ -284,6 +284,12 @@ NeoBundle 'jceb/vim-hier'
 
 " エラーの原因をコマンドウィンドウに出力
 NeoBundle 'dannyob/quickfixstatus'
+
+" 複数箇所をハイライト
+NeoBundleLazy 't9md/vim-quickhl', {
+\ 'autoload' : {
+\   'mappings' : ["<Plug>(quickhl-toggle)", "<Plug>(quickhl-match)"]
+\ }}
 " }}}
 
 " ### Git ### {{{
@@ -486,6 +492,13 @@ nnoremap <Leader>si :VimShellInteractive<Space>
 nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
 let g:vimshell_prompt = '% '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+" }}}
+
+" quickhl の設定 {{{
+nmap gm <Plug>(quickhl-toggle)
+xmap gm <Plug>(quickhl-toggle)
+nmap gM <Plug>(quickhl-reset)
+xmap gM <Plug>(quickhl-reset)
 " }}}
 
 " fugitive の設定 {{{
