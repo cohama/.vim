@@ -246,6 +246,13 @@ NeoBundle 'sudo.vim'
 
 " ファイラ
 NeoBundle 'Shougo/vimfiler'
+
+" 一時ファイル的な
+NeoBundleLazy 'Shougo/junkfile.vim', {
+\ 'autoload' : {
+\   'commands' : ["JunkFileOpen"],
+\   'unite_sources' : ["junkfile", "junkfile/new"]
+\ }}
 " }}}
 
 " ### 移動 ### {{{
@@ -607,6 +614,10 @@ function! s:vimfiler_my_settings()
   nmap <buffer> ; <Plug>(vimfiler_toggle_mark_current_line)
   xmap <buffer> ; <Plug>(vimfiler_toggle_mark_selected_lines)
 endfunction
+" }}}
+
+" JunkFile の設定 {{{
+let g:junkfile#edit_command = "tabedit"
 " }}}
 
 " smartword{{{
