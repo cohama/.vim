@@ -267,6 +267,9 @@ NeoBundle 'kana/vim-smartword'
 
 " f のあと ; のかわりに f 連打で移動できる
 NeoBundle 'rhysd/clever-f.vim'
+
+" 選択したところを検索
+NeoBundle 'thinca/vim-visualstar'
 " }}}
 
 " ### 見た目、カラースキーム ### {{{
