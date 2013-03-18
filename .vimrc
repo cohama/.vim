@@ -621,10 +621,14 @@ let g:junkfile#edit_command = "tabedit"
 " }}}
 
 " smartword{{{
-map w <Plug>(smartword-w)
-map b <Plug>(smartword-b)
-map e <Plug>(smartword-e)
-map ge <Plug>(smartword-ge)
+nmap w <Plug>(smartword-w)
+nmap b <Plug>(smartword-b)
+nmap e <Plug>(smartword-e)
+nmap ge <Plug>(smartword-ge)
+xmap w <Plug>(smartword-w)
+xmap b <Plug>(smartword-b)
+xmap e <Plug>(smartword-e)
+xmap ge <Plug>(smartword-ge)
 " }}}
 
 " quickrun {{{
