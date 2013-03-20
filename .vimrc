@@ -1306,12 +1306,11 @@ command! Dos edit ++ff=dos %
 " ISetting    => 現在の状態を表示
 " ISetting t4 => tab で幅4
 " ISetting s2 => space で幅2
-function! ISetting(...)
-  if a:0 != 0
-    let setting = a:1
-    if strlen(setting) == 2
-      let expandtab = setting[0]
-      let shiftwidth = setting[1]
+function! ISetting(setting, force_retab)
+  if !empty(a:setting)
+    if strlen(a:setting) == 2
+      let expandtab = a:setting[0]
+      let shiftwidth = a:setting[1]
     else
       echo "Arg Error"
       return
@@ -1322,9 +1321,16 @@ function! ISetting(...)
       set expandtab
     endif
 
+    let bk_tabstop = &tabstop
+
     let &shiftwidth = shiftwidth
     let &softtabstop = shiftwidth
     let &tabstop = shiftwidth
+
+    " 強制的に Retab をかける
+    if a:force_retab
+      exec 'Retab ' . bk_tabstop
+    endif
 
     " IndentGuides を再描画させるため
     doautocmd WinEnter
@@ -1333,7 +1339,7 @@ function! ISetting(...)
   let current_indent_setting = "indent: " . ((&expandtab) ? "space" : "tab") . " " . &shiftwidth
   echo current_indent_setting
 endfunction
-command! -nargs=? ISetting call ISetting(<f-args>)
+command! -nargs=? -bang ISetting call ISetting(<q-args>, <bang>0)
 
 " 矩形選択でなくても複数行入力をしたい
 xnoremap I <C-v>I
