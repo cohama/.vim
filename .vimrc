@@ -1338,6 +1338,16 @@ command! -nargs=? ISetting call ISetting(<f-args>)
 " 矩形選択でなくても複数行入力をしたい
 xnoremap I <C-v>I
 xnoremap A <C-v>A
+
+" My retab
+function! Retab(tabstop)
+  if &expandtab
+    silent execute 'retab ' . a:tabstop
+  else
+    silent execute '%s/\v%(^ *)@<= {' . a:tabstop . '}/\t/g'
+  endif
+endfunction
+command! -nargs=? Retab call Retab(empty(<q-args>) ? &tabstop : <q-args>)
 "}}}
 
 " ColorScheme {{{
