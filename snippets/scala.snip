@@ -1,0 +1,63 @@
+snippet     case
+abbr        case x => ...
+	case ${1} => ${0}
+
+snippet     for
+abbr        for (...) ...
+	for (${1:i} <- ${2:list}) ${0:yield}
+
+snippet     for2
+abbr        for { ... } { ... }
+	for {
+		${1:i} <- ${2:list}
+	} ${0:yield}
+
+snippet     if
+abbr        if (...) ... else ...
+options     head
+	if (${1})
+		${2}
+	else
+		${0}
+
+snippet     if2
+abbr        if (...) {...} else {...}
+options     head
+	if (${1}) {
+		${2}
+	} else {
+		${0}
+	}
+
+snippet     class
+abbr        class XXX(...)
+options     head
+	class ${1:ClassName}(${2})${0}
+
+snippet     class2
+abbr        class XXX(...) {...}
+options     head
+	class ${1:ClassName}(${2})${3} {
+		${0}
+	}
+
+snippet     def
+abbr        def method(...): Result = ...
+options     head
+	def ${1:method}(${2}): ${3:ResultType} = ${0}
+
+snippet     def2
+abbr        def method(...): Result = {...}
+options     head
+	def ${1:method}(${2}): ${3:ResultType} = {
+		${0}
+	}
+
+snippet     defunit
+abbr        def proc(...) {...}
+options     head
+	def ${1:proc}(${2:arg}) {
+		${0}
+	}
+
+# vim: set noexpandtab :
