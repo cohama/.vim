@@ -432,6 +432,8 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
+snoremap <CR> <BS>i
+snoremap <C-l> <Esc>a
 " }}}
 
 " vim-ruby の設定 {{{
@@ -682,7 +684,6 @@ call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left>
 call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
 call smartinput#define_rule({'at': '{\%#', 'char': '%', 'input': '%%<Left>'})
-smap <CR> <BS>i
 " }}}
 
 " Rsense {{{
