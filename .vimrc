@@ -682,7 +682,7 @@ call smartinput#map_to_trigger('i', '<', '<', '<')
 call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left><Left>', 'filetype': ['javascript']})
 call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
-call smartinput#define_rule({'at': '{\%#', 'char': '%', 'input': '%%<Left><Left>'})
+call smartinput#define_rule({'at': '{\%#', 'char': '%', 'input': '%%<Left>'})
 smap <CR> <BS>i
 " }}}
 
