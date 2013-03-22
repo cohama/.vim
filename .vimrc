@@ -485,11 +485,8 @@ let g:user_zen_settings = {
 " }}}
 
 " vimshell の設定 {{{
-nnoremap <silent> <Leader>sh :tabnew<CR>:VimShell<CR>
 autocmd myautocmd FileType vimshell call s:vimshell_my_settings()
 function! s:vimshell_my_settings()
-  nmap <buffer> q <Plug>(vimshell_exit):q<CR>
-  imap <buffer> <C-q> <Esc>q
   call vimshell#altercmd#define('l', 'ls -F')
   call vimshell#altercmd#define('la', 'ls -FA')
   call vimshell#altercmd#define('ll', 'ls -alF')
@@ -500,8 +497,11 @@ function! s:vimshell_my_settings()
   inoremap <buffer> <silent> <C-h> <Esc>:tabp<CR>
   inoremap <buffer> <expr><silent> <C-p> unite#sources#vimshell_history#start_complete(!0)
 endfunction
-nnoremap <Leader>si :VimShellInteractive<Space>
-nnoremap <silent> <Leader>irb :VimShellInteractive irb<CR>
+nnoremap <Leader>s <Nop>
+nnoremap <silent> <Leader>sh :<C-u>tabnew<CR>:VimShell<CR>
+nnoremap <silent> <Leader>ss :<C-u>botright vnew<CR>:VimShell<CR>
+nnoremap <Leader>si :<C-u>VimShellInteractive<Space>
+nnoremap <silent> <Leader>irb :<C-u>botright VimShellInteractive irb<CR>
 let g:vimshell_prompt = '% '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 " }}}
