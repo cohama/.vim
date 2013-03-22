@@ -712,7 +712,6 @@ let IM_CtrlIBusPython = 1
 
 " ハイライトを消す
 nnoremap <silent> <Esc><Esc> :<C-u>noh<CR>
-autocmd myautocmd InsertEnter * let @/=""
 
 " terminal でも Meta キーを使いたい
 if s:is_unix && s:is_terminal
