@@ -1,93 +1,96 @@
-" Vim color file
-"   based on molokai
-
 set background=dark
 hi clear
 if exists("syntax_on")
     syntax reset
 endif
-let g:colors_name="cui_cohama"
+let g:colors_name = "cui_cohama"
 
-hi Normal          ctermfg=247 ctermbg=233
-hi CursorLine                  ctermbg=235 cterm=none
-hi Boolean         ctermfg=140
-hi Character       ctermfg=144
-hi Number          ctermfg=213
-hi String          ctermfg=167
-hi Conditional     ctermfg=198               cterm=none
+" base
+hi Normal          ctermfg=247  ctermbg=233
+
+" programming literals
+hi Comment         ctermfg=22
 hi Constant        ctermfg=140               cterm=bold
-hi Cursor          ctermfg=16  ctermbg=253
-hi Debug           ctermfg=225               cterm=bold
-hi Define          ctermfg=111               cterm=bold
+hi String          ctermfg=167
+hi Character       ctermfg=166
+hi Number          ctermfg=181
+hi Boolean         ctermfg=181
+hi Float           ctermfg=181
+
+" programming statements
+hi Identifier      ctermfg=215  cterm=none
+hi Function        ctermfg=114
+hi Statement       ctermfg=219
+hi Conditional     ctermfg=217
+hi Repeat          ctermfg=217
+hi Label           ctermfg=158
+hi Operator        ctermfg=255
+hi Keyword         ctermfg=219
+hi Exception       ctermfg=217
+
+" programming pre-processes
+hi PreProc         ctermfg=37
+
+" programming types
+hi Type            ctermfg=110
+hi Structure       ctermfg=75
+
+" specials
+hi Special         ctermfg=69
 hi Delimiter       ctermfg=255
+hi SpecialComment  ctermfg=245               cterm=bold
+hi Debug           ctermfg=219               cterm=bold
+hi SpecialKey      ctermfg=61
 
-hi DiffAdd                     ctermbg=17
-hi DiffChange      ctermfg=181 ctermbg=236
-hi DiffDelete      ctermfg=162 ctermbg=53
-hi DiffText                    ctermbg=239 cterm=bold
+" vim views
+hi Cursor          ctermfg=16   ctermbg=253
+hi CursorIM        ctermfg=16   ctermbg=124
+hi CursorLine                   ctermbg=235 cterm=none
+hi CursorColumn                 ctermbg=236
+hi ColorColumn                  ctermbg=23
+hi LineNr          ctermfg=246  ctermbg=232
+hi CursorLineNr    ctermfg=227  ctermbg=232
+hi FoldColumn      ctermfg=120   ctermbg=232
+hi Folded          ctermfg=109   ctermbg=16
+hi Search          ctermfg=251 ctermbg=24   cterm=underline
+hi IncSearch       ctermfg=16 ctermbg=202
+hi NonText         ctermfg=239  ctermbg=232
+hi StatusLine      ctermfg=255 ctermbg=16
+hi StatusLineNC    ctermfg=233 ctermbg=240
+hi Todo            ctermfg=33  ctermbg=NONE   cterm=bold
 
-hi Directory       ctermfg=76               cterm=bold
-hi Error           ctermfg=219 ctermbg=89
-hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
-hi Exception       ctermfg=76               cterm=bold
-hi Float           ctermfg=140
-hi FoldColumn      ctermfg=67  ctermbg=16
-hi Folded          ctermfg=67  ctermbg=16
-hi Function        ctermfg=76
-hi Identifier      ctermfg=215 cterm=none
-hi Ignore          ctermfg=244 ctermbg=232
-hi IncSearch       ctermfg=193 ctermbg=16
+" diffs
+hi DiffAdd                      ctermbg=17
+hi DiffChange      ctermfg=181  ctermbg=236
+hi DiffDelete      ctermfg=162  ctermbg=53
+hi DiffText                     ctermbg=239 cterm=bold
 
-hi Keyword         ctermfg=198               cterm=bold
-hi Label           ctermfg=229               cterm=none
-hi Macro           ctermfg=193
+" complete menus
+hi Pmenu           ctermfg=NONE ctermbg=237
+hi PmenuSel        ctermfg=NONE ctermbg=19
+hi PmenuSbar                    ctermbg=239
+hi PmenuThumb      ctermbg=244
 
-hi SpellBad       ctermbg=52
+" errors
+hi Error           ctermfg=219  ctermbg=88
+hi ErrorMsg        ctermfg=199  ctermbg=16    cterm=bold
+hi SpellBad        ctermbg=52
+hi SpellCap        ctermbg=53
+hi SpellLocal      ctermbg=53
+hi SpellRare       ctermbg=53
 
+" others
+hi Directory       ctermfg=114               cterm=bold
+hi Ignore          ctermfg=244  ctermbg=232
 hi MatchParen      ctermfg=255  ctermbg=53 cterm=bold
 hi ModeMsg         ctermfg=229
 hi MoreMsg         ctermfg=229
-hi Operator        ctermfg=198
-
-" complete menu
-hi Pmenu           ctermfg=232  ctermbg=255
-hi PmenuSel        ctermfg=255 ctermbg=21
-hi PmenuSbar                   ctermbg=32
-hi PmenuThumb      ctermfg=81
-
-hi PreCondit       ctermfg=76               cterm=bold
-hi PreProc         ctermfg=76
-hi Question        ctermfg=81
-hi Repeat          ctermfg=198               cterm=bold
-hi Search          ctermfg=253 ctermbg=66
-
-" marks column
-hi SignColumn      ctermfg=76 ctermbg=235
-hi SpecialChar     ctermfg=198               cterm=bold
-hi SpecialComment  ctermfg=245               cterm=bold
-hi Special         ctermfg=81
-hi SpecialKey      ctermfg=0
-
-hi Statement       ctermfg=220               cterm=none
-hi StatusLine      ctermfg=255 ctermbg=16
-hi StatusLineNC    ctermfg=233 ctermbg=240
-hi StorageClass    ctermfg=208
-hi Structure       ctermfg=81
-hi Tag             ctermfg=198
+hi Question        ctermfg=110
+hi SignColumn      ctermfg=114 ctermbg=235
 hi Title           ctermfg=166
-hi Todo            ctermfg=231 ctermbg=232   cterm=bold
-
-hi Typedef         ctermfg=81
-hi Type            ctermfg=81                cterm=none
 hi Underlined      ctermfg=244               cterm=underline
-
 hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-hi VisualNOS                   ctermbg=235
-hi Visual                      ctermbg=19
+hi Visual          ctermfg=255 ctermbg=33
+hi VisualNOS       ctermfg=255 ctermbg=33
 hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
-hi WildMenu        ctermfg=81  ctermbg=16
-
-hi Comment         ctermfg=22
-hi CursorColumn                ctermbg=236
-hi LineNr          ctermfg=250 ctermbg=232
-hi NonText         ctermfg=238 ctermbg=232
+hi WildMenu        ctermfg=110  ctermbg=16
