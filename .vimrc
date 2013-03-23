@@ -85,6 +85,7 @@ set cmdheight=3
 
 " 現在行の色を変える
 set cursorline
+let g:cursorline_flg = 1 " cursorline はウィンドウローカルなのでグローバルなフラグを用意しておく
 
 " ステータス行を常に表示
 set laststatus=2
@@ -1088,8 +1089,8 @@ nnoremap <Leader><C-l> :<C-u>redraw!<CR>
 xnoremap D x0"_Dp==
 
 " カレントウィンドウだけ行のハイライトをする
-autocmd myautocmd WinEnter * setlocal cursorline
-autocmd myautocmd WinLeave * setlocal nocursorline
+autocmd myautocmd WinEnter * if g:cursorline_flg | setlocal cursorline | endif
+autocmd myautocmd WinLeave * if g:cursorline_flg | setlocal nocursorline | endif
 
 " xml の folding
 let g:xml_syntax_folding = 1
@@ -1256,10 +1257,13 @@ function! Toggle(option, ...)
   execute set_command . a:option . "!"
   execute set_command . a:option . "?"
 endfunction
-nnoremap <expr> [Toggle]w Toggle("wrap", "local")
-nnoremap <expr> [Toggle]l Toggle("list", "local")
-nnoremap <expr> [Toggle]p Toggle("paste", "local")
-nnoremap <expr> [Toggle]t Toggle("expandtab", "local")
+nnoremap [Toggle]w :<C-u>call Toggle("wrap", "local")<CR>
+nnoremap [Toggle]l :<C-u>call Toggle("list", "local")<CR>
+nnoremap [Toggle]p :<C-u>call Toggle("paste", "local")<CR>
+nnoremap [Toggle]t :<C-u>call Toggle("expandtab", "local")<CR>
+nnoremap [Toggle]c <Nop>
+nnoremap [Toggle]cl :<C-u>let g:cursorline_flg = !g:cursorline_flg<CR>:call Toggle("cursorline")<CR>
+nnoremap [Toggle]cc :<C-u>call Toggle("cursorcolumn")<CR>
 nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 
