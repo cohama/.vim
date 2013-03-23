@@ -56,6 +56,7 @@ set foldtext=MyFoldText()
 " ### Search ### {{{
 " ハイライトで検索
 set hlsearch
+nohlsearch
 
 " 大文字小文字を無視
 set ignorecase
