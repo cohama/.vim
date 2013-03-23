@@ -1271,6 +1271,7 @@ nnoremap [Toggle]t :<C-u>call Toggle("expandtab", "local")<CR>
 nnoremap [Toggle]c <Nop>
 nnoremap [Toggle]cl :<C-u>let g:cursorline_flg = !g:cursorline_flg<CR>:call Toggle("cursorline")<CR>
 nnoremap [Toggle]cc :<C-u>call Toggle("cursorcolumn")<CR>
+nnoremap [Toggle]s :<C-u>call Toggle("spell", "local")<CR>
 nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 
