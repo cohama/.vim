@@ -793,14 +793,21 @@ function! MyScouter()
 endfunction
 command! MyScouter call MyScouter()
 
+" 現在のバッファが無名ならば :edit それ以外なら :tabedit になるコマンド
+function! TabeditOrEdit(tabedit_args)
+  let edit_cmd = expand('%') == "" ? "edit " : "tabedit "
+  silent execute edit_cmd . a:tabedit_args
+endfunction
+command! -nargs=* TabeditOrEdit call TabeditOrEdit(<q-args>)
+
 " .vimrc .gvimrc に関する設定
 if s:is_gui
   nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>
 else
   nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>
 endif
-nnoremap <silent> <Leader>v :tabe ~/.vim/.vimrc<CR>
-nnoremap <silent> <Leader>gv :tabe ~/.vim/.gvimrc<CR>
+nnoremap <silent> <Leader>v :<C-u>TabeditOrEdit ~/.vim/.vimrc<CR>
+nnoremap <silent> <Leader>gv :<C-u>TabeditOrEdit ~/.vim/.gvimrc<CR>
 
 " magic comment
 function! MagicComment()
