@@ -58,6 +58,10 @@ hi NonText         ctermfg=239  ctermbg=232
 hi StatusLine      ctermfg=255 ctermbg=16
 hi StatusLineNC    ctermfg=233 ctermbg=240
 hi Todo            ctermfg=33  ctermbg=NONE   cterm=bold
+hi TabLine         ctermfg=245  ctermbg=237   cterm=NONE
+hi TabLineSel      ctermfg=255  ctermbg=233   cterm=bold
+hi TabLineFill     ctermfg=245  ctermbg=245
+hi Title           ctermfg=227
 
 " diffs
 hi DiffAdd                      ctermbg=17
@@ -87,7 +91,6 @@ hi ModeMsg         ctermfg=229
 hi MoreMsg         ctermfg=229
 hi Question        ctermfg=110
 hi SignColumn      ctermfg=114 ctermbg=235
-hi Title           ctermfg=166
 hi Underlined      ctermfg=244               cterm=underline
 hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
 hi Visual          ctermfg=255 ctermbg=33
