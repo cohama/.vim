@@ -500,6 +500,7 @@ function! s:vimshell_my_settings()
   inoremap <buffer> <expr><silent> <C-p> unite#sources#vimshell_history#start_complete(!0)
 endfunction
 nnoremap <Leader>s <Nop>
+nnoremap <silent> <Leader>s<CR> :<C-u>VimShell<CR>
 nnoremap <silent> <Leader>sh :<C-u>tabnew<CR>:VimShell<CR>
 nnoremap <silent> <Leader>ss :<C-u>botright vnew<CR>:VimShell<CR>
 nnoremap <Leader>si :<C-u>VimShellInteractive<Space>
