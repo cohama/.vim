@@ -24,16 +24,22 @@ hi Statement       ctermfg=219
 hi Conditional     ctermfg=217
 hi Repeat          ctermfg=217
 hi Label           ctermfg=158
-hi Operator        ctermfg=255
+hi Operator        ctermfg=229
 hi Keyword         ctermfg=219
 hi Exception       ctermfg=217
 
 " programming pre-processes
 hi PreProc         ctermfg=37
+hi Include         ctermfg=37
+hi Define          ctermfg=37
+hi Macro	         ctermfg=37
+hi PreCondit       ctermfg=37
 
 " programming types
 hi Type            ctermfg=110
+hi StorageClass    ctermfg=110
 hi Structure       ctermfg=75
+hi Typedef         ctermfg=110
 
 " specials
 hi Special         ctermfg=69
