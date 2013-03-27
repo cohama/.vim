@@ -302,6 +302,12 @@ NeoBundleLazy 't9md/vim-quickhl', {
 \ 'autoload' : {
 \   'mappings' : ["<Plug>(quickhl-toggle)", "<Plug>(quickhl-match)"]
 \ }}
+
+" 桁をハイライト
+NeoBundleLazy 'cohama/easy-colorcolumn', {
+\ 'autoload' : {
+\   'mappings' : ["<Plug>(easy-colorcolumn-add)", "<Plug>(easy-colorcolumn-toggle)"]
+\ }}
 " }}}
 
 " ### Git ### {{{
@@ -514,6 +520,12 @@ nmap gm <Plug>(quickhl-toggle)
 xmap gm <Plug>(quickhl-toggle)
 nmap gM <Plug>(quickhl-reset)
 xmap gM <Plug>(quickhl-reset)
+" }}}
+
+" easy-colorcolumn の設定 {{{
+nmap gb <Plug>(easy-colorcolumn-toggle)
+xmap gb <Plug>(easy-colorcolumn-toggle)
+nmap gB <Plug>(easy-colorcolumn-clear)
 " }}}
 
 " fugitive の設定 {{{
