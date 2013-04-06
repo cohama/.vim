@@ -1367,8 +1367,17 @@ endfunction
 command! -nargs=? -bang ISetting call ISetting(<q-args>, <bang>0)
 
 " 矩形選択でなくても複数行入力をしたい
-xnoremap I <C-v>I
-xnoremap A <C-v>A
+xnoremap <expr> I MultipleInsersion('I')
+xnoremap <expr> A MultipleInsersion('A')
+function! MultipleInsersion(next_key)
+  if mode() ==# 'v'
+    return "\<C-v>" . a:next_key
+  elseif mode() ==# 'V'
+    return "\<C-v>0o$" . a:next_key
+  else
+    return a:next_key
+  endif
+endfunction
 
 " My retab
 function! Retab(tabstop)
