@@ -814,7 +814,7 @@ xnoremap g? :s/\<<C-R><C-w>\>//gc<Left><Left><Left>
 function! HilightWordAtCursor()
   let cursor_pos = getpos(".")
   normal! yiw
-  let @/ = "\\<" . @0 . "\\>"
+  let @/ = @0
   call setpos(".", cursor_pos)
 endfunction
 nnoremap <silent> gn :<C-u>call HilightWordAtCursor()<CR>:set hlsearch<CR>
