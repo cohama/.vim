@@ -323,6 +323,9 @@ NeoBundle 'tpope/vim-fugitive'
 
 " gitk っぽいものを Vim で
 NeoBundle 'gregsexton/gitv'
+
+" git のステータスを行の横に表示
+NeoBundle 'airblade/vim-gitgutter'
 " }}}
 
 " ### Language ### {{{
@@ -593,6 +596,11 @@ autocmd myautocmd FileType git setlocal foldlevel=99
 nnoremap [Git]k :Gitv --all<CR>
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
+" }}}
+
+" gitgutter の設定 {{{
+nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
+nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
 " }}}
 
 "indent-guides の設定 {{{
@@ -1294,6 +1302,7 @@ nnoremap [Toggle]cc :<C-u>call Toggle("cursorcolumn")<CR>
 nnoremap [Toggle]s :<C-u>call Toggle("spell", "local")<CR>
 nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
+nnoremap [Toggle]G :<C-u>GitGutterToggle<CR>
 
 " 全自動保存モード
 function! FullAutoWriteToggle()
