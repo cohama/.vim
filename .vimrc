@@ -237,6 +237,13 @@ NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
 
 " 全体をテキストオブジェクト化
 NeoBundle 'kana/vim-textobj-entire', {'depends': 'kana/vim-textobj-user'}
+
+" ヤンクしたものと対称の文字列を置き換える
+NeoBundleLazy 'kana/vim-operator-replace', {
+\ 'depends' : 'kana/vim-operator-user',
+\ 'autoload' : {
+\   'mappings' : ['<Plug>(operator-replace)']
+\ }}
 " }}}
 
 " ### ファイル操作など ### {{{
@@ -448,6 +455,10 @@ snoremap <C-l> <Esc>a
 let g:rubycomplete_buffer_loadding = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
+" }}}
+
+" vim-operator-replace の設定 {{{
+map _ <Plug>(operator-replace)
 " }}}
 
 " NERDTree の設定 {{{
@@ -774,10 +785,6 @@ nnoremap <silent> <M-W> :tabonly<CR>
 nnoremap <M-e> :tabedit<Space>
 inoremap <silent> <M-l> <Esc>:tabnext<CR>
 inoremap <silent> <M-h> <Esc>:tabprevious<CR>
-
-" ヤンクした文字列でカーソル位置の単語置き換え
-nnoremap <silent> cy ce<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
-nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 
 " カーソル位置の単語を置換
 nnoremap g/ :<C-u>%s/\<<C-R><C-w>\>//g<Left><Left>
