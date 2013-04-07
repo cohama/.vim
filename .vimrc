@@ -900,10 +900,10 @@ command! Only call ExtendedOnly()
 
 " help を開いたとき
 function! WhenHelpOpened()
-  " 左のウィンドウで開く
-  exec "normal! " .  "\<C-w>H\<C-w>82|"
-  " q だけで閉じれるようにする
+  wincmd H
+  82wincmd |
   nnoremap <buffer> q ZZ
+  setlocal winfixwidth
 endfunction
 autocmd myautocmd FileType help call WhenHelpOpened()
 
