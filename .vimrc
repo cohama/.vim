@@ -381,6 +381,11 @@ NeoBundleLazy 'Shougo/unite-outline', {
 \ 'autoload' : {
 \   'unite_sources' : ['outline']
 \ }}
+
+NeoBundleLazy 'thinca/vim-unite-history', {
+\ 'autoload' : {
+\   'unite_sources' : ['history/command', 'history/search']
+\ }}
 " }}}
 
 " ### Miscellaneous ### {{{
