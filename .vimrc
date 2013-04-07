@@ -1227,20 +1227,6 @@ nnoremap <expr> L &wrap ? 'g$' : '$'
 onoremap <expr> L &wrap ? 'g$' : '$'
 xnoremap <expr> L &wrap ? 'g$h' : '$h'
 
-" number, relativenumber の切り替え
-function! TogglelRelativeNumber()
-  if &relativenumber
-    set norelativenumber number
-  elseif &number
-    set nonumber
-  else
-    set relativenumber
-  endif
-endfunction
-nnoremap [Toggle] <Nop>
-nmap M [Toggle]
-nnoremap [Toggle]n :<C-u>call TogglelRelativeNumber()<CR>
-
 " さっき編集した範囲を選択
 nnoremap gV `[v`]
 
@@ -1292,6 +1278,8 @@ function! Toggle(option, ...)
   execute set_command . a:option . "!"
   execute set_command . a:option . "?"
 endfunction
+nnoremap [Toggle] <Nop>
+nmap M [Toggle]
 nnoremap [Toggle]w :<C-u>call Toggle("wrap", "local")<CR>
 nnoremap [Toggle]l :<C-u>call Toggle("list", "local")<CR>
 nnoremap [Toggle]p :<C-u>call Toggle("paste", "local")<CR>
@@ -1300,6 +1288,8 @@ nnoremap [Toggle]c <Nop>
 nnoremap [Toggle]cl :<C-u>let g:cursorline_flg = !g:cursorline_flg<CR>:call Toggle("cursorline")<CR>
 nnoremap [Toggle]cc :<C-u>call Toggle("cursorcolumn")<CR>
 nnoremap [Toggle]s :<C-u>call Toggle("spell", "local")<CR>
+nnoremap [Toggle]n :<C-u>call Toggle("number", "local")<CR>
+nnoremap [Toggle]r :<C-u>call Toggle("relativenumber", "local")<CR>
 nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 nnoremap [Toggle]G :<C-u>GitGutterToggle<CR>
