@@ -376,6 +376,11 @@ NeoBundleLazy 'ujihisa/unite-rake', {
 \ }}
 
 NeoBundleLazy 'basyura/unite-rails'
+
+NeoBundleLazy 'Shougo/unite-outline', {
+\ 'autoload' : {
+\   'unite_sources' : ['outline']
+\ }}
 " }}}
 
 " ### Miscellaneous ### {{{
