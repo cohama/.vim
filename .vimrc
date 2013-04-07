@@ -1341,16 +1341,16 @@ function! ISetting(setting, force_retab)
       return
     endif
     if expandtab ==? "t"
-      set noexpandtab
+      setlocal noexpandtab
     elseif expandtab ==? "s"
-      set expandtab
+      setlocal expandtab
     endif
 
-    let bk_tabstop = &tabstop
+    let bk_tabstop = &l:tabstop
 
-    let &shiftwidth = shiftwidth
-    let &softtabstop = shiftwidth
-    let &tabstop = shiftwidth
+    let &l:shiftwidth = shiftwidth
+    let &l:softtabstop = shiftwidth
+    let &l:tabstop = shiftwidth
 
     " 強制的に Retab をかける
     if a:force_retab
@@ -1361,10 +1361,20 @@ function! ISetting(setting, force_retab)
     doautocmd WinEnter
   endif
 
-  let current_indent_setting = "indent: " . ((&expandtab) ? "space" : "tab") . " " . &shiftwidth
+  let current_indent_setting = "indent: " . ((&l:expandtab) ? "space" : "tab") . " " . &l:shiftwidth
   echo current_indent_setting
 endfunction
 command! -nargs=? -bang ISetting call ISetting(<q-args>, <bang>0)
+
+" My retab
+function! Retab(old_tabstop)
+  let pos = getpos('.')
+  let new_indent = &l:expandtab ? repeat(' ', &l:tabstop) : '\t'
+  silent execute '%s/\v%(^ *)@<= {' . a:old_tabstop . '}/' . new_indent . '/ge'
+  silent retab
+  call setpos('.', pos)
+endfunction
+command! -nargs=? Retab call Retab(empty(<q-args>) ? &l:tabstop : <q-args>)
 
 " 矩形選択でなくても複数行入力をしたい
 xnoremap <expr> I MultipleInsersion('I')
@@ -1378,16 +1388,6 @@ function! MultipleInsersion(next_key)
     return a:next_key
   endif
 endfunction
-
-" My retab
-function! Retab(tabstop)
-  if &expandtab
-    silent execute 'retab ' . a:tabstop
-  else
-    silent execute '%s/\v%(^ *)@<= {' . a:tabstop . '}/\t/g'
-  endif
-endfunction
-command! -nargs=? Retab call Retab(empty(<q-args>) ? &tabstop : <q-args>)
 "}}}
 
 " ColorScheme {{{
