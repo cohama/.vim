@@ -783,7 +783,7 @@ nnoremap <silent> ciy ciw<C-R>0<Esc>:let@/=@1<CR>:noh<CR>
 nnoremap g/ :<C-u>%s/\<<C-R><C-w>\>//g<Left><Left>
 nnoremap g? :<C-u>%s/\<<C-R><C-w>\>//gc<Left><Left><Left>
 xnoremap g/ :s/\<C-r><C-w>\>//g<Left><Left>
-nnoremap g? :s/\<<C-R><C-w>\>//gc<Left><Left><Left>
+xnoremap g? :s/\<<C-R><C-w>\>//gc<Left><Left><Left>
 
 " カーソル位置の単語をハイライト
 function! HilightWordAtCursor()
