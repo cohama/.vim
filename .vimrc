@@ -248,7 +248,10 @@ NeoBundleLazy 'kana/vim-operator-replace', {
 
 " ### ファイル操作など ### {{{
 " ディレクトリ、ファイルをツリー表示
-NeoBundle 'scrooloose/nerdtree'
+NeoBundleLazy 'scrooloose/nerdtree', {
+\ 'autoload' : {
+\   'commands' : ['NERDTreeToggle', 'NERDTreeFind']
+\ }}
 
 " sudo で保存
 NeoBundle 'sudo.vim'
@@ -475,15 +478,14 @@ map _ <Plug>(operator-replace)
 " }}}
 
 " NERDTree の設定 {{{
-map <silent> <C-p> :NERDTreeToggle<CR>
-map <silent> <Leader><C-p> :NERDTreeFind<CR>
+nnoremap <silent> <C-p> :<C-u>NERDTreeToggle<CR>
+nnoremap <silent> <C-@> :<C-u>NERDTreeFind<CR>
+nnoremap <silent> <Leader><C-p> :<C-u>NERDTreeFind<CR>
 let NERDTreeIgnore = ['\~$', '\.swp', '^\.$', '^\.\.$']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 36
 let NERDTreeMinimalUI = 1
 let NERDTreeChDirMode = 1
-map <silent> <C-@> :NERDTreeFind<CR>
-map <silent> <Leader><C-p> :NERDTreeFind<CR>
 " }}}
 
 " surrond.vim の設定 {{{
