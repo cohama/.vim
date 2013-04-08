@@ -193,8 +193,12 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundle 'Shougo/neobundle.vim'
 
 " アレをアレする
-NeoBundle 'Shougo/unite.vim'
-
+NeoBundleLazy 'Shougo/unite.vim', {
+\ 'autoload' : {
+\   'commands' : [{ 'name' : 'Unite',
+\                   'complete' : 'customlist,unite#complete_source'},
+\                 'UniteWithCursorWord', 'UniteWithInput']
+\ }}
 " 非同期実行
 if s:is_unix
   NeoBundle 'Shougo/vimproc', {
@@ -207,36 +211,59 @@ endif
 
 " ### 入力系 ### {{{
 " 入力補完
-NeoBundle 'Shougo/neocomplcache'
+NeoBundleLazy 'Shougo/neocomplcache', {
+\ 'autoload' : {
+\   'insert' : 1
+\ }}
 
 " スニペット補完
-NeoBundle 'Shougo/neosnippet'
+NeoBundleLazy 'Shougo/neosnippet', {
+\ 'autoload' : {
+\   'insert' : 1,
+\   'filetypes' : 'snippet',
+\ }}
 
 " Zen-Coding
-NeoBundle 'mattn/zencoding-vim'
+NeoBundleLazy 'mattn/zencoding-vim', {
+\ 'autoload' : {
+\   'filetypes' : ['html', 'eruby', 'jsp', 'xml'],
+\   'commands' : ['<Plug>ZenCodingExpandNormal']
+\ }}
 
 " endfunction とかを自動入力
-NeoBundle 'tpope/vim-endwise'
+NeoBundleLazy 'tpope/vim-endwise', {
+\ 'autoload' : {
+\   'filetypes' : ['lua', 'ruby', 'sh', 'zsh', 'vb', 'vbnet', 'aspvbs', 'vim']
+\ }}
 
 " 対応する括弧の自動入力
-NeoBundle 'kana/vim-smartinput'
+NeoBundleLazy 'kana/vim-smartinput', {
+\ 'autoload' : {
+\   'insert' : 1
+\ }}
 " }}}
 
 " ### 編集を便利にする ### {{{
 " 整形
-NeoBundle 'h1mesuke/vim-alignta'
+NeoBundleLazy 'h1mesuke/vim-alignta', {
+\ 'autoload' : {
+\   'commands' : ['Alignta', 'Align']
+\ }}
 
 " テキストオブジェクトのまわりに文字を挿入
 NeoBundle 'tpope/vim-surround'
-
 " コメント化
 NeoBundle 'tomtom/tcomment_vim'
 
 " インデントが同じ物をテキストオブジェクト化
-NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
+NeoBundle 'kana/vim-textobj-indent', {
+\ 'depends' : 'kana/vim-textobj-user'
+\ }
 
 " 全体をテキストオブジェクト化
-NeoBundle 'kana/vim-textobj-entire', {'depends': 'kana/vim-textobj-user'}
+NeoBundle 'kana/vim-textobj-entire', {
+\ 'depends' : 'kana/vim-textobj-user'
+\ }
 
 " ヤンクしたものと対称の文字列を置き換える
 NeoBundleLazy 'kana/vim-operator-replace', {
@@ -254,10 +281,18 @@ NeoBundleLazy 'scrooloose/nerdtree', {
 \ }}
 
 " sudo で保存
-NeoBundle 'sudo.vim'
+NeoBundleLazy 'sudo.vim', {
+\ 'autoload' : {
+\   'commands' : ['SudoWrite', 'SudoRead']
+\ }}
 
 " ファイラ
-NeoBundle 'Shougo/vimfiler'
+NeoBundleLazy 'Shougo/vimfiler', {
+\ 'autoload' : {
+\   'commands' : [{'name' : 'VimFiler',
+\                  'complete' : 'customlist,vimfiler#complete' },
+\                 'VimFilerBufferDir', 'VimFilerCurrentDir']
+\ }}
 
 " 一時ファイル的な
 NeoBundleLazy 'Shougo/junkfile.vim', {
@@ -275,7 +310,10 @@ NeoBundle 'bkad/CamelCaseMotion'
 NeoBundle 'EasyMotion'
 
 " 記号とかに邪魔されずに w, b, e できる
-NeoBundle 'kana/vim-smartword'
+NeoBundleLazy 'kana/vim-smartword', {
+\ 'autoload' : {
+\   'mappings' : ["<Plug>(smartword-w)", "<Plug>(smartword-b)", "<Plug>(smartword-e)", "<Plug>(smartword-ge)"]
+\ }}
 
 " f のあと ; のかわりに f 連打で移動できる
 NeoBundle 'rhysd/clever-f.vim'
@@ -325,7 +363,11 @@ NeoBundleLazy 'cohama/easy-colorcolumn', {
 NeoBundle 'tpope/vim-fugitive'
 
 " gitk っぽいものを Vim で
-NeoBundle 'gregsexton/gitv'
+NeoBundleLazy 'gregsexton/gitv', {
+\ 'depends' : 'vim-fugitive',
+\ 'autoload' : {
+\   'commands' : ['Gitv']
+\ }}
 
 " git のステータスを行の横に表示
 NeoBundle 'airblade/vim-gitgutter'
@@ -333,17 +375,42 @@ NeoBundle 'airblade/vim-gitgutter'
 
 " ### Language ### {{{
 NeoBundle 'tpope/vim-rails'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'leafgarland/typescript-vim'
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+\ 'autoload': {
+\   'filetypes' : ['ruby', 'eruby']
+\ }}
+NeoBundleLazy 'kchmck/vim-coffee-script', {
+\ 'autoload': {
+\   'filetypes' : 'coffee'
+\ }}
+NeoBundleLazy 'derekwyatt/vim-scala', {
+\ 'autoload': {
+\   'filetypes' : 'scala'
+\ }}
+NeoBundleLazy 'groenewege/vim-less', {
+\ 'autoload': {
+\   'filetypes' : 'less'
+\ }}
+NeoBundleLazy 'pangloss/vim-javascript', {
+\ 'autoload': {
+\   'filetypes' : 'javascript'
+\ }}
+NeoBundleLazy 'leafgarland/typescript-vim', {
+\ 'autoload': {
+\   'filetypes' : 'typescript'
+\ }}
 " }}}
 
 " ### 何かを実行 ### {{{
 " Vim で動く shell
-NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimshell', {
+\ 'autoload' : {
+\   'commands' : [{ 'name' : 'VimShell',
+\                   'complete' : 'customlist,vimshell#complete'},
+\                 'VimShellExecute', 'VimShellInteractive',
+\                 'VimShellTerminal', 'VimShellPop'],
+\   'mappings' : ['<Plug>(vimshell_switch)']
+\ }}
 
 " その場で実行
 NeoBundle 'thinca/vim-quickrun'
@@ -396,13 +463,16 @@ NeoBundleLazy 'motemen/hatena-vim'
 
 " コードを Gist に送るためのプラグイン
 NeoBundle 'mattn/gist-vim', {
-      \     'depends': 'mattn/webapi-vim'
-      \    }
+\ 'depends': 'mattn/webapi-vim',
+\ 'autoload' : {
+\   'commands' : 'Gist'
+\ }}
 
 " Scouter
 NeoBundleLazy 'thinca/vim-scouter', {
-      \ 'autoload': {'commands': 'Scouter'}
-      \ }
+\ 'autoload': {
+\   'commands': 'Scouter'
+\ }}
 
 " }}}
 " }}}
