@@ -1045,6 +1045,10 @@ nnoremap Y y$
 cnoremap <C-a> <Home>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cunmap <CR>
+cunmap <NL>
 
 " タブページの移動
 function! MoveTabPage(dir)
