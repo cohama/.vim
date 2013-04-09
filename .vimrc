@@ -115,9 +115,6 @@ set showtabline=2
 " 長い行を @ にさせない
 set display=lastline
 
-" 記号とかを2倍の幅で表示
-set ambiwidth=double
-
 " 埋める文字
 set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 
