@@ -1047,8 +1047,12 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
-cunmap <CR>
-cunmap <NL>
+if !empty(maparg("\<CR>", 'c'))
+  cunmap <CR>
+endif
+if !empty(maparg("\<NL>", 'c'))
+  cunmap <NL>
+endif
 
 " タブページの移動
 function! MoveTabPage(dir)
