@@ -685,7 +685,7 @@ autocmd myautocmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR
 
 " gitv の設定 {{{
 autocmd myautocmd FileType git setlocal foldlevel=99
-nnoremap [Git]k :Gitv --all<CR>
+nnoremap [Git]k :<C-u>Gitv --all<CR>
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
 " }}}
