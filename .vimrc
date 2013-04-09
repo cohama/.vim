@@ -271,6 +271,13 @@ NeoBundleLazy 'kana/vim-operator-replace', {
 \ 'autoload' : {
 \   'mappings' : ['<Plug>(operator-replace)']
 \ }}
+
+" snake_case -> CamelCase にするオペレータ
+NeoBundleLazy 'tyru/operator-camelize.vim', {
+\ 'depends' : 'kana/vim-operator-user',
+\ 'autoload' : {
+\   'mappings' : ['<Plug>(operator-camelize-toggle)']
+\ }}
 " }}}
 
 " ### ファイル操作など ### {{{
@@ -545,6 +552,12 @@ let g:rubycomplete_rails = 1
 
 " vim-operator-replace の設定 {{{
 map _ <Plug>(operator-replace)
+sunmap _
+
+" operator-camelize の設定 {{{
+map - <Plug>(operator-camelize-toggle)
+sunmap -
+" }}}
 " }}}
 
 " NERDTree の設定 {{{
