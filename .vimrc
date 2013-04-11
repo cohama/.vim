@@ -701,8 +701,8 @@ let g:indent_guides_auto_colors = 0
 let s:indent_guides_odd_guibg = "#0D0D24"
 let s:indent_guides_even_guibg = "#151538"
 let s:indent_guides_guifg = "#444466"
-let s:indent_guides_odd_ctermbg = "234"
-let s:indent_guides_even_ctermbg = "232"
+let s:indent_guides_odd_ctermbg = "235"
+let s:indent_guides_even_ctermbg = "233"
 let s:indent_guides_ctermfg = "238"
 autocmd myautocmd ColorScheme * exec "hi IndentGuidesOdd" .
 \ " ctermbg=" . s:indent_guides_odd_ctermbg .
