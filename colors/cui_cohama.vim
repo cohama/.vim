@@ -14,8 +14,8 @@ hi Constant        ctermfg=140               cterm=bold
 hi String          ctermfg=167
 hi Character       ctermfg=166
 hi Number          ctermfg=204
-hi Boolean         ctermfg=181
-hi Float           ctermfg=181
+hi Boolean         ctermfg=204
+hi Float           ctermfg=204
 
 " programming statements
 hi Identifier      ctermfg=215               cterm=none
