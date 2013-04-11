@@ -279,7 +279,10 @@ NeoBundleLazy 'tyru/operator-camelize.vim', {
 
 " ### ファイル操作など ### {{{
 " ディレクトリ、ファイルをツリー表示
-NeoBundle 'scrooloose/nerdtree'
+NeoBundleLazy 'scrooloose/nerdtree', {
+\ 'autoload' : {
+\   'commands' : ['NERDTreeToggle', 'NERDTreeFind']
+\ }}
 
 " sudo で保存
 NeoBundleLazy 'sudo.vim', {
@@ -368,9 +371,11 @@ NeoBundleLazy 'cohama/easy-colorcolumn', {
 NeoBundle 'tpope/vim-fugitive'
 
 " gitk っぽいものを Vim で
-NeoBundle 'gregsexton/gitv', {
-\ 'depends' : 'vim-fugitive'
-\ }
+NeoBundleLazy 'gregsexton/gitv', {
+\ 'depends' : 'vim-fugitive',
+\ 'autoload' : {
+\   'commands' : ['Gitv']
+\ }}
 
 " git のステータスを行の横に表示
 NeoBundle 'airblade/vim-gitgutter'
