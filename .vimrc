@@ -766,6 +766,7 @@ let g:quickrun_config['_'] = {
       \ 'outputter'                                   : 'multi:buffer:quickfix',
       \ 'outputter/buffer/split'                      : 'botright 8',
       \ 'outputter/buffer/name'                       : 'Out',
+      \ 'outputter/buffer/close_on_empty'             : 1,
       \ 'runner'                                      : 'vimproc',
       \ 'runner/vimproc/updatetime'                   : 40}
 let g:quickrun_config['watchdogs_checker/_'] = {
