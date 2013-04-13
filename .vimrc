@@ -808,6 +808,7 @@ call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left>
 call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
 call smartinput#define_rule({'at': '{\%#', 'char': '%', 'input': '%%<Left>'})
+call smartinput#define_rule({'at': '{%\%#%}', 'char': '<BS>', 'input': '<BS><Del>'})
 " }}}
 
 " Rsense {{{
