@@ -1389,6 +1389,7 @@ nnoremap [Toggle]cc :<C-u>call Toggle("cursorcolumn")<CR>
 nnoremap [Toggle]s :<C-u>call Toggle("spell", "local")<CR>
 nnoremap [Toggle]n :<C-u>call Toggle("number", "local")<CR>
 nnoremap [Toggle]r :<C-u>call Toggle("relativenumber", "local")<CR>
+nnoremap [Toggle]h :<C-u>call Toggle("hlsearch")<CR>
 nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 nnoremap [Toggle]G :<C-u>GitGutterToggle<CR>
