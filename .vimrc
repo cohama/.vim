@@ -298,7 +298,7 @@ NeoBundleLazy 'Shougo/vimfiler', {
 " 一時ファイル的な
 NeoBundleLazy 'Shougo/junkfile.vim', {
 \ 'autoload' : {
-\   'commands' : ["JunkFileOpen"],
+\   'commands' : ["JunkfileOpen"],
 \   'unite_sources' : ["junkfile", "junkfile/new"]
 \ }}
 " }}}
