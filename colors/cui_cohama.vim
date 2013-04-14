@@ -1,7 +1,7 @@
 set background=dark
 hi clear
 if exists("syntax_on")
-    syntax reset
+  syntax reset
 endif
 let g:colors_name = "cui_cohama"
 
@@ -10,8 +10,8 @@ hi Normal          ctermfg=249  ctermbg=234
 
 " programming literals
 hi Comment         ctermfg=22
-hi Constant        ctermfg=140               cterm=bold
-hi String          ctermfg=167
+hi Constant        ctermfg=104               cterm=bold
+hi String          ctermfg=174
 hi Character       ctermfg=166
 hi Number          ctermfg=204
 hi Boolean         ctermfg=204
@@ -32,7 +32,7 @@ hi Exception       ctermfg=217
 hi PreProc         ctermfg=37
 hi Include         ctermfg=37
 hi Define          ctermfg=37
-hi Macro	         ctermfg=37
+hi Macro           ctermfg=37
 hi PreCondit       ctermfg=37
 
 " programming types
@@ -84,7 +84,7 @@ hi PmenuThumb      ctermbg=244
 
 " errors
 hi Error           ctermfg=219  ctermbg=88
-hi ErrorMsg        ctermfg=199  ctermbg=16    cterm=bold
+hi ErrorMsg        ctermfg=199  ctermbg=16   cterm=bold
 hi SpellBad        ctermbg=52
 hi SpellCap        ctermbg=53
 hi SpellLocal      ctermbg=53
@@ -93,13 +93,15 @@ hi SpellRare       ctermbg=53
 " others
 hi Directory       ctermfg=114               cterm=bold
 hi Ignore          ctermfg=244  ctermbg=232
-hi MatchParen      ctermfg=255  ctermbg=53 cterm=bold
+hi MatchParen      ctermfg=255  ctermbg=53   cterm=bold
 hi ModeMsg         ctermfg=229
 hi MoreMsg         ctermfg=229
 hi Question        ctermfg=110
 hi Underlined      ctermfg=244               cterm=underline
-hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-hi Visual          ctermfg=255 ctermbg=33
-hi VisualNOS       ctermfg=255 ctermbg=33
-hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
+hi VertSplit       ctermfg=244  ctermbg=232   cterm=bold
+hi Visual          ctermfg=255  ctermbg=33
+hi VisualNOS       ctermfg=255  ctermbg=33
+hi WarningMsg      ctermfg=231  ctermbg=238   cterm=bold
 hi WildMenu        ctermfg=110  ctermbg=16
+
+" vim: set colorcolumn=20,33,46 :
