@@ -1504,6 +1504,9 @@ function! MultipleInsersion(next_key)
     return a:next_key
   endif
 endfunction
+
+" 短縮入力
+abbreviate Ocaml OCaml
 "}}}
 
 " ColorScheme {{{
