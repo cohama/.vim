@@ -816,9 +816,6 @@ call smartinput#define_rule({'at': '{%\%#%}', 'char': '<BS>', 'input': '<BS><Del
 call smartinput#map_to_trigger('i', '*', '*', '*')
 call smartinput#define_rule({'at': '(\%#)', 'char': '*', 'input': '**<Left>', 'filetype': ['ocaml']})
 call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<BS>', 'input': '<BS><Del>', 'filetype': ['ocaml']})
-call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
-call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<Space>', 'input': '<Space><Space><Left>', 'filetype': ['ocaml']})
-call smartinput#define_rule({'at': '(\* \%# \*)', 'char': '<BS>', 'input': '<BS><Del>', 'filetype': ['ocaml']})
 call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml']})
 " }}}
 
