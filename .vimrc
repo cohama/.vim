@@ -522,7 +522,9 @@ endif
 let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
 " autocmd myautocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let g:neocomplcache_dictionary_filetype_lists = {
-      \ 'javascript': expand('~/.vim/dict/javascript.dict')}
+\ 'javascript': expand('~/.vim/dict/javascript.dict'),
+\ 'ocaml' : expand('~/.vim/dict/ocaml.dict')
+\ }
 
 " 補完メニューの設定
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
