@@ -292,7 +292,7 @@ NeoBundleLazy 'Shougo/vimfiler', {
 \ 'autoload' : {
 \   'commands' : [{'name' : 'VimFiler',
 \                  'complete' : 'customlist,vimfiler#complete' },
-\                 'VimFilerBufferDir', 'VimFilerCurrentDir']
+\                 'VimFilerBufferDir', 'VimFilerCurrentDir', 'VimFilerSplit']
 \ }}
 
 " 一時ファイル的な
@@ -732,6 +732,7 @@ nnoremap <Leader>cl :CoffeeLint<CR>
 nnoremap [VimFiler] <Nop>
 nmap <Leader>F [VimFiler]
 nnoremap [VimFiler]<CR> :<C-u>VimFiler<CR>
+nnoremap [VimFiler]s :<C-u>VimFilerSplit<CR>
 nnoremap [VimFiler]b :<C-u>VimFilerBufferDir<CR>
 nnoremap [VimFiler]c :<C-u>VimFilerCurrentDir<CR>
 let g:vimfiler_safe_mode_by_default = 0
