@@ -688,6 +688,7 @@ let g:Gitv_TruncateCommitSubjects = 1
 " }}}
 
 " gitgutter の設定 {{{
+let g:gitgutter_on_bufenter = 0
 nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
 nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
 " }}}
