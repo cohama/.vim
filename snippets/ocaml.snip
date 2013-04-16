@@ -6,3 +6,36 @@ snippet     try
   try
     ${1:proc}
 	with
+
+snippet     sig
+options     head
+  sig
+    ${0}
+	end;;
+
+snippet     struct
+options     head
+  struct
+    ${0}
+	end;;
+
+snippet     if
+  if ${1:cond} then ${2:if_true} else ${3:if_false}
+
+snippet     for
+options     head
+  for ${1:name} = ${2:init} to ${3:upper} do
+    ${0}
+	done
+
+snippet     forr
+options     head
+  for ${1:name} = ${2:init} downto ${3:lower} do
+    ${0}
+	done
+
+snippet     while
+options     head
+  while ${1:cond} do
+    ${0}
+	done
