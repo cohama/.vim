@@ -1333,7 +1333,15 @@ function! ColorSchemeSettings()
     endif
   endfunction
   autocmd myautocmd WinEnter,BufEnter * call MatchIllegalSpaces()
-  autocmd myautocmd FileType help,vimshell,unite call clearmatches()
+  autocmd myautocmd FileType help,vimshell,unite,vimfiler call clearmatches()
+  autocmd myautocmd WinEnter,BufEnter * call s:clear_error_highlight_if()
+  function! s:clear_error_highlight_if()
+    " 隠れ状態になっているときに match されるのに対処
+    if &filetype !=# 'help' || &filetype !=# 'vimshell' || 
+    \  &filetype !=# 'unite' || &filetype !=# 'vimfiler'
+      call clearmatches()
+    endif
+  endfunction
 
   " JavaScript の console.log をハイライト
   function! MatchConsoleLog()
