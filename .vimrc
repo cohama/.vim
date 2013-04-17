@@ -322,7 +322,9 @@ NeoBundleLazy 'rhysd/clever-f.vim', { 'autoload' : {
 \ }}
 
 " 選択したところを検索
-NeoBundle 'thinca/vim-visualstar'
+NeoBundleLazy 'thinca/vim-visualstar', { 'autoload' : {
+\ 'mappings' : ['<Plug>(visualstar-*)', '<Plug>(visualstar-#)', '<Plug>(visualstar-g*)', '<Plug>(visualstar-g#)']
+\ }}
 " }}}
 
 " ### 見た目、カラースキーム ### {{{
@@ -761,6 +763,14 @@ sunmap f
 sunmap F
 sunmap t
 sunmap T
+" }}}
+
+" visualstar {{{
+let g:visualstar_no_default_key_mappings = 1
+xmap * <Plug>(visualstar-*)
+xmap # <Plug>(visualstar-#)
+xmap g* <Plug>(visualstar-g*)
+xmap g# <Plug>(visualstar-g#)
 " }}}
 
 " quickrun {{{
