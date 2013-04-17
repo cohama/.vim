@@ -317,7 +317,9 @@ NeoBundleLazy 'kana/vim-smartword', {
 \ }}
 
 " f のあと ; のかわりに f 連打で移動できる
-NeoBundle 'rhysd/clever-f.vim'
+NeoBundleLazy 'rhysd/clever-f.vim', { 'autoload' : {
+\ 'mappings' : ['<Plug>(clever-f-f)']
+\ }}
 
 " 選択したところを検索
 NeoBundle 'thinca/vim-visualstar'
