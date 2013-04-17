@@ -380,26 +380,14 @@ NeoBundleLazy 'vim-ruby/vim-ruby', {
 \ 'autoload': {
 \   'filetypes' : ['ruby', 'eruby']
 \ }}
-NeoBundleLazy 'kchmck/vim-coffee-script', {
-\ 'autoload': {
-\   'filetypes' : 'coffee'
-\ }}
-NeoBundleLazy 'derekwyatt/vim-scala', {
-\ 'autoload': {
-\   'filetypes' : 'scala'
-\ }}
-NeoBundleLazy 'groenewege/vim-less', {
-\ 'autoload': {
-\   'filetypes' : 'less'
-\ }}
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'groenewege/vim-less'
 NeoBundleLazy 'pangloss/vim-javascript', {
 \ 'autoload': {
 \   'filetypes' : 'javascript'
 \ }}
-NeoBundleLazy 'leafgarland/typescript-vim', {
-\ 'autoload': {
-\   'filetypes' : 'typescript'
-\ }}
+NeoBundle 'leafgarland/typescript-vim'
 " }}}
 
 " ### 何かを実行 ### {{{
