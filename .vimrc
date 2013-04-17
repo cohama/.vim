@@ -295,7 +295,7 @@ NeoBundleLazy 'Shougo/vimfiler', {
 \ 'autoload' : {
 \   'commands' : [{'name' : 'VimFiler',
 \                  'complete' : 'customlist,vimfiler#complete' },
-\                 'VimFilerBufferDir', 'VimFilerCurrentDir', 'VimFilerSplit']
+\                 'VimFilerBufferDir', 'VimFilerCurrentDir', 'VimFilerSplit', 'VimFilerExplorer']
 \ }}
 
 " 一時ファイル的な
@@ -739,11 +739,23 @@ nnoremap [VimFiler]<CR> :<C-u>VimFiler<CR>
 nnoremap [VimFiler]s :<C-u>VimFilerSplit<CR>
 nnoremap [VimFiler]b :<C-u>VimFilerBufferDir<CR>
 nnoremap [VimFiler]c :<C-u>VimFilerCurrentDir<CR>
+nnoremap [VimFiler]e :<C-u>VimFilerExplorer<CR>
 let g:vimfiler_safe_mode_by_default = 0
 autocmd myautocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
+  if s:is_unicode
+    " Like Textmate icons.
+    let g:vimfiler_tree_leaf_icon = ' '
+    let g:vimfiler_tree_opened_icon = '▾'
+    let g:vimfiler_tree_closed_icon = '▸'
+    let g:vimfiler_file_icon = '-'
+    let g:vimfiler_readonly_file_icon = '✗'
+    let g:vimfiler_marked_file_icon = '✓'
+  endif
   nmap <buffer> ; <Plug>(vimfiler_toggle_mark_current_line)
   xmap <buffer> ; <Plug>(vimfiler_toggle_mark_selected_lines)
+  nnoremap <silent><buffer> <C-L> :<C-U>tabn<CR>
+  nmap <silent><buffer> <Leader><C-L> <Plug>(vimfiler_redraw_screen)
 endfunction
 " }}}
 
