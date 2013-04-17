@@ -649,7 +649,7 @@ nnoremap U :<C-u>Unite<Space>
 nnoremap <Leader>u <Nop>
 nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite grep -no-quit<CR>
-nnoremap <silent> <Leader>f :<C-u>Unite file_rec<CR>
+nnoremap <silent> <Leader>f :<C-u>Unite file_rec/async<CR>
 nnoremap <silent> <Leader>ur :<C-u>UniteResume<CR>
 nnoremap <silent> <Leader>uf :<C-u>Unite file_mru<CR>
 nnoremap <silent> <Leader>ub :<C-u>Unite bookmark -default-action=vimfiler -no-start-insert<CR>
@@ -669,6 +669,10 @@ function! s:unite_my_settings()
   noremap <silent><buffer><expr> F unite#smart_map("f", unite#do_action('tabvimfiler'))
   nmap <buffer> ; <Plug>(unite_toggle_mark_current_candidate)
   xmap <buffer> ; <Plug>(unite_toggle_mark_selected_candidates)
+  nnoremap <silent><buffer> <C-L> :<C-U>tabn<CR>
+  nnoremap <silent><buffer> <C-H> :<C-U>tabp<CR>
+  nmap <silent><buffer> <Leader><C-L> <Plug>(unite_redraw)
+  imap <silent><buffer> <C-N> <Plug>(unite_select_next_line)<Esc>
 endfunction
 " }}}
 
