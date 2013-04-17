@@ -684,7 +684,15 @@ autocmd myautocmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR
 
 " gitv の設定 {{{
 autocmd myautocmd FileType git setlocal foldlevel=99
+autocmd myautocmd FileType gitv call GitvSettings()
+function! GitvSettings()
+  if !exists('b:did_gitv_set')
+    autocmd myautocmd WinEnter <buffer> normal u
+  endif
+  let b:did_gitv_set = 1
+endfunction
 nnoremap [Git]k :<C-u>Gitv --all<CR>
+nnoremap [Git]K :<C-u>Gitv!<CR>
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
 " }}}
