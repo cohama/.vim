@@ -51,8 +51,8 @@ hi SpecialKey      ctermfg=61
 " vim views
 hi Cursor          ctermfg=16   ctermbg=253
 hi CursorIM        ctermfg=16   ctermbg=124
-hi CursorLine                   ctermbg=236  cterm=none
-hi CursorColumn                 ctermbg=236
+hi CursorLine                   ctermbg=232  cterm=none
+hi CursorColumn                 ctermbg=232
 hi ColorColumn                  ctermbg=23
 hi LineNr          ctermfg=246  ctermbg=233
 hi CursorLineNr    ctermfg=227  ctermbg=233
