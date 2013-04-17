@@ -249,6 +249,7 @@ NeoBundleLazy 'h1mesuke/vim-alignta', {
 
 " テキストオブジェクトのまわりに文字を挿入
 NeoBundle 'tpope/vim-surround'
+
 " コメント化
 NeoBundle 'tomtom/tcomment_vim'
 
@@ -692,6 +693,11 @@ let g:Gitv_TruncateCommitSubjects = 1
 let g:gitgutter_on_bufenter = 0
 nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
 nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
+" }}}
+
+" tcomment の設定 {{{
+let g:tcommentMapLeader1 = ''
+let g:tcommentMapLeader2 = ''
 " }}}
 
 "indent-guides の設定 {{{
