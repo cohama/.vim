@@ -501,10 +501,8 @@ if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+inoremap <expr><C-h> neocomplcache#smart_close_popup()
 autocmd myautocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
