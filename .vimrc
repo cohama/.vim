@@ -155,6 +155,17 @@ else
 endif
 " }}}
 
+" ### Command ### {{{
+" コマンドライン補完
+set wildmenu
+
+" コマンドライン補完の方法
+set wildmode=longest:full,full
+
+" コマンドの履歴の保存数
+set history=500
+" }}}
+
 " ### Miscellaneous ### {{{
 " <C-a> や <C-x> で数値を増減させるときに8進数を無効にする
 set nrformats-=octal
@@ -162,12 +173,6 @@ set nrformats-=octal
 " 行をまたいでカーソル移動
 set whichwrap&
 set whichwrap+=h,l
-
-" コマンドライン補完
-set wildmenu
-
-" コマンドライン補完の方法
-set wildmode=longest:full,full
 
 " 日本語ヘルプ
 set helplang=ja
