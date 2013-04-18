@@ -195,7 +195,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 " ### fundamental ### {{{
 " プラグイン管理
-NeoBundle 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " アレをアレする
 NeoBundleLazy 'Shougo/unite.vim', {
@@ -256,20 +256,30 @@ NeoBundleLazy 'h1mesuke/vim-alignta', {
 \ }}
 
 " テキストオブジェクトのまわりに文字を挿入
-NeoBundle 'tpope/vim-surround'
+NeoBundleLazy 'tpope/vim-surround', {
+\ 'autoload' : {
+\   'mappings' : [['nx', 'ys'], ['nx', 'ds'], ['nx', 'cs'], ['x', 'S']]
+\ }}
 
 " コメント化
-NeoBundle 'tomtom/tcomment_vim'
+NeoBundleLazy 'tomtom/tcomment_vim', {
+\ 'autoload' : {
+\   'mappings' : [['nx', 'gc'], ['nx', 'gC']]
+\ }}
 
 " インデントが同じ物をテキストオブジェクト化
-NeoBundle 'kana/vim-textobj-indent', {
-\ 'depends' : 'kana/vim-textobj-user'
-\ }
+NeoBundleLazy 'kana/vim-textobj-indent', {
+\ 'depends' : 'kana/vim-textobj-user',
+\ 'autoload' : {
+\   'mappings' : [['ox', 'ii'], ['ox', 'ai'], ['ox', 'iI'], ['ox', 'aI']]
+\ }}
 
 " 全体をテキストオブジェクト化
-NeoBundle 'kana/vim-textobj-entire', {
-\ 'depends' : 'kana/vim-textobj-user'
-\ }
+NeoBundleLazy 'kana/vim-textobj-entire', {
+\ 'depends' : 'kana/vim-textobj-user',
+\ 'autoload' : {
+\   'mappings' : [['ox', 'ie'], ['ox', 'ae']]
+\ }}
 
 " ヤンクしたものと対称の文字列を置き換える
 NeoBundleLazy 'kana/vim-operator-replace', {
@@ -289,6 +299,7 @@ NeoBundleLazy 'tyru/operator-camelize.vim', {
 " ### ファイル操作など ### {{{
 " ディレクトリ、ファイルをツリー表示
 NeoBundleLazy 'scrooloose/nerdtree', {
+\ 'augroup' : 'NERDTreeHijackNetrw',
 \ 'autoload' : {
 \   'commands' : ['NERDTreeToggle', 'NERDTreeFind']
 \ }}
@@ -317,10 +328,14 @@ NeoBundleLazy 'Shougo/junkfile.vim', {
 
 " ### 移動 ### {{{
 " CamelCase や snake_case での単語移動
-NeoBundle 'bkad/CamelCaseMotion'
+NeoBundleLazy 'bkad/CamelCaseMotion', {
+\ 'autoload' : {
+\   'mappings' : [',w', ',e', ',b', ',ge']}}
 
 " カーソルを任意の位置にジャンプさせる
-NeoBundle 'EasyMotion'
+NeoBundleLazy 'EasyMotion', {'autoload' : {
+\ 'mappings' : ['\\w', '\\b', '\\e', '\\f', '\\F', '\\t', '\\T']
+\ }}
 
 " 記号とかに邪魔されずに w, b, e できる
 NeoBundleLazy 'kana/vim-smartword', {
@@ -330,7 +345,7 @@ NeoBundleLazy 'kana/vim-smartword', {
 
 " f のあと ; のかわりに f 連打で移動できる
 NeoBundleLazy 'rhysd/clever-f.vim', { 'autoload' : {
-\ 'mappings' : ['<Plug>(clever-f-f)']
+\ 'mappings' : ['<Plug>(clever-f-f)', '<Plug>(clever-f-F)', '<Plug>(clever-f-t)', '<Plug>(clever-f-T)']
 \ }}
 
 " 選択したところを検索
@@ -347,9 +362,10 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " GUI 用カラースキームを変換できる
-NeoBundleLazy 'godlygeek/csapprox', {'autoload' : {
-      \   'commands': 'CSApproxSnapshot',
-      \ }}
+NeoBundleLazy 'godlygeek/csapprox', {
+\ 'autoload' : {
+\   'commands': 'CSApproxSnapshot',
+\ }}
 
 " color schemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -377,7 +393,9 @@ NeoBundleLazy 'cohama/easy-colorcolumn', {
 
 " ### Git ### {{{
 " 直接 Git コマンド実行など
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive', {
+\ 'augroup': 'fugitive',
+\ }
 
 " gitk っぽいものを Vim で
 NeoBundleLazy 'gregsexton/gitv', {
@@ -418,7 +436,11 @@ NeoBundle 'Shougo/vimshell', {
 \ }}
 
 " その場で実行
-NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-quickrun', {
+\ 'autoload' : {
+\   'mappings' : [['n', '\r']],
+\   'commands' : ['QuickRun']
+\ }}
 
 " 独自のモードを設定
 NeoBundle 'thinca/vim-submode'
@@ -441,9 +463,15 @@ NeoBundle 'osyo-manga/vim-watchdogs', {
 " }}}
 
 " ### Unite Souceses ### {{{
-NeoBundle "osyo-manga/unite-quickfix"
+NeoBundleLazy "osyo-manga/unite-quickfix", {
+\ 'autoload' : {
+\   'unite_sources': ['quickfix']
+\ }}
 
-NeoBundle 'tsukkee/unite-help'
+NeoBundle 'tsukkee/unite-help', {
+\ 'autoload' : {
+\   'unite_sources': ['help']
+\ }}
 
 NeoBundleLazy 'ujihisa/unite-rake', {
 \ 'autoload' : {
@@ -486,15 +514,14 @@ NeoBundleLazy 'thinca/vim-scouter', {
 " NeoBundle の設定 {{{
 filetype plugin indent on
 " Installation check.
-if neobundle#exists_not_installed_bundles()
-  echomsg 'Not installed bundles : ' .
-        \ string(neobundle#get_not_installed_bundle_names())
-  echomsg 'Please execute ":NeoBundleInstall" command.'
-  "finish
+NeoBundleCheck
+if !has('vim_starting')
+  call neobundle#call_hook('on_source')
 endif
 nnoremap <Leader>une :Unite neobundle/
 nmap <Leader>uni <Leader>so:Unite neobundle/install<CR>
 nmap <Leader>unI <Leader>so:Unite neobundle/install:!<CR>
+nmap <Leader>unu <Leader>so:Unite neobundle/update:all<CR>
 " }}}
 
 " neocomplcache の設定 {{{
