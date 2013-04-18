@@ -754,6 +754,7 @@ nnoremap [VimFiler]s :<C-u>VimFilerSplit<CR>
 nnoremap [VimFiler]b :<C-u>VimFilerBufferDir<CR>
 nnoremap [VimFiler]c :<C-u>VimFilerCurrentDir<CR>
 nnoremap [VimFiler]e :<C-u>VimFilerExplorer<CR>
+nnoremap [VimFiler]E :<C-u>VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 let g:vimfiler_safe_mode_by_default = 0
 autocmd myautocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
