@@ -1614,6 +1614,18 @@ abbreviate Ocaml OCaml
 " see: https://sites.google.com/site/fudist/Home/vim-nihongo-ban/tips#TOC--7
 xnoremap <silent> <C-A> :ContinuousNumber<CR>
 command! -count ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . "\<C-A>"|call cursor('.', c)|endfor
+
+" 今開いているファイルを削除
+function! DeleteMe(force)
+  if a:force || !&modified
+    let filename = expand('%')
+    bdelete!
+    call delete(filename)
+  else
+    echomsg 'File modified'
+  endif
+endfunction
+command! -bang -nargs=0 DeleteMe call DeleteMe(<bang>0)
 "}}}
 
 " ColorScheme {{{
