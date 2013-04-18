@@ -710,6 +710,7 @@ function! s:unite_my_settings()
   nnoremap <silent><buffer> <C-H> :<C-U>tabp<CR>
   nmap <silent><buffer> <Leader><C-L> <Plug>(unite_redraw)
   imap <silent><buffer> <C-N> <Plug>(unite_select_next_line)<Esc>
+  nmap <silent><buffer> <C-N> j
 endfunction
 " }}}
 
