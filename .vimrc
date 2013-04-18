@@ -688,6 +688,9 @@ nnoremap <silent> <Leader>ur :<C-u>UniteResume<CR>
 nnoremap <silent> <Leader>uf :<C-u>Unite file_mru<CR>
 nnoremap <silent> <Leader>ub :<C-u>Unite bookmark -default-action=vimfiler -no-start-insert<CR>
 nnoremap <silent> <Leader>uB :<C-u>UniteBookmarkAdd<CR>
+cnoremap <expr> / (getcmdline() == '' && getcmdtype() == '/') ? "\<Esc>:Unite -auto-preview line<CR>" : "/"
+nnoremap [I :<C-U>UniteWithCursorWord line:backward<CR>
+nnoremap ]I :<C-U>UniteWithCursorWord line:all<CR>
 let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
 autocmd myautocmd FileType unite call s:unite_my_settings()
