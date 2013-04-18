@@ -900,20 +900,17 @@ nnoremap <silent> <Esc><Esc> :<C-u>noh<CR>
 " terminal でも Meta キーを使いたい
 if s:is_unix && s:is_terminal
   " Use meta keys in console.
-  function! s:use_meta_keys()  " {{{
-    for i in map(
-    \   range(char2nr('a'), char2nr('z'))
-    \ + range(char2nr('A'), char2nr('Z'))
-    \ + range(char2nr('0'), char2nr('9'))
-    \ , 'nr2char(v:val)')
-      " <ESC>O do not map because used by arrow keys.
-      if i != 'O'
-        execute 'nmap <ESC>' . i '<M-' . i . '>'
-      endif
-    endfor
-  endfunction  " }}}
+  for i in map(
+  \   range(char2nr('a'), char2nr('z'))
+  \ + range(char2nr('A'), char2nr('Z'))
+  \ + range(char2nr('0'), char2nr('9'))
+  \ , 'nr2char(v:val)')
+    " <ESC>O do not map because used by arrow keys.
+    if i != 'O'
+      execute 'nmap <ESC>' . i '<M-' . i . '>'
+    endif
+  endfor
 
-  call s:use_meta_keys()
   map <NUL> <C-Space>
   map! <NUL> <C-Space>
 endif
