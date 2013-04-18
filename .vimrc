@@ -963,10 +963,8 @@ runtime macros/matchit.vim
 xnoremap < <gv
 xnoremap > >gv
 
-function! MyScouter()
-  Scouter ~/.vim/.vimrc ~/.vim/.gvimrc
-endfunction
-command! MyScouter call MyScouter()
+" 戦闘力(俺用)
+command! MyScouter Scouter ~/.vim/.vimrc ~/.vim/.gvimrc
 
 " 現在のバッファが空っぽならば :drop それ以外なら :tab drop になるコマンド
 function! SmartDrop(tabedit_args)
