@@ -968,12 +968,16 @@ function! MyScouter()
 endfunction
 command! MyScouter call MyScouter()
 
-" 現在のバッファが無名ならば :edit それ以外なら :tabedit になるコマンド
-function! TabeditOrEdit(tabedit_args)
-  let edit_cmd = expand('%') == "" ? "edit " : "tabedit "
-  silent execute edit_cmd . a:tabedit_args
+" 現在のバッファが空っぽならば :drop それ以外なら :tab drop になるコマンド
+function! SmartDrop(tabedit_args)
+  if expand('%') == "" && !&modified
+    let drop_cmd = "drop "
+  else
+    let drop_cmd = "tab drop "
+  endif
+  silent execute drop_cmd . a:tabedit_args
 endfunction
-command! -nargs=* TabeditOrEdit call TabeditOrEdit(<q-args>)
+command! -nargs=* SmartDrop call SmartDrop(<q-args>)
 
 " .vimrc .gvimrc に関する設定
 if s:is_gui
@@ -981,8 +985,8 @@ if s:is_gui
 else
   nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>
 endif
-nnoremap <silent> <Leader>v :<C-u>TabeditOrEdit ~/.vim/.vimrc<CR>
-nnoremap <silent> <Leader>gv :<C-u>TabeditOrEdit ~/.vim/.gvimrc<CR>
+nnoremap <silent> <Leader>v :<C-u>SmartDrop ~/.vim/.vimrc<CR>
+nnoremap <silent> <Leader>gv :<C-u>SmartDrop ~/.vim/.gvimrc<CR>
 
 " magic comment
 function! MagicComment()
