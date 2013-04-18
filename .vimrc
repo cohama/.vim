@@ -1121,6 +1121,18 @@ if !empty(maparg("\<NL>", 'c'))
   cunmap <NL>
 endif
 
+" / で検索するときに単語境界をトグルする
+cnoremap <C-\><C-i> <C-\>eToggleWordBounds(getcmdtype(), getcmdline())<CR>
+function! ToggleWordBounds(type, text)
+  if a:type == '/' || a:type == '?'
+    if a:text =~# '^\\<.*\\>$'
+      return substitute(a:text, '^\\<\(.*\)\\>$', '\1', '')
+    else
+      return '\<' . a:text . '\>'
+    endif
+  endif
+endfunction
+
 " タブページの移動
 function! MoveTabPage(dir)
   if a:dir == "right"
