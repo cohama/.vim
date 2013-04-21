@@ -1161,6 +1161,8 @@ function! ToggleWordBounds(type, line)
     else
       return '\<' . a:line . '\>'
     endif
+  else
+    return a:line
   endif
 endfunction
 
