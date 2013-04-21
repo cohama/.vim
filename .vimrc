@@ -9,7 +9,7 @@ let s:is_windows = has('win32') || has('win64')
 let s:is_unix = has('unix')
 let s:is_gui = has('gui_running')
 let s:is_terminal = !s:is_gui
-let s:is_unicode = (&termencoding ==# 'utf-8' || &encoding == 'utf-8')
+let s:is_unicode = (&termencoding ==# 'utf-8' || &encoding == 'utf-8') && !(exists('g:discard_unicode') && g:discard_unicode != 0)
 
 " must be set with multibyte strings
 scriptencoding utf-8
@@ -591,6 +591,9 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeWinSize = 36
 let NERDTreeMinimalUI = 1
 let NERDTreeChDirMode = 1
+if !s:is_unicode
+  let NERDTreeDirArrows = 0
+endif
 " }}}
 
 " surrond.vim の設定 {{{
