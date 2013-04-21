@@ -331,7 +331,7 @@ NeoBundleLazy 'bkad/CamelCaseMotion', {
 
 " カーソルを任意の位置にジャンプさせる
 NeoBundleLazy 'EasyMotion', {'autoload' : {
-\ 'mappings' : ['\\w', '\\b', '\\e', '\\f', '\\F', '\\t', '\\T']
+\ 'mappings' : ['\\w', '\\b', '\\e', '\\ge', '\\W', '\\B', '\\E', '\\gE', '\\f', '\\F', '\\t', '\\T']
 \ }}
 
 " 記号とかに邪魔されずに w, b, e できる
@@ -810,6 +810,33 @@ endfunction
 
 " JunkFile の設定 {{{
 let g:junkfile#edit_command = "tabedit"
+" }}}
+
+" EasyMotion {{{
+map ;w \\w
+map ;b \\b
+map ;e \\e
+map ;ge \\ge
+map ;W \\W
+map ;B \\B
+map ;E \\E
+map ;gE \\gE
+map ;f \\f
+map ;F \\F
+map ;t \\t
+map ;T \\T
+sunmap ;w
+sunmap ;b
+sunmap ;e
+sunmap ;ge
+sunmap ;W
+sunmap ;B
+sunmap ;E
+sunmap ;gE
+sunmap ;f
+sunmap ;F
+sunmap ;t
+sunmap ;T
 " }}}
 
 " smartword{{{
