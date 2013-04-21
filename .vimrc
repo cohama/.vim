@@ -447,7 +447,10 @@ NeoBundle 'thinca/vim-quickrun', {
 \ }}
 
 " 独自のモードを設定
-NeoBundle 'thinca/vim-submode'
+NeoBundleLazy 'thinca/vim-submode', {
+\ 'autoload' : {
+\   'mappings' : [['n', "\<C-W>+"], ['n', "\<C-W>-"], ['n', "\<C-W>>"], ['n', "\<C-W><"]]
+\ }}
 
 " Vim から URL を開く
 NeoBundleLazy 'tyru/open-browser.vim', {
@@ -904,15 +907,16 @@ autocmd myautocmd BufWinEnter Out setlocal winfixheight
 " }}}
 
 " submode.vim {{{
-let g:submode_leave_with_key = 1
-call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
-call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
-call submode#map('winsize', 'n', '', '>', '<C-w>>')
-call submode#map('winsize', 'n', '', '<', '<C-w><')
-call submode#map('winsize', 'n', '', '+', '<C-w>+')
-call submode#map('winsize', 'n', '', '-', '<C-w>-')
+let g:submode_keep_leaving_key = 1
+let g:submode_timeout = 0
+call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
+call submode#enter_with('winsize', 'n', '', '<C-W><', '<C-W><')
+call submode#enter_with('winsize', 'n', '', '<C-W>+', '<C-W>+')
+call submode#enter_with('winsize', 'n', '', '<C-W>-', '<C-W>-')
+call submode#map('winsize', 'n', '', '>', '<C-W>>')
+call submode#map('winsize', 'n', '', '<', '<C-W><')
+call submode#map('winsize', 'n', '', '+', '<C-W>+')
+call submode#map('winsize', 'n', '', '-', '<C-W>-')
 " }}}
 
 " open-browser {{{
