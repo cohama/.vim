@@ -1157,12 +1157,12 @@ endif
 
 " / で検索するときに単語境界をトグルする
 cnoremap <C-\><C-i> <C-\>eToggleWordBounds(getcmdtype(), getcmdline())<CR>
-function! ToggleWordBounds(type, text)
+function! ToggleWordBounds(type, line)
   if a:type == '/' || a:type == '?'
-    if a:text =~# '^\\<.*\\>$'
-      return substitute(a:text, '^\\<\(.*\)\\>$', '\1', '')
+    if a:line =~# '^\\<.*\\>$'
+      return substitute(a:line, '^\\<\(.*\)\\>$', '\1', '')
     else
-      return '\<' . a:text . '\>'
+      return '\<' . a:line . '\>'
     endif
   endif
 endfunction
