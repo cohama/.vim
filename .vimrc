@@ -255,7 +255,7 @@ NeoBundleLazy 'h1mesuke/vim-alignta', {
 " テキストオブジェクトのまわりに文字を挿入
 NeoBundleLazy 'tpope/vim-surround', {
 \ 'autoload' : {
-\   'mappings' : [['nx', 'ys'], ['nx', 'ds'], ['nx', 'cs'], ['x', 'S']]
+\   'mappings' : [['n', 'ys'], ['n', 'ds'], ['n', 'cs'], ['x', 'S']]
 \ }}
 
 " コメント化
