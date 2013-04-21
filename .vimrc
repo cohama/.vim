@@ -1678,6 +1678,11 @@ function! DeleteMe(force)
   endif
 endfunction
 command! -bang -nargs=0 DeleteMe call DeleteMe(<bang>0)
+
+" () まで消すを便利に
+onoremap ) t)
+onoremap ( T(
+onoremap } ]}
 "}}}
 
 " ColorScheme {{{
