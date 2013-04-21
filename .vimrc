@@ -243,6 +243,13 @@ NeoBundleLazy 'kana/vim-smartinput', {
 \ 'autoload' : {
 \   'insert' : 1
 \ }}
+
+" echo area に情報を表示
+NeoBundleLazy 'Shougo/echodoc', {
+\ 'autoload' : {
+\   'insert' : 1
+\ }}
+
 " }}}
 
 " ### 編集を便利にする ### {{{
@@ -929,6 +936,10 @@ call smartinput#map_to_trigger('i', '*', '*', '*')
 call smartinput#define_rule({'at': '(\%#)', 'char': '*', 'input': '**<Left>', 'filetype': ['ocaml']})
 call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<BS>', 'input': '<BS><Del>', 'filetype': ['ocaml']})
 call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml', 'scala']})
+" }}}
+
+" echodoc {{{
+let g:echodoc_enable_at_startup = 1
 " }}}
 
 " Rsense {{{
