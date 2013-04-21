@@ -1006,13 +1006,14 @@ xnoremap g/ :s/\<<C-r><C-w>\>//g<Left><Left>
 xnoremap g? :s/\<<C-R><C-w>\>//gc<Left><Left><Left>
 
 " カーソル位置の単語をハイライト
-function! HilightWordAtCursor()
+function! HilightWordAtCursor(word)
   let cursor_pos = getpos(".")
-  normal! yiw
-  let @/ = @0
+  let @" = a:word
+  let @/ = a:word
   call setpos(".", cursor_pos)
 endfunction
-nnoremap <silent> gn :<C-u>call HilightWordAtCursor()<CR>:set hlsearch<CR>
+nnoremap <silent> gn :<C-U>call HilightWordAtCursor(expand("<cword>"))<CR>:set hlsearch<CR>
+xnoremap <silent> gn y:<C-U>call HilightWordAtCursor("<C-R>0")<CR>:set hlsearch<CR>
 
 " % コマンドの拡張
 runtime macros/matchit.vim
