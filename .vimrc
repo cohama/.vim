@@ -305,7 +305,7 @@ NeoBundleLazy 'tyru/operator-camelize.vim', {
 
 " ### ファイル操作など ### {{{
 " ディレクトリ、ファイルをツリー表示
-NeoBundleLazy 'scrooloose/nerdtree', {
+NeoBundle 'scrooloose/nerdtree', {
 \ 'augroup' : 'NERDTreeHijackNetrw',
 \ 'autoload' : {
 \   'commands' : ['NERDTreeToggle', 'NERDTreeFind']
@@ -405,7 +405,7 @@ NeoBundle 'tpope/vim-fugitive', {
 \ }
 
 " gitk っぽいものを Vim で
-NeoBundleLazy 'gregsexton/gitv', {
+NeoBundle 'gregsexton/gitv', {
 \ 'depends' : 'vim-fugitive',
 \ 'autoload' : {
 \   'commands' : ['Gitv']
