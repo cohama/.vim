@@ -1701,6 +1701,14 @@ function! DeleteMe(force)
 endfunction
 command! -bang -nargs=0 DeleteMe call DeleteMe(<bang>0)
 
+" 今開いているファイルをリネーム
+function! RenameMe(newFileName)
+  let currentFileName = expand('%')
+  execute 'saveas ' . a:newFileName
+  call delete(currentFileName)
+endfunction
+command! -nargs=1 RenameMe call RenameMe(<q-args>)
+
 " () まで消すを便利に
 onoremap ) t)
 onoremap ( T(
