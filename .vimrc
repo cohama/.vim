@@ -1721,6 +1721,20 @@ command! -nargs=1 RenameMe call RenameMe(<q-args>)
 onoremap ) t)
 onoremap ( T(
 onoremap } ]}
+
+" 行末の空白とか最終行の空行を削除
+function! RemoveUnwantedSpaces()
+  %s/\s\+$//e
+  while 1
+    let lastline = getline('$')
+    if lastline =~ '^\s*$' && line('$') != 1
+      $delete
+    else
+      break
+    endif
+  endwhile
+endfunction
+command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
 "}}}
 
 " ColorScheme {{{
