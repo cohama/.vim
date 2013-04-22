@@ -738,7 +738,7 @@ autocmd myautocmd FileType git setlocal foldlevel=99
 autocmd myautocmd FileType gitv call GitvSettings()
 function! GitvSettings()
   if !exists('b:did_gitv_set')
-    autocmd myautocmd WinEnter <buffer> normal u
+    autocmd WinEnter <buffer> normal u
   endif
   let b:did_gitv_set = 1
 endfunction
