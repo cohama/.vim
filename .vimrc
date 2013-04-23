@@ -186,6 +186,9 @@ set keywordprg=:help
 
 " swap への書き込みや CursorHold 発生の間隔
 set updatetime=1000
+
+" いろんなコマンドの後にカーソルを戦闘に移動させない
+set nostartofline
 " }}}
 " }}}
 
