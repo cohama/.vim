@@ -931,6 +931,12 @@ xmap gx <Plug>(openbrowser-smart-search)
 " watchdogs {{{
 call watchdogs#setup(g:quickrun_config)
 let g:watchdogs_check_BufWritePost_enable = 1
+let g:watchdogs_check_BufWritePost_enables = {
+\ 'scala' : 0
+\ }
+if !executable('jshint')
+  let g:watchdogs_check_BufWritePost_enables.javascript = 0
+endif
 " }}}
 
 " smartinput {{{
