@@ -420,6 +420,12 @@ NeoBundle 'gregsexton/gitv', {
 
 " git のステータスを行の横に表示
 NeoBundle 'airblade/vim-gitgutter'
+
+" git のコミットメッセージをバルーンで表示
+NeoBundleLazy 'rhysd/git-messenger.vim', {
+\ 'autoload' : {
+\   'mappings' : ['<Plug>(git-messenger-commit-summary)', '<Plug>(git-messenger-commit-message)']
+\ }}
 " }}}
 
 " ### Language ### {{{
@@ -761,6 +767,11 @@ let g:Gitv_TruncateCommitSubjects = 1
 let g:gitgutter_eager = 0
 nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
 nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
+" }}}
+
+" git-messenger {{{
+nmap [Git]m <Plug>(git-messenger-commit-summary)
+nmap [Git]M <Plug>(git-messenger-commit-message)
 " }}}
 
 " tcomment の設定 {{{
