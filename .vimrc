@@ -966,6 +966,13 @@ call smartinput#map_to_trigger('i', '*', '*', '*')
 call smartinput#define_rule({'at': '(\%#)', 'char': '*', 'input': '**<Left>', 'filetype': ['ocaml']})
 call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<BS>', 'input': '<BS><Del>', 'filetype': ['ocaml']})
 call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml', 'scala']})
+
+call smartinput#map_to_trigger('c', 'C', 'C', 'C')
+call smartinput#map_to_trigger('c', 'D', 'D', 'D')
+call smartinput#map_to_trigger('c', 'I', 'I', 'I')
+call smartinput#define_rule({'at': 'Unite \%#', 'char': 'D', 'input': '<C-u>UniteWithInputDirectory<Space>', 'mode': ':'})
+call smartinput#define_rule({'at': 'Unite \%#', 'char': 'I', 'input': '<C-u>UniteWithInput<Space>', 'mode': ':'})
+call smartinput#define_rule({'at': 'Unite \%#', 'char': 'C', 'input': '<C-u>UniteWithCursorWord<Space>', 'mode': ':'})
 " }}}
 
 " echodoc {{{
