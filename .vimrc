@@ -711,6 +711,7 @@ nnoremap <silent> <Leader>uB :<C-u>UniteBookmarkAdd<CR>
 cnoremap <expr> / (getcmdline() == '' && getcmdtype() == '/') ? "<BS>:Unite line<CR>" : "/"
 nnoremap [I :<C-U>UniteWithCursorWord line:backward<CR>
 nnoremap ]I :<C-U>UniteWithCursorWord line:all<CR>
+nnoremap <Leader>/ :<C-u>UniteWithInput line<CR><C-r>/<CR>
 let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
 autocmd myautocmd FileType unite call s:unite_my_settings()
