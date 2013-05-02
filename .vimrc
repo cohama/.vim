@@ -696,6 +696,10 @@ nnoremap [Git]C :<C-u>Gcommit -av<CR><C-w>H
 nnoremap [Git]p :<C-u>Git push<CR>
 nnoremap [Git]f :<C-u>Git fetch<CR>
 nnoremap [Git]b :<C-u>Gblame<CR>
+autocmd myautocmd FileType git call GitSettings()
+function! GitSettings()
+  setlocal foldtext=fugitive#foldtext()
+endfunction
 " }}}
 
 " unite の設定 {{{
