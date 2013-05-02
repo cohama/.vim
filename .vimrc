@@ -740,10 +740,16 @@ autocmd myautocmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR
 " }}}
 
 " gitv の設定 {{{
-autocmd myautocmd FileType git setlocal foldlevel=99
+autocmd myautocmd FileType git setlocal nofoldenable foldlevel=0
 autocmd myautocmd FileType gitv call GitvSettings()
 function! GitvSettings()
   nmap <buffer> U ugg<CR>
+  nnoremap <silent><buffer> J :<C-u>windo call GitToggleFolding()<CR>1<C-w>w
+  function! GitToggleFolding()
+    if &filetype ==# 'git'
+      setlocal foldenable!
+    endif
+  endfunction
 endfunction
 nnoremap [Git]k :<C-u>Gitv --all<CR>
 nnoremap [Git]K :<C-u>Gitv!<CR>
