@@ -655,7 +655,6 @@ function! s:vimshell_my_settings()
   call vimshell#altercmd#define('ll', 'ls -alF')
   call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
   call vimshell#altercmd#define('be', 'bundle exec')
-  nnoremap <buffer> <silent> <C-l> :tabn<CR>
   inoremap <buffer> <silent> <C-l> <Esc>:tabn<CR>
   inoremap <buffer> <silent> <C-h> <Esc>:tabp<CR>
   inoremap <buffer> <expr><silent> <C-p> unite#sources#vimshell_history#start_complete(!0)
@@ -725,11 +724,6 @@ function! s:unite_my_settings()
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
   noremap <silent><buffer><expr> f unite#smart_map("f", unite#do_action('vimfiler'))
   noremap <silent><buffer><expr> F unite#smart_map("f", unite#do_action('tabvimfiler'))
-  nmap <buffer> ; <Plug>(unite_toggle_mark_current_candidate)
-  xmap <buffer> ; <Plug>(unite_toggle_mark_selected_candidates)
-  nnoremap <silent><buffer> <C-L> :<C-U>tabn<CR>
-  nnoremap <silent><buffer> <C-H> :<C-U>tabp<CR>
-  nmap <silent><buffer> <Leader><C-L> <Plug>(unite_redraw)
   imap <silent><buffer> <C-N> <Plug>(unite_select_next_line)<Esc>
   nmap <silent><buffer> <C-N> j
 endfunction
@@ -825,10 +819,6 @@ function! s:vimfiler_my_settings()
     let g:vimfiler_readonly_file_icon = '✗'
     let g:vimfiler_marked_file_icon = '✓'
   endif
-  nmap <buffer> ; <Plug>(vimfiler_toggle_mark_current_line)
-  xmap <buffer> ; <Plug>(vimfiler_toggle_mark_selected_lines)
-  nnoremap <silent><buffer> <C-L> :<C-U>tabn<CR>
-  nmap <silent><buffer> <Leader><C-L> <Plug>(vimfiler_redraw_screen)
 endfunction
 " }}}
 
@@ -1009,28 +999,12 @@ if s:is_unix && s:is_terminal
 endif
 
 " タブページの設定
-nnoremap <silent> <C-T><C-L> :tabn<CR>
-nnoremap <silent> <C-T>l :tabn<CR>
-nnoremap <silent> <C-L> :tabn<CR>
-nnoremap <silent> <C-T><C-H> :tabp<CR>
-nnoremap <silent> <C-T>h :tabp<CR>
-nnoremap <silent> <C-H> :tabp<CR>
-nnoremap <silent> <C-T><C-W> :tabclose<CR>
-nnoremap <silent> <C-T>w :tabclose<CR>
-nnoremap <silent> <C-T>W :tabclose!<CR>
-nnoremap <silent> <C-T><C-O> :tabonly<CR>
-nnoremap <silent> <C-T>o :tabonly<CR>
-nnoremap <silent> <C-T><C-N> :tabnew<CR>
-nnoremap <silent> <C-T>n :tabnew<CR>
-nnoremap <C-T><C-e> :tabedit<Space>
-nnoremap <C-T>e :tabedit<Space>
-
-nnoremap <silent> <M-l> :tabnext<CR>
-nnoremap <silent> <M-h> :tabprevious<CR>
-nnoremap <silent> <M-n> :tabnew<CR>
-nnoremap <silent> <M-w> :tabclose<CR>
-nnoremap <silent> <M-W> :tabonly<CR>
-nnoremap <M-e> :tabedit<Space>
+nnoremap <silent> <M-l> :<C-u>tabnext<CR>
+nnoremap <silent> <M-h> :<C-u>tabprevious<CR>
+nnoremap <silent> <M-n> :<C-u>tabnew<CR>
+nnoremap <silent> <M-w> :<C-u>tabclose<CR>
+nnoremap <silent> <M-W> :<C-u>tabonly<CR>
+nnoremap <M-e> :<C-u>tabedit<Space>
 inoremap <silent> <M-l> <Esc>:tabnext<CR>
 inoremap <silent> <M-h> <Esc>:tabprevious<CR>
 
