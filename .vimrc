@@ -153,9 +153,9 @@ set nojoinspaces
 
 " 折り返した行の表示
 if s:is_unicode
-  let &showbreak = "\u21b3 " " this shows <↳>
+  let &showbreak = "\u21b3 "
 else
-  let &showbreak = "+ "
+  let &showbreak = "`-"
 endif
 " }}}
 
