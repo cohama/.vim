@@ -741,11 +741,9 @@ autocmd myautocmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR
 
 " gitv の設定 {{{
 autocmd myautocmd FileType git setlocal foldlevel=99
-autocmd myautocmd TabEnter gitv* call GitvAutoReload()
-function! GitvAutoReload()
-  if &filetype ==# 'gitv'
-    execute "normal ugg\<CR>"
-  endif
+autocmd myautocmd FileType gitv call GitvSettings()
+function! GitvSettings()
+  nmap <buffer> U ugg<CR>
 endfunction
 nnoremap [Git]k :<C-u>Gitv --all<CR>
 nnoremap [Git]K :<C-u>Gitv!<CR>
