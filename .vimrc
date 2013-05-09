@@ -967,6 +967,7 @@ call smartinput#map_to_trigger('i', '*', '*', '*')
 call smartinput#define_rule({'at': '(\%#)', 'char': '*', 'input': '**<Left>', 'filetype': ['ocaml']})
 call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<BS>', 'input': '<BS><Del>', 'filetype': ['ocaml']})
 call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml', 'scala']})
+call smartinput#define_rule({'at': '\[\%#\]', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S', 'filetype': ['javascript']})
 
 call smartinput#map_to_trigger('c', 'C', 'C', 'C')
 call smartinput#map_to_trigger('c', 'D', 'D', 'D')
