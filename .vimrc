@@ -719,6 +719,7 @@ nnoremap <silent> <Leader>uf :<C-u>Unite file_mru<CR>
 nnoremap <silent> <Leader>ub :<C-u>Unite bookmark -default-action=vimfiler -no-start-insert<CR>
 nnoremap <silent> <Leader>uB :<C-u>UniteBookmarkAdd<CR>
 cnoremap <expr> / (getcmdline() == '' && getcmdtype() == '/') ? "<BS>:Unite line<CR>" : "/"
+cnoremap <expr> ? (getcmdline() == '' && getcmdtype() == '?') ? "<BS>:Unite line:backward<CR>" : "?"
 nnoremap [I :<C-U>UniteWithCursorWord line:backward<CR>
 nnoremap ]I :<C-U>UniteWithCursorWord line:all<CR>
 nnoremap <Leader>/ :<C-u>UniteWithInput line<CR><C-r>/<CR>
