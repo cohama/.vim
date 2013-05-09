@@ -697,8 +697,8 @@ nnoremap [Git]s :<C-u>Gstatus<CR>
 nnoremap [Git]d :<C-u>Gdiff<CR>
 nnoremap [Git]a :<C-u>Gwrite<CR>
 nnoremap [Git]A :<C-u>Git add -A<CR>
-nnoremap [Git]c :<C-u>Gcommit -v<CR><C-w>H
-nnoremap [Git]C :<C-u>Gcommit -av<CR><C-w>H
+nnoremap [Git]c :<C-u>Gcommit -v<CR>
+nnoremap [Git]C :<C-u>Gcommit -av<CR>
 nnoremap [Git]p :<C-u>Git push<CR>
 nnoremap [Git]f :<C-u>Git fetch<CR>
 nnoremap [Git]b :<C-u>Gblame<CR>
@@ -1315,10 +1315,11 @@ endfunction
 
 " gitcommit, gitrebase を開いた時
 function! WhenGitCommitOpened()
-  " q で保存して終了
+  wincmd H
+  82wincmd |
   nnoremap <buffer> q ZZ
-  " commit cancel
   nnoremap <buffer> Q ggdGZZ
+  setlocal winfixwidth
 endfunction
 autocmd myautocmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 
