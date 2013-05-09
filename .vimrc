@@ -698,7 +698,7 @@ nnoremap [Git]d :<C-u>Gdiff<CR>
 nnoremap [Git]a :<C-u>Gwrite<CR>
 nnoremap [Git]A :<C-u>Git add -A<CR>
 nnoremap [Git]c :<C-u>Gcommit -v<CR>
-nnoremap [Git]C :<C-u>Gcommit -av<CR>
+nnoremap [Git]C :<C-u>Gcommit --amend<Space>
 nnoremap [Git]p :<C-u>Git push<CR>
 nnoremap [Git]f :<C-u>Git fetch<CR>
 nnoremap [Git]b :<C-u>Gblame<CR>
@@ -975,6 +975,12 @@ call smartinput#map_to_trigger('c', 'I', 'I', 'I')
 call smartinput#define_rule({'at': 'Unite \%#', 'char': 'D', 'input': '<C-u>UniteWithInputDirectory<Space>', 'mode': ':'})
 call smartinput#define_rule({'at': 'Unite \%#', 'char': 'I', 'input': '<C-u>UniteWithInput<Space>', 'mode': ':'})
 call smartinput#define_rule({'at': 'Unite \%#', 'char': 'C', 'input': '<C-u>UniteWithCursorWord<Space>', 'mode': ':'})
+
+call smartinput#map_to_trigger('c', 'c', 'c', 'c')
+call smartinput#map_to_trigger('c', 'm', 'm', 'm')
+call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
+call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
+call smartinput#define_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
 " }}}
 
 " echodoc {{{
