@@ -801,10 +801,10 @@ autocmd myautocmd ColorScheme * exec "hi IndentGuideseven" .
 " }}}
 
 " powerline {{{
-if s:is_windows
-  let g:Powerline_symbols='compatible'
-else
+if s:is_unicode
   let g:Powerline_symbols='fancy'
+else
+  let g:Powerline_symbols='compatible'
 endif
 " }}}
 
