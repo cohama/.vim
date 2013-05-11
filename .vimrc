@@ -743,18 +743,30 @@ autocmd myautocmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR
 " gitv の設定 {{{
 autocmd myautocmd FileType git setlocal nofoldenable foldlevel=0
 autocmd myautocmd FileType gitv call GitvSettings()
+function! GitToggleFolding()
+  if &filetype ==# 'git'
+    setlocal foldenable!
+  endif
+endfunction
+function! GitvGetCurrentHash()
+  return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
+endfunction
 function! GitvSettings()
+  setlocal iskeyword+=/,-
+
   nmap <buffer> U ugg<CR>
+  cnoremap <expr> <C-r><C-h> GitvGetCurrentHash()
   nnoremap <silent><buffer> J :<C-u>windo call GitToggleFolding()<CR>1<C-w>w
-  function! GitToggleFolding()
-    if &filetype ==# 'git'
-      setlocal foldenable!
-    endif
-  endfunction
+  nnoremap <buffer> . :<C-u> <C-r>=GitvGetCurrentHash()<CR><Home>
+  nnoremap <buffer> [Git]r :<C-u>Git rebace <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> [Git]i :<C-u>Git rebace -i <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> [Git]R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR>
+  nnoremap <buffer> [Git]h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR>
+  nnoremap <buffer> [Git]a :<C-u>Git add -A<CR>
+  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
 endfunction
 nnoremap [Git]k :<C-u>Gitv --all<CR>
 nnoremap [Git]K :<C-u>Gitv!<CR>
-let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
 " }}}
 
