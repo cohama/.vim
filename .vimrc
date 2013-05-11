@@ -656,9 +656,8 @@ function! s:vimshell_my_settings()
   call vimshell#altercmd#define('ll', 'ls -alF')
   call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
   call vimshell#altercmd#define('be', 'bundle exec')
-  inoremap <buffer> <silent> <C-l> <Esc>:tabn<CR>
-  inoremap <buffer> <silent> <C-h> <Esc>:tabp<CR>
-  inoremap <buffer> <expr><silent> <C-p> unite#sources#vimshell_history#start_complete(!0)
+  nmap <buffer> H <Plug>(vimshell_move_head)
+  nmap <buffer> S <Plug>(vimshell_change_line)
 endfunction
 nnoremap <Leader>s <Nop>
 nnoremap <silent> <Leader>s<CR> :<C-u>VimShell<CR>
