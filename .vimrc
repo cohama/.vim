@@ -537,9 +537,9 @@ if !has('vim_starting')
   call neobundle#call_hook('on_source')
 endif
 nnoremap <Leader>une :Unite neobundle/
-nnoremap <Leader>uni Unite neobundle/install<CR>
-nnoremap <Leader>unI Unite neobundle/install:!<CR>
-nnoremap <Leader>unu Unite neobundle/update:all<CR>
+nnoremap <Leader>uni :Unite neobundle/install<CR>
+nnoremap <Leader>unI :Unite neobundle/install:!<CR>
+nnoremap <Leader>unu :Unite neobundle/update:all<CR>
 " }}}
 
 " neocomplcache の設定 {{{
