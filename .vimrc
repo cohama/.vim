@@ -357,11 +357,6 @@ NeoBundleLazy 'kana/vim-smartword', {
 \   'mappings' : ["<Plug>(smartword-w)", "<Plug>(smartword-b)", "<Plug>(smartword-e)", "<Plug>(smartword-ge)"]
 \ }}
 
-" f のあと ; のかわりに f 連打で移動できる
-NeoBundleLazy 'rhysd/clever-f.vim', { 'autoload' : {
-\ 'mappings' : ['<Plug>(clever-f-f)', '<Plug>(clever-f-F)', '<Plug>(clever-f-t)', '<Plug>(clever-f-T)']
-\ }}
-
 " 選択したところを検索
 NeoBundleLazy 'thinca/vim-visualstar', { 'autoload' : {
 \ 'mappings' : ['<Plug>(visualstar-*)', '<Plug>(visualstar-#)', '<Plug>(visualstar-g*)', '<Plug>(visualstar-g#)']
@@ -882,18 +877,6 @@ xmap w <Plug>(smartword-w)
 xmap b <Plug>(smartword-b)
 xmap e <Plug>(smartword-e)
 xmap ge <Plug>(smartword-ge)
-" }}}
-
-" clever-f {{{
-let g:clever_f_not_overwrites_standard_mappings = 1
-map f <Plug>(clever-f-f)
-map F <Plug>(clever-f-F)
-map t <Plug>(clever-f-t)
-map T <Plug>(clever-f-T)
-sunmap f
-sunmap F
-sunmap t
-sunmap T
 " }}}
 
 " visualstar {{{
@@ -1756,6 +1739,14 @@ function! RemoveUnwantedSpaces()
   endwhile
 endfunction
 command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
+
+" fFtT 用
+noremap ; <Nop>
+noremap ;; ;
+sunmap ;
+noremap , <Nop>
+noremap ,, ,
+sunmap ,
 "}}}
 
 " ColorScheme {{{
