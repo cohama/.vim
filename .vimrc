@@ -305,6 +305,13 @@ NeoBundleLazy 'thinca/vim-textobj-function-javascript', {
 \   'filetypes' : 'javascript'
 \ }}
 
+" 任意の文字に囲まれた部分をテキストオブジェクト化
+NeoBundleLazy 'thinca/vim-textobj-between', {
+\ 'depends' : 'kana/vim-textobj-user',
+\ 'autoload' : {
+\   'mappings': ['<Plug>(textobj-between-i)', '<Plug>(textobj-between-a)']
+\ }}
+
 " Ruby のメソッドをテキストオブジェクト化
 NeoBundleLazy 't9md/vim-textobj-function-ruby', {
 \ 'depends' : 'vim-ruby',
@@ -641,6 +648,13 @@ let g:surround_45 = "<% \r %>"
 let g:surround_61 = "<%= \r %>"
 let g:surround_104 = "<%=h \r %>"
 " }}}
+
+" textobj-between の設定
+let g:textobj_between_no_default_key_mappings = 1
+omap i/ <Plug>(textobj-between-i)
+xmap i/ <Plug>(textobj-between-i)
+omap a/ <Plug>(textobj-between-a)
+xmap a/ <Plug>(textobj-between-a)
 
 " zencoding の設定 {{{
 let g:use_zen_complete_tag = 1
