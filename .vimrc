@@ -770,6 +770,8 @@ let g:Gitv_TruncateCommitSubjects = 1
 let g:gitgutter_eager = 0
 nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
 nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
+nnoremap [Git]g :<C-u>GitGutter<CR>
+nnoremap [Git]G :<C-u>GitGutterAll<CR>
 " }}}
 
 " git-messenger {{{
