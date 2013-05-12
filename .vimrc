@@ -120,10 +120,6 @@ set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 
 " vim の継続行(\)のインデント量を 0 にする
 let g:vim_indent_cont = 0
-
-" neosnippet とかでマーカーを不可視にする
-set concealcursor=i
-set conceallevel=2
 " }}}
 
 " ### Input ### {{{
