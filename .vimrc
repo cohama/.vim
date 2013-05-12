@@ -291,6 +291,27 @@ NeoBundleLazy 'kana/vim-textobj-entire', {
 \   'mappings' : [['ox', 'ie'], ['ox', 'ae']]
 \ }}
 
+" 関数をテキストオブジェクト化
+NeoBundleLazy 'kana/vim-textobj-function', {
+\ 'depends' : 'kana/vim-textobj-user',
+\ 'autoload': {
+\   'mappings': [['ox', 'if'], ['ox', 'af']],
+\   'filetypes': ['vim', 'c']
+\ }}
+
+" JavaScript の関数をテキストオブジェクト化を追加
+NeoBundleLazy 'thinca/vim-textobj-function-javascript', {
+\ 'autoload' : {
+\   'filetypes' : 'javascript'
+\ }}
+
+" Ruby のメソッドをテキストオブジェクト化
+NeoBundleLazy 't9md/vim-textobj-function-ruby', {
+\ 'depends' : 'vim-ruby',
+\ 'autoload' : {
+\   'filetypes' : 'ruby'
+\ }}
+
 " ヤンクしたものと対称の文字列を置き換える
 NeoBundleLazy 'kana/vim-operator-replace', {
 \ 'depends' : 'kana/vim-operator-user',
