@@ -1082,10 +1082,10 @@ inoremap <silent> <M-l> <Esc>:tabnext<CR>
 inoremap <silent> <M-h> <Esc>:tabprevious<CR>
 
 " カーソル位置の単語を置換
-nnoremap g/ :<C-u>%s/\<<C-R><C-w>\>//g<Left><Left>
-nnoremap g? :<C-u>%s/\<<C-R><C-w>\>//gc<Left><Left><Left>
-xnoremap g/ :s/\<<C-r><C-w>\>//g<Left><Left>
-xnoremap g? :s/\<<C-R><C-w>\>//gc<Left><Left><Left>
+nnoremap g/ :<C-u>%s/\C\<<C-R><C-w>\>//g<Left><Left>
+nnoremap g? :<C-u>%s/\C\<<C-R><C-w>\>//gc<Left><Left><Left>
+xnoremap g/ :s/\C\<<C-r><C-w>\>//g<Left><Left>
+xnoremap g? :s/\C\<<C-R><C-w>\>//gc<Left><Left><Left>
 
 " カーソル位置の単語をハイライト
 " 同じ単語の場合はハイライト削除
@@ -1251,8 +1251,8 @@ nnoremap <silent> <C-f> :call CohamaSmoothScroll("down", 1, 2)<CR>
 nnoremap <silent> <C-b> :call CohamaSmoothScroll("up", 1, 2)<CR>
 
 " ビジュアルモードで選択した部分を置換
-xnoremap / y:%s/<C-r>"//g<Left><Left>
-xnoremap ? y:%s/<C-r>"//gc<Left><Left><Left>
+xnoremap / y:%s/\C<C-r>"//g<Left><Left>
+xnoremap ? y:%s/\C<C-r>"//gc<Left><Left><Left>
 
 " 行末までをヤンク
 nnoremap Y y$
