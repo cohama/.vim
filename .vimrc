@@ -1581,6 +1581,8 @@ function! CohamaPaste()
   set nopaste
 endfunction
 inoremap <C-R>+ <C-o>:Paste<CR>
+inoremap <C-R><C-\> <C-o>:set paste<CR>
+autocmd myautocmd InsertLeave * set nopaste
 
 " 括弧を扱う textobj を簡単に入力できるようにする
 " thanks to Shougo
