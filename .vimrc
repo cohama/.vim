@@ -1155,9 +1155,9 @@ autocmd myautocmd FileType javascript call WhenJavaScriptOpened()
 " 見た目通りに上下移動
 " thanks to tyru
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
-xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+xnoremap <expr> j (v:count == 0 && mode() !=# 'V') ? 'gj' : 'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
-xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <expr> k (v:count == 0 && mode() !=# 'V') ? 'gk' : 'k'
 
 " カーソルの桁座標が動かない gj, gk
 nmap gj lhj
