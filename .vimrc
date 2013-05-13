@@ -385,6 +385,11 @@ NeoBundleLazy 'kana/vim-smartword', {
 NeoBundleLazy 'thinca/vim-visualstar', { 'autoload' : {
 \ 'mappings' : ['<Plug>(visualstar-*)', '<Plug>(visualstar-#)', '<Plug>(visualstar-g*)', '<Plug>(visualstar-g#)']
 \ }}
+
+NeoBundleLazy 'deris/columnjump', {
+\ 'autoload': {
+\   'mappings': ['<Plug>(columnjump-backward)', '<Plug>(columnjump-forward)']
+\ }}
 " }}}
 
 " ### 見た目、カラースキーム ### {{{
@@ -930,6 +935,11 @@ xmap * <Plug>(visualstar-*)
 xmap # <Plug>(visualstar-#)
 xmap g* <Plug>(visualstar-g*)
 xmap g# <Plug>(visualstar-g#)
+" }}}
+
+" columnjump {{{
+map <Leader>k <Plug>(columnjump-backward)
+map <Leader>j <Plug>(columnjump-forward)
 " }}}
 
 " quickrun {{{
