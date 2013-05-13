@@ -789,8 +789,8 @@ function! GitvSettings()
   cnoremap <expr> <C-r><C-h> GitvGetCurrentHash()
   nnoremap <silent><buffer> J :<C-u>windo call GitToggleFolding()<CR>1<C-w>w
   nnoremap <buffer> . :<C-u> <C-r>=GitvGetCurrentHash()<CR><Home>
-  nnoremap <buffer> [Git]r :<C-u>Git rebace <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> [Git]i :<C-u>Git rebace -i <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> [Git]r :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> [Git]i :<C-u>Git rebase -i <C-r>=GitvGetCurrentHash()<CR><Space>
   nnoremap <buffer> [Git]R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR>
   nnoremap <buffer> [Git]h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR>
   nnoremap <buffer> [Git]a :<C-u>Git add -A<CR>
