@@ -1040,7 +1040,8 @@ inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
 let IM_CtrlIBusPython = 1
 
 " ハイライトを消す
-nnoremap <silent> <Esc><Esc> :<C-u>noh<CR>
+nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
+nnoremap <silent> <C-n> :<C-u>nohlsearch<CR>
 
 " terminal でも Meta キーを使いたい
 if s:is_unix && s:is_terminal
