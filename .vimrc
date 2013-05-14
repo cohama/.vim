@@ -1805,6 +1805,20 @@ sunmap ;
 noremap , <Nop>
 noremap ,, ,
 sunmap ,
+
+" 自分自身と diff
+function! DiffOrig()
+  let orig_filetype = &filetype
+  topleft vnew
+  setlocal buftype=nofile
+  read #
+  1delete _
+  let &filetype = orig_filetype
+  diffthis
+  wincmd p
+  diffthis
+endfunction
+command! DiffOrig call DiffOrig()
 "}}}
 
 " ColorScheme {{{
