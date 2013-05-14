@@ -731,6 +731,7 @@ nnoremap [Git]c :<C-u>Gcommit -v<CR>
 nnoremap [Git]C :<C-u>Gcommit --amend<Space>
 nnoremap [Git]p :<C-u>Git push<CR>
 nnoremap [Git]f :<C-u>Git fetch<CR>
+nnoremap [Git]F :<C-u>Git pull --rebase<CR>
 nnoremap [Git]b :<C-u>Gblame<CR>
 autocmd myautocmd FileType git call GitSettings()
 function! GitSettings()
