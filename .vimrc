@@ -804,7 +804,8 @@ function! GitvSettings()
   nnoremap <buffer> [Git]rm :<C-u>Git reset <C-r>=GitvGetCurrentHash()<CR><Space>
   nnoremap <buffer> [Git]rs :<C-u>Git reset --soft <C-r>=GitvGetCurrentHash()<CR><Space>
   nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
-  nnoremap cb :<C-u>Git checkout -b  <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
+  nnoremap cb :<C-u>Git checkout -b <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
+  nnoremap db :<C-u>Git branch -D <C-r><C-w>
 endfunction
 nnoremap [Git]k :<C-u>Gitv --all<CR>
 nnoremap [Git]K :<C-u>Gitv!<CR>
