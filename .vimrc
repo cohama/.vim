@@ -792,7 +792,7 @@ function! GitvSettings()
   setlocal iskeyword+=/,-
 
   nmap <buffer> U ugg<CR>
-  cnoremap <expr> <C-r><C-h> GitvGetCurrentHash()
+  cnoremap <buffer><expr> <C-r><C-h> GitvGetCurrentHash()
   nnoremap <silent><buffer> J :<C-u>windo call GitToggleFolding()<CR>1<C-w>w
   nnoremap <buffer> . :<C-u> <C-r>=GitvGetCurrentHash()<CR><Home>
   nnoremap <buffer> [Git]rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
@@ -804,7 +804,7 @@ function! GitvSettings()
   nnoremap <buffer> [Git]rm :<C-u>Git reset <C-r>=GitvGetCurrentHash()<CR><Space>
   nnoremap <buffer> [Git]rs :<C-u>Git reset --soft <C-r>=GitvGetCurrentHash()<CR><Space>
   nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
-  nnoremap cb :<C-u>Git checkout -b <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
+  nnoremap cb :<C-u>Git checkout -b  <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
   nnoremap db :<C-u>Git branch -D <C-r><C-w>
 endfunction
 nnoremap [Git]k :<C-u>Gitv --all<CR>
