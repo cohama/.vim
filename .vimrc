@@ -789,7 +789,7 @@ function! GitvGetCurrentHash()
   return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
 endfunction
 function! GitvSettings()
-  setlocal iskeyword+=/,-
+  setlocal iskeyword+=/,-,.
 
   nmap <buffer> U ugg<CR>
   cnoremap <buffer><expr> <C-r><C-h> GitvGetCurrentHash()
