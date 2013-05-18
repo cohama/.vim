@@ -1025,6 +1025,8 @@ call smartinput#map_to_trigger('c', 'm', 'm', 'm')
 call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
 call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
 call smartinput#define_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
+
+call smartinput#define_rule({'at': '\%#', 'char': '<Enter>', 'input': '<Enter>zv:noh<Enter>', 'mode': '/?'})
 " }}}
 
 " echodoc {{{
@@ -1269,12 +1271,6 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
-if !empty(maparg("\<CR>", 'c'))
-  cunmap <CR>
-endif
-if !empty(maparg("\<NL>", 'c'))
-  cunmap <NL>
-endif
 
 " / で検索するときに単語境界をトグルする
 cnoremap <C-\><C-i> <C-\>eToggleWordBounds(getcmdtype(), getcmdline())<CR>
