@@ -951,21 +951,30 @@ map <Leader>j <Plug>(columnjump-forward)
 " quickrun {{{
 let g:quickrun_config = {}
 let g:quickrun_config['_'] = {
-      \ 'hook/close_buffer/enable_failure'            : 1,
-      \ 'hook/close_buffer/enable_empty_data'         : 1,
-      \ 'hook/close_quickfix/enable_exit'             : 1,
-      \ 'outputter'                                   : 'multi:buffer:quickfix',
-      \ 'outputter/buffer/split'                      : 'botright 8',
-      \ 'outputter/buffer/name'                       : 'Out',
-      \ 'outputter/buffer/close_on_empty'             : 1,
-      \ 'runner'                                      : 'vimproc',
-      \ 'runner/vimproc/updatetime'                   : 40}
+\   'hook/close_buffer/enable_failure'            : 1,
+\   'hook/close_buffer/enable_empty_data'         : 1,
+\   'hook/close_quickfix/enable_exit'             : 1,
+\   'outputter'                                   : 'multi:buffer:quickfix',
+\   'outputter/buffer/split'                      : 'botright 8',
+\   'outputter/buffer/name'                       : 'Out',
+\   'outputter/buffer/close_on_empty'             : 1,
+\   'runner'                                      : 'vimproc',
+\   'runner/vimproc/updatetime'                   : 40
+\ }
 let g:quickrun_config['watchdogs_checker/_'] = {
-      \ 'hook/close_unite_quickfix/enable_exit': 1,
-      \ 'hook/close_quickfix/enable_exit': 1}
+\   'hook/close_unite_quickfix/enable_exit': 1,
+\   'hook/close_quickfix/enable_exit': 1,
+\   'hook/back_window/enable_exit': 1,
+\   'hook/quickfix_stateus_enable/enable_exit': 1,
+\   'hook/hier_update/enable_exit': 1,
+\   'hook/back_window/priority_exit': 1,
+\   'hook/quickfix_stateus_enable/priority_exit': 2,
+\   'hook/hier_update/priority_exit': 3,
+\ }
 let g:quickrun_config['ruby.rspec'] = {
-      \ 'command': 'bundle',
-      \ 'exec': '%c exec rspec -f d %s'}
+\   'command': 'bundle',
+\   'exec': '%c exec rspec -f d %s'
+\ }
 autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec | setlocal syntax=ruby
 autocmd myautocmd BufWinEnter Out setlocal winfixheight
 " }}}
