@@ -406,9 +406,7 @@ NeoBundleLazy 'godlygeek/csapprox', {
 \ }}
 
 " color schemes
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'vim-scripts/pyte'
 
 " エラー箇所をハイライトする
 NeoBundle 'jceb/vim-hier'
@@ -1539,7 +1537,7 @@ nnoremap <C-O><C-P> <C-I>
 
 function! ColorSchemeSettings()
   syntax on
-  if g:colors_name == "solarized"
+  if g:colors_name == "pyte"
     hi Error guibg=#000000
   endif
   " 行末の空白と全角スペースをハイライト
@@ -1838,7 +1836,7 @@ if s:is_windows
   let s:indent_guides_odd_guibg = "#FFFAEB"
   let s:indent_guides_even_guibg = "#EEE8D5"
   set background=light
-  colorscheme solarized
+  colorscheme pyte
 elseif s:is_gui
   colorscheme cohama
 else
