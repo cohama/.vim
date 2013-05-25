@@ -215,6 +215,12 @@ if s:is_unix
         \     }
         \   }
 endif
+
+" Plugin for Plugin
+NeoBundleLazy 'vim-jp/vital.vim', {
+\ 'autoload' : {
+\   'function_prefix' : 'vital'
+\ }}
 " }}}
 
 " ### 入力系 ### {{{
