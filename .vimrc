@@ -541,7 +541,7 @@ NeoBundleLazy 'thinca/vim-unite-history', {
 NeoBundleLazy 'motemen/hatena-vim'
 
 " コードを Gist に送るためのプラグイン
-NeoBundle 'mattn/gist-vim', {
+NeoBundleLazy 'mattn/gist-vim', {
 \ 'depends': 'mattn/webapi-vim',
 \ 'autoload' : {
 \   'commands' : 'Gist'
