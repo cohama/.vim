@@ -1827,6 +1827,9 @@ sunmap ;
 noremap , <Nop>
 noremap ,, ,
 sunmap ,
+nnoremap <CR> ;
+onoremap <CR> ;
+xnoremap <CR> ;
 
 " 自分自身と diff
 function! DiffOrig()
