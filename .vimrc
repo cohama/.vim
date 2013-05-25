@@ -512,6 +512,12 @@ NeoBundle "osyo-manga/shabadou.vim", {
 " 非同期でシンタックスチェック
 NeoBundle 'osyo-manga/vim-watchdogs', {
       \ 'depends': ['thinca/vim-quickrun', 'Shougo/vimproc', 'osyo-manga/shabadou.vim']}
+
+" Vim で単体テスト
+NeoBundleLazy 'kannokanno/vimtest', {
+\ 'autoload' : {
+\   'commands' : ['VimTest']
+\ }}
 " }}}
 
 " ### Unite Souceses ### {{{
