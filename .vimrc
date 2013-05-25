@@ -252,6 +252,7 @@ NeoBundleLazy 'kana/vim-smartinput', {
 
 " echo area に情報を表示
 NeoBundleLazy 'Shougo/echodoc', {
+\ 'augroup' : 'echodoc',
 \ 'autoload' : {
 \   'insert' : 1
 \ }}
