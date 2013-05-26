@@ -471,6 +471,10 @@ NeoBundleLazy 'pangloss/vim-javascript', {
 \   'filetypes' : 'javascript'
 \ }}
 NeoBundle 'leafgarland/typescript-vim'
+NeoBundleLazy 'cohama/the-ocamlspot.vim', {
+\ 'autoload' : {
+\   'filetypes' : 'ocaml'
+\ }}
 " }}}
 
 " ### 何かを実行 ### {{{
