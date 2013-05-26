@@ -955,8 +955,8 @@ xmap g# <Plug>(visualstar-g#)
 " }}}
 
 " columnjump {{{
-map <C-k> <Plug>(columnjump-backward)
-map <C-j> <Plug>(columnjump-forward)
+nmap <C-k> <Plug>(columnjump-backward)
+nmap <C-j> <Plug>(columnjump-forward)
 " }}}
 
 " quickrun {{{
