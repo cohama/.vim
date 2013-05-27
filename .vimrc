@@ -1051,6 +1051,11 @@ call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': 
 call smartinput#define_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
 
 call smartinput#define_rule({'at': '\%#', 'char': '<Enter>', 'input': '<Enter>zv:noh<Enter>', 'mode': '/?'})
+
+call smartinput#map_to_trigger('c', 'l', 'l', 'l')
+call smartinput#map_to_trigger('i', 'l', 'l', 'l')
+
+call smartinput#define_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
 " }}}
 
 " echodoc {{{
