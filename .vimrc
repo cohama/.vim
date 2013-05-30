@@ -828,7 +828,9 @@ let g:Gitv_TruncateCommitSubjects = 1
 " }}}
 
 " gitgutter の設定 {{{
-let g:gitgutter_eager = 0
+if s:is_windows
+  let g:gitgutter_eager = 0
+endif
 nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
 nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
 nnoremap [Git]g :<C-u>GitGutter<CR>
