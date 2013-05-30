@@ -569,6 +569,11 @@ NeoBundleLazy 'thinca/vim-scouter', {
 \   'commands': 'Scouter'
 \ }}
 
+" スクリプトローカルな関数を呼ぶ
+NeoBundleLazy 'thinca/vim-scall', {
+\ 'autoload' : {
+\   'functions' : ['S', 'Scall']
+\ }}
 " }}}
 " }}}
 
@@ -1079,6 +1084,7 @@ autocmd myautocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 " hatena-vim {{{
 let g:hatena_user='cohama'
 " }}}
+
 " }}}
 
 " Settings and keymaps {{{
