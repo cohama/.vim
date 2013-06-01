@@ -1126,6 +1126,20 @@ nnoremap <M-e> :<C-u>tabedit<Space>
 inoremap <silent> <M-l> <Esc>:tabnext<CR>
 inoremap <silent> <M-h> <Esc>:tabprevious<CR>
 
+" タブページの移動
+function! MoveTabPage(dir)
+  if a:dir == "right"
+    let n = tabpagenr()
+  elseif a:dir == "left"
+    let n = tabpagenr() - 2
+  endif
+  if n >= 0
+    execute "tabm " . n
+  endif
+endfunction
+nnoremap <silent> <M-L> :<C-u>call MoveTabPage("right")<CR>
+nnoremap <silent> <M-H> :<C-u>call MoveTabPage("left")<CR>
+
 " カーソル位置の単語を置換
 nnoremap g/ :<C-u>%s/\C\<<C-R><C-w>\>//g<Left><Left>
 nnoremap g? :<C-u>%s/\C\<<C-R><C-w>\>//gc<Left><Left><Left>
@@ -1347,20 +1361,6 @@ function! GetOnetime(varname, defaultValue)
     return a:defaultValue
   endif
 endfunction
-
-" タブページの移動
-function! MoveTabPage(dir)
-  if a:dir == "right"
-    let n = tabpagenr()
-  elseif a:dir == "left"
-    let n = tabpagenr() - 2
-  endif
-  if n >= 0
-    execute "tabm " . n
-  endif
-endfunction
-nnoremap <silent> <C-t>L :call MoveTabPage("right")<CR>
-nnoremap <silent> <C-t>H :call MoveTabPage("left")<CR>
 
 " 右側のタブをすべて閉じる
 function! CloseAllRightTabs()
