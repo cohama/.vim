@@ -1,7 +1,7 @@
 if has('win32') || has('win64')
-  set guifont=Migu_2M:h12:cSHIFTJIS
+  set guifont=Migu_2M:h10:cSHIFTJIS
 else
-  set guifont=Migu\ 2M\ 12
+  set guifont=Migu\ 2M\ 10
 endif
 set guioptions&
 set guioptions-=T
