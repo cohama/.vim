@@ -993,6 +993,13 @@ let g:quickrun_config['watchdogs_checker/_'] = {
 \   'hook/quickfix_stateus_enable/priority_exit': 2,
 \   'hook/hier_update/priority_exit': 3,
 \ }
+let g:quickrun_config['ocaml/watchdogs_checker'] = {
+\ 'type' : 'ocamlc'
+\ }
+let g:quickrun_config['watchdogs_checker/ocamlc'] = {
+\ 'command' : 'ocamlc',
+\ 'exec'    : '%c %o -c /dev/null - %s:p'
+\ }
 let g:quickrun_config['ruby.rspec'] = {
 \   'command': 'bundle',
 \   'exec': '%c exec rspec -f d %s'
