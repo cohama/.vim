@@ -518,6 +518,13 @@ NeoBundleLazy 'ujihisa/neco-ghc', {
 \   'filetypes' : 'haskell'
 \ }}
 NeoBundle 'ujihisa/ref-hoogle'
+NeoBundleLazy 'def-lkb/merlin', {
+\ 'rtp' : 'vim/merlin/',
+\ 'depends' : 'vimbufsync',
+\ 'autoload' : {
+\   'filetypes' : 'ocaml'
+\ }}
+NeoBundleLazy 'def-lkb/vimbufsync'
 " }}}
 
 " ### 何かを実行 ### {{{
@@ -661,10 +668,11 @@ autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#Complete
 autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd myautocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+  let g:neocomplcache_force_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.javascript = ''
-let g:neocomplcache_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.javascript = ''
+let g:neocomplcache_force_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.ocaml = '[^. *\t]\.\w*\|\h\w*|#'
 if !exists('g:neocomplcache_omni_functions')
   let g:neocomplcache_omni_functions = {}
 endif
