@@ -265,25 +265,7 @@ NeoBundleLazy 'Shougo/echodoc', {
 
 " }}}
 
-" ### 編集を便利にする ### {{{
-" 整形
-NeoBundleLazy 'h1mesuke/vim-alignta', {
-\ 'autoload' : {
-\   'commands' : ['Alignta', 'Align']
-\ }}
-
-" テキストオブジェクトのまわりに文字を挿入
-NeoBundleLazy 'tpope/vim-surround', {
-\ 'autoload' : {
-\   'mappings' : [['n', 'ys'], ['n', 'ds'], ['n', 'cs'], ['x', 'S']]
-\ }}
-
-" コメント化
-NeoBundleLazy 'tomtom/tcomment_vim', {
-\ 'autoload' : {
-\   'mappings' : [['nx', 'gc'], ['nx', 'gC']]
-\ }}
-
+" ### text-object ### {{{
 " インデントが同じ物をテキストオブジェクト化
 NeoBundleLazy 'kana/vim-textobj-indent', {
 \ 'depends' : 'kana/vim-textobj-user',
@@ -325,6 +307,20 @@ NeoBundleLazy 't9md/vim-textobj-function-ruby', {
 \ 'autoload' : {
 \   'filetypes' : 'ruby'
 \ }}
+" }}}
+
+" ### operator ### {{{
+" テキストオブジェクトのまわりに文字を挿入
+NeoBundleLazy 'tpope/vim-surround', {
+\ 'autoload' : {
+\   'mappings' : [['n', 'ys'], ['n', 'ds'], ['n', 'cs'], ['x', 'S']]
+\ }}
+
+" コメント化
+NeoBundleLazy 'tomtom/tcomment_vim', {
+\ 'autoload' : {
+\   'mappings' : [['nx', 'gc'], ['nx', 'gC']]
+\ }}
 
 " ヤンクしたものと対称の文字列を置き換える
 NeoBundleLazy 'kana/vim-operator-replace', {
@@ -338,6 +334,14 @@ NeoBundleLazy 'tyru/operator-camelize.vim', {
 \ 'depends' : 'kana/vim-operator-user',
 \ 'autoload' : {
 \   'mappings' : ['<Plug>(operator-camelize-toggle)']
+\ }}
+" }}}
+
+" ### 編集を便利にする ### {{{
+" 整形
+NeoBundleLazy 'h1mesuke/vim-alignta', {
+\ 'autoload' : {
+\   'commands' : ['Alignta', 'Align']
 \ }}
 " }}}
 
