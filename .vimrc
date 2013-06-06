@@ -909,11 +909,11 @@ function! s:vimfiler_my_settings()
   if s:is_unicode
     " Like Textmate icons.
     let g:vimfiler_tree_leaf_icon = ' '
-    let g:vimfiler_tree_opened_icon = '▾'
-    let g:vimfiler_tree_closed_icon = '▸'
+    let g:vimfiler_tree_opened_icon = "\u25be" " filled inverse triangle
+    let g:vimfiler_tree_closed_icon = "\u25b8" " filled right-pointed triangle
     let g:vimfiler_file_icon = '-'
-    let g:vimfiler_readonly_file_icon = '✗'
-    let g:vimfiler_marked_file_icon = '✓'
+    let g:vimfiler_readonly_file_icon = "\u2717" " like X
+    let g:vimfiler_marked_file_icon = "\u2713"   " checkmark like レ
   endif
 endfunction
 " }}}
