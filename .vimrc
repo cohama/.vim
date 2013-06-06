@@ -1856,6 +1856,9 @@ sunmap ,,
 nnoremap <CR> ;
 onoremap <CR> ;
 xnoremap <CR> ;
+" GVim only
+noremap <M-;> ;
+noremap <M-,> ,
 
 " 自分自身と diff
 function! DiffOrig()
