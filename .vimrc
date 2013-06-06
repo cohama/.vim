@@ -250,8 +250,8 @@ NeoBundleLazy 'tpope/vim-endwise', {
 \   'filetypes' : ['lua', 'ruby', 'sh', 'zsh', 'vb', 'vbnet', 'aspvbs', 'vim']
 \ }}
 
-" 対応する括弧の自動入力
-NeoBundleLazy 'kana/vim-smartinput', {
+" 対応する括弧の自動入力 (kana 神の fork)
+NeoBundleLazy 'cohama/vim-smartinput', {
 \ 'autoload' : {
 \   'insert' : 1
 \ }}
@@ -707,6 +707,7 @@ let g:user_zen_settings = {
 " vimshell の設定 {{{
 autocmd myautocmd FileType vimshell call s:vimshell_my_settings()
 function! s:vimshell_my_settings()
+  let b:smartinput_disable_local = 1
   call vimshell#altercmd#define('l', 'ls -F')
   call vimshell#altercmd#define('la', 'ls -FA')
   call vimshell#altercmd#define('ll', 'ls -alF')
@@ -781,6 +782,7 @@ let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
 autocmd myautocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
+  let b:smartinput_disable_local = 1
   imap <silent><buffer> <C-q> <Plug>(unite_exit)
   map <silent><buffer> <Esc> <Plug>(unite_exit)
   noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
