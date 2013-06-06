@@ -769,8 +769,11 @@ nnoremap <silent> <Leader>ur :<C-u>UniteResume<CR>
 nnoremap <silent> <Leader>uf :<C-u>Unite file_mru<CR>
 nnoremap <silent> <Leader>ub :<C-u>Unite bookmark -default-action=vimfiler -no-start-insert<CR>
 nnoremap <silent> <Leader>uB :<C-u>UniteBookmarkAdd<CR>
-cnoremap <expr> / (getcmdline() == '' && getcmdtype() == '/') ? "<BS>:Unite line<CR>" : "/"
-cnoremap <expr> ? (getcmdline() == '' && getcmdtype() == '?') ? "<BS>:Unite line:backward<CR>" : "?"
+nnoremap <silent> <M-d> :<C-u>Unite directory file file_mru bookmark file/new directory/new<CR>
+nnoremap <silent> <M-m> :<C-u>Unite buffer file_mru file_rec/async<CR>
+" see also smartinput settings
+" cnoremap <expr> / (getcmdline() == '' && getcmdtype() == '/') ? "<BS>:Unite line<CR>" : "/"
+" cnoremap <expr> ? (getcmdline() == '' && getcmdtype() == '?') ? "<BS>:Unite line:backward<CR>" : "?"
 nnoremap [I :<C-U>UniteWithCursorWord line:backward<CR>
 nnoremap ]I :<C-U>UniteWithCursorWord line:all<CR>
 nnoremap <Leader>/ :<C-u>UniteWithInput line<CR><C-r>/<CR>
@@ -780,15 +783,15 @@ autocmd myautocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
   imap <silent><buffer> <C-q> <Plug>(unite_exit)
   map <silent><buffer> <Esc> <Plug>(unite_exit)
-  noremap <silent><buffer><expr> t unite#smart_map("t", unite#do_action('tabopen'))
-  noremap <silent><buffer><expr> o unite#smart_map("o", unite#do_action('open'))
   noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
   noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
   noremap <silent><buffer><expr> f unite#smart_map("f", unite#do_action('vimfiler'))
   noremap <silent><buffer><expr> F unite#smart_map("f", unite#do_action('tabvimfiler'))
-  imap <silent><buffer> <C-N> <Plug>(unite_select_next_line)<Esc>
-  nmap <silent><buffer> <C-N> j
+  imap <silent><buffer> <C-n> <Plug>(unite_select_next_line)<Esc>
+  nmap <silent><buffer> <C-n> j
+  map <silent><buffer> <M-n> j
+  map <silent><buffer> <M-p> j
 endfunction
 " }}}
 
@@ -1051,6 +1054,10 @@ call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<BS>', 'input': '<BS><D
 call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml', 'scala']})
 call smartinput#define_rule({'at': '\[\%#\]', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S', 'filetype': ['javascript']})
 
+call smartinput#map_to_trigger('c', '/', '/', '/')
+call smartinput#map_to_trigger('c', '?', '?', '?')
+call smartinput#define_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
+call smartinput#define_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
 call smartinput#map_to_trigger('c', 'C', 'C', 'C')
 call smartinput#map_to_trigger('c', 'D', 'D', 'D')
 call smartinput#map_to_trigger('c', 'I', 'I', 'I')
