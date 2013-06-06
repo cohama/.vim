@@ -918,6 +918,8 @@ function! s:vimfiler_my_settings()
     let g:vimfiler_readonly_file_icon = "\u2717" " like X
     let g:vimfiler_marked_file_icon = "\u2713"   " checkmark like レ
   endif
+
+  nmap D <Plug>(vimfiler_delete_file)
 endfunction
 " }}}
 
