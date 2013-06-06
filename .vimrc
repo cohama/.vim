@@ -657,13 +657,14 @@ sunmap -
 nnoremap <silent> <C-p> :<C-u>NERDTreeToggle<CR>
 nnoremap <silent> <C-@> :<C-u>NERDTreeFind<CR>
 nnoremap <silent> <Leader><C-p> :<C-u>NERDTreeFind<CR>
-let NERDTreeIgnore = ['\~$', '\.swp', '^\.$', '^\.\.$']
-let NERDTreeQuitOnOpen = 1
-let NERDTreeWinSize = 36
-let NERDTreeMinimalUI = 1
-let NERDTreeChDirMode = 1
+let g:NERDTreeIgnore = ['\~$', '\.swp', '^\.$', '^\.\.$']
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeWinSize = 36
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeChDirMode = 1
+let g:NERDTreeMapCWD = "cD"
 if !s:is_unicode
-  let NERDTreeDirArrows = 0
+  let g:NERDTreeDirArrows = 0
 endif
 " }}}
 
