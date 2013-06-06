@@ -1063,6 +1063,9 @@ call smartinput#define_rule({'at': 'Unite \%#', 'char': 'D', 'input': '<C-u>Unit
 call smartinput#define_rule({'at': 'Unite \%#', 'char': 'I', 'input': '<C-u>UniteWithInput<Space>', 'mode': ':'})
 call smartinput#define_rule({'at': 'Unite \%#', 'char': 'C', 'input': '<C-u>UniteWithCursorWord<Space>', 'mode': ':'})
 
+call smartinput#map_to_trigger('c', '<Space>', '<Space>', '<Space>')
+call smartinput#define_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
+
 call smartinput#map_to_trigger('c', 'c', 'c', 'c')
 call smartinput#map_to_trigger('c', 'm', 'm', 'm')
 call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
