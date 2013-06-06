@@ -353,7 +353,7 @@ NeoBundleLazy 'kana/vim-repeat', {
 
 " ### ファイル操作など ### {{{
 " ディレクトリ、ファイルをツリー表示
-NeoBundle 'scrooloose/nerdtree', {
+NeoBundleLazy 'scrooloose/nerdtree', {
 \ 'augroup' : 'NERDTreeHijackNetrw',
 \ 'autoload' : {
 \   'commands' : ['NERDTreeToggle', 'NERDTreeFind']
@@ -426,10 +426,10 @@ NeoBundleLazy 'godlygeek/csapprox', {
 NeoBundle 'vim-scripts/pyte'
 
 " エラー箇所をハイライトする
-NeoBundle 'jceb/vim-hier'
+NeoBundleLazy 'jceb/vim-hier'
 
 " エラーの原因をコマンドウィンドウに出力
-NeoBundle 'dannyob/quickfixstatus'
+NeoBundleLazy 'dannyob/quickfixstatus'
 
 " 複数箇所をハイライト
 NeoBundleLazy 't9md/vim-quickhl', {
@@ -451,7 +451,7 @@ NeoBundle 'tpope/vim-fugitive', {
 \ }
 
 " gitk っぽいものを Vim で
-NeoBundle 'gregsexton/gitv', {
+NeoBundleLazy 'gregsexton/gitv', {
 \ 'depends' : 'vim-fugitive',
 \ 'autoload' : {
 \   'commands' : ['Gitv']
@@ -489,7 +489,7 @@ NeoBundleLazy 'cohama/the-ocamlspot.vim', {
 
 " ### 何かを実行 ### {{{
 " Vim で動く shell
-NeoBundle 'Shougo/vimshell', {
+NeoBundleLazy 'Shougo/vimshell', {
 \ 'autoload' : {
 \   'commands' : [{ 'name' : 'VimShell',
 \                   'complete' : 'customlist,vimshell#complete'},
@@ -499,7 +499,7 @@ NeoBundle 'Shougo/vimshell', {
 \ }}
 
 " その場で実行
-NeoBundle 'thinca/vim-quickrun', {
+NeoBundleLazy 'thinca/vim-quickrun', {
 \ 'autoload' : {
 \   'mappings' : [['n', '\r']],
 \   'commands' : ['QuickRun']
@@ -520,12 +520,14 @@ NeoBundleLazy 'tyru/open-browser.vim', {
       \ }}
 
 " vim-quickrun hooks 集
-NeoBundle "osyo-manga/shabadou.vim", {
-      \ 'depends': ['thinca/vim-quickrun', 'Shougo/vimproc', 'Shougo/unite.vim', 'osyo-manga/unite-quickfix']}
+NeoBundleLazy "osyo-manga/shabadou.vim"
 
 " 非同期でシンタックスチェック
-NeoBundle 'osyo-manga/vim-watchdogs', {
-      \ 'depends': ['thinca/vim-quickrun', 'Shougo/vimproc', 'osyo-manga/shabadou.vim']}
+NeoBundleLazy 'osyo-manga/vim-watchdogs', {
+\ 'depends': ['thinca/vim-quickrun', 'Shougo/vimproc', 'osyo-manga/shabadou.vim', 'jceb/vim-hier', 'dannyob/quickfixstatus'],
+\ 'autoload' : {
+\   'filetypes' : ['cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'sh', 'zsh', 'sass', 'scss', 'coffee', 'ocaml']
+\ }}
 
 " Vim で単体テスト
 NeoBundleLazy 'kannokanno/vimtest', {
@@ -540,7 +542,7 @@ NeoBundleLazy "osyo-manga/unite-quickfix", {
 \   'unite_sources': ['quickfix']
 \ }}
 
-NeoBundle 'tsukkee/unite-help', {
+NeoBundleLazy 'tsukkee/unite-help', {
 \ 'autoload' : {
 \   'unite_sources': ['help']
 \ }}
@@ -1039,14 +1041,17 @@ xmap gx <Plug>(openbrowser-smart-search)
 " }}}
 
 " watchdogs {{{
-call watchdogs#setup(g:quickrun_config)
-let g:watchdogs_check_BufWritePost_enable = 1
-let g:watchdogs_check_BufWritePost_enables = {
-\ 'scala' : 0
-\ }
-if !executable('jshint')
-  let g:watchdogs_check_BufWritePost_enables.javascript = 0
-endif
+let bundle = neobundle#get('vim-watchdogs')
+function! bundle.hooks.on_source(bundle)
+  call watchdogs#setup(g:quickrun_config)
+  let g:watchdogs_check_BufWritePost_enable = 1
+  let g:watchdogs_check_BufWritePost_enables = {
+  \ 'scala' : 0
+  \ }
+  if !executable('jshint')
+    let g:watchdogs_check_BufWritePost_enables.javascript = 0
+  endif
+endfunction
 " }}}
 
 " smartinput {{{
