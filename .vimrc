@@ -343,6 +343,12 @@ NeoBundleLazy 'h1mesuke/vim-alignta', {
 \ 'autoload' : {
 \   'commands' : ['Alignta', 'Align']
 \ }}
+
+" . による繰り返しをプラグインの機能にも適用
+NeoBundleLazy 'kana/vim-repeat', {
+\ 'autoload' : {
+\   'function_prefix' : 'repeat'
+\ }}
 " }}}
 
 " ### ファイル操作など ### {{{
