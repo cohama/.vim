@@ -379,7 +379,7 @@ NeoBundleLazy 'bkad/CamelCaseMotion', {
 
 " カーソルを任意の位置にジャンプさせる
 NeoBundleLazy 'EasyMotion', {'autoload' : {
-\ 'mappings' : ['\\w', '\\b', '\\e', '\\ge', '\\W', '\\B', '\\E', '\\gE', '\\f', '\\F', '\\t', '\\T']
+\ 'mappings' : [';w', ';b', ';e', ';ge', ';W', ';B', ';E', ';gE', ';f', ';F', ';t', ';T']
 \ }}
 
 " 記号とかに邪魔されずに w, b, e できる
@@ -898,6 +898,7 @@ nnoremap [VimFiler] <Nop>
 nmap <Leader>F [VimFiler]
 nnoremap [VimFiler]<CR> :<C-u>VimFiler<CR>
 nnoremap [VimFiler]s :<C-u>VimFilerSplit<CR>
+nnoremap <M-F> :<C-u>VimFilerSplit<CR>
 nnoremap [VimFiler]t :<C-u>VimFilerTab<CR>
 nnoremap [VimFiler]b :<C-u>VimFilerBufferDir<CR>
 nnoremap [VimFiler]c :<C-u>VimFilerCurrentDir<CR>
@@ -923,30 +924,22 @@ let g:junkfile#edit_command = "tabedit"
 " }}}
 
 " EasyMotion {{{
-map ;w \\w
-map ;b \\b
-map ;e \\e
-map ;ge \\ge
-map ;W \\W
-map ;B \\B
-map ;E \\E
-map ;gE \\gE
-map ;f \\f
-map ;F \\F
-map ;t \\t
-map ;T \\T
-sunmap ;w
-sunmap ;b
-sunmap ;e
-sunmap ;ge
-sunmap ;W
-sunmap ;B
-sunmap ;E
-sunmap ;gE
-sunmap ;f
-sunmap ;F
-sunmap ;t
-sunmap ;T
+let g:EasyMotion_leader_key = ';'
+let bundle = neobundle#get('EasyMotion')
+function! bundle.hooks.on_post_source(bundle)
+  sunmap ;w
+  sunmap ;b
+  sunmap ;e
+  sunmap ;ge
+  sunmap ;W
+  sunmap ;B
+  sunmap ;E
+  sunmap ;gE
+  sunmap ;f
+  sunmap ;F
+  sunmap ;t
+  sunmap ;T
+endfunction
 " }}}
 
 " smartword{{{
@@ -1855,9 +1848,11 @@ command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
 noremap ; <Nop>
 noremap ;; ;
 sunmap ;
+sunmap ;;
 noremap , <Nop>
 noremap ,, ,
 sunmap ,
+sunmap ,,
 nnoremap <CR> ;
 onoremap <CR> ;
 xnoremap <CR> ;
