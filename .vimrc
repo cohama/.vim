@@ -380,6 +380,9 @@ NeoBundleLazy 'Shougo/junkfile.vim', {
 \   'commands' : ["JunkfileOpen"],
 \   'unite_sources' : ["junkfile", "junkfile/new"]
 \ }}
+
+" 規則に従ってファイルを開く
+NeoBundle 'kana/vim-altr'
 " }}}
 
 " ### 移動 ### {{{
@@ -944,6 +947,19 @@ endfunction
 
 " JunkFile の設定 {{{
 let g:junkfile#edit_command = "tabedit"
+" }}}
+
+" altr {{{
+let bundle = neobundle#get('vim-altr')
+function! bundle.hooks.on_source(bundle)
+  call altr#remove_all()
+  call altr#define('plugin/%/*.vim', 'autoload/%/*.vim')
+  call altr#define('plugin/%.vim', 'autoload/%.vim')
+  call altr#define('ftplugin/*/%.vim', 'autoload/%.vim')
+  call altr#define('after/ftplugin/*/%.vim', 'autoload/%.vim')
+  nnoremap <M-2> :<C-u>call altr#forward()<CR>
+  nnoremap <M-1> :<C-u>call altr#back()<CR>
+endfunction
 " }}}
 
 " EasyMotion {{{
