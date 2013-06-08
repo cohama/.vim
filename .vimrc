@@ -98,7 +98,7 @@ set list
 set listchars=tab:>\ "
 
 " 行番号を表示 (相対)
-set relativenumber
+set number relativenumber
 
 " 最低でも上下に表示する行数
 set scrolloff=5
@@ -1713,12 +1713,29 @@ nnoremap [Toggle]c <Nop>
 nnoremap [Toggle]cl :<C-u>let g:cursorline_flg = !g:cursorline_flg<CR>:call Toggle("cursorline")<CR>
 nnoremap [Toggle]cc :<C-u>call Toggle("cursorcolumn")<CR>
 nnoremap [Toggle]s :<C-u>call Toggle("spell", "local")<CR>
-nnoremap [Toggle]n :<C-u>call Toggle("number", "local")<CR>
-nnoremap [Toggle]r :<C-u>call Toggle("relativenumber", "local")<CR>
+nnoremap [Toggle]n :<C-u>call ToggleNumber()<CR>
+nnoremap [Toggle]r :<C-u>call ToggleRelativeNumber()<CR>
 nnoremap [Toggle]h :<C-u>call Toggle("hlsearch")<CR>
 nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 nnoremap [Toggle]G :<C-u>GitGutterToggle<CR>
+function! ToggleNumber()
+  if &l:number && !&l:relativenumber
+    setlocal nonumber
+  else
+    setlocal number
+  endif
+  setlocal norelativenumber
+endfunction
+function! ToggleRelativeNumber()
+  if &l:number && &l:relativenumber
+    setlocal nonumber
+    setlocal norelativenumber
+  else
+    setlocal number
+    setlocal relativenumber
+  endif
+endfunction
 
 " 全自動保存モード
 function! FullAutoWriteToggle()
