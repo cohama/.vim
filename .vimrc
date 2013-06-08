@@ -808,6 +808,11 @@ function! s:unite_my_settings()
   map <silent><buffer> <M-n> j
   map <silent><buffer> <M-p> j
 endfunction
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 " }}}
 
 " endwise {{{
