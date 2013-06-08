@@ -370,7 +370,8 @@ NeoBundleLazy 'Shougo/vimfiler', {
 \ 'autoload' : {
 \   'commands' : [{'name' : 'VimFiler',
 \                  'complete' : 'customlist,vimfiler#complete' },
-\                 'VimFilerBufferDir', 'VimFilerCurrentDir', 'VimFilerSplit', 'VimFilerExplorer', 'VimFilerTab']
+\                 'VimFilerBufferDir', 'VimFilerCurrentDir', 'VimFilerSplit', 'VimFilerExplorer', 'VimFilerTab', 'VimFilerCreate'],
+\   'mappings' : ['<Plug>(vimfiler_switch)']
 \ }}
 
 " 一時ファイル的な
@@ -937,7 +938,7 @@ function! s:vimfiler_my_settings()
     let g:vimfiler_marked_file_icon = "\u2713"   " checkmark like レ
   endif
 
-  nmap D <Plug>(vimfiler_delete_file)
+  nmap <buffer> D <Plug>(vimfiler_delete_file)
 endfunction
 " }}}
 
