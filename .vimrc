@@ -1035,6 +1035,10 @@ let g:quickrun_config['watchdogs_checker/_'] = {
 let g:quickrun_config['ocaml/watchdogs_checker'] = {
 \ 'type' : 'ocamlc'
 \ }
+let g:quickrun_config['watchdogs_checker/make'] = {
+\ 'command' : 'make',
+\ 'exec' : '%c %o'
+\ }
 let g:quickrun_config['watchdogs_checker/ocamlc'] = {
 \ 'command' : 'ocamlc',
 \ 'exec'    : '%c %o -c /dev/null - %s:p'
