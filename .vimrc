@@ -673,7 +673,7 @@ sunmap -
 nnoremap <silent> <C-p> :<C-u>NERDTreeToggle<CR>
 nnoremap <silent> <C-@> :<C-u>NERDTreeFind<CR>
 nnoremap <silent> <Leader><C-p> :<C-u>NERDTreeFind<CR>
-let g:NERDTreeIgnore = ['\~$', '\.swp', '\.cmo', '\.cmt', '\.cmi', '^\.$', '^\.\.$']
+let g:NERDTreeIgnore = ['\~$', '\.swp', '^\.$', '^\.\.$']
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeWinSize = 36
 let g:NERDTreeMinimalUI = 1
