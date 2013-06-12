@@ -1082,6 +1082,7 @@ function! bundle.hooks.on_source(bundle)
     let g:watchdogs_check_BufWritePost_enables.javascript = 0
   endif
 endfunction
+nnoremap <Leader>wr :<C-u>WatchdogsRun<CR>
 " }}}
 
 " smartinput {{{
