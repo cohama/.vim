@@ -1003,6 +1003,7 @@ xmap g# <Plug>(visualstar-g#)
 " columnjump {{{
 nmap <C-k> <Plug>(columnjump-backward)
 nmap <C-j> <Plug>(columnjump-forward)
+let g:columnjump_ignore_wrapped_lines = 1
 " }}}
 
 " quickrun {{{
