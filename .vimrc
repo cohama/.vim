@@ -590,6 +590,9 @@ NeoBundleLazy 'thinca/vim-scall', {
 \ 'autoload' : {
 \   'functions' : ['S', 'Scall']
 \ }}
+
+" プロジェクトローカルな vimrc を作成
+NeoBundle 'thinca/vim-localrc'
 " }}}
 " }}}
 
