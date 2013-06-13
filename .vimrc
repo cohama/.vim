@@ -1033,7 +1033,7 @@ let g:quickrun_config['watchdogs_checker/_'] = {
 \   'hook/hier_update/priority_exit': 3,
 \ }
 let g:quickrun_config['ocaml/watchdogs_checker'] = {
-\ 'type' : 'ocamlc'
+\ 'type' : 'watchdogs_checker/ocamlc'
 \ }
 let g:quickrun_config['watchdogs_checker/make'] = {
 \ 'command' : 'make',
@@ -1041,7 +1041,7 @@ let g:quickrun_config['watchdogs_checker/make'] = {
 \ }
 let g:quickrun_config['watchdogs_checker/ocamlc'] = {
 \ 'command' : 'ocamlc',
-\ 'exec'    : '%c %o -c /dev/null - %s:p'
+\ 'exec'    : '%c -i %o - %s:p'
 \ }
 let g:quickrun_config['ruby.rspec'] = {
 \   'command': 'bundle',
