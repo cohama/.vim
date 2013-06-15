@@ -1974,6 +1974,10 @@ function! DiffOrig()
   diffthis
 endfunction
 command! DiffOrig call DiffOrig()
+
+" Quickfix のエラーに移動
+nnoremap [e :<C-u>cprevious<CR>
+nnoremap ]e :<C-u>cnext<CR>
 "}}}
 
 " ColorScheme {{{
