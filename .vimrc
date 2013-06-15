@@ -1050,6 +1050,10 @@ let g:quickrun_config['watchdogs_checker/ocamlc'] = {
 \ 'command' : 'ocamlc',
 \ 'exec'    : '%c -i %o - %s:p'
 \ }
+let g:quickrun_config['watchdogs_checker/ocamlc_annot'] = {
+\ 'command' : 'ocamlc',
+\ 'exec'    : '%c -annot -bin-annot -c %o - %s:p'
+\ }
 let g:quickrun_config['ruby.rspec'] = {
 \   'command': 'bundle',
 \   'exec': '%c exec rspec -f d %s'
