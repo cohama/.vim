@@ -528,7 +528,7 @@ NeoBundleLazy "osyo-manga/shabadou.vim"
 
 " 非同期でシンタックスチェック
 NeoBundleLazy 'osyo-manga/vim-watchdogs', {
-\ 'depends': ['thinca/vim-quickrun', 'Shougo/vimproc', 'osyo-manga/shabadou.vim', 'jceb/vim-hier', 'dannyob/quickfixstatus'],
+\ 'depends': ['thinca/vim-quickrun', 'osyo-manga/shabadou.vim', 'jceb/vim-hier', 'dannyob/quickfixstatus'],
 \ 'autoload' : {
 \   'filetypes' : ['cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'sh', 'zsh', 'sass', 'scss', 'coffee', 'ocaml']
 \ }}
