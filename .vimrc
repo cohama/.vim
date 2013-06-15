@@ -307,6 +307,13 @@ NeoBundleLazy 't9md/vim-textobj-function-ruby', {
 \ 'autoload' : {
 \   'filetypes' : 'ruby'
 \ }}
+
+" 行内の文字をテキストオブジェクト化
+NeoBundleLazy 'kana/vim-textobj-line', {
+\ 'depends' : 'kana/vim-textobj-user',
+\ 'autoload' : {
+\   'mappings' : [['ox', 'il'], ['ox', 'al']]
+\ }}
 " }}}
 
 " ### operator ### {{{
