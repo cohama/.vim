@@ -1681,9 +1681,6 @@ nnoremap <C-O><C-P> <C-I>
 
 function! ColorSchemeSettings()
   syntax on
-  if g:colors_name == "pyte"
-    hi Error guibg=#000000
-  endif
   " 行末の空白と全角スペースをハイライト
   function! MatchIllegalSpaces()
     if !exists("w:tailing_space")
