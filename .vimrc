@@ -434,7 +434,12 @@ NeoBundleLazy 'godlygeek/csapprox', {
 \ }}
 
 " color schemes
-NeoBundle 'vim-scripts/pyte'
+if s:is_gui
+  NeoBundle 'vim-scripts/pyte'
+  NeoBundle 'https://gist.github.com/hail2u/187578', {
+  \ 'directory' : 'h2u'
+  \ }
+endif
 
 " エラー箇所をハイライトする
 NeoBundleLazy 'jceb/vim-hier'
@@ -1985,14 +1990,13 @@ nnoremap ]e :<C-u>cnext<CR>
 "}}}
 
 " ColorScheme {{{
-if s:is_windows
+if s:is_gui
   let s:indent_guides_guifg = "#c0c0c0"
-  let s:indent_guides_odd_guibg = "#FFFAEB"
-  let s:indent_guides_even_guibg = "#EEE8D5"
+  let s:indent_guides_odd_guibg = "#F5FFFC"
+  let s:indent_guides_even_guibg = "#F0F8FF"
   set background=light
-  colorscheme pyte
-elseif s:is_gui
-  colorscheme cohama
+  autocmd myautocmd ColorScheme * highlight TheOCamlSpotTree gui=NONE guifg=NONE guibg=#BFD
+  colorscheme h2u_white
 else
   colorscheme cui_cohama
 endif
