@@ -744,6 +744,17 @@ let g:user_zen_settings = {
 \ }
 " }}}
 
+" the-ocamlspot {{{
+let s:the_ocamlspot_tree_ctermbg = '17'
+let s:the_ocamlspot_tree_guibg = '#BFD'
+autocmd myautocmd ColorScheme * call s:the_ocamlspot_highlight()
+function! s:the_ocamlspot_highlight()
+  exec "highlight TheOCamlSpotTree gui=NONE cterm=NONE ctermfg=NONE guifg=NONE"
+  \ . " ctermbg=" . s:the_ocamlspot_tree_ctermbg
+  \ . " guibg=" . s:the_ocamlspot_tree_guibg
+endfunction
+" }}}
+
 " vimshell の設定 {{{
 autocmd myautocmd FileType vimshell call s:vimshell_my_settings()
 function! s:vimshell_my_settings()
