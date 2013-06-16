@@ -434,12 +434,13 @@ NeoBundleLazy 'godlygeek/csapprox', {
 \ }}
 
 " color schemes
-if s:is_gui
-  NeoBundle 'vim-scripts/pyte'
-  NeoBundle 'https://gist.github.com/hail2u/187578', {
-  \ 'directory' : 'h2u'
-  \ }
-endif
+NeoBundle 'vim-scripts/pyte', {
+\ 'gui' : 1
+\ }
+NeoBundle 'https://gist.github.com/hail2u/187578', {
+\ 'gui' : 1,
+\ 'directory' : 'h2u'
+\ }
 
 " エラー箇所をハイライトする
 NeoBundleLazy 'jceb/vim-hier'
@@ -457,6 +458,13 @@ NeoBundleLazy 't9md/vim-quickhl', {
 NeoBundleLazy 'cohama/easy-colorcolumn', {
 \ 'autoload' : {
 \   'mappings' : ["<Plug>(easy-colorcolumn-add)", "<Plug>(easy-colorcolumn-toggle)"]
+\ }}
+
+" フォントサイズ変更
+NeoBundleLazy 'thinca/vim-fontzoom', {
+\ 'gui' : 1,
+\ 'autoload' : {
+\   'mappings': ['<Plug>(fontzoom-larger)', '<Plug>(fontzoom-smaller)']
 \ }}
 " }}}
 
@@ -769,6 +777,12 @@ xmap gM <Plug>(quickhl-reset)
 nmap gb <Plug>(easy-colorcolumn-toggle)
 xmap gb <Plug>(easy-colorcolumn-toggle)
 nmap gB <Plug>(easy-colorcolumn-clear)
+" }}}
+
+" font zoom {{{
+let g:fontzoom_no_default_key_mappings = 1
+nmap <C-ScrollWheelUp>   <Plug>(fontzoom-larger)
+nmap <C-ScrollWheelDown> <Plug>(fontzoom-smaller)
 " }}}
 
 " fugitive の設定 {{{
