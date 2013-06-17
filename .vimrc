@@ -827,7 +827,7 @@ nnoremap <silent> <Leader>ur :<C-u>UniteResume<CR>
 nnoremap <silent> <Leader>uf :<C-u>Unite file_mru<CR>
 nnoremap <silent> <Leader>ub :<C-u>Unite bookmark -default-action=vimfiler -no-start-insert<CR>
 nnoremap <silent> <Leader>uB :<C-u>UniteBookmarkAdd<CR>
-nnoremap <silent> <M-d> :<C-u>Unite directory file file_mru bookmark file/new directory/new<CR>
+nnoremap <silent> <M-d> :<C-u>Unite file file_mru bookmark file/new directory/new<CR>
 nnoremap <silent> <M-m> :<C-u>Unite buffer file_mru file_rec/async<CR>
 " see also smartinput settings
 " cnoremap <expr> / (getcmdline() == '' && getcmdtype() == '/') ? "<BS>:Unite line<CR>" : "/"
