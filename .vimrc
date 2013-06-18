@@ -437,10 +437,6 @@ NeoBundleLazy 'godlygeek/csapprox', {
 NeoBundle 'vim-scripts/pyte', {
 \ 'gui' : 1
 \ }
-NeoBundle 'https://gist.github.com/hail2u/187578', {
-\ 'gui' : 1,
-\ 'directory' : 'h2u'
-\ }
 
 " エラー箇所をハイライトする
 NeoBundleLazy 'cohama/vim-hier'
