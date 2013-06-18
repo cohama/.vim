@@ -443,7 +443,7 @@ NeoBundle 'https://gist.github.com/hail2u/187578', {
 \ }
 
 " エラー箇所をハイライトする
-NeoBundleLazy 'jceb/vim-hier'
+NeoBundleLazy 'cohama/vim-hier'
 
 " エラーの原因をコマンドウィンドウに出力
 NeoBundleLazy 'dannyob/quickfixstatus'
@@ -548,7 +548,7 @@ NeoBundleLazy "osyo-manga/shabadou.vim"
 
 " 非同期でシンタックスチェック
 NeoBundleLazy 'osyo-manga/vim-watchdogs', {
-\ 'depends': ['thinca/vim-quickrun', 'osyo-manga/shabadou.vim', 'jceb/vim-hier', 'dannyob/quickfixstatus'],
+\ 'depends': ['thinca/vim-quickrun', 'osyo-manga/shabadou.vim', 'cohama/vim-hier', 'dannyob/quickfixstatus'],
 \ 'autoload' : {
 \   'filetypes' : ['cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'sh', 'zsh', 'sass', 'scss', 'coffee', 'ocaml']
 \ }}
