@@ -964,6 +964,8 @@ nnoremap [VimFiler]b :<C-u>VimFilerBufferDir<CR>
 nnoremap [VimFiler]c :<C-u>VimFilerCurrentDir<CR>
 nnoremap [VimFiler]e :<C-u>VimFilerExplorer<CR>
 nnoremap [VimFiler]E :<C-u>VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <M-f> :<C-u>VimFiler<CR>
+nnoremap <M-F> :<C-u>VimFilerCurrentDir -explorer -find<CR>
 let g:vimfiler_safe_mode_by_default = 0
 autocmd myautocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
@@ -977,7 +979,6 @@ function! s:vimfiler_my_settings()
     let g:vimfiler_marked_file_icon = "\u2713"   " checkmark like レ
   endif
 
-  nmap <buffer> D <Plug>(vimfiler_delete_file)
 endfunction
 " }}}
 
