@@ -517,6 +517,7 @@ NeoBundleLazy 'ujihisa/neco-ghc', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
+NeoBundle 'ujihisa/ref-hoogle'
 " }}}
 
 " ### 何かを実行 ### {{{
@@ -566,6 +567,9 @@ NeoBundleLazy 'kannokanno/vimtest', {
 \ 'autoload' : {
 \   'commands' : ['VimTest']
 \ }}
+
+" ref を見る
+NeoBundle 'thinca/vim-ref'
 " }}}
 
 " ### Unite Souceses ### {{{
