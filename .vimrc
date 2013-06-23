@@ -505,6 +505,18 @@ NeoBundleLazy 'cohama/the-ocamlspot.vim', {
 \ 'autoload' : {
 \   'filetypes' : 'ocaml'
 \ }}
+NeoBundleLazy 'kana/vim-filetype-haskell', {
+\ 'autoload' : {
+\   'filetypes' : 'haskell'
+\ }}
+NeoBundleLazy 'eagletmt/ghcmod-vim', {
+\ 'autoload' : {
+\   'filetypes' : 'haskell'
+\ }}
+NeoBundleLazy 'ujihisa/neco-ghc', {
+\ 'autoload' : {
+\   'filetypes' : 'haskell'
+\ }}
 " }}}
 
 " ### 何かを実行 ### {{{
