@@ -517,7 +517,10 @@ NeoBundleLazy 'ujihisa/neco-ghc', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
-NeoBundle 'ujihisa/ref-hoogle'
+NeoBundleLazy 'ujihisa/ref-hoogle', {
+\ 'autoload' : {
+\   'filetypes' : 'haskell'
+\ }}
 NeoBundleLazy 'def-lkb/merlin', {
 \ 'rtp' : 'vim/merlin/',
 \ 'depends' : 'vimbufsync',
