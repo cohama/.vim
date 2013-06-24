@@ -992,7 +992,7 @@ nnoremap [VimFiler]c :<C-u>VimFilerCurrentDir<CR>
 nnoremap [VimFiler]e :<C-u>VimFilerExplorer<CR>
 nnoremap [VimFiler]E :<C-u>VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 nnoremap <M-f> :<C-u>VimFiler<CR>
-nnoremap <M-F> :<C-u>VimFilerCurrentDir -explorer -find<CR>
+nnoremap <M-F> :<C-u>VimFilerBufferDir -explorer -find<CR>
 let g:vimfiler_safe_mode_by_default = 0
 autocmd myautocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
@@ -1004,6 +1004,13 @@ function! s:vimfiler_my_settings()
     let g:vimfiler_file_icon = '-'
     let g:vimfiler_readonly_file_icon = "\u2717" " like X
     let g:vimfiler_marked_file_icon = "\u2713"   " checkmark like レ
+  else
+    let g:vimfiler_tree_leaf_icon = ' '
+    let g:vimfiler_tree_opened_icon = '\' " filled inverse triangle
+    let g:vimfiler_tree_closed_icon = '>' " filled right-pointed triangle
+    let g:vimfiler_file_icon = '-'
+    let g:vimfiler_readonly_file_icon = "x" " like X
+    let g:vimfiler_marked_file_icon = "O"   " checkmark like レ
   endif
 
 endfunction
