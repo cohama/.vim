@@ -2042,7 +2042,7 @@ if s:is_gui
   let s:indent_guides_even_guibg = "#F0F8FF"
   set background=light
   autocmd myautocmd ColorScheme * highlight TheOCamlSpotTree gui=NONE guifg=NONE guibg=#BFD
-  colorscheme h2u_white
+  colorscheme gui_cohama_light
 else
   colorscheme cui_cohama
 endif
