@@ -201,12 +201,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " アレをアレする
-NeoBundleLazy 'Shougo/unite.vim', {
-\ 'autoload' : {
-\   'commands' : [{ 'name' : 'Unite',
-\                   'complete' : 'customlist,unite#complete_source'},
-\                 'UniteWithCursorWord', 'UniteWithInput']
-\ }}
+NeoBundle 'Shougo/unite.vim'
+
 " 非同期実行
 if s:is_unix
   NeoBundle 'Shougo/vimproc', {
