@@ -456,7 +456,8 @@ NeoBundleLazy 'cohama/easy-colorcolumn', {
 NeoBundleLazy 'thinca/vim-fontzoom', {
 \ 'gui' : 1,
 \ 'autoload' : {
-\   'mappings': ['<Plug>(fontzoom-larger)', '<Plug>(fontzoom-smaller)']
+\   'mappings': ['<Plug>(fontzoom-larger)', '<Plug>(fontzoom-smaller)'],
+\   'commands': ['Fontzoom']
 \ }}
 " }}}
 
