@@ -2034,6 +2034,17 @@ command! DiffOrig call DiffOrig()
 " Quickfix のエラーに移動
 nnoremap [e :<C-u>cprevious<CR>
 nnoremap ]e :<C-u>cnext<CR>
+
+" Presentation mode
+function! Presentation()
+  Fontzoom +5
+  set cmdheight=1
+  set laststatus=0
+  set nonumber norelativenumber
+  set showtabline=1
+  set guioptions-=e
+endfunction
+command! -nargs=0 Presentation call Presentation()
 "}}}
 
 " ColorScheme {{{
