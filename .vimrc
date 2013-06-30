@@ -766,7 +766,7 @@ let g:user_zen_settings = {
 
 " the-ocamlspot {{{
 let s:the_ocamlspot_tree_ctermbg = '17'
-let s:the_ocamlspot_tree_guibg = '#BFD'
+let s:the_ocamlspot_tree_guibg = '#BBFFDD'
 autocmd myautocmd ColorScheme * call s:the_ocamlspot_highlight()
 function! s:the_ocamlspot_highlight()
   exec "highlight TheOCamlSpotTree gui=NONE cterm=NONE ctermfg=NONE guifg=NONE"
@@ -2045,7 +2045,7 @@ if s:is_gui
   let s:indent_guides_odd_guibg = "#F5FFFC"
   let s:indent_guides_even_guibg = "#F0F8FF"
   set background=light
-  autocmd myautocmd ColorScheme * highlight TheOCamlSpotTree gui=NONE guifg=NONE guibg=#BFD
+  autocmd myautocmd ColorScheme * highlight TheOCamlSpotTree gui=NONE guifg=NONE guibg=#BBFFDD
   colorscheme gui_cohama_light
 else
   colorscheme cui_cohama
