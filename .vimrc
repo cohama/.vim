@@ -868,6 +868,7 @@ function! s:unite_my_settings()
   nmap <silent><buffer> <C-n> j
   map <silent><buffer> <M-n> j
   map <silent><buffer> <M-p> j
+  imap <silent><buffer> <Esc> <Plug>(unite_insert_leave)
 endfunction
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
