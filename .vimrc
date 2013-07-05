@@ -2046,6 +2046,14 @@ function! Presentation()
   set guioptions-=e
 endfunction
 command! -nargs=0 Presentation call Presentation()
+
+" diff のときに便利
+autocmd myautocmd InsertLeave * call AutoDiffUpdate()
+function! AutoDiffUpdate()
+  if &diff
+    diffupdate
+  endif
+endfunction
 "}}}
 
 " ColorScheme {{{
