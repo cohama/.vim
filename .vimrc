@@ -2038,7 +2038,7 @@ nnoremap ]e :<C-u>cnext<CR>
 
 " Presentation mode
 function! Presentation()
-  Fontzoom +5
+  Fontzoom +8
   set cmdheight=1
   set laststatus=0
   set nonumber norelativenumber
