@@ -33,6 +33,7 @@ hi Exception       guifg=#0000FF
 
 " programming pre-processes
 hi PreProc         guifg=#990099
+hi Define          guifg=#990099
 
 " programming types
 hi Type            guifg=#DB0000               gui=none
@@ -52,6 +53,6 @@ hi FoldColumn      guifg=#737373 guibg=#a0a0a0
 hi SignColumn                    guibg=#c2c2c2
 hi Search          guifg=NONE                  gui=reverse,underline
 hi Visual                        guibg=#FFDDDD
-
+hi Error           guifg=#CC0000 guibg=#880000
 
 " vim: set colorcolumn=20,34,48 iskeyword-=# :
