@@ -2051,8 +2051,8 @@ command! -nargs=0 Presentation call Presentation()
 " ColorScheme {{{
 if s:is_gui
   let s:indent_guides_guifg = "#c0c0c0"
-  let s:indent_guides_odd_guibg = "#F5FFFC"
-  let s:indent_guides_even_guibg = "#F0F8FF"
+  let s:indent_guides_odd_guibg = "#F9F9F9"
+  let s:indent_guides_even_guibg = "#F0F0F0"
   set background=light
   autocmd myautocmd ColorScheme * highlight TheOCamlSpotTree gui=NONE guifg=NONE guibg=#BBFFDD
   colorscheme gui_cohama_light
