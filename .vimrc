@@ -2054,6 +2054,10 @@ function! AutoDiffUpdate()
     diffupdate
   endif
 endfunction
+
+" ごめんなさい
+nnoremap <M-S> :<C-u>browse save<CR>
+nnoremap <M-O> :<C-u>browse edit<CR>
 "}}}
 
 " ColorScheme {{{
