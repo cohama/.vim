@@ -2058,6 +2058,9 @@ endfunction
 " ごめんなさい
 nnoremap <M-S> :<C-u>browse save<CR>
 nnoremap <M-O> :<C-u>browse edit<CR>
+
+" 繰り返しを楽にする
+xnoremap . :normal .<CR>
 "}}}
 
 " ColorScheme {{{
