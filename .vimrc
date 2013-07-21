@@ -2048,7 +2048,7 @@ endfunction
 command! -nargs=0 Presentation call Presentation()
 
 " diff のときに便利
-autocmd myautocmd InsertLeave * call AutoDiffUpdate()
+autocmd myautocmd TextChanged * call AutoDiffUpdate()
 function! AutoDiffUpdate()
   if &diff
     diffupdate
