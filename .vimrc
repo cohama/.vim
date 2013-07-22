@@ -858,16 +858,17 @@ autocmd myautocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
   let b:smartinput_disable_local = 1
   imap <silent><buffer> <C-q> <Plug>(unite_exit)
-  map <silent><buffer> <Esc> <Plug>(unite_exit)
+  map <silent><buffer><nowait> <Esc> <Plug>(unite_exit)
   noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
   noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
   noremap <silent><buffer><expr> f unite#smart_map("f", unite#do_action('vimfiler'))
   noremap <silent><buffer><expr> F unite#smart_map("f", unite#do_action('tabvimfiler'))
   imap <silent><buffer> <C-n> <Plug>(unite_select_next_line)<Esc>
-  nmap <silent><buffer> <C-n> j
-  map <silent><buffer> <M-n> j
-  map <silent><buffer> <M-p> j
+  nmap <silent><buffer> <C-n> <Plug>(unite_loop_cursor_down)
+  nmap <silent><buffer> <C-p> <Plug>(unite_loop_cursor_up)
+  map <silent><buffer> <M-n> <Plug>(unite_rotate_next_source)
+  map <silent><buffer> <M-p> <Plug>(unite_rotate_previous_source)
   imap <silent><buffer> <Esc> <Plug>(unite_insert_leave)
 endfunction
 if executable('ag')
@@ -1008,6 +1009,8 @@ function! s:vimfiler_my_settings()
     let g:vimfiler_marked_file_icon = "O"   " checkmark like レ
   endif
 
+  nmap <buffer><nowait> c <Plug>(vimfiler_copy_file)
+  nmap <buffer><nowait> d <Plug>(vimfiler_delete_file)
 endfunction
 " }}}
 
