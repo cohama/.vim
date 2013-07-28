@@ -18,3 +18,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " surround.vim のキーバインド
 nmap <M-s> ysiw
+
+if g:is_windows
+  autocmd myautocmd GUIEnter * simalt ~x
+endif

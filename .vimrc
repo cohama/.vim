@@ -5,11 +5,11 @@ augroup myautocmd
 augroup END
 
 " condition variables
-let s:is_windows = has('win32') || has('win64')
-let s:is_unix = has('unix')
-let s:is_gui = has('gui_running')
-let s:is_terminal = !s:is_gui
-let s:is_unicode = (&termencoding ==# 'utf-8' || &encoding == 'utf-8') && !(exists('g:discard_unicode') && g:discard_unicode != 0)
+let g:is_windows = has('win32') || has('win64')
+let g:is_unix = has('unix')
+let g:is_gui = has('gui_running')
+let g:is_terminal = !g:is_gui
+let g:is_unicode = (&termencoding ==# 'utf-8' || &encoding == 'utf-8') && !(exists('g:discard_unicode') && g:discard_unicode != 0)
 
 " must be set with multibyte strings
 scriptencoding utf-8
@@ -148,7 +148,7 @@ set virtualedit& virtualedit+=block
 set nojoinspaces
 
 " 折り返した行の表示
-if s:is_unicode
+if g:is_unicode
   let &showbreak = "\u21b3 "
 else
   let &showbreak = "`-"
@@ -204,7 +204,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 
 " 非同期実行
-if s:is_unix
+if g:is_unix
   NeoBundle 'Shougo/vimproc', {
         \     'build': {
         \        'unix': 'make -f make_unix.mak'
@@ -719,7 +719,7 @@ let g:NERDTreeWinSize = 36
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeChDirMode = 1
 let g:NERDTreeMapCWD = "cD"
-if !s:is_unicode
+if !g:is_unicode
   let g:NERDTreeDirArrows = 0
 endif
 " }}}
@@ -919,7 +919,7 @@ let g:Gitv_TruncateCommitSubjects = 1
 " }}}
 
 " gitgutter の設定 {{{
-if s:is_windows
+if g:is_windows
   let g:gitgutter_eager = 0
 endif
 nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
@@ -960,7 +960,7 @@ autocmd myautocmd ColorScheme * exec "hi IndentGuideseven" .
 " }}}
 
 " powerline {{{
-if s:is_unicode
+if g:is_unicode
   let g:Powerline_symbols='fancy'
 else
   let g:Powerline_symbols='compatible'
@@ -992,7 +992,7 @@ nnoremap <M-F> :<C-u>VimFilerBufferDir -explorer -find<CR>
 let g:vimfiler_safe_mode_by_default = 0
 autocmd myautocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
-  if s:is_unicode
+  if g:is_unicode
     " Like Textmate icons.
     let g:vimfiler_tree_leaf_icon = ' '
     let g:vimfiler_tree_opened_icon = "\u25be" " filled inverse triangle
@@ -1253,7 +1253,7 @@ nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
 nnoremap <silent> <C-n> :<C-u>nohlsearch<CR>
 
 " terminal でも Meta キーを使いたい
-if s:is_unix && s:is_terminal
+if g:is_unix && g:is_terminal
   " Use meta keys in console.
   for i in map(
   \   range(char2nr('a'), char2nr('z'))
@@ -1340,7 +1340,7 @@ endfunction
 command! -nargs=* SmartDrop call SmartDrop(<q-args>)
 
 " .vimrc .gvimrc に関する設定
-if s:is_gui
+if g:is_gui
   nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>
 else
   nnoremap <silent> <Leader>so :<C-u>source $MYVIMRC<CR>
@@ -2067,7 +2067,7 @@ xnoremap . :normal .<CR>
 "}}}
 
 " ColorScheme {{{
-if s:is_gui
+if g:is_gui
   let s:indent_guides_guifg = "#c0c0c0"
   let s:indent_guides_odd_guibg = "#F9F9F9"
   let s:indent_guides_even_guibg = "#F0F0F0"
