@@ -574,6 +574,12 @@ NeoBundleLazy 'kannokanno/vimtest', {
 
 " ref を見る
 NeoBundle 'thinca/vim-ref'
+
+" previm
+NeoBundleLazy 'kannokanno/previm', {
+\ 'autoload' : {
+\   'commands' : ['PrevimOpen']
+\ }}
 " }}}
 
 " ### Unite Souceses ### {{{
