@@ -190,7 +190,7 @@ set nostartofline
 
 " Plugin Bundles {{{
 " NeoBundle の設定
-filetype off
+filetype plugin indent off
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
