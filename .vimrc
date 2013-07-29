@@ -2061,6 +2061,20 @@ function! AutoDiffUpdate()
   endif
 endfunction
 
+" diffthis をする
+function! DiffThese()
+  let win_count = winnr('$')
+  if win_count == 2
+    diffthis
+    wincmd w
+    diffthis
+    wincmd w
+  else
+    echomsg "Too many windows."
+  endif
+endfunction
+command! -nargs=0 DiffThese call DiffThese()
+
 " ごめんなさい
 nnoremap <M-S> :<C-u>browse save<CR>
 nnoremap <M-O> :<C-u>browse edit<CR>
