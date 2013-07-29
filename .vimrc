@@ -2070,6 +2070,10 @@ nnoremap <M-O> :<C-u>browse edit<CR>
 
 " 繰り返しを楽にする
 xnoremap . :normal .<CR>
+
+" バッファの切り替え
+nnoremap <M-j> :<C-u>bnext<CR>
+nnoremap <M-k> :<C-u>bprevious<CR>
 "}}}
 
 " ColorScheme {{{
