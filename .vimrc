@@ -1147,18 +1147,15 @@ xmap gx <Plug>(openbrowser-smart-search)
 " }}}
 
 " watchdogs {{{
-let bundle = neobundle#get('vim-watchdogs')
-function! bundle.hooks.on_source(bundle)
-  call watchdogs#setup(g:quickrun_config)
-  let g:watchdogs_check_BufWritePost_enable = 1
-  let g:watchdogs_check_BufWritePost_enables = {
-  \ 'scala' : 0
-  \ }
-  if !executable('jshint')
-    let g:watchdogs_check_BufWritePost_enables.javascript = 0
-  endif
-endfunction
+let g:watchdogs_check_BufWritePost_enable = 1
+let g:watchdogs_check_BufWritePost_enables = {
+\ 'scala' : 0
+\ }
+if !executable('jshint')
+  let g:watchdogs_check_BufWritePost_enables.javascript = 0
+endif
 nnoremap <Leader>wr :<C-u>WatchdogsRun<CR>
+call watchdogs#setup(g:quickrun_config)
 " }}}
 
 " smartinput {{{
