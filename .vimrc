@@ -1033,6 +1033,7 @@ function! bundle.hooks.on_source(bundle)
   call altr#define('plugin/%.vim', 'autoload/%.vim')
   call altr#define('ftplugin/*/%.vim', 'autoload/%.vim')
   call altr#define('after/ftplugin/*/%.vim', 'autoload/%.vim')
+  call altr#define('%.ml', '%.mli')
   nnoremap <M-2> :<C-u>call altr#forward()<CR>
   nnoremap <M-1> :<C-u>call altr#back()<CR>
 endfunction
