@@ -1105,6 +1105,11 @@ let g:quickrun_config['watchdogs_checker/_'] = {
 let g:quickrun_config['ocaml/watchdogs_checker'] = {
 \ 'type' : 'watchdogs_checker/ocamlc'
 \ }
+if executable('ghc-mod')
+  let g:quickrun_config['haskell/watchdogs_checker'] = {
+  \ 'type' : 'watchdogs_checker/ghc-mod'
+  \ }
+endif
 let g:quickrun_config['watchdogs_checker/make'] = {
 \ 'command' : 'make',
 \ 'exec' : '%c %o'
@@ -1149,11 +1154,7 @@ let g:watchdogs_check_BufWritePost_enable = 1
 let g:watchdogs_check_BufWritePost_enables = {
 \ 'scala' : 0
 \ }
-if !executable('jshint')
-  let g:watchdogs_check_BufWritePost_enables.javascript = 0
-endif
 nnoremap <Leader>wr :<C-u>WatchdogsRun<CR>
-call watchdogs#setup(g:quickrun_config)
 " }}}
 
 " smartinput {{{
