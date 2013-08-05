@@ -52,7 +52,7 @@ hi CursorLineNr    guifg=#000000 guibg=#C0C0FF
 hi FoldColumn      guifg=#373737 guibg=#a0a0a0
 hi SignColumn                    guibg=#c2c2c2
 hi Search          guifg=NONE                  gui=reverse,underline
-hi Visual                        guibg=#88DDFF
+hi Visual                        guibg=#BBE0FF
 hi Error           guifg=#CC0000 guibg=#880000
 hi VertSplit       guifg=#232323 guibg=#232323
 hi Pmenu           guifg=#404040 guibg=#DDDDDD
