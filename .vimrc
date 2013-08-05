@@ -923,13 +923,10 @@ let g:Gitv_TruncateCommitSubjects = 1
 " }}}
 
 " gitgutter の設定 {{{
-if g:is_windows
-  let g:gitgutter_eager = 0
-endif
+let g:gitgutter_enabled = 0
 nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
 nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
-nnoremap [Git]g :<C-u>GitGutter<CR>
-nnoremap [Git]G :<C-u>GitGutterAll<CR>
+nnoremap [Git]g :<C-u>GitGutterToggle<CR>
 " }}}
 
 " git-messenger {{{
