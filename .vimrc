@@ -472,6 +472,9 @@ NeoBundleLazy 'gregsexton/gitv', {
 \   'commands' : ['Gitv']
 \ }}
 
+" git のステータスを行の横に表示
+NeoBundle 'airblade/vim-gitgutter'
+
 " git のコミットメッセージをバルーンで表示
 NeoBundleLazy 'rhysd/git-messenger.vim', {
 \ 'autoload' : {
