@@ -641,9 +641,6 @@ NeoBundle 'thinca/vim-localrc'
 filetype plugin indent on
 " Installation check.
 NeoBundleCheck
-if !has('vim_starting')
-  call neobundle#call_hook('on_source')
-endif
 nnoremap <Leader>une :Unite neobundle/
 nnoremap <Leader>uni :Unite neobundle/install<CR>
 nnoremap <Leader>unI :Unite neobundle/install:!<CR>
@@ -1246,6 +1243,9 @@ autocmd myautocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 let g:hatena_user='cohama'
 " }}}
 
+if !has('vim_starting')
+  call neobundle#call_hook('on_source')
+endif
 " }}}
 
 " Settings and keymaps {{{
