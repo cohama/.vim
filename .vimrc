@@ -1086,7 +1086,7 @@ let g:quickrun_config['_'] = {
 \   'hook/close_buffer/enable_empty_data'         : 1,
 \   'outputter'                                   : 'multi:buffer:quickfix',
 \   'outputter/buffer/split'                      : 'botright 8',
-\   'outputter/buffer/name'                       : 'Out',
+\   'outputter/buffer/name'                       : 'QuickRunOut',
 \   'outputter/buffer/close_on_empty'             : 1,
 \   'outputter/quickfix/open_cmd'                 : '',
 \   'runner'                                      : 'vimproc',
@@ -1126,7 +1126,29 @@ let g:quickrun_config['ruby.rspec'] = {
 \   'exec': '%c exec rspec -f d %s'
 \ }
 autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec | setlocal syntax=ruby
-autocmd myautocmd BufWinEnter Out setlocal winfixheight
+autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
+nnoremap Q :<C-u>call UtilClose()<CR>
+function! UtilClose()
+  let w = 0
+  let w:current_win = 1
+  for w in range(1, winnr('$'))
+    let ft = getwinvar(w, '&filetype')
+    let bufnr = winbufnr(w)
+    let name = bufname(bufnr)
+    if ft ==# 'quickrun' && name ==# 'QuickRunOut'
+      execute w . 'wincmd w'
+      q
+      break
+    endif
+  endfor
+  for w in range(1, winnr('$'))
+    let was_current = getwinvar(w, 'current_win')
+    if was_current
+      execute w . 'wincmd w'
+      break
+    endif
+  endfor
+endfunction
 " }}}
 
 " submode.vim {{{
