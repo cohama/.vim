@@ -318,7 +318,7 @@ NeoBundleLazy 'tpope/vim-surround', {
 \ }}
 
 " コメント化
-NeoBundleLazy 'tomtom/tcomment_vim', {
+NeoBundleLazy 'tpope/vim-commentary', {
 \ 'autoload' : {
 \   'mappings' : [['nx', 'gc'], ['nx', 'gC']]
 \ }}
@@ -932,11 +932,6 @@ nnoremap [Git]g :<C-u>GitGutterToggle<CR>
 " git-messenger {{{
 nmap [Git]m <Plug>(git-messenger-commit-summary)
 nmap [Git]M <Plug>(git-messenger-commit-message)
-" }}}
-
-" tcomment の設定 {{{
-let g:tcommentMapLeader1 = ''
-let g:tcommentMapLeader2 = ''
 " }}}
 
 "indent-guides の設定 {{{
