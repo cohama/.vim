@@ -164,7 +164,7 @@ set wildmenu
 set wildmode=longest:full,full
 
 " コマンドの履歴の保存数
-set history=500
+set history=2000
 " }}}
 
 " ### Miscellaneous ### {{{
