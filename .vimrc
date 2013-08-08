@@ -1195,8 +1195,10 @@ function bundle.hooks.on_source(bundle)
 
   call smartinput#map_to_trigger('c', '/', '/', '/')
   call smartinput#map_to_trigger('c', '?', '?', '?')
+  call smartinput#map_to_trigger('c', ':', ':', ':')
   call smartinput#define_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
   call smartinput#define_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
+  call smartinput#define_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
 
   call smartinput#map_to_trigger('c', 'C', 'C', 'C')
   call smartinput#map_to_trigger('c', 'D', 'D', 'D')
