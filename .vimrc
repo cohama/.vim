@@ -1963,6 +1963,15 @@ function! ISetting(setting, force_retab)
   echo current_indent_setting
 endfunction
 command! -nargs=? -bang ISetting call ISetting(<q-args>, <bang>0)
+nnoremap <F2> :<C-u>ISetting s2<CR>
+nnoremap <F3> :<C-u>ISetting s3<CR>
+nnoremap <F4> :<C-u>ISetting s4<CR>
+nnoremap <S-F2> :<C-u>ISetting! s2<CR>
+nnoremap <S-F3> :<C-u>ISetting! s3<CR>
+nnoremap <S-F4> :<C-u>ISetting! s4<CR>
+nnoremap <Leader><F2> :<C-u>ISetting! s2<CR>
+nnoremap <Leader><F3> :<C-u>ISetting! s3<CR>
+nnoremap <Leader><F4> :<C-u>ISetting! s4<CR>
 
 " My retab
 function! Retab(old_tabstop)
