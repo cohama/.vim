@@ -1122,15 +1122,19 @@ let g:quickrun_config['ruby.rspec'] = {
 \ }
 autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec | setlocal syntax=ruby
 autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
-nnoremap Q :<C-u>call UtilClose()<CR>
-function! UtilClose()
+nnoremap Q :<C-u>call CloseAnyOther()<CR>
+function! CloseAnyOther()
   let w = 0
   let w:current_win = 1
   for w in range(1, winnr('$'))
     let ft = getwinvar(w, '&filetype')
     let bufnr = winbufnr(w)
     let name = bufname(bufnr)
-    if ft ==# 'quickrun' && name ==# 'QuickRunOut'
+    if (ft ==# 'quickrun' && name ==# 'QuickRunOut')
+    \ || (ft ==# 'help')
+    \ || (ft ==# 'vimfiler')
+    \ || (ft ==# 'vimshell')
+    \ || (name =~# '^fugitive:')
       execute w . 'wincmd w'
       q
       break
