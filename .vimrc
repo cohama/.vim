@@ -1099,11 +1099,6 @@ let g:quickrun_config['watchdogs_checker/_'] = {
 let g:quickrun_config['ocaml/watchdogs_checker'] = {
 \ 'type' : 'watchdogs_checker/ocamlc'
 \ }
-if executable('ghc-mod')
-  let g:quickrun_config['haskell/watchdogs_checker'] = {
-  \ 'type' : 'watchdogs_checker/ghc-mod'
-  \ }
-endif
 let g:quickrun_config['watchdogs_checker/make'] = {
 \ 'command' : 'make',
 \ 'exec' : '%c %o'
