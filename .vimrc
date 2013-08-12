@@ -1236,6 +1236,7 @@ function bundle.hooks.on_source(bundle)
   call smartinput#define_rule({'at': 'Unite.*out\%#', 'char': 'L', 'input': 'line ', 'mode': ':'})
   call smartinput#define_rule({'at': 'Unite.*out\%#', 'char': 'P', 'input': 'put:', 'mode': ':'})
   call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'G', 'input': 'grep ', 'mode': ':'})
+  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'J', 'input': 'junkfile junkfile/new ', 'mode': ':'})
 
   call smartinput#define_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
   call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
