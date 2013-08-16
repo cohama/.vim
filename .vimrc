@@ -121,6 +121,9 @@ set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 
 " vim の継続行(\)のインデント量を 0 にする
 let g:vim_indent_cont = 0
+
+" シンプル・イズ・ベストなステータスライン
+set statusline=%f%M%R%H%W%q%=%(\|c:%2c\|%3p%%%)
 " }}}
 
 " ### Input ### {{{
@@ -415,9 +418,6 @@ NeoBundleLazy 'deris/columnjump', {
 " }}}
 
 " ### 見た目、カラースキーム ### {{{
-" かっこいいステータスライン
-NeoBundle 'Lokaltog/vim-powerline'
-
 " インデントの量を可視化
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
@@ -953,14 +953,6 @@ autocmd myautocmd ColorScheme * exec "hi IndentGuideseven" .
 \ " ctermfg=" . s:indent_guides_ctermfg .
 \ " guibg=" . s:indent_guides_even_guibg .
 \ " guifg=" . s:indent_guides_guifg
-" }}}
-
-" powerline {{{
-if g:is_unicode
-  let g:Powerline_symbols='fancy'
-else
-  let g:Powerline_symbols='compatible'
-endif
 " }}}
 
 " coffeescript {{{
