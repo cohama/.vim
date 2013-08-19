@@ -457,6 +457,9 @@ NeoBundleLazy 'thinca/vim-fontzoom', {
 \   'mappings': ['<Plug>(fontzoom-larger)', '<Plug>(fontzoom-smaller)'],
 \   'commands': ['Fontzoom']
 \ }}
+
+" インサートモード時に行番号の色を反転
+NeoBundle 'cohama/vim-insert-linenr'
 " }}}
 
 " ### Git ### {{{
@@ -1591,68 +1594,6 @@ autocmd myautocmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 " 改行だけを入力する
 nnoremap go mzo<Esc>`z
 nnoremap gO mzO<Esc>`z
-
-
-" Insert モードの時に行番号の色を反転
-" 参考 plugin/insert-statusline.vim
-let s:highlight_args = ["ctermfg", "ctermbg", "guifg", "guibg"]
-function! GetHighlight(highlight_group)
-  redir => hl
-  silent execute 'highlight ' . a:highlight_group
-  redir END
-  let hl = substitute(hl, '[\r\n]', '', 'g')
-  let hi_dict = {}
-  for hi_arg in s:highlight_args
-    let args_list = matchlist(hl, hi_arg . '=\(\S\+\)')
-    if len(args_list) > 1
-      let hi_dict[hi_arg] = args_list[1]
-    endif
-  endfor
-  return hi_dict
-endfunction
-function! InvertFgBg(hi_dict)
-  let inverted = {}
-  if has_key(a:hi_dict, "ctermfg") && has_key(a:hi_dict, "ctermbg")
-    let inverted.ctermfg = a:hi_dict.ctermbg
-    let inverted.ctermbg = a:hi_dict.ctermfg
-  endif
-  if has_key(a:hi_dict, "guifg") && has_key(a:hi_dict, "guibg")
-    let inverted.guifg = a:hi_dict.guibg
-    let inverted.guibg = a:hi_dict.guifg
-  endif
-  return inverted
-endfunction
-function! HighlightDictToString(highlight_dict)
-  let str = ""
-  for hi_arg in s:highlight_args
-    if has_key(a:highlight_dict, hi_arg) && a:highlight_dict[hi_arg] != ""
-      let str .= hi_arg . "=" . a:highlight_dict[hi_arg] . " "
-    endif
-  endfor
-  return str
-endfunction
-function! InitializeDefaultLineNr()
-  silent! let s:normal_normal = GetHighlight('Normal')
-  silent! let s:normal_linenr = extend(copy(s:normal_normal), GetHighlight('LineNr'))
-  silent! let s:normal_cursorlinenr = extend(copy(s:normal_normal), GetHighlight('CursorLineNr'))
-  let s:insert_linenr = InvertFgBg(s:normal_linenr)
-  let s:insert_cursorlinenr = InvertFgBg(s:normal_cursorlinenr)
-endfunction
-function! ToInsertLineNr()
-  if exists("s:insert_linenr") && exists("s:insert_cursorlinenr")
-    silent exec 'highlight LineNr ' . HighlightDictToString(s:insert_linenr)
-    silent exec 'highlight CursorLineNr ' . HighlightDictToString(s:insert_cursorlinenr)
-  endif
-endfunction
-function! ToNormalLineNr()
-  if exists("s:normal_linenr") && exists("s:normal_cursorlinenr")
-    silent exec 'highlight LineNr ' . HighlightDictToString(s:normal_linenr)
-    silent exec 'highlight CursorLineNr ' . HighlightDictToString(s:normal_cursorlinenr)
-  endif
-endfunction
-autocmd myautocmd ColorScheme * call InitializeDefaultLineNr()
-autocmd myautocmd InsertEnter * call ToInsertLineNr()
-autocmd myautocmd InsertLeave * call ToNormalLineNr()
 
 " インサートモードのマッピング
 inoremap <C-e> <End>
