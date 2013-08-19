@@ -613,6 +613,11 @@ NeoBundleLazy 'thinca/vim-unite-history', {
 \ 'autoload' : {
 \   'unite_sources' : ['history/command', 'history/search']
 \ }}
+
+NeoBundleLazy 'osyo-manga/unite-highlight', {
+\ 'autoload' : {
+\   'unite_sources' : ['highlight']
+\ }}
 " }}}
 
 " ### Miscellaneous ### {{{
