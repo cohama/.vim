@@ -1139,6 +1139,7 @@ function! CloseAnyOther()
     let was_current = getwinvar(w, 'current_win')
     if was_current
       execute w . 'wincmd w'
+      unlet w:current_win
       break
     endif
   endfor
