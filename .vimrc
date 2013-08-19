@@ -1465,7 +1465,8 @@ let s:scroll_time_ms = 100
 let s:scroll_precision = 8
 function! CohamaSmoothScroll(dir, windiv, factor)
   let cl = &cursorline
-  set nocursorline
+  let cc = &cursorcolumn
+  set nocursorline nocursorcolumn
   let height = winheight(0) / a:windiv
   let n = height / s:scroll_precision
   if n <= 0
@@ -1474,8 +1475,8 @@ function! CohamaSmoothScroll(dir, windiv, factor)
   let wait_per_one_move_ms = s:scroll_time_ms / s:scroll_precision * a:factor
   let i = 0
   let scroll_command = a:dir == "down" ?
-        \ "normal " . n . "\<C-E>" . n ."j" :
-        \ "normal " . n . "\<C-Y>" . n ."k"
+        \ "normal! " . n . "\<C-E>" . n ."j" :
+        \ "normal! " . n . "\<C-Y>" . n ."k"
   while i < s:scroll_precision
     let i = i + 1
     execute scroll_command
@@ -1483,7 +1484,7 @@ function! CohamaSmoothScroll(dir, windiv, factor)
     redraw
   endwhile
   let &cursorline = cl
-  echo "My Smooth Scroll"
+  let &cursorcolumn = cc
 endfunction
 nnoremap <silent> <C-d> :call CohamaSmoothScroll("down", 2, 1)<CR>
 nnoremap <silent> <C-u> :call CohamaSmoothScroll("up", 2, 1)<CR>
