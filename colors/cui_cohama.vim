@@ -62,8 +62,8 @@ hi Folded          ctermfg=109  ctermbg=16
 hi Search          ctermfg=251  ctermbg=24   cterm=underline
 hi IncSearch       ctermfg=16   ctermbg=202
 hi NonText         ctermfg=239  ctermbg=235
-hi StatusLine      ctermfg=255  ctermbg=16
-hi StatusLineNC    ctermfg=233  ctermbg=240
+hi StatusLine      ctermfg=255  ctermbg=238  cterm=bold
+hi StatusLineNC    ctermfg=239  ctermbg=233  cterm=NONE
 hi Todo            ctermfg=33   ctermbg=NONE cterm=bold
 hi TabLine         ctermfg=245  ctermbg=237  cterm=NONE
 hi TabLineSel      ctermfg=255  ctermbg=233  cterm=bold
