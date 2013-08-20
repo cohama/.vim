@@ -1854,17 +1854,15 @@ endfunction
 nnoremap <expr> [Toggle]W FullAutoWriteToggle()
 
 " <C-G> で fileformat fileencoding filetype とかもだす
-function! SuperRuler()
+function! SuperRuler(count)
   redir => ruler_out
-    silent file
+    silent execute 'silent normal! ' . a:count . "\<C-g>"
   redir END
   " なぜか改行が入るので
-  let ruler_out = strpart(ruler_out, 1)
-
-  let super_ruler = ruler_out . "    | " . &fileformat . " | " . &fileencoding . " | " . &filetype . " |"
+  let super_ruler = ruler_out[2:] . "    | " . &fileformat . " | " . &fileencoding . " | " . &filetype . " | " . fugitive#statusline()[1:]
   echo super_ruler
 endfunction
-nnoremap <C-G> :<C-u>call SuperRuler()<CR>
+nnoremap <C-G> :<C-u>call SuperRuler(v:count)<CR>
 
 " フォーマット変えて開き直す系
 command! Utf8 edit ++enc=utf-8 %
