@@ -1597,8 +1597,8 @@ endfunction
 autocmd myautocmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 
 " 改行だけを入力する
-nnoremap go mzo<Esc>`z
-nnoremap gO mzO<Esc>`z
+nnoremap <expr> go "mz" . v:count . "o\<Esc>`z"
+nnoremap <expr> gO "mz" . v:count . "O\<Esc>`z"
 
 " インサートモードのマッピング
 inoremap <C-e> <End>
