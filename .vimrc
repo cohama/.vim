@@ -1121,7 +1121,7 @@ nnoremap Q :<C-u>call CloseAnyOther()<CR>
 function! CloseAnyOther()
   let w = 0
   let w:current_win = 1
-  for w in range(1, winnr('$'))
+  for w in reverse(range(1, winnr('$')))
     let ft = getwinvar(w, '&filetype')
     let bufnr = winbufnr(w)
     let name = bufname(bufnr)
