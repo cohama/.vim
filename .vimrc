@@ -225,7 +225,8 @@ NeoBundleLazy 'vim-jp/vital.vim', {
 
 " ### 入力系 ### {{{
 " 入力補完
-NeoBundleLazy 'Shougo/neocomplcache', {
+" NeoBundleLazy 'Shougo/neocomplcache', {
+NeoBundleLazy 'Shougo/neocomplete', {
 \ 'autoload' : {
 \   'insert' : 1
 \ }}
@@ -663,35 +664,29 @@ nnoremap <Leader>unu :Unite neobundle/update:all<CR>
 " }}}
 
 " neocomplcache の設定 {{{
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_auto_completion_start_length = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_max_list = 200
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#auto_completion_start_length = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#max_list = 200
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <expr><C-h> neocomplcache#smart_close_popup()
 autocmd myautocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd myautocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
+if !exists('g:neocomplete#force_omni_patterns')
+  let g:neocomplete#force_omni_patterns = {}
 endif
-let g:neocomplcache_force_omni_patterns.javascript = ''
-let g:neocomplcache_force_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
-" let g:neocomplcache_force_omni_patterns.ocaml = '[^. *\t]\.\w*\|\h\w*|#'
-if !exists('g:neocomplcache_omni_functions')
-  let g:neocomplcache_omni_functions = {}
+let g:neocomplete#force_omni_patterns.javascript = ''
+let g:neocomplete#force_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
+" let g:neocomplete#force_omni_patterns.ocaml = '[^. *\t]\.\w*\|\h\w*|#'
+if !exists('g:neocomplete#omni_functions')
+  let g:neocomplete#omni_functions = {}
 endif
-let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
+let g:neocomplete#omni_functions.ruby = 'RSenseCompleteFunction'
 " autocmd myautocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-let g:neocomplcache_dictionary_filetype_lists = {
+let g:neocomplete#dictionary#dictionaries = {
 \ 'javascript': expand('~/.vim/dict/javascript.dict'),
 \ 'ocaml' : expand('~/.vim/dict/ocaml.dict')
 \ }
@@ -1816,7 +1811,7 @@ nnoremap [Toggle]s :<C-u>call Toggle("spell", "local")<CR>
 nnoremap [Toggle]n :<C-u>call ToggleNumber()<CR>
 nnoremap [Toggle]r :<C-u>call ToggleRelativeNumber()<CR>
 nnoremap [Toggle]h :<C-u>call Toggle("hlsearch")<CR>
-nnoremap [Toggle]N :<C-u>NeoComplCacheToggle<CR>
+nnoremap [Toggle]N :<C-u>NeoCompleteToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 nnoremap [Toggle]G :<C-u>GitGutterToggle<CR>
 function! ToggleNumber()
