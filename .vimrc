@@ -519,6 +519,10 @@ NeoBundleLazy 'ujihisa/ref-hoogle', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
+NeoBundleLazy 'ujihisa/unite-haskellimport', {
+\ 'autoload' : {
+\   'filetypes' : 'haskell'
+\ }}
 " NeoBundleLazy 'def-lkb/merlin', {
 " \ 'rtp' : 'vim/merlin/',
 " \ 'depends' : 'vimbufsync',
@@ -2065,6 +2069,15 @@ xnoremap . :normal .<CR>
 " バッファの切り替え
 nnoremap <M-j> :<C-u>bnext<CR>
 nnoremap <M-k> :<C-u>bprevious<CR>
+
+" haskell
+function! OnHaskell()
+  setl sw=4 sts=4 ts=4
+  nnoremap <buffer> \S :<C-u>VimShellInteractive ghci <C-r>%<CR>
+  nnoremap <buffer> \t :<C-u>GhcModType<CR>
+  nnoremap <silent> <C-n> :<C-u>GhcModTypeClear<CR>:nohlsearch<CR>
+endfunction
+autocmd myautocmd FileType haskell call OnHaskell()
 "}}}
 
 " ColorScheme {{{
