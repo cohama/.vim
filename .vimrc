@@ -2075,7 +2075,7 @@ function! OnHaskell()
   setl sw=4 sts=4 ts=4
   nnoremap <buffer> \S :<C-u>VimShellInteractive ghci <C-r>%<CR>
   nnoremap <buffer> \t :<C-u>GhcModType<CR>
-  nnoremap <silent> <C-n> :<C-u>GhcModTypeClear<CR>:nohlsearch<CR>
+  nnoremap <buffer><silent> <C-n> :<C-u>GhcModTypeClear<CR>:nohlsearch<CR>
 endfunction
 autocmd myautocmd FileType haskell call OnHaskell()
 "}}}
