@@ -2073,6 +2073,9 @@ function! OnHaskell()
   nnoremap <buffer><silent> <C-n> :<C-u>GhcModTypeClear<CR>:nohlsearch<CR>
 endfunction
 autocmd myautocmd FileType haskell call OnHaskell()
+
+" digraph を打ちたい時もあるかもしれない
+inoremap <C-g><C-l> <C-k>
 "}}}
 
 " ColorScheme {{{
