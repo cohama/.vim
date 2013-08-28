@@ -1855,8 +1855,9 @@ nnoremap <expr> [Toggle]W FullAutoWriteToggle()
 
 " <C-G> で fileformat fileencoding filetype とかもだす
 function! SuperRuler(count)
+  let cnt = (a:count == 0) ? '' : a:count
   redir => ruler_out
-    silent execute 'silent normal! ' . a:count . "\<C-g>"
+    silent execute 'silent normal! ' . cnt . "\<C-g>"
   redir END
   " なぜか改行が入るので
   let super_ruler = ruler_out[2:] . "    | " . &fileformat . " | " . &fileencoding . " | " . &filetype . " | " . fugitive#statusline()[1:]
