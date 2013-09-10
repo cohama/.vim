@@ -74,6 +74,9 @@ set autoread
 
 " 隠れ状態にしない
 set nohidden
+
+" 漢には不要
+set noswapfile
 " }}}
 
 " ### View ### {{{
