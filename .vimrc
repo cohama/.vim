@@ -915,16 +915,18 @@ function! GitvSettings()
   cnoremap <buffer><expr> <C-r><C-h> GitvGetCurrentHash()
   nnoremap <silent><buffer> J :<C-u>windo call GitToggleFolding()<CR>1<C-w>w
   nnoremap <buffer> . :<C-u> <C-r>=GitvGetCurrentHash()<CR><Home>
-  nnoremap <buffer> [Git]rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> [Git]ri :<C-u>Git rebase -i <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> [Git]R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR>
-  nnoremap <buffer> [Git]h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR>
+  nnoremap <buffer> rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> ri :<C-u>Git rebase -i <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR>
+  nnoremap <buffer> ch :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR>
   nnoremap <buffer> [Git]a :<C-u>Git add -A<CR>
-  nnoremap <buffer> [Git]rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> [Git]rm :<C-u>Git reset <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> [Git]rs :<C-u>Git reset --soft <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> rm :<C-u>Git reset <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> rs :<C-u>Git reset --soft <C-r>=GitvGetCurrentHash()<CR><Space>
   nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
+  nnoremap <buffer> m :<C-u>Git merge --no-ff --no-commit<Space>
   nnoremap <buffer> cb :<C-u>Git checkout -b  <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
+  nnoremap <buffer> fb :<C-u>Git branch -f  <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
   nnoremap <buffer> db :<C-u>Git branch -D <C-r><C-w>
 endfunction
 nnoremap [Git]k :<C-u>Gitv --all<CR>
