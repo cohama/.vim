@@ -407,9 +407,10 @@ NeoBundle 'kana/vim-altr'
 
 " ### 移動 ### {{{
 " CamelCase や snake_case での単語移動
-NeoBundleLazy 'bkad/CamelCaseMotion', {
+NeoBundleLazy 'cohama/CamelCaseMotion', {
 \ 'autoload' : {
-\   'mappings' : [',w', ',e', ',b', ',ge']}}
+\   'mappings' : ['<Plug>CamelCaseMotion_w', '<Plug>CamelCaseMotion_b']
+\ }}
 
 " カーソルを任意の位置にジャンプさせる
 NeoBundleLazy 'EasyMotion', {'autoload' : {
@@ -1048,6 +1049,10 @@ function! bundle.hooks.on_source(bundle)
   nnoremap <M-1> :<C-u>call altr#back()<CR>
 endfunction
 " }}}
+
+" CamelCaseMotion
+omap <silent> > <Plug>CamelCaseMotion_w
+omap <silent> < <Plug>CamelCaseMotion_b
 
 " EasyMotion {{{
 let g:EasyMotion_leader_key = ';'
