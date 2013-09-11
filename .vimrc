@@ -315,6 +315,12 @@ NeoBundleLazy 'kana/vim-textobj-line', {
 \ 'autoload' : {
 \   'mappings' : [['ox', 'il'], ['ox', 'al']]
 \ }}
+
+" 最後に編集した領域
+NeoBundleLazy 'gilligan/textobj-lastpaste', {
+\ 'autoload' : {
+\   'mappings' : [['ox', 'iP']]
+\ }}
 " }}}
 
 " ### operator ### {{{
@@ -751,6 +757,11 @@ omap i/ <Plug>(textobj-between-i)
 xmap i/ <Plug>(textobj-between-i)
 omap a/ <Plug>(textobj-between-a)
 xmap a/ <Plug>(textobj-between-a)
+
+" textobj-lastpaste
+let g:textobj_lastpaste_no_default_key_mappings = 1
+omap iP <Plug>(textobj-lastpaste-i)
+xmap iP <Plug>(textobj-lastpaste-i)
 
 " zencoding の設定 {{{
 let g:use_zen_complete_tag = 1
