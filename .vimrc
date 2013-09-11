@@ -414,7 +414,7 @@ NeoBundleLazy 'cohama/CamelCaseMotion', {
 
 " カーソルを任意の位置にジャンプさせる
 NeoBundleLazy 'EasyMotion', {'autoload' : {
-\ 'mappings' : [';w', ';b', ';e', ';ge', ';W', ';B', ';E', ';gE', ';f', ';F', ';t', ';T']
+\ 'mappings' : map(['w', 'b', 'e', 'ge', 'W', 'B', 'E', 'gE', 'f', 'F', 't', 'T'], '["n", "t" . v:val]')
 \ }}
 
 " 記号とかに邪魔されずに w, b, e できる
@@ -1055,21 +1055,21 @@ omap <silent> > <Plug>CamelCaseMotion_w
 omap <silent> < <Plug>CamelCaseMotion_b
 
 " EasyMotion {{{
-let g:EasyMotion_leader_key = ';'
+let g:EasyMotion_leader_key = 't'
 let bundle = neobundle#get('EasyMotion')
 function! bundle.hooks.on_post_source(bundle)
-  sunmap ;w
-  sunmap ;b
-  sunmap ;e
-  sunmap ;ge
-  sunmap ;W
-  sunmap ;B
-  sunmap ;E
-  sunmap ;gE
-  sunmap ;f
-  sunmap ;F
-  sunmap ;t
-  sunmap ;T
+  sunmap tw
+  sunmap tb
+  sunmap te
+  sunmap tge
+  sunmap tW
+  sunmap tB
+  sunmap tE
+  sunmap tgE
+  sunmap tf
+  sunmap tF
+  sunmap tt
+  sunmap tT
 endfunction
 " }}}
 
@@ -2013,22 +2013,6 @@ function! RemoveUnwantedSpaces()
   endwhile
 endfunction
 command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
-
-" fFtT 用
-noremap ; <Nop>
-noremap ;; ;
-sunmap ;
-sunmap ;;
-noremap , <Nop>
-noremap ,, ,
-sunmap ,
-sunmap ,,
-nnoremap <CR> ;
-onoremap <CR> ;
-xnoremap <CR> ;
-" GVim only
-noremap <M-;> ;
-noremap <M-,> ,
 
 " 自分自身と diff
 function! DiffOrig()
