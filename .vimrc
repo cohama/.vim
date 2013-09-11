@@ -321,6 +321,12 @@ NeoBundleLazy 'gilligan/textobj-lastpaste', {
 \ 'autoload' : {
 \   'mappings' : [['ox', 'iP']]
 \ }}
+
+" コメントをテキストオブジェクト化
+NeoBundleLazy 'thinca/vim-textobj-comment', {
+\ 'autoload' : {
+\   'mappings' : [['ox', 'ic'], ['ox', 'ac']]
+\ }}
 " }}}
 
 " ### operator ### {{{
