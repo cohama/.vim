@@ -1,8 +1,26 @@
 snippet fn
+abbr function
 options word
     function(${1:attribute}) {
-      ${2:// body}
-    }${0}
+      ${3:TARGET}
+    }${2:, ${0\}}
+
+snippet fnr
+abbr function() .. return
+options word
+    function(${1:attribute}) {
+      return ${3:TARGET};
+    }${2:, ${0\}}
+
+snippet     f
+abbr        function(){proc;}
+options     word
+    function(${1:attribute}){${2:proc};}${0}
+
+snippet     fr
+abbr        function(){return val;}
+options     word
+    function(${1:attribute}){return ${2:val};}${0}
 
 snippet it
     it("${1:explanation}", function() {
@@ -26,7 +44,7 @@ snippet describe
     });
 
 snippet expect
-    expect(${1:expectation}).${2:toEqual()}
+    expect(${1:expectation}).${2:toEqual(${0})}
 
 snippet BackboneModel
     Backbone.Model.extend({
@@ -63,4 +81,13 @@ snippet _each
     }${3:, this});
 
 snippet console
-    console.log(${0});
+    console.log(${0:TARGET});
+
+snippet     ExtDefine
+abbr        Ext.define
+options     head
+    Ext.define('${1:classname}', {
+      extend: '${2:Ext.Container}',
+
+      ${3:config: \{${0\}\}}
+    });
