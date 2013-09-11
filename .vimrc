@@ -518,6 +518,13 @@ NeoBundleLazy 'pangloss/vim-javascript', {
 \ 'autoload': {
 \   'filetypes' : 'javascript'
 \ }}
+NeoBundleLazy 'marijnh/tern_for_vim', {
+\ 'autoload': {
+\   'filetypes' : 'javascript'
+\ },
+\ 'build' : {
+\   'unix' : 'npm install'
+\ }}
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundleLazy 'cohama/the-ocamlspot.vim', {
 \ 'autoload' : {
@@ -995,6 +1002,10 @@ let coffee_linter = 'coffeelint'
 nnoremap <Leader>cc :CoffeeCompile<CR>
 nnoremap <Leader>cm :CoffeeMake<CR>
 nnoremap <Leader>cl :CoffeeLint<CR>
+" }}}
+
+" tern {{{
+let g:tern_show_argument_hints = 'on_move'
 " }}}
 
 " vimfiler {{{
