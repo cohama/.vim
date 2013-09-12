@@ -405,7 +405,10 @@ NeoBundleLazy 'Shougo/junkfile.vim', {
 \ }}
 
 " 規則に従ってファイルを開く
-NeoBundle 'kana/vim-altr'
+NeoBundleLazy 'kana/vim-altr', {
+\ 'autoload' : {
+\   'mappings' : [['n', "\<M-1>"], ['n', "\<M-2>"]]
+\ }}
 " }}}
 
 " ### 移動 ### {{{
