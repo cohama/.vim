@@ -245,7 +245,7 @@ NeoBundleLazy 'Shougo/neosnippet', {
 \ }}
 
 " Zen-Coding
-NeoBundleLazy 'mattn/zencoding-vim', {
+NeoBundleLazy 'mattn/emmet-vim', {
 \ 'autoload' : {
 \   'filetypes' : ['html', 'eruby', 'jsp', 'xml'],
 \   'commands' : ['<Plug>ZenCodingExpandNormal']
@@ -735,26 +735,13 @@ omap iP <Plug>(textobj-lastpaste-i)
 xmap iP <Plug>(textobj-lastpaste-i)
 
 " zencoding の設定 {{{
-let g:use_zen_complete_tag = 1
-let g:user_zen_leader_key = '<C-C>'
-let g:user_zen_settings = {
-\  'lang' : 'ja',
-\  'html' : {
-\    'filters' : 'html',
-\    'indentation' : '  '
-\  },
-\  'css' : {
-\    'filters' : 'fc',
-\  },
-\  'javascript' : {
-\    'snippets' : {
-\      'jq' : "$(function() {\n\t${cursor}${child}\n});",
-\      'jq:each' : "$.each(arr, function(index, item)\n\t${child}\n});",
-\      'fn' : "(function() {\n\t${cursor}\n})();",
-\      'tm' : "setTimeout(function() {\n\t${cursor}\n}, 100);",
-\    },
-\  },
-\ }
+let g:use_emmet_complete_tag = 1
+let g:user_emmet_leader_key = '<C-C>'
+let g:user_emmet_settings = {
+\ 'lang' : 'ja',
+\ 'html' : {
+\   'indentation' : '  '
+\ }}
 " }}}
 
 " the-ocamlspot {{{
