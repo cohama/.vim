@@ -412,12 +412,12 @@ NeoBundle 'kana/vim-altr'
 " CamelCase や snake_case での単語移動
 NeoBundleLazy 'cohama/CamelCaseMotion', {
 \ 'autoload' : {
-\   'mappings' : ['<Plug>CamelCaseMotion_w', '<Plug>CamelCaseMotion_b']
+\   'mappings' : ['<Plug>CamelCaseMotion_w', '<Plug>CamelCaseMotion_b', '<Plug>CamelCaseMotion_e']
 \ }}
 
 " カーソルを任意の位置にジャンプさせる
 NeoBundleLazy 'EasyMotion', {'autoload' : {
-\ 'mappings' : map(['w', 'b', 'e', 'ge', 'W', 'B', 'E', 'gE', 'f', 'F', 't', 'T'], '["n", "t" . v:val]')
+\ 'mappings' : map(['w', 'b', 'e', 'ge', 'W', 'B', 'E', 'gE', 'f', 'F', 't', 'T'], '["n", "[EasyMotion]" . v:val]')
 \ }}
 
 " 記号とかに邪魔されずに w, b, e できる
@@ -1065,25 +1065,31 @@ endfunction
 " }}}
 
 " CamelCaseMotion
-omap <silent> > <Plug>CamelCaseMotion_w
-omap <silent> < <Plug>CamelCaseMotion_b
+map + [CamelCaseMotion]
+map <silent> [CamelCaseMotion]w <Plug>CamelCaseMotion_w
+map <silent> [CamelCaseMotion]b <Plug>CamelCaseMotion_b
+map <silent> [CamelCaseMotion]e <Plug>CamelCaseMotion_e
+sunmap [CamelCaseMotion]w
+sunmap [CamelCaseMotion]b
+sunmap [CamelCaseMotion]e
 
 " EasyMotion {{{
-let g:EasyMotion_leader_key = 't'
+nmap <CR> [EasyMotion]
+let g:EasyMotion_leader_key = '[EasyMotion]'
 let bundle = neobundle#get('EasyMotion')
 function! bundle.hooks.on_post_source(bundle)
-  sunmap tw
-  sunmap tb
-  sunmap te
-  sunmap tge
-  sunmap tW
-  sunmap tB
-  sunmap tE
-  sunmap tgE
-  sunmap tf
-  sunmap tF
-  sunmap tt
-  sunmap tT
+  sunmap [EasyMotion]w
+  sunmap [EasyMotion]b
+  sunmap [EasyMotion]e
+  sunmap [EasyMotion]ge
+  sunmap [EasyMotion]W
+  sunmap [EasyMotion]B
+  sunmap [EasyMotion]E
+  sunmap [EasyMotion]gE
+  sunmap [EasyMotion]f
+  sunmap [EasyMotion]F
+  sunmap [EasyMotion]t
+  sunmap [EasyMotion]T
 endfunction
 " }}}
 
