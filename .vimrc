@@ -652,8 +652,6 @@ NeoBundleLazy 'osyo-manga/unite-highlight', {
 " }}}
 
 " ### Miscellaneous ### {{{
-NeoBundleLazy 'motemen/hatena-vim'
-
 " コードを Gist に送るためのプラグイン
 NeoBundleLazy 'mattn/gist-vim', {
 \ 'depends': 'mattn/webapi-vim',
@@ -1310,10 +1308,6 @@ function! SetUpRubySetting()
   nmap <buffer>Kt :RSenseTypeHelp<CR>
 endfunction
 autocmd myautocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
-" }}}
-
-" hatena-vim {{{
-let g:hatena_user='cohama'
 " }}}
 
 if !has('vim_starting')
