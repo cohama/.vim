@@ -441,17 +441,6 @@ NeoBundleLazy 'deris/columnjump', {
 " インデントの量を可視化
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
-" GUI 用カラースキームを変換できる
-NeoBundleLazy 'godlygeek/csapprox', {
-\ 'autoload' : {
-\   'commands': 'CSApproxSnapshot',
-\ }}
-
-" color schemes
-NeoBundle 'vim-scripts/pyte', {
-\ 'gui' : 1
-\ }
-
 " エラー箇所をハイライトする
 NeoBundleLazy 'cohama/vim-hier'
 
@@ -550,14 +539,6 @@ NeoBundleLazy 'ujihisa/unite-haskellimport', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
-" NeoBundleLazy 'def-lkb/merlin', {
-" \ 'rtp' : 'vim/merlin/',
-" \ 'depends' : 'vimbufsync',
-" \ 'autoload' : {
-" \   'filetypes' : 'ocaml'
-" \ }}
-" NeoBundleLazy 'def-lkb/vimbufsync'
-" }}}
 
 " ### 何かを実行 ### {{{
 " Vim で動く shell
@@ -618,23 +599,6 @@ NeoBundleLazy 'kannokanno/previm', {
 " }}}
 
 " ### Unite Souceses ### {{{
-NeoBundleLazy "osyo-manga/unite-quickfix", {
-\ 'autoload' : {
-\   'unite_sources': ['quickfix']
-\ }}
-
-NeoBundleLazy 'tsukkee/unite-help', {
-\ 'autoload' : {
-\   'unite_sources': ['help']
-\ }}
-
-NeoBundleLazy 'ujihisa/unite-rake', {
-\ 'autoload' : {
-\   'unite_sources': ['rake']
-\ }}
-
-NeoBundleLazy 'basyura/unite-rails'
-
 NeoBundleLazy 'Shougo/unite-outline', {
 \ 'autoload' : {
 \   'unite_sources' : ['outline']
@@ -681,10 +645,6 @@ NeoBundle 'thinca/vim-localrc'
 filetype plugin indent on
 " Installation check.
 NeoBundleCheck
-nnoremap <Leader>une :Unite neobundle/
-nnoremap <Leader>uni :Unite neobundle/install<CR>
-nnoremap <Leader>unI :Unite neobundle/install:!<CR>
-nnoremap <Leader>unu :Unite neobundle/update:all<CR>
 " }}}
 
 " neocomplcache の設定 {{{
@@ -708,7 +668,7 @@ let g:neocomplete#force_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
 if !exists('g:neocomplete#omni_functions')
   let g:neocomplete#omni_functions = {}
 endif
-let g:neocomplete#omni_functions.ruby = 'RSenseCompleteFunction'
+" let g:neocomplete#omni_functions.ruby = 'RSenseCompleteFunction'
 " autocmd myautocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 let g:neocomplete#dictionary#dictionaries = {
 \ 'javascript': expand('~/.vim/dict/javascript.dict'),
@@ -757,13 +717,6 @@ let g:NERDTreeMapCWD = "cD"
 if !g:is_unicode
   let g:NERDTreeDirArrows = 0
 endif
-" }}}
-
-" surrond.vim の設定 {{{
-let g:surround_36 = "$(\r)"
-let g:surround_45 = "<% \r %>"
-let g:surround_61 = "<%= \r %>"
-let g:surround_104 = "<%=h \r %>"
 " }}}
 
 " textobj-between の設定
@@ -1298,18 +1251,6 @@ endfunction
 let g:echodoc_enable_at_startup = 1
 " }}}
 
-" Rsense {{{
-let g:rsenseUseOmniFunc = 1
-let g:rsenseHome = expand('$HOME/.vim/bundle/rsense')
-function! SetUpRubySetting()
-  " setlocal completefunc=RSenseCompleteFunction
-  nmap <buffer>Kd :RSenseJumpToDefinition<CR>
-  nmap <buffer>Kw :RSenseWhereIs<CR>
-  nmap <buffer>Kt :RSenseTypeHelp<CR>
-endfunction
-autocmd myautocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
-" }}}
-
 if !has('vim_starting')
   call neobundle#call_hook('on_source')
 endif
@@ -1394,10 +1335,6 @@ xnoremap <expr><silent> gn "y:\<C-R>=ToggleHilightWordAtCursor(getreg('0'))\<CR>
 
 " % コマンドの拡張
 runtime macros/matchit.vim
-
-" ビジュアルモードでのインデントを連続でできるようにする
-xnoremap < <gv
-xnoremap > >gv
 
 " 戦闘力(俺用)
 command! MyScouter Scouter ~/.vim/.vimrc ~/.vim/.gvimrc
@@ -2085,10 +2022,6 @@ nnoremap <M-O> :<C-u>browse edit<CR>
 
 " 繰り返しを楽にする
 xnoremap . :normal .<CR>
-
-" バッファの切り替え
-nnoremap <M-j> :<C-u>bnext<CR>
-nnoremap <M-k> :<C-u>bprevious<CR>
 
 " haskell
 function! OnHaskell()
