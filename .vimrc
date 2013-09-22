@@ -542,6 +542,7 @@ NeoBundleLazy 'ujihisa/unite-haskellimport', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
+" }}}
 
 " ### 何かを実行 ### {{{
 " Vim で動く shell
