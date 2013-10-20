@@ -597,6 +597,7 @@ NeoBundle 'thinca/vim-ref'
 
 " previm
 NeoBundleLazy 'kannokanno/previm', {
+\ 'depends' : ['tyru/open-browser.vim'],
 \ 'autoload' : {
 \   'commands' : ['PrevimOpen']
 \ }}
