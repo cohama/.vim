@@ -10,8 +10,8 @@ set guioptions-=a
 
 
 " zencoding の設定
-execute 'map <C-CR> ' . g:user_zen_leader_key . ','
-execute 'imap <C-CR> ' . g:user_zen_leader_key . ','
+execute 'map <C-CR> ' . g:user_emmet_leader_key . ','
+execute 'imap <C-CR> ' . g:user_emmet_leader_key . ','
 
 " 補完候補を逆にたどる
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
