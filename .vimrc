@@ -137,12 +137,12 @@ set completeopt-=preview
 set backspace=indent,eol,start
 
 " ヤンクなどで * レジスタにも書き込む
-" set clipboard=unnamed
+set clipboard=unnamed
 
 " ヤンクなどで + レジスタにも書き込む
-" if has('unnamedplus')
-"   set clipboard+=unnamedplus
-" endif
+if has('unnamedplus')
+  set clipboard+=unnamedplus
+endif
 
 " マッピングの受付時間 (<Leader> とか)
 set timeout
