@@ -37,6 +37,8 @@ hi Define          guifg=#990099
 
 " programming types
 hi Type            guifg=#DB0000               gui=none
+hi StorageClass    guifg=#DB0000               gui=none
+hi Structure       guifg=#DB0000               gui=none
 
 " specials
 hi Special         guifg=#00616E
