@@ -601,6 +601,12 @@ NeoBundleLazy 'kannokanno/previm', {
 \ 'autoload' : {
 \   'commands' : ['PrevimOpen']
 \ }}
+
+" test
+NeoBundleLazy 'kana/vim-vspec', {
+\ 'autoload' : {
+\   'filetypes' : ['vim']
+\ }}
 " }}}
 
 " ### Unite Souceses ### {{{
