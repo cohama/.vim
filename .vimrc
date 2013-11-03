@@ -645,6 +645,12 @@ NeoBundleLazy 'thinca/vim-scall', {
 
 " プロジェクトローカルな vimrc を作成
 NeoBundle 'thinca/vim-localrc'
+
+" pretty print
+NeoBundleLazy 'thinca/vim-prettyprint', {
+\ 'autoload' : {
+\   'commands' : ['PP', 'PrettyPrint']
+\ }}
 " }}}
 " }}}
 
