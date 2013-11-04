@@ -251,14 +251,11 @@ NeoBundleLazy 'mattn/emmet-vim', {
 \   'commands' : ['<Plug>ZenCodingExpandNormal']
 \ }}
 
-" endfunction とかを自動入力
-NeoBundleLazy 'tpope/vim-endwise', {
-\ 'autoload' : {
-\   'filetypes' : ['lua', 'ruby', 'sh', 'zsh', 'vb', 'vbnet', 'aspvbs', 'vim']
-\ }}
-
 " 対応する括弧の自動入力 (kana 神の fork)
 NeoBundle 'cohama/vim-smartinput'
+
+" ruby の def end とか自動入力
+NeoBundle 'cohama/vim-smartinput-endwise'
 
 " echo area に情報を表示
 " NeoBundleLazy 'Shougo/echodoc', {
@@ -869,11 +866,6 @@ if executable('ag')
 endif
 " }}}
 
-" endwise {{{
-let g:endwise_no_mappings = 1
-autocmd myautocmd FileType lua,ruby,sh,zsh,vb,vbnet,aspvbs,vim imap <buffer> <CR> <CR><Plug>DiscretionaryEnd
-" }}}
-
 " gitv の設定 {{{
 autocmd myautocmd FileType git setlocal nofoldenable foldlevel=0
 autocmd myautocmd FileType gitv call GitvSettings()
@@ -1171,6 +1163,8 @@ nnoremap <Leader>wr :<C-u>WatchdogsRun<CR>
 " smartinput {{{
 let bundle = neobundle#get('vim-smartinput')
 function bundle.hooks.on_source(bundle)
+  call smartinput_endwise#define_default_rules()
+
   call smartinput#map_to_trigger('i', '<', '<', '<')
   call smartinput#map_to_trigger('i', '%', '%', '%')
   call smartinput#map_to_trigger('i', '*', '*', '*')
