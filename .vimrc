@@ -661,14 +661,14 @@ filetype plugin indent on
 NeoBundleCheck
 " }}}
 
-" neocomplcache の設定 {{{
+" neocomplete の設定 {{{
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#auto_completion_start_length = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#max_list = 200
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-inoremap <expr><C-h> neocomplcache#smart_close_popup()
+inoremap <expr><C-l> neocomplete#complete_common_string()
+" inoremap <expr><C-h> neocomplete#smart_close_popup()
 autocmd myautocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
@@ -691,6 +691,7 @@ let g:neocomplete#dictionary#dictionaries = {
 
 " 補完メニューの設定
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <C-u> pumvisible() ? neocomplete#cancel_popup() . "\<C-u>": "\<C-u>"
 " }}}
 
 " neosnippet の設定 {{{
