@@ -1304,8 +1304,6 @@ nnoremap <silent> <M-n> :<C-u>tabnew<CR>
 nnoremap <silent> <M-w> :<C-u>tabclose<CR>
 nnoremap <silent> <M-W> :<C-u>tabonly<CR>
 nnoremap <M-e> :<C-u>tabedit<Space>
-inoremap <silent> <M-l> <Esc>:tabnext<CR>
-inoremap <silent> <M-h> <Esc>:tabprevious<CR>
 
 " タブページの移動
 function! MoveTabPage(dir)
