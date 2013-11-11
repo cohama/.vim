@@ -2044,6 +2044,9 @@ autocmd myautocmd FileType haskell call OnHaskell()
 
 " digraph を打ちたい時もあるかもしれない
 inoremap <C-g><C-l> <C-k>
+
+" cdcurrent
+command! CdCurrent cd %:p:h
 "}}}
 
 " ColorScheme {{{
