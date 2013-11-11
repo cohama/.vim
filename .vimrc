@@ -651,6 +651,13 @@ NeoBundleLazy 'thinca/vim-prettyprint', {
 \ 'autoload' : {
 \   'commands' : ['PP', 'PrettyPrint']
 \ }}
+
+" help 自動生成
+NeoBundle 'LeafCage/vimhelpgenerator'
+" NeoBundleLazy 'LeafCage/vimhelpgenerator', {
+" \ 'autoload' : {
+" \   'commands' : ['VimHelpGenerator', 'HelpIntoMarkdown']
+" \ }}
 " }}}
 " }}}
 
@@ -1249,6 +1256,12 @@ endfunction
 " echodoc {{{
 let g:echodoc_enable_at_startup = 1
 " }}}
+
+" vimhelpgenerator
+let g:vimhelpgenerator_defaultlanguage = 'en'
+let g:vimhelpgenerator_version = 'Version : 1.0.0'
+let g:vimhelpgenerator_author = 'Author  : cohama / cohama@live.jp'
+
 
 if !has('vim_starting')
   call neobundle#call_hook('on_source')
