@@ -46,9 +46,9 @@ hi Special         guifg=#00616E
 " vim views
 hi Cursor                        guibg=#000000
 hi CursorIM                      guibg=#880000
-hi CursorLine                    guibg=#DDDDFF gui=none
-hi CursorColumn                  guibg=#DDDDFF gui=none
-hi ColorColumn                   guibg=#FFADAD
+hi CursorLine                    guibg=#EAEAFF gui=none
+hi CursorColumn                  guibg=#EAEAFF gui=none
+hi ColorColumn                   guibg=#FFDDDD
 hi LineNr          guifg=#606060 guibg=#E4E4E4
 hi CursorLineNr    guifg=#000000 guibg=#C0C0FF
 hi FoldColumn      guifg=#373737 guibg=#a0a0a0
@@ -61,5 +61,13 @@ hi Pmenu           guifg=#404040 guibg=#DDDDDD
 hi PmenuSel                      guibg=#BBBBBB
 hi PmenuSbar                     guibg=#888888
 hi PmenuThumb                    guibg=#555555
+hi DiffAdd                       guibg=#C0FFDD
+hi DiffDelete      guifg=#DD8888 guibg=#FFDDDD
+hi DiffChange      guifg=#404040 guibg=#E0D0E0
+hi DiffText        guifg=#E0D0E0 guibg=#888888 gui=bold
+
+" filetype specific
+hi diffAdded       guifg=#228822               gui=bold
+hi diffRemoved     guifg=#C84060
 
 " vim: set colorcolumn=20,34,48 iskeyword-=# :
