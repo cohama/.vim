@@ -507,13 +507,12 @@ NeoBundleLazy 'pangloss/vim-javascript', {
 \ 'autoload': {
 \   'filetypes' : 'javascript'
 \ }}
-NeoBundleLazy 'marijnh/tern_for_vim', {
-\ 'autoload': {
-\   'filetypes' : 'javascript'
-\ },
-\ 'build' : {
-\   'unix' : 'npm install'
-\ }}
+if executable('npm')
+  NeoBundleLazy 'marijnh/tern_for_vim', {
+  \ 'autoload': {
+  \   'filetypes' : 'javascript'
+  \ }}
+endif
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundleLazy 'cohama/the-ocamlspot.vim', {
 \ 'autoload' : {
