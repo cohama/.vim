@@ -910,6 +910,7 @@ function! GitvSettings()
   nnoremap <buffer> cb :<C-u>Git checkout -b  <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
   nnoremap <buffer> fb :<C-u>Git branch -f  <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
   nnoremap <buffer> db :<C-u>Git branch -D <C-r><C-w>
+  nnoremap <buffer> m :<C-u>Git merge <C-r><C-w>
 endfunction
 nnoremap [Git]k :<C-u>Gitv --all<CR>
 nnoremap [Git]K :<C-u>Gitv!<CR>
