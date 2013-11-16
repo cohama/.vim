@@ -1,7 +1,9 @@
+let g:font_name = get(g:, 'font_name', 'Migu 2M')
+let g:font_size = get(g:, 'font_size', 10)
 if has('win32') || has('win64')
-  set guifont=Migu_2M:h10:cSHIFTJIS
+  let &guifont =  substitute(g:font_name, ' ', '_', 'g') . ':h' . g:font_size . ':cSHIFTJIS'
 else
-  set guifont=Migu\ 2M\ 10
+  let &guifont = g:font_name . ' ' . g:font_size
 endif
 set guioptions&
 set guioptions-=T
