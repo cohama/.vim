@@ -530,6 +530,7 @@ NeoBundleLazy 'eagletmt/neco-ghc', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
+let g:necoghc_enable_detailed_browse = 1
 NeoBundleLazy 'ujihisa/ref-hoogle', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
