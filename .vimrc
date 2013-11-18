@@ -526,7 +526,7 @@ NeoBundleLazy 'eagletmt/ghcmod-vim', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
-NeoBundleLazy 'ujihisa/neco-ghc', {
+NeoBundleLazy 'eagletmt/neco-ghc', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
