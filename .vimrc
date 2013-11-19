@@ -77,6 +77,9 @@ set nohidden
 
 " 漢には不要
 set noswapfile
+
+" on だと guard が複数回実行されてしまう問題がある
+set nowritebackup
 " }}}
 
 " ### View ### {{{
