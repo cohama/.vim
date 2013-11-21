@@ -607,6 +607,10 @@ NeoBundleLazy 'kana/vim-vspec', {
 \ 'autoload' : {
 \   'filetypes' : ['vim']
 \ }}
+
+" すでに起動している Vim があればそれを使う
+NeoBundle 'thinca/vim-singleton'
+call singleton#enable()
 " }}}
 
 " ### Unite Souceses ### {{{
