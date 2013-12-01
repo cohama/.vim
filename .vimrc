@@ -968,7 +968,7 @@ nnoremap <Leader>cl :CoffeeLint<CR>
 " }}}
 
 " tern {{{
-let g:tern_show_argument_hints = 'on_move'
+let g:tern_show_argument_hints = 'on_hold'
 " }}}
 
 " vimfiler {{{
