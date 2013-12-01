@@ -1124,6 +1124,15 @@ let g:quickrun_config['ruby.rspec'] = {
 \   'command': 'bundle',
 \   'exec': '%c exec rspec -f d %s'
 \ }
+let g:quickrun_config['ghc_make'] = {
+\   'command': 'ghc',
+\   'exec': '%c --make %s',
+\   'outputter' : 'quickfix',
+\   'outputter/quickfix' : 1,
+\   'outputter/quickfix/open_cmd': 'cwindow',
+\   'hook/back_window/enable_exit': 1,
+\   'hook/back_window/priority_exit': 1
+\ }
 autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec | setlocal syntax=ruby
 autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
 nnoremap Q :<C-u>call CloseAnyOther()<CR>
@@ -1132,13 +1141,15 @@ function! CloseAnyOther()
   let w:current_win = 1
   for w in reverse(range(1, winnr('$')))
     let ft = getwinvar(w, '&filetype')
+    let bt = getwinvar(w, '&buftype')
     let bufnr = winbufnr(w)
     let name = bufname(bufnr)
     if (ft ==# 'quickrun' && name ==# 'QuickRunOut')
-    \ || (ft ==# 'help')
     \ || (ft ==# 'vimfiler')
     \ || (ft ==# 'vimshell')
     \ || (name =~# '^fugitive:')
+    \ || (bt ==# 'help')
+    \ || (bt ==# 'quickfix')
       execute w . 'wincmd w'
       q
       break
@@ -2048,6 +2059,7 @@ function! OnHaskell()
   nnoremap <buffer> \S :<C-u>VimShellInteractive ghci <C-r>%<CR>
   nnoremap <buffer> \t :<C-u>GhcModType<CR>
   nnoremap <buffer><silent> <C-n> :<C-u>GhcModTypeClear<CR>:nohlsearch<CR>
+  nnoremap <buffer> \R :<C-u>QuickRun ghc_make<CR>
 endfunction
 autocmd myautocmd FileType haskell call OnHaskell()
 
