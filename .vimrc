@@ -80,6 +80,9 @@ set noswapfile
 
 " on だと guard が複数回実行されてしまう問題がある
 set nowritebackup
+
+" 既存のファイルを開くときはとりあえず utf-8
+set fileencodings=utf-8,default,ucs-bom,latin1
 " }}}
 
 " ### View ### {{{
