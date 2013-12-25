@@ -23,7 +23,7 @@ options     word
     function(${1:attribute}){return ${2:val};}${0}
 
 snippet it
-    it("${1:explanation}", function() {
+    it('${1:explanation}', function() {
       ${2:// body}
     });
 
@@ -38,50 +38,18 @@ snippet beforeEach
     });
 
 snippet describe
-    describe("${1:description}", function() {
+    describe('${1:description}', function() {
 
       ${2:// body}
     });
 
 snippet expect
-    expect(${1:expectation}).${2:toEqual(${0})}
-
-snippet BackboneModel
-    Backbone.Model.extend({
-      ${1:// body}
-    });
-
-snippet BackboneCollection
-    Backbone.Collection.extend({
-      model: ${1:model},
-      ${0}
-    });
-
-snippet BackboneView
-    Backbone.View.extend({
-      ${0}
-    });
-
-snippet BackboneRouter
-    Backbone.Router.extend({
-      ${0}
-    });
+    expect(${1:expectation}).to.${2:equal}(${0});
 
 snippet bbf
     ${1:attribute}: function(${2:arguments}) {
       ${3:// body}
     }
-
-snippet hash
-    ${1:key}: ${2:value}
-
-snippet _each
-    _.each(${1:list}, function(${2:iter}) {
-      ${4:// body}
-    }${3:, this});
-
-snippet console
-    console.log(${0:TARGET});
 
 snippet     ExtDefine
 abbr        Ext.define
