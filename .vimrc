@@ -2068,6 +2068,7 @@ inoremap <C-g><C-l> <C-k>
 
 " cdcurrent
 command! CdCurrent cd %:p:h
+command! LcdCurrent lcd %:p:h
 "}}}
 
 " ColorScheme {{{
