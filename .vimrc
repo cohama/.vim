@@ -129,7 +129,7 @@ set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 let g:vim_indent_cont = 0
 
 " シンプル・イズ・ベストなステータスライン
-set statusline=%f%M%R%H%W%q%=%(\|c:%2c\|%3p%%%)
+set statusline=%f%M%R%H%W%q%{&ff=='unix'?'':',['.&ff.']'}%{&fenc=='utf-8'?'':',['.&fenc.']'}%=%(\|%3p%%%)
 
 " 補完メニューで preview しない
 set completeopt-=preview
