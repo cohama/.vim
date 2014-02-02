@@ -245,6 +245,7 @@ NeoBundleLazy 'Shougo/neocomplete', {
 
 " スニペット補完
 NeoBundleLazy 'Shougo/neosnippet', {
+\ 'depends': 'Shougo/neosnippet-snippets',
 \ 'autoload' : {
 \   'insert' : 1,
 \   'filetypes' : 'snippet',
