@@ -1422,8 +1422,9 @@ nmap gj lhj
 nmap gk lhk
 
 " 検索結果で画面を真ん中に
-nnoremap n nzzzv
-nnoremap N Nzzzv
+" ついでにメッセージを消す
+nnoremap n :<BS>nzzzv
+nnoremap N :<BS>Nzzzv
 
 " インサートモードから出るときにカーソルを後退させない
 function! FixedInsertLeave()
