@@ -632,6 +632,8 @@ NeoBundleLazy 'osyo-manga/unite-highlight', {
 \ 'autoload' : {
 \   'unite_sources' : ['highlight']
 \ }}
+
+NeoBundle 'Shougo/neomru.vim'
 " }}}
 
 " ### Miscellaneous ### {{{
