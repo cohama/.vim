@@ -1276,6 +1276,7 @@ function bundle.hooks.on_source(bundle)
   call smartinput#define_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
   call smartinput#define_rule({'at': '\%#', 'char': '<Enter>', 'input': '<Enter>zv:noh<Enter>', 'mode': '/?'})
   call smartinput#define_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
+  call smartinput#define_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
 endfunction
 " }}}
 
