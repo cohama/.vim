@@ -2068,6 +2068,9 @@ inoremap <C-g><C-l> <C-k>
 " cdcurrent
 command! CdCurrent cd %:p:h
 command! LcdCurrent lcd %:p:h
+
+" 現在編集中のフルパスをクリップボードにコピー
+command! CopyFullPath let @+ = expand('%:p')
 "}}}
 
 " ColorScheme {{{
