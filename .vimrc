@@ -1763,15 +1763,7 @@ xnoremap <expr> L &wrap ? 'g$h' : '$h'
 " さっき編集した範囲を選択
 nnoremap gV `[v`]
 
-" set paste 状態でクリップボードから貼り付け
-command! -nargs=0 Paste call CohamaPaste()
-function! CohamaPaste()
-  set paste
-  normal! "+p
-  set nopaste
-endfunction
-inoremap <C-R>+ <C-o>:Paste<CR>
-inoremap <C-R><C-\> <C-o>:set paste<CR>
+" set nopaste をできるだけ維持
 autocmd myautocmd InsertLeave * set nopaste
 
 " 括弧を扱う textobj を簡単に入力できるようにする
