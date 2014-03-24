@@ -614,7 +614,7 @@ NeoBundleLazy 'kana/vim-vspec', {
 
 " すでに起動している Vim があればそれを使う
 NeoBundle 'thinca/vim-singleton'
-if has('gui_running')
+if g:is_gui
   call singleton#enable()
 endif
 " }}}
