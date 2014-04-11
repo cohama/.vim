@@ -1219,6 +1219,7 @@ function bundle.hooks.on_source(bundle)
   call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<BS>', 'input': '<BS><Del>', 'filetype': ['ocaml']})
   call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml', 'scala']})
   call smartinput#define_rule({'at': '\[\%#\]', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S'})
+  call smartinput#define_rule({'at': '^\s*\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyeo<C-r>q<Space>', 'filetype': ['haskell']})
 
   call smartinput#map_to_trigger('c', '/', '/', '/')
   call smartinput#map_to_trigger('c', ':', ':', ':')
@@ -2058,12 +2059,18 @@ xnoremap . :normal .<CR>
 " haskell
 function! OnHaskell()
   setl sw=4 sts=4 ts=4
-  nnoremap <buffer> \S :<C-u>VimShellInteractive ghci <C-r>%<CR>
+  nnoremap <buffer> \I :<C-u>VimShellInteractive ghci <C-r>%<CR>
+  nnoremap <buffer> \S :<C-u>call vimshell#interactive#send(getline("."))<CR>
+  xnoremap <buffer> \S "qygv:<C-u>call vimshell#interactive#send_string(@q)<CR>
   nnoremap <buffer> \t :<C-u>GhcModType<CR>
   nnoremap <buffer><silent> <C-n> :<C-u>GhcModTypeClear<CR>:nohlsearch<CR>
   nnoremap <buffer> \R :<C-u>QuickRun ghc_make<CR>
 endfunction
 autocmd myautocmd FileType haskell call OnHaskell()
+function! SynHaskell()
+  hi def link ConId Constant
+endfunction
+autocmd myautocmd Syntax haskell call SynHaskell()
 
 " digraph を打ちたい時もあるかもしれない
 inoremap <C-g><C-l> <C-k>
