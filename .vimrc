@@ -2018,10 +2018,10 @@ nnoremap ]e :<C-u>cnext<CR>
 
 " Presentation mode
 function! Presentation()
-  Fontzoom +8
+  Fontzoom +11
   set cmdheight=3
   set laststatus=0
-  set nonumber norelativenumber
+  set number norelativenumber
   set showtabline=1
   set guioptions-=e
 endfunction
