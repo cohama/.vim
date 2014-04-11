@@ -35,6 +35,7 @@ hi Exception       guifg=#0000FF
 hi PreProc         guifg=#990099
 hi Define          guifg=#990099
 hi Include         guifg=#990099
+hi Typedef         guifg=#990099
 
 " programming types
 hi Type            guifg=#DB0000               gui=none
