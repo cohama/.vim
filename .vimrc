@@ -638,7 +638,7 @@ if g:is_gui
 endif
 " }}}
 
-" ### Unite Souceses ### {{{
+" ### Unite Sourceses ### {{{
 NeoBundleLazy 'Shougo/unite-outline', {
 \ 'autoload' : {
 \   'unite_sources' : ['outline']
@@ -655,6 +655,11 @@ NeoBundleLazy 'osyo-manga/unite-highlight', {
 \ }}
 
 NeoBundle 'Shougo/neomru.vim'
+
+NeoBundleLazy 'zhaocai/unite-scriptnames', {
+\ 'autoload' : {
+\   'unite_sources' : ['scriptnames']
+\ }}
 " }}}
 
 " ### Miscellaneous ### {{{
