@@ -2081,6 +2081,9 @@ command! LcdCurrent lcd %:p:h
 
 " 現在編集中のフルパスをクリップボードにコピー
 command! CopyFullPath let @+ = expand('%:p')
+
+" Markdown
+autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown
 "}}}
 
 " ColorScheme {{{
