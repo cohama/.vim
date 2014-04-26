@@ -546,6 +546,25 @@ NeoBundleLazy 'ujihisa/unite-haskellimport', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
+NeoBundleLazy 'eagletmt/coqtop-vim', {
+\ 'filetypes' : 'coq'
+\ }
+NeoBundleLazy 'http://www.vim.org/scripts/download_script.php?src_id=9597', {
+\ 'name' : 'coq-syntax',
+\ 'autoload' : {
+\   'filename_patterns' : '\.v$'
+\ },
+\ 'type__filename' : 'coq.vim',
+\ 'script_type' : 'syntax'
+\ }
+NeoBundleLazy 'http://www.vim.org/scripts/download_script.php?src_id=8013', {
+\ 'name' : 'coq-indent',
+\ 'autoload' : {
+\   'filename_patterns' : '\.v$'
+\ },
+\ 'type__filename' : 'coq.vim',
+\ 'script_type' : 'indent'
+\ }
 " }}}
 
 " ### 何かを実行 ### {{{
@@ -2084,6 +2103,9 @@ command! CopyFullPath let @+ = expand('%:p')
 
 " Markdown
 autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown
+
+" Coq
+autocmd myautocmd BufNewFile,BufRead *.v setl ft=coq
 "}}}
 
 " ColorScheme {{{
