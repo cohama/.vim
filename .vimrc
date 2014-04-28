@@ -546,25 +546,11 @@ NeoBundleLazy 'ujihisa/unite-haskellimport', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
-NeoBundleLazy 'eagletmt/coqtop-vim', {
-\ 'filetypes' : 'coq'
-\ }
-NeoBundleLazy 'http://www.vim.org/scripts/download_script.php?src_id=9597', {
-\ 'name' : 'coq-syntax',
+NeoBundle 'jvoorhis/coq.vim'
+NeoBundleLazy 'vim-scripts/CoqIDE', {
 \ 'autoload' : {
-\   'filename_patterns' : '\.v$'
-\ },
-\ 'type__filename' : 'coq.vim',
-\ 'script_type' : 'syntax'
-\ }
-NeoBundleLazy 'http://www.vim.org/scripts/download_script.php?src_id=8013', {
-\ 'name' : 'coq-indent',
-\ 'autoload' : {
-\   'filename_patterns' : '\.v$'
-\ },
-\ 'type__filename' : 'coq.vim',
-\ 'script_type' : 'indent'
-\ }
+\   'filetypes' : 'coq'
+\ }}
 " }}}
 
 " ### 何かを実行 ### {{{
@@ -2111,6 +2097,7 @@ autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown
 
 " Coq
 autocmd myautocmd BufNewFile,BufRead *.v setl ft=coq
+autocmd myautocmd FileType coq hi SentToCoq ctermbg=17 guibg=#000080
 "}}}
 
 " ColorScheme {{{
