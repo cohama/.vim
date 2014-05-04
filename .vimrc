@@ -1151,6 +1151,10 @@ let g:quickrun_config['ghc_make'] = {
 \   'hook/back_window/enable_exit': 1,
 \   'hook/back_window/priority_exit': 1
 \ }
+let g:quickrun_config['ghc_doctest'] = {
+\   'command': 'doctest',
+\   'exec': '%c %s'
+\ }
 autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec | setlocal syntax=ruby
 autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
 nnoremap Q :<C-u>call CloseAnyOther()<CR>
@@ -2072,6 +2076,7 @@ function! OnHaskell()
   nnoremap <buffer> \I :<C-u>VimShellInteractive ghci <C-r>%<CR>
   nnoremap <buffer> \S :<C-u>call vimshell#interactive#send(getline("."))<CR>
   xnoremap <buffer> \S "qygv:<C-u>call vimshell#interactive#send_string(@q)<CR>
+  nnoremap <buffer> \D :<C-u>QuickRun ghc_doctest<CR>
   nnoremap <buffer> \t :<C-u>GhcModType<CR>
   nnoremap <buffer><silent> <C-n> :<C-u>GhcModTypeClear<CR>:nohlsearch<CR>
   nnoremap <buffer> \R :<C-u>QuickRun ghc_make<CR>
