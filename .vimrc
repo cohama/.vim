@@ -1144,7 +1144,7 @@ let g:quickrun_config['ruby.rspec'] = {
 \ }
 let g:quickrun_config['ghc_make'] = {
 \   'command': 'ghc',
-\   'exec': '%c --make %s',
+\   'exec': '%c %s',
 \   'outputter' : 'quickfix',
 \   'outputter/quickfix' : 1,
 \   'outputter/quickfix/open_cmd': 'cwindow',
