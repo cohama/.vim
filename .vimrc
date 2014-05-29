@@ -546,6 +546,10 @@ NeoBundleLazy 'ujihisa/unite-haskellimport', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
+NeoBundleLazy 'eagletmt/unite-haddock', {
+\ 'autoload' : {
+\   'filetypes' : 'haskell'
+\ }}
 NeoBundle 'jvoorhis/coq.vim'
 NeoBundleLazy 'vim-scripts/CoqIDE', {
 \ 'autoload' : {
