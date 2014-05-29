@@ -2092,7 +2092,7 @@ command! LcdCurrent lcd %:p:h
 command! CopyFullPath let @+ = expand('%:p')
 
 " Markdown
-autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown
+autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown tw=4 st=4 sts=4
 
 " Coq
 autocmd myautocmd BufNewFile,BufRead *.v setl ft=coq
