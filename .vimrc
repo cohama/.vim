@@ -1354,18 +1354,8 @@ nnoremap <silent> <M-W> :<C-u>tabonly<CR>
 nnoremap <M-e> :<C-u>tabedit<Space>
 
 " タブページの移動
-function! MoveTabPage(dir)
-  if a:dir == "right"
-    let n = tabpagenr()
-  elseif a:dir == "left"
-    let n = tabpagenr() - 2
-  endif
-  if n >= 0
-    execute "tabm " . n
-  endif
-endfunction
-nnoremap <silent> <M-L> :<C-u>call MoveTabPage("right")<CR>
-nnoremap <silent> <M-H> :<C-u>call MoveTabPage("left")<CR>
+nnoremap <silent> <M-L> :<C-u>tabmove +1<CR>
+nnoremap <silent> <M-H> :<C-u>tabmove -1<CR>
 
 " カーソル位置の単語を置換
 nnoremap g/ :<C-u>%s/\C\<<C-R><C-w>\>//g<Left><Left>
