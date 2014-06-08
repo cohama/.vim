@@ -974,12 +974,21 @@ nmap [Git]M <Plug>(git-messenger-commit-message)
 "indent-guides の設定 {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-let s:indent_guides_odd_guibg = "#0D0D24"
-let s:indent_guides_even_guibg = "#151538"
-let s:indent_guides_guifg = "#444466"
-let s:indent_guides_odd_ctermbg = "235"
-let s:indent_guides_even_ctermbg = "233"
-let s:indent_guides_ctermfg = "238"
+if g:my_background == 'light'
+  let s:indent_guides_odd_guibg = "#0D0D24"
+  let s:indent_guides_odd_ctermbg = "231"
+  let s:indent_guides_even_guibg = "#151538"
+  let s:indent_guides_even_ctermbg = "255"
+  let s:indent_guides_guifg = "#444466"
+  let s:indent_guides_ctermfg = "248"
+else
+  let s:indent_guides_odd_ctermbg = "235"
+  let s:indent_guides_odd_guibg = "#0D0D24"
+  let s:indent_guides_even_ctermbg = "233"
+  let s:indent_guides_even_guibg = "#151538"
+  let s:indent_guides_guifg = "#444466"
+  let s:indent_guides_ctermfg = "238"
+endif
 autocmd myautocmd ColorScheme * exec "hi IndentGuidesOdd" .
 \ " ctermbg=" . s:indent_guides_odd_ctermbg .
 \ " ctermfg=" . s:indent_guides_ctermfg .
@@ -2175,6 +2184,10 @@ if g:is_gui
   autocmd myautocmd ColorScheme * highlight TheOCamlSpotTree gui=NONE guifg=NONE guibg=#BBFFDD
   colorscheme gui_cohama_light
 else
-  colorscheme cui_cohama
+  if g:my_background ==# 'light'
+    colorscheme cui_cohama_light
+  else
+    colorscheme cui_cohama
+  endif
 endif
 " }}}
