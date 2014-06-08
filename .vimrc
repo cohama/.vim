@@ -1176,6 +1176,7 @@ function! CloseAnyOther()
     \ || (name =~# '^fugitive:')
     \ || (bt ==# 'help')
     \ || (bt ==# 'quickfix')
+    \ || (bt ==# 'nofile')
       execute w . 'wincmd w'
       q
       break
