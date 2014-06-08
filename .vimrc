@@ -1864,7 +1864,7 @@ function! FullAutoWriteToggle()
     let s:full_auto_write = 1
     set autowriteall
     augroup FullAutoWriteToggle
-      autocmd InsertLeave,CursorHold * update
+      autocmd InsertLeave,CursorHold,TextChanged * update
     augroup END
     echo 'FullAutoWrite Enabled.'
   endif
