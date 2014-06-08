@@ -94,8 +94,7 @@ hi SpellRare       ctermbg=200
 hi Directory       ctermfg=70                cterm=bold
 hi Ignore          ctermfg=244  ctermbg=232
 hi MatchParen      ctermfg=53   ctermbg=153  cterm=bold
-hi ModeMsg         ctermfg=229
-hi MoreMsg         ctermfg=229
+hi ModeMsg         ctermfg=162
 hi Question        ctermfg=110
 hi Underlined      ctermfg=244               cterm=underline
 hi VertSplit       ctermfg=244  ctermbg=232  cterm=bold
