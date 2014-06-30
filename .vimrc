@@ -2097,6 +2097,8 @@ autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown tw=4 sw=4 sts=4
 " Coq
 autocmd myautocmd BufNewFile,BufRead *.v setl ft=coq
 autocmd myautocmd FileType coq hi SentToCoq ctermbg=17 guibg=#000080
+
+command! PluginTest execute '!vim -c "set rtp+=' . getcwd() . '"'
 "}}}
 
 " ColorScheme {{{
