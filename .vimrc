@@ -902,6 +902,7 @@ function! s:unite_my_settings()
   map <silent><buffer> <M-p> <Plug>(unite_rotate_previous_source)
   imap <silent><buffer> <Esc> <Plug>(unite_insert_leave)
 endfunction
+let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -U -g ""'
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden'
