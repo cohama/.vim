@@ -1239,6 +1239,7 @@ function bundle.hooks.on_source(bundle)
   call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml', 'scala', 'haskell']})
   call smartinput#define_rule({'at': '\[\%#\]', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S'})
   call smartinput#define_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
+  call smartinput#define_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<CR><CR><Esc>kS', 'filetype': ['markdown']})
 
   call smartinput#map_to_trigger('c', '/', '/', '/')
   call smartinput#map_to_trigger('c', ':', ':', ':')
