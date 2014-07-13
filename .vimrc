@@ -2101,7 +2101,12 @@ autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown ts=4 sw=4 sts=4
 autocmd myautocmd BufNewFile,BufRead *.v setl ft=coq
 autocmd myautocmd FileType coq hi SentToCoq ctermbg=17 guibg=#000080
 
-command! PluginTest execute '!vim --cmd "set rtp+=' . getcwd() . '"'
+command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>)
+function! PluginTest(is_gui, extraCommand)
+  let cmd = a:is_gui ? 'gvim' : 'vim'
+  let extraCommand = empty(a:extraCommand) ? '' : ' -c ' . a:extraCommand
+  execute '!' . cmd . ' --cmd "set rtp+=' . getcwd() . '"' . extraCommand
+endfunction
 "}}}
 
 " ColorScheme {{{
