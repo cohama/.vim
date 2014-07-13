@@ -616,7 +616,7 @@ NeoBundleLazy 'kannokanno/previm', {
 \ }}
 
 " test
-NeoBundleLazy 'kana/vim-vspec', {
+NeoBundleLazy 'thinca/vim-themis', {
 \ 'autoload' : {
 \   'filetypes' : ['vim']
 \ }}
