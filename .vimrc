@@ -520,7 +520,10 @@ NeoBundleLazy 'pangloss/vim-javascript', {
 if executable('npm')
   NeoBundleLazy 'marijnh/tern_for_vim', {
   \ 'autoload': {
-  \   'filetypes' : 'javascript'
+  \   'filetypes' : 'javascript',
+  \   'build' : {
+  \     'unix' : 'npm install'
+  \   }
   \ }}
 endif
 NeoBundle 'leafgarland/typescript-vim'
