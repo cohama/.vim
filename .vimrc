@@ -1327,10 +1327,26 @@ endif
 
 " Settings and keymaps {{{
 " 「日本語入力固定モード」切り替えキー
-inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+if g:is_unix && executable('fcitx')
+  source ~/.vim/fcitx-python/fcitx-py.vim
+  let g:im_fix_mode = 0
+  function! s:toggle_im_fix_mode()
+    let g:im_fix_mode = !g:im_fix_mode
+    echo g:im_fix_mode ? 'IM Fix On' : 'IM Fix Off'
+    return ''
+  endfunction
 
-" Python による IBus の制御
-let IM_CtrlIBusPython = 1
+  function! s:on_insertenter()
+    if g:im_fix_mode
+      call FcitxPySet(1)
+    endif
+  endfunction
+  autocmd myautocmd InsertEnter * call s:on_insertenter()
+  autocmd myautocmd InsertLeave * call FcitxPySet(0)
+
+  inoremap <C-j> <C-r>=<SID>toggle_im_fix_mode()<CR>
+  nnoremap \<C-j> :<C-u>call <SID>toggle_im_fix_mode()<CR>
+endif
 
 " ハイライトを消す
 nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
