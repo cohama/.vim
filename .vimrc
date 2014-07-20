@@ -2033,6 +2033,9 @@ command! DiffOrig call DiffOrig()
 nnoremap [e :<C-u>cprevious<CR>
 nnoremap ]e :<C-u>cnext<CR>
 
+" Quickfix のときの <CR> を効かせる
+autocmd myautocmd FileType qf nnoremap <buffer> <CR> <CR>
+
 " Presentation mode
 function! Presentation()
   Fontzoom +11
