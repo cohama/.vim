@@ -1169,7 +1169,12 @@ let g:quickrun_config['ghc_doctest'] = {
 \   'command': 'doctest',
 \   'exec': '%c %s'
 \ }
+let g:quickrun_config['themis'] = {
+\   'command': 'themis',
+\   'exec': '%c %s'
+\ }
 autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec | setlocal syntax=ruby
+autocmd myautocmd BufWinEnter,BufNewFile test/*.vim let b:quickrun_config = {'type' : 'themis'}
 autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
 nnoremap Q :<C-u>call CloseAnyOther()<CR>
 function! CloseAnyOther()
