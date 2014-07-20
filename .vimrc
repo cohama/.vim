@@ -1382,9 +1382,19 @@ endif
 nnoremap <silent> <M-l> :<C-u>tabnext<CR>
 nnoremap <silent> <M-h> :<C-u>tabprevious<CR>
 nnoremap <silent> <M-n> :<C-u>tabnew<CR>
-nnoremap <silent> <M-w> :<C-u>tabclose<CR>
+nnoremap <silent> <M-w> :<C-u>MyTabClose<CR>
 nnoremap <silent> <M-W> :<C-u>tabonly<CR>
 nnoremap <M-e> :<C-u>tabedit<Space>
+function! MyTabClose()
+  let tabpagenr = tabpagenr()
+  if tabpagenr == 1
+    tabclose
+  else
+    tabprevious
+    execute 'tabclose ' . tabpagenr
+  endif
+endfunction
+command! MyTabClose call MyTabClose()
 
 " タブページの移動
 nnoremap <silent> <M-L> :<C-u>tabmove +1<CR>
