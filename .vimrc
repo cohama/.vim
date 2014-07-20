@@ -2146,7 +2146,7 @@ autocmd myautocmd FileType coq hi SentToCoq ctermbg=17 guibg=#000080
 command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>)
 function! PluginTest(is_gui, extraCommand)
   let cmd = a:is_gui ? 'gvim' : 'vim'
-  let extraCommand = empty(a:extraCommand) ? '' : ' -c ' . a:extraCommand
+  let extraCommand = empty(a:extraCommand) ? '' : ' -c"au VimEnter * ' . a:extraCommand . '"'
   execute '!' . cmd . ' --cmd "set rtp+=' . getcwd() . '"' . extraCommand
 endfunction
 "}}}
