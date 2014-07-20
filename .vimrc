@@ -236,6 +236,9 @@ NeoBundleLazy 'vim-jp/vital.vim', {
 \ 'autoload' : {
 \   'function_prefix' : 'vital'
 \ }}
+
+" Vim help 日本語版
+NeoBundle 'vim-jp/vimdoc-ja'
 " }}}
 
 " ### 入力系 ### {{{
