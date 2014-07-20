@@ -1,23 +1,18 @@
-snippet     describe
-abbr        vspec
+snippet     suite
+abbr        themis suite
 options     head
-	describe '${1}'
+	let ${1:s:suite} = themis#suite('${2}')${0}
 
-		${0}
-	end
-
-snippet     it
-abbr        vspec
+snippet     assert
+abbr        themis assert
 options     head
-	it '${1}'
-		${0}
-	end
+	let s:assert = themis#helper('${1:assert}')${0}
 
-snippet     begin
-abbr        vspec
+snippet     fun_themis
+abbr        themis test function
 options     head
-	begin
+	function! s:suite.${1:#:test_case}()
 		${0}
-	end
+	endfunction
 
 # vim: set noexpandtab :
