@@ -10,6 +10,7 @@ set guioptions-=T
 set guioptions-=m
 set guioptions-=a
 
+set iminsert=0
 
 " zencoding の設定
 execute 'map <C-CR> ' . g:user_emmet_leader_key . ','
