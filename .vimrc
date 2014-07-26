@@ -2038,7 +2038,7 @@ onoremap ( T(
 
 " 行末の空白とか最終行の空行を削除
 function! RemoveUnwantedSpaces()
-  %s/\s\+$//e
+  keeppatterns %s/\s\+$//e
   while 1
     let lastline = getline('$')
     if lastline =~ '^\s*$' && line('$') != 1
