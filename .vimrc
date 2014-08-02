@@ -899,6 +899,7 @@ autocmd myautocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
   let b:smartinput_disable_local = 1
   imap <silent><buffer> <C-q> <Plug>(unite_exit)
+  imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
   map <silent><buffer><nowait> <Esc> <Plug>(unite_exit)
   noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
   noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
