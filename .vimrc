@@ -448,6 +448,13 @@ NeoBundleLazy 'deris/columnjump', {
 \ 'autoload': {
 \   'mappings': ['<Plug>(columnjump-backward)', '<Plug>(columnjump-forward)']
 \ }}
+
+" hoge#fuga() みたいなやつジャンプ
+NeoBundleLazy 'sgur/vim-gf-autoload', {
+\ 'depends' : 'kana/vim-gf-user',
+\ 'autoload': {
+\   'filetypes': ['vim']
+\ }}
 " }}}
 
 " ### 見た目、カラースキーム ### {{{
