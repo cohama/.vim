@@ -491,11 +491,7 @@ NeoBundle 'tpope/vim-fugitive', {
 \ }
 
 " gitk っぽいものを Vim で
-NeoBundleLazy 'gregsexton/gitv', {
-\ 'depends' : 'vim-fugitive',
-\ 'autoload' : {
-\   'commands' : ['Gitv']
-\ }}
+set rtp+=~/proj/vim/agit.vim
 
 " git のステータスを行の横に表示
 NeoBundle 'airblade/vim-gitgutter'
@@ -923,7 +919,7 @@ endif
 
 " gitv の設定 {{{
 autocmd myautocmd FileType git setlocal nofoldenable foldlevel=0
-autocmd myautocmd FileType gitv call GitvSettings()
+autocmd myautocmd FileType agit call GitvSettings()
 function! GitToggleFolding()
   if &filetype ==# 'git'
     setlocal foldenable!
@@ -933,11 +929,7 @@ function! GitvGetCurrentHash()
   return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
 endfunction
 function! GitvSettings()
-  setlocal iskeyword+=/,-,.
-
-  nmap <buffer> U ugg<CR>
   cnoremap <buffer><expr> <C-r><C-h> GitvGetCurrentHash()
-  nnoremap <silent><buffer> J :<C-u>windo call GitToggleFolding()<CR>1<C-w>w
   nnoremap <buffer> . :<C-u> <C-r>=GitvGetCurrentHash()<CR><Home>
   nnoremap <buffer> [Git]rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
   nnoremap <buffer> [Git]ri :<C-u>Git rebase -i <C-r>=GitvGetCurrentHash()<CR><Space>
@@ -954,9 +946,7 @@ function! GitvSettings()
   nnoremap <buffer> db :<C-u>Git branch -D <C-r><C-w>
   nnoremap <buffer> m :<C-u>Git merge <C-r><C-w>
 endfunction
-nnoremap [Git]k :<C-u>Gitv --all<CR>
-nnoremap [Git]K :<C-u>Gitv!<CR>
-let g:Gitv_TruncateCommitSubjects = 1
+nnoremap [Git]k :<C-u>Agit<CR>
 " }}}
 
 " gitgutter の設定 {{{
