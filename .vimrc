@@ -533,14 +533,23 @@ if executable('npm')
   \ }}
 endif
 NeoBundle 'leafgarland/typescript-vim'
-NeoBundleLazy 'cohama/the-ocamlspot.vim', {
+" NeoBundleLazy 'cohama/the-ocamlspot.vim', {
+NeoBundleLazy 'https://bitbucket.org/anyakichi/vim-ocp-index', {
 \ 'autoload' : {
 \   'filetypes' : 'ocaml'
 \ }}
+autocmd myautocmd FileType ocaml call MyOcpIndexSettings()
+function! MyOcpIndexSettings()
+  let b:did_ftplugin = 1
+  call ocpindex#init()
+  nmap <buffer> \t <Plug>(ocpindex-echo-type)
+  nmap <buffer> <C-]> <Plug>(ocpindex-jump)
+endfunction
 NeoBundleLazy 'kana/vim-filetype-haskell', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
 \ }}
+
 NeoBundleLazy 'eagletmt/ghcmod-vim', {
 \ 'autoload' : {
 \   'filetypes' : 'haskell'
