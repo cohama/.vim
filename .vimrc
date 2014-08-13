@@ -647,6 +647,12 @@ NeoBundle 'thinca/vim-singleton'
 if g:is_gui
   call singleton#enable()
 endif
+
+" 文法チェッカー
+NeoBundleLazy 'rhysd/vim-grammarous', {
+\ 'autoload' : {
+\   'commands' : 'GrammarousCheck'
+\ }}
 " }}}
 
 " ### Unite Sourceses ### {{{
