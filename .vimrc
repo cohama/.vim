@@ -498,7 +498,10 @@ NeoBundle 'tpope/vim-fugitive', {
 \ }
 
 " gitk っぽいものを Vim で
-set rtp+=~/proj/vim/agit.vim
+NeoBundleLazy 'cohama/agit.vim', {
+\ 'autoload' : {
+\   'commands' : ['Agit']
+\ }}
 
 " git のステータスを行の横に表示
 NeoBundle 'airblade/vim-gitgutter'
@@ -940,33 +943,9 @@ endif
 " }}}
 
 " gitv の設定 {{{
-autocmd myautocmd FileType git setlocal nofoldenable foldlevel=0
-autocmd myautocmd FileType agit call GitvSettings()
-function! GitToggleFolding()
-  if &filetype ==# 'git'
-    setlocal foldenable!
-  endif
-endfunction
-function! GitvGetCurrentHash()
-  return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
-endfunction
-function! GitvSettings()
-  cnoremap <buffer><expr> <C-r><C-h> GitvGetCurrentHash()
-  nnoremap <buffer> . :<C-u> <C-r>=GitvGetCurrentHash()<CR><Home>
-  nnoremap <buffer> [Git]rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> [Git]ri :<C-u>Git rebase -i <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> [Git]R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR>
-  nnoremap <buffer> ch :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR>
-  nnoremap <buffer> [Git]a :<C-u>Git add -A<CR>
-  nnoremap <buffer> [Git]rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> [Git]rm :<C-u>Git reset <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <buffer> [Git]rs :<C-u>Git reset --soft <C-r>=GitvGetCurrentHash()<CR><Space>
-  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
-  nnoremap <buffer> m :<C-u>Git merge --no-ff --no-commit<Space>
-  nnoremap <buffer> cb :<C-u>Git checkout -b  <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
-  nnoremap <buffer> fb :<C-u>Git branch -f  <C-r>=GitvGetCurrentHash()<CR><Left><Left><Left><Left><Left><Left><Left><Left>
-  nnoremap <buffer> db :<C-u>Git branch -D <C-r><C-w>
-  nnoremap <buffer> m :<C-u>Git merge <C-r><C-w>
+autocmd myautocmd FileType agit call AgitSettings()
+function! AgitSettings()
+  nnoremap [Git]<Space> :<C-u>AgitGit<Space>
 endfunction
 nnoremap [Git]k :<C-u>Agit<CR>
 " }}}
