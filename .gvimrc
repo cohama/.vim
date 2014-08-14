@@ -1,3 +1,4 @@
+set iminsert=0 imsearch=0
 let g:font_name = get(g:, 'font_name', 'Migu 2M')
 let g:font_size = get(g:, 'font_size', 10)
 if has('win32') || has('win64')
