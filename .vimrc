@@ -945,7 +945,7 @@ endif
 " gitv の設定 {{{
 autocmd myautocmd FileType agit call AgitSettings()
 function! AgitSettings()
-  nnoremap [Git]<Space> :<C-u>AgitGit<Space>
+  nnoremap <buffer> [Git]<Space> :<C-u>AgitGit<Space>
 endfunction
 nnoremap [Git]k :<C-u>Agit<CR>
 " }}}
