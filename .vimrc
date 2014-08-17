@@ -2134,7 +2134,13 @@ command! CopyFullPath let @+ = expand('%:p')
 autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown ts=4 sw=4 sts=4
 
 " Coq
-autocmd myautocmd FileType coq hi SentToCoq ctermbg=17 guibg=#000080
+autocmd myautocmd ColorScheme * hi SentToCoq ctermbg=17 guibg=#000080
+autocmd myautocmd FileType coq call MyCoqSettings()
+function! MyCoqSettings()
+  nnoremap <buffer><silent> \n :<C-u>CoqIDENext<CR>
+  nnoremap <buffer><silent> \p :<C-u>CoqIDEUndo<CR>
+  nnoremap <buffer><silent> \P :<C-u>CoqIDEUndo<CR>
+endfunction
 
 command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>)
 function! PluginTest(is_gui, extraCommand)
