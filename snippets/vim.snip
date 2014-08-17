@@ -15,4 +15,12 @@ options     head
 		${0}
 	endfunction
 
-# vim: set noexpandtab :
+snippet     reltime
+abbr        reltimestr(reltime())
+options     head
+	let s0 = reltime()
+	${0:TARGET}
+	let s1 = reltime()
+	echomsg 'time: ' . reltimestr(reltime(s0, s1))
+
+# vim: set sw=4 ts=4 sts=4 noexpandtab:
