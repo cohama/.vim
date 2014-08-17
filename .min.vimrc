@@ -73,6 +73,24 @@ set nostartofline
 
 filetype plugin indent on
 
+" terminal でも Meta キーを使いたい
+if g:is_unix && g:is_terminal
+  " Use meta keys in console.
+  for i in map(
+  \   range(char2nr('a'), char2nr('z'))
+  \ + range(char2nr('A'), char2nr('Z'))
+  \ + range(char2nr('0'), char2nr('9'))
+  \ , 'nr2char(v:val)')
+    " <ESC>O do not map because used by arrow keys.
+    if i != 'O'
+      execute 'nmap <ESC>' . i '<M-' . i . '>'
+    endif
+  endfor
+
+  map <NUL> <C-Space>
+  map! <NUL> <C-Space>
+endif
+
 nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
 nnoremap <silent> <C-n> :<C-u>nohlsearch<CR>
 
@@ -158,6 +176,16 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+
+" gitcommit, gitrebase を開いた時
+autocmd myautocmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
+function! WhenGitCommitOpened()
+  wincmd H
+  82wincmd |
+  nnoremap <buffer> q ZZ
+  nnoremap <buffer> Q ggdGZZ
+  setlocal winfixwidth
+endfunction
 
 nnoremap <expr> go "mz" . v:count . "o\<Esc>`z"
 nnoremap <expr> gO "mz" . v:count . "O\<Esc>`z"
@@ -334,12 +362,5 @@ xnoremap . :normal .<CR>
 command! CdCurrent cd %:p:h
 command! LcdCurrent lcd %:p:h
 command! CopyFullPath let @+ = expand('%:p')
-
-command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>)
-function! PluginTest(is_gui, extraCommand)
-  let cmd = a:is_gui ? 'gvim' : 'vim'
-  let extraCommand = empty(a:extraCommand) ? '' : ' -c"au VimEnter * ' . a:extraCommand . '"'
-  execute '!' . cmd . ' --cmd "set rtp+=' . getcwd() . '"' . extraCommand
-endfunction
 
 colorscheme desert
