@@ -7,6 +7,7 @@ else
   let &guifont = g:font_name . ' ' . g:font_size
 endif
 set guioptions&
+set guioptions-=e
 set guioptions-=T
 set guioptions-=m
 set guioptions-=a
