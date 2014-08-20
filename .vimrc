@@ -536,17 +536,21 @@ if executable('npm')
   \ }}
 endif
 NeoBundle 'leafgarland/typescript-vim'
-" NeoBundleLazy 'cohama/the-ocamlspot.vim', {
+NeoBundleLazy 'cohama/the-ocamlspot.vim', {
+\ 'autoload' : {
+\   'filetypes' : 'ocaml'
+\ }}
 NeoBundleLazy 'https://bitbucket.org/anyakichi/vim-ocp-index', {
 \ 'autoload' : {
 \   'filetypes' : 'ocaml'
 \ }}
-autocmd myautocmd FileType ocaml call MyOcpIndexSettings()
-function! MyOcpIndexSettings()
-  let b:did_ftplugin = 1
+autocmd myautocmd FileType ocaml call MyOCamlSettings()
+let g:the_ocamlspot_disable_auto_type =1
+function! MyOCamlSettings()
+  " let b:did_ftplugin = 1
+  setlocal commentstring=(*\ %s\ *)
   call ocpindex#init()
   nmap <buffer> \t <Plug>(ocpindex-echo-type)
-  nmap <buffer> <C-]> <Plug>(ocpindex-jump)
 endfunction
 NeoBundleLazy 'kana/vim-filetype-haskell', {
 \ 'autoload' : {
