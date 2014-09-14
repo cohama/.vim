@@ -904,7 +904,7 @@ nnoremap U :<C-u>Unite<Space>
 nnoremap <Leader>u <Nop>
 nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite grep -no-quit<CR>
-nnoremap <silent> <Leader>f :<C-u>Unite file_rec/async<CR>
+nnoremap <silent> <Leader>f :<C-u>UniteWithProjectDir file_rec/async<CR>
 nnoremap <silent> <Leader>ur :<C-u>UniteResume<CR>
 nnoremap <silent> <Leader>uf :<C-u>Unite file_mru<CR>
 nnoremap <silent> <Leader>ub :<C-u>Unite bookmark -default-action=vimfiler -no-start-insert<CR>
