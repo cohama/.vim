@@ -583,6 +583,7 @@ NeoBundleLazy 'vim-scripts/CoqIDE', {
 \ 'autoload' : {
 \   'filetypes' : 'coq'
 \ }}
+NeoBundle 'jdonaldson/vaxe'
 " }}}
 
 " ### 何かを実行 ### {{{
@@ -624,7 +625,7 @@ NeoBundleLazy "osyo-manga/shabadou.vim"
 NeoBundleLazy 'osyo-manga/vim-watchdogs', {
 \ 'depends': ['thinca/vim-quickrun', 'osyo-manga/shabadou.vim', 'cohama/vim-hier', 'dannyob/quickfixstatus'],
 \ 'autoload' : {
-\   'filetypes' : ['cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'sh', 'zsh', 'sass', 'scss', 'coffee', 'ocaml']
+\   'filetypes' : ['cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'sh', 'zsh', 'sass', 'scss', 'coffee', 'ocaml', 'haxe']
 \ }}
 
 " Vim で単体テスト
@@ -1152,6 +1153,13 @@ let g:quickrun_config['watchdogs_checker/ocamlc'] = {
 let g:quickrun_config['watchdogs_checker/ocamlc_annot'] = {
 \ 'command' : 'ocamlc',
 \ 'exec'    : '%c -annot -bin-annot -c %o - %s:p'
+\ }
+let g:quickrun_config['watchdogs_checker/hxml'] = {
+\ 'command' : 'haxe',
+\ 'exec'    : '%c build.hxml'
+\ }
+let g:quickrun_config['haxe/watchdogs_checker'] = {
+\ 'type' : 'watchdogs_checker/hxml'
 \ }
 let g:quickrun_config['ruby.rspec'] = {
 \   'command': 'bundle',
