@@ -209,700 +209,21 @@ set nostartofline
 
 " Plugin Bundles {{{
 " NeoBundle の設定
-filetype plugin indent off
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " ### fundamental ### {{{
 " プラグイン管理
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " アレをアレする
-NeoBundle 'Shougo/unite.vim'
-
-" 非同期実行
-if g:is_unix
-  NeoBundle 'Shougo/vimproc', {
-        \     'build': {
-        \        'unix': 'make -f make_unix.mak'
-        \     }
-        \   }
-endif
-
-" Plugin for Plugin
-NeoBundleLazy 'vim-jp/vital.vim', {
-\ 'autoload' : {
-\   'function_prefix' : 'vital'
-\ }}
-
-" Vim help 日本語版
-NeoBundle 'vim-jp/vimdoc-ja'
-" }}}
-
-" ### 入力系 ### {{{
-" 入力補完
-" NeoBundleLazy 'Shougo/neocomplcache', {
-NeoBundleLazy 'Shougo/neocomplete', {
-\ 'autoload' : {
-\   'insert' : 1
-\ }}
-
-" スニペット補完
-NeoBundleLazy 'Shougo/neosnippet', {
-\ 'depends': 'Shougo/neosnippet-snippets',
-\ 'autoload' : {
-\   'insert' : 1,
-\   'filetypes' : 'snippet',
-\ }}
-
-" Zen-Coding
-NeoBundleLazy 'mattn/emmet-vim', {
-\ 'autoload' : {
-\   'filetypes' : ['html', 'eruby', 'jsp', 'xml'],
-\   'commands' : ['<Plug>ZenCodingExpandNormal']
-\ }}
-
-" 対応する括弧の自動入力 (kana 神の fork)
-NeoBundle 'cohama/vim-smartinput'
-
-" ruby の def end とか自動入力
-NeoBundle 'cohama/vim-smartinput-endwise'
-
-" echo area に情報を表示
-" NeoBundleLazy 'Shougo/echodoc', {
-" \ 'augroup' : 'echodoc',
-" \ 'autoload' : {
-" \   'insert' : 1
-" \ }}
-
-" }}}
-
-" ### text-object ### {{{
-" インデントが同じ物をテキストオブジェクト化
-NeoBundleLazy 'kana/vim-textobj-indent', {
-\ 'depends' : 'kana/vim-textobj-user',
-\ 'autoload' : {
-\   'mappings' : [['ox', 'ii'], ['ox', 'ai'], ['ox', 'iI'], ['ox', 'aI']]
-\ }}
-
-" 全体をテキストオブジェクト化
-NeoBundleLazy 'kana/vim-textobj-entire', {
-\ 'depends' : 'kana/vim-textobj-user',
-\ 'autoload' : {
-\   'mappings' : [['ox', 'ie'], ['ox', 'ae']]
-\ }}
-
-" 関数をテキストオブジェクト化
-NeoBundleLazy 'kana/vim-textobj-function', {
-\ 'depends' : 'kana/vim-textobj-user',
-\ 'autoload': {
-\   'mappings': [['ox', 'if'], ['ox', 'af']],
-\   'filetypes': ['vim', 'c']
-\ }}
-
-" JavaScript の関数をテキストオブジェクト化を追加
-NeoBundleLazy 'thinca/vim-textobj-function-javascript', {
-\ 'autoload' : {
-\   'filetypes' : 'javascript'
-\ }}
-
-" 任意の文字に囲まれた部分をテキストオブジェクト化
-NeoBundleLazy 'thinca/vim-textobj-between', {
-\ 'depends' : 'kana/vim-textobj-user',
-\ 'autoload' : {
-\   'mappings': ['<Plug>(textobj-between-i)', '<Plug>(textobj-between-a)']
-\ }}
-
-" Ruby のメソッドをテキストオブジェクト化
-NeoBundleLazy 't9md/vim-textobj-function-ruby', {
-\ 'depends' : 'vim-ruby',
-\ 'autoload' : {
-\   'filetypes' : 'ruby'
-\ }}
-
-" 行内の文字をテキストオブジェクト化
-NeoBundleLazy 'kana/vim-textobj-line', {
-\ 'depends' : 'kana/vim-textobj-user',
-\ 'autoload' : {
-\   'mappings' : [['ox', 'il'], ['ox', 'al']]
-\ }}
-
-" 最後に編集した領域
-NeoBundleLazy 'gilligan/textobj-lastpaste', {
-\ 'autoload' : {
-\   'mappings' : [['ox', 'iP']]
-\ }}
-
-" コメントをテキストオブジェクト化
-NeoBundleLazy 'thinca/vim-textobj-comment', {
-\ 'autoload' : {
-\   'mappings' : [['ox', 'ic'], ['ox', 'ac']]
-\ }}
-" }}}
-
-" ### operator ### {{{
-" テキストオブジェクトのまわりに文字を挿入
-NeoBundleLazy 'tpope/vim-surround', {
-\ 'autoload' : {
-\   'mappings' : [['n', 'ys'], ['n', 'ds'], ['n', 'cs'], ['x', 'S']]
-\ }}
-
-" コメント化
-NeoBundleLazy 'tpope/vim-commentary', {
-\ 'autoload' : {
-\   'mappings' : [['nx', 'gc'], ['nx', 'gC']]
-\ }}
-
-" ヤンクしたものと対称の文字列を置き換える
-NeoBundleLazy 'kana/vim-operator-replace', {
-\ 'depends' : 'kana/vim-operator-user',
-\ 'autoload' : {
-\   'mappings' : ['<Plug>(operator-replace)']
-\ }}
-
-" snake_case -> CamelCase にするオペレータ
-NeoBundleLazy 'tyru/operator-camelize.vim', {
-\ 'depends' : 'kana/vim-operator-user',
-\ 'autoload' : {
-\   'mappings' : ['<Plug>(operator-camelize-toggle)']
-\ }}
-" }}}
-
-" ### 編集を便利にする ### {{{
-" 整形
-NeoBundleLazy 'h1mesuke/vim-alignta', {
-\ 'autoload' : {
-\   'commands' : ['Alignta', 'Align']
-\ }}
-
-" . による繰り返しをプラグインの機能にも適用
-NeoBundleLazy 'kana/vim-repeat', {
-\ 'autoload' : {
-\   'function_prefix' : 'repeat'
-\ }}
-" }}}
-
-" ### ファイル操作など ### {{{
-" ディレクトリ、ファイルをツリー表示
-NeoBundleLazy 'scrooloose/nerdtree', {
-\ 'augroup' : 'NERDTreeHijackNetrw',
-\ 'autoload' : {
-\   'commands' : ['NERDTreeToggle', 'NERDTreeFind']
-\ }}
-
-" sudo で保存
-NeoBundleLazy 'sudo.vim', {
-\ 'autoload' : {
-\   'commands' : ['SudoWrite', 'SudoRead']
-\ }}
-
-" ファイラ
-NeoBundleLazy 'Shougo/vimfiler', {
-\ 'autoload' : {
-\   'commands' : [{'name' : 'VimFiler',
-\                  'complete' : 'customlist,vimfiler#complete' },
-\                 'VimFilerBufferDir', 'VimFilerCurrentDir', 'VimFilerSplit', 'VimFilerExplorer', 'VimFilerTab', 'VimFilerCreate'],
-\   'mappings' : ['<Plug>(vimfiler_switch)']
-\ }}
-
-" 一時ファイル的な
-NeoBundleLazy 'Shougo/junkfile.vim', {
-\ 'autoload' : {
-\   'commands' : ["JunkfileOpen"],
-\   'unite_sources' : ["junkfile", "junkfile/new"]
-\ }}
-
-" 規則に従ってファイルを開く
-NeoBundleLazy 'kana/vim-altr', {
-\ 'autoload' : {
-\   'mappings' : [['n', "\<M-1>"], ['n', "\<M-2>"]]
-\ }}
-" }}}
-
-" ### 移動 ### {{{
-" CamelCase や snake_case での単語移動
-NeoBundleLazy 'cohama/CamelCaseMotion', {
-\ 'autoload' : {
-\   'mappings' : ['<Plug>CamelCaseMotion_w', '<Plug>CamelCaseMotion_b', '<Plug>CamelCaseMotion_e']
-\ }}
-
-" カーソルを任意の位置にジャンプさせる
-NeoBundleLazy 'EasyMotion', {'autoload' : {
-\ 'mappings' : map(['w', 'b', 'e', 'ge', 'W', 'B', 'E', 'gE', 'f', 'F', 't', 'T'], '["n", "[EasyMotion]" . v:val]')
-\ }}
-
-" 記号とかに邪魔されずに w, b, e できる
-NeoBundleLazy 'kana/vim-smartword', {
-\ 'autoload' : {
-\   'mappings' : ["<Plug>(smartword-w)", "<Plug>(smartword-b)", "<Plug>(smartword-e)", "<Plug>(smartword-ge)"]
-\ }}
-
-" 選択したところを検索
-NeoBundleLazy 'thinca/vim-visualstar', { 'autoload' : {
-\ 'mappings' : ['<Plug>(visualstar-*)', '<Plug>(visualstar-#)', '<Plug>(visualstar-g*)', '<Plug>(visualstar-g#)']
-\ }}
-
-NeoBundleLazy 'deris/columnjump', {
-\ 'autoload': {
-\   'mappings': ['<Plug>(columnjump-backward)', '<Plug>(columnjump-forward)']
-\ }}
-
-" hoge#fuga() みたいなやつジャンプ
-NeoBundleLazy 'sgur/vim-gf-autoload', {
-\ 'depends' : 'kana/vim-gf-user',
-\ 'autoload': {
-\   'filetypes': ['vim']
-\ }}
-" }}}
-
-" ### 見た目、カラースキーム ### {{{
-" インデントの量を可視化
-NeoBundle 'nathanaelkane/vim-indent-guides'
-
-" エラー箇所をハイライトする
-NeoBundleLazy 'cohama/vim-hier'
-
-" エラーの原因をコマンドウィンドウに出力
-NeoBundleLazy 'dannyob/quickfixstatus'
-
-" 複数箇所をハイライト
-NeoBundleLazy 't9md/vim-quickhl', {
-\ 'autoload' : {
-\   'mappings' : ["<Plug>(quickhl-toggle)", "<Plug>(quickhl-match)"]
-\ }}
-
-" 桁をハイライト
-NeoBundleLazy 'cohama/easy-colorcolumn', {
-\ 'autoload' : {
-\   'mappings' : ["<Plug>(easy-colorcolumn-add)", "<Plug>(easy-colorcolumn-toggle)"]
-\ }}
-
-" フォントサイズ変更
-NeoBundleLazy 'thinca/vim-fontzoom', {
-\ 'gui' : 1,
-\ 'autoload' : {
-\   'mappings': ['<Plug>(fontzoom-larger)', '<Plug>(fontzoom-smaller)'],
-\   'commands': ['Fontzoom']
-\ }}
-
-" インサートモード時に行番号の色を反転
-NeoBundle 'cohama/vim-insert-linenr'
-" }}}
-
-" ### Git ### {{{
-" 直接 Git コマンド実行など
-NeoBundle 'tpope/vim-fugitive', {
-\ 'augroup': 'fugitive',
-\ }
-
-" gitk っぽいものを Vim で
-NeoBundleLazy 'cohama/agit.vim', {
-\ 'autoload' : {
-\   'commands' : ['Agit']
-\ }}
-
-" git のステータスを行の横に表示
-NeoBundle 'airblade/vim-gitgutter'
-
-" git のコミットメッセージをバルーンで表示
-NeoBundleLazy 'rhysd/git-messenger.vim', {
-\ 'autoload' : {
-\   'mappings' : ['<Plug>(git-messenger-commit-summary)', '<Plug>(git-messenger-commit-message)']
-\ }}
-" }}}
-
-" ### Language ### {{{
-NeoBundle 'tpope/vim-rails'
-NeoBundleLazy 'vim-ruby/vim-ruby', {
-\ 'autoload': {
-\   'filetypes' : ['ruby', 'eruby']
-\ }}
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'groenewege/vim-less'
-NeoBundleLazy 'pangloss/vim-javascript', {
-\ 'autoload': {
-\   'filetypes' : 'javascript'
-\ }}
-if executable('npm')
-  NeoBundleLazy 'marijnh/tern_for_vim', {
-  \ 'autoload': {
-  \   'filetypes' : 'javascript',
-  \   'build' : {
-  \     'unix' : 'npm install'
-  \   }
-  \ }}
-endif
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundleLazy 'cohama/the-ocamlspot.vim', {
-\ 'autoload' : {
-\   'filetypes' : 'ocaml'
-\ }}
-NeoBundleLazy 'https://bitbucket.org/anyakichi/vim-ocp-index', {
-\ 'autoload' : {
-\   'filetypes' : 'ocaml'
-\ }}
-autocmd myautocmd FileType ocaml call MyOCamlSettings()
-let g:the_ocamlspot_disable_auto_type =1
-function! MyOCamlSettings()
-  " let b:did_ftplugin = 1
-  setlocal commentstring=(*\ %s\ *)
-  call ocpindex#init()
-  nmap <buffer> \t <Plug>(ocpindex-echo-type)
-endfunction
-NeoBundleLazy 'kana/vim-filetype-haskell', {
-\ 'autoload' : {
-\   'filetypes' : 'haskell'
-\ }}
-
-NeoBundleLazy 'eagletmt/ghcmod-vim', {
-\ 'autoload' : {
-\   'filetypes' : 'haskell'
-\ }}
-NeoBundleLazy 'eagletmt/neco-ghc', {
-\ 'autoload' : {
-\   'filetypes' : 'haskell'
-\ }}
-let g:necoghc_enable_detailed_browse = 1
-NeoBundleLazy 'ujihisa/ref-hoogle', {
-\ 'autoload' : {
-\   'filetypes' : 'haskell'
-\ }}
-NeoBundleLazy 'ujihisa/unite-haskellimport', {
-\ 'autoload' : {
-\   'filetypes' : 'haskell'
-\ }}
-NeoBundleLazy 'eagletmt/unite-haddock', {
-\ 'autoload' : {
-\   'filetypes' : 'haskell'
-\ }}
-NeoBundle 'jvoorhis/coq.vim'
-NeoBundleLazy 'vim-scripts/CoqIDE', {
-\ 'autoload' : {
-\   'filetypes' : 'coq'
-\ }}
-NeoBundle 'jdonaldson/vaxe'
-" }}}
-
-" ### 何かを実行 ### {{{
-" Vim で動く shell
-NeoBundleLazy 'Shougo/vimshell', {
-\ 'autoload' : {
-\   'commands' : [{ 'name' : 'VimShell',
-\                   'complete' : 'customlist,vimshell#complete'},
-\                 'VimShellExecute', 'VimShellInteractive',
-\                 'VimShellTerminal', 'VimShellPop'],
-\   'mappings' : ['<Plug>(vimshell_switch)']
-\ }}
-
-" その場で実行
-NeoBundleLazy 'thinca/vim-quickrun', {
-\ 'autoload' : {
-\   'mappings' : [['n', '\r']],
-\   'commands' : ['QuickRun']
-\ }}
-
-" 独自のモードを設定
-NeoBundleLazy 'thinca/vim-submode', {
-\ 'autoload' : {
-\   'mappings' : [['n', "\<C-W>+"], ['n', "\<C-W>-"], ['n', "\<C-W>>"], ['n', "\<C-W><"]]
-\ }}
-
-" Vim から URL を開く
-NeoBundleLazy 'tyru/open-browser.vim', {
-      \ 'autoload': {
-      \   'mappings': [
-      \                 ['n', '<Plug>(openbrowser-smart-search)'],
-      \                 ['v', '<Plug>(openbrowser-smart-search)']]
-      \ }}
-
-" vim-quickrun hooks 集
-NeoBundleLazy "osyo-manga/shabadou.vim"
-
-" 非同期でシンタックスチェック
-NeoBundleLazy 'osyo-manga/vim-watchdogs', {
-\ 'depends': ['thinca/vim-quickrun', 'osyo-manga/shabadou.vim', 'cohama/vim-hier', 'dannyob/quickfixstatus'],
-\ 'autoload' : {
-\   'filetypes' : ['cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'sh', 'zsh', 'sass', 'scss', 'coffee', 'ocaml', 'haxe']
-\ }}
-
-" Vim で単体テスト
-NeoBundleLazy 'kannokanno/vimtest', {
-\ 'autoload' : {
-\   'commands' : ['VimTest']
-\ }}
-
-" ref を見る
-NeoBundle 'thinca/vim-ref'
-
-" previm
-NeoBundleLazy 'kannokanno/previm', {
-\ 'depends' : ['tyru/open-browser.vim'],
-\ 'autoload' : {
-\   'commands' : ['PrevimOpen']
-\ }}
-
-" test
-NeoBundleLazy 'thinca/vim-themis', {
-\ 'autoload' : {
-\   'filetypes' : ['vim']
-\ }}
-
-" すでに起動している Vim があればそれを使う
-NeoBundle 'thinca/vim-singleton'
-if g:is_gui
-  call singleton#enable()
-endif
-
-" 文法チェッカー
-NeoBundleLazy 'rhysd/vim-grammarous', {
-\ 'autoload' : {
-\   'commands' : 'GrammarousCheck'
-\ }}
-" }}}
-
-" ### Unite Sourceses ### {{{
-NeoBundleLazy 'Shougo/unite-outline', {
-\ 'autoload' : {
-\   'unite_sources' : ['outline']
-\ }}
-
-NeoBundleLazy 'thinca/vim-unite-history', {
-\ 'autoload' : {
-\   'unite_sources' : ['history/command', 'history/search']
-\ }}
-
-NeoBundleLazy 'osyo-manga/unite-highlight', {
-\ 'autoload' : {
-\   'unite_sources' : ['highlight']
-\ }}
-
-NeoBundle 'Shougo/neomru.vim'
-
-NeoBundleLazy 'zhaocai/unite-scriptnames', {
-\ 'autoload' : {
-\   'unite_sources' : ['scriptnames']
-\ }}
-" }}}
-
-" ### Miscellaneous ### {{{
-" コードを Gist に送るためのプラグイン
-NeoBundleLazy 'mattn/gist-vim', {
-\ 'depends': 'mattn/webapi-vim',
-\ 'autoload' : {
-\   'commands' : 'Gist'
-\ }}
-
-" Scouter
-NeoBundleLazy 'thinca/vim-scouter', {
-\ 'autoload': {
-\   'commands': 'Scouter'
-\ }}
-
-" スクリプトローカルな関数を呼ぶ
-NeoBundleLazy 'thinca/vim-scall', {
-\ 'autoload' : {
-\   'functions' : ['S', 'Scall']
-\ }}
-
-" プロジェクトローカルな vimrc を作成
-NeoBundle 'thinca/vim-localrc'
-
-" pretty print
-NeoBundleLazy 'thinca/vim-prettyprint', {
-\ 'autoload' : {
-\   'commands' : ['PP', 'PrettyPrint']
-\ }}
-
-" help 自動生成
-NeoBundle 'LeafCage/vimhelpgenerator'
-" NeoBundleLazy 'LeafCage/vimhelpgenerator', {
-" \ 'autoload' : {
-" \   'commands' : ['VimHelpGenerator', 'HelpIntoMarkdown']
-" \ }}
-" }}}
-" }}}
-
-" Plugin Settings {{{
-" NeoBundle の設定 {{{
-filetype plugin indent on
-" Installation check.
-NeoBundleCheck
-" }}}
-
-" neocomplete の設定 {{{
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#auto_completion_start_length = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#max_list = 200
-inoremap <expr><C-l> neocomplete#complete_common_string()
-" inoremap <expr><C-h> neocomplete#smart_close_popup()
-autocmd myautocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd myautocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-if !exists('g:neocomplete#force_omni_patterns')
-  let g:neocomplete#force_omni_patterns = {}
-endif
-let g:neocomplete#force_omni_patterns.javascript = ''
-let g:neocomplete#force_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
-" let g:neocomplete#force_omni_patterns.ocaml = '[^. *\t]\.\w*\|\h\w*|#'
-if !exists('g:neocomplete#omni_functions')
-  let g:neocomplete#omni_functions = {}
-endif
-" let g:neocomplete#omni_functions.ruby = 'RSenseCompleteFunction'
-" autocmd myautocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-let g:neocomplete#dictionary#dictionaries = {
-\ 'javascript': expand('~/.vim/dict/javascript.dict'),
-\ 'ocaml' : expand('~/.vim/dict/ocaml.dict')
-\ }
-call neocomplete#custom#source('_', 'converters',
-\ ['converter_remove_overlap', 'converter_remove_last_paren', 'converter_delimiter', 'converter_case', 'converter_abbr'])
-
-" 補完メニューの設定
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <C-u> pumvisible() ? neocomplete#cancel_popup() . "\<C-u>": "\<C-u>"
-" }}}
-
-" neosnippet の設定 {{{
-let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-l> <Plug>(neosnippet_expand_target)
-snoremap <CR> <BS>i
-snoremap <C-l> <Esc>a
-" }}}
-
-" vim-ruby の設定 {{{
-let g:rubycomplete_buffer_loadding = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-" }}}
-
-" vim-operator-replace の設定 {{{
-map _ <Plug>(operator-replace)
-sunmap _
-
-" operator-camelize の設定 {{{
-map - <Plug>(operator-camelize-toggle)
-sunmap -
-" }}}
-" }}}
-
-" NERDTree の設定 {{{
-nnoremap <silent> <C-p> :<C-u>NERDTreeToggle<CR>
-nnoremap <silent> <C-@> :<C-u>NERDTreeFind<CR>
-nnoremap <silent> <Leader><C-p> :<C-u>NERDTreeFind<CR>
-let g:NERDTreeIgnore = ['\~$', '\.swp', '^\.$', '^\.\.$']
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeWinSize = 36
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeChDirMode = 1
-let g:NERDTreeMapCWD = "cD"
-if !g:is_unicode
-  let g:NERDTreeDirArrows = 0
-endif
-" }}}
-
-" textobj-between の設定
-let g:textobj_between_no_default_key_mappings = 1
-omap i/ <Plug>(textobj-between-i)
-xmap i/ <Plug>(textobj-between-i)
-omap a/ <Plug>(textobj-between-a)
-xmap a/ <Plug>(textobj-between-a)
-
-" textobj-lastpaste
-let g:textobj_lastpaste_no_default_key_mappings = 1
-omap iP <Plug>(textobj-lastpaste-i)
-xmap iP <Plug>(textobj-lastpaste-i)
-
-" zencoding の設定 {{{
-let g:use_emmet_complete_tag = 1
-let g:user_emmet_leader_key = '<C-C>'
-let g:user_emmet_settings = {
-\ 'lang' : 'ja',
-\ 'html' : {
-\   'indentation' : '  '
-\ }}
-" }}}
-
-" the-ocamlspot {{{
-let s:the_ocamlspot_tree_ctermbg = '17'
-let s:the_ocamlspot_tree_guibg = '#BBFFDD'
-autocmd myautocmd ColorScheme * call s:the_ocamlspot_highlight()
-function! s:the_ocamlspot_highlight()
-  exec "highlight TheOCamlSpotTree gui=NONE cterm=NONE ctermfg=NONE guifg=NONE"
-  \ . " ctermbg=" . s:the_ocamlspot_tree_ctermbg
-  \ . " guibg=" . s:the_ocamlspot_tree_guibg
-endfunction
-" }}}
-
-" vimshell の設定 {{{
-autocmd myautocmd FileType vimshell call s:vimshell_my_settings()
-function! s:vimshell_my_settings()
-  let b:smartinput_disable_local = 1
-  call vimshell#altercmd#define('l', 'ls -F')
-  call vimshell#altercmd#define('la', 'ls -FA')
-  call vimshell#altercmd#define('ll', 'ls -alF')
-  call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
-  call vimshell#altercmd#define('be', 'bundle exec')
-  nmap <buffer> H <Plug>(vimshell_move_head)
-  nmap <buffer> S <Plug>(vimshell_change_line)
-endfunction
-nnoremap <Leader>s <Nop>
-nnoremap <silent> <Leader>s<CR> :<C-u>VimShell<CR>
-nnoremap <silent> <Leader>sh :<C-u>tabnew<CR>:VimShell<CR>
-nnoremap <silent> <Leader>ss :<C-u>botright vnew<CR>:VimShell<CR>
-nnoremap <Leader>si :<C-u>VimShellInteractive<Space>
-nnoremap <silent> <Leader>irb :<C-u>botright VimShellInteractive irb<CR>
-let g:vimshell_prompt = '% '
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-" }}}
-
-" quickhl の設定 {{{
-nmap gm <Plug>(quickhl-toggle)
-xmap gm <Plug>(quickhl-toggle)
-nmap gM <Plug>(quickhl-reset)
-xmap gM <Plug>(quickhl-reset)
-" }}}
-
-" easy-colorcolumn の設定 {{{
-nmap gb <Plug>(easy-colorcolumn-toggle)
-xmap gb <Plug>(easy-colorcolumn-toggle)
-nmap gB <Plug>(easy-colorcolumn-clear)
-" }}}
-
-" font zoom {{{
-let g:fontzoom_no_default_key_mappings = 1
-nmap <C-ScrollWheelUp>   <Plug>(fontzoom-larger)
-nmap <C-ScrollWheelDown> <Plug>(fontzoom-smaller)
-" }}}
-
-" fugitive の設定 {{{
-nnoremap [Git] <Nop>
-nmap <Space> [Git]
-nnoremap [Git]<Space> :<C-u>Git<Space>
-nnoremap [Git]<CR> :<C-u>Git<Space>
-nnoremap [Git]s :<C-u>Gstatus<CR>
-nnoremap [Git]d :<C-u>Gdiff<CR>
-nnoremap [Git]a :<C-u>Gwrite<CR>
-nnoremap [Git]A :<C-u>Git add -A<CR>
-nnoremap [Git]c :<C-u>Gcommit -v<CR>
-nnoremap [Git]C :<C-u>Gcommit --amend<Space>
-nnoremap [Git]p :<C-u>Git push<CR>
-nnoremap [Git]f :<C-u>Git fetch<CR>
-nnoremap [Git]F :<C-u>Git pull --rebase<CR>
-nnoremap [Git]b :<C-u>Gblame<CR>
-autocmd myautocmd FileType git call GitSettings()
-function! GitSettings()
-  setlocal foldtext=fugitive#foldtext()
-endfunction
-" }}}
-
-" unite の設定 {{{
+NeoBundle 'Shougo/unite.vim', {
+\ 'lazy': 1,
+\ 'commands': [
+\   {'name': 'Unite', 'complete': 'customlist,unite#complete_source'}
+\ ]}
 nnoremap U :<C-u>Unite<Space>
 nnoremap <Leader>u <Nop>
 nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
@@ -915,19 +236,16 @@ nnoremap <silent> <Leader>uB :<C-u>UniteBookmarkAdd<CR>
 nnoremap <silent> <Leader>us :<C-u>Unite scriptnames<CR>
 nnoremap <silent> <M-d> :<C-u>Unite file file_mru bookmark file/new directory/new<CR>
 nnoremap <silent> <M-m> :<C-u>Unite buffer file_mru bookmark<CR>
-" see also smartinput settings
-" cnoremap <expr> / (getcmdline() == '' && getcmdtype() == '/') ? "<BS>:Unite line<CR>" : "/"
-" cnoremap <expr> ? (getcmdline() == '' && getcmdtype() == '?') ? "<BS>:Unite line:backward<CR>" : "?"
 nnoremap [I :<C-U>UniteWithCursorWord line:backward<CR>
 nnoremap ]I :<C-U>UniteWithCursorWord line:all<CR>
 nnoremap <Leader>/ :<C-u>UniteWithInput line<CR><C-r>/<CR>
 let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
-autocmd myautocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
+autocmd myautocmd FileType unite call s:my_unite_settings()
+function! s:my_unite_settings()
   let b:smartinput_disable_local = 1
   imap <silent><buffer> <C-q> <Plug>(unite_exit)
-  imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+  imap <buffer><C-w> <Plug>(unite_delete_backward_path)
   map <silent><buffer><nowait> <Esc> <Plug>(unite_exit)
   noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
   noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
@@ -947,33 +265,486 @@ if executable('ag')
   let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden --ignore .git'
   let g:unite_source_grep_recursive_opt = ''
 endif
+
+" 非同期実行
+NeoBundle 'Shougo/vimproc', {
+\ 'disabled': g:is_windows,
+\ 'build': {
+\   'unix': 'make -f make_unix.mak',
+\ }}
+
+" Plugin for Plugin
+NeoBundle 'vim-jp/vital.vim', {
+\ 'lazy': 1,
+\ }
+
+" Vim help 日本語版
+NeoBundle 'vim-jp/vimdoc-ja', {
+\ 'lazy': 0,
+\ }
 " }}}
 
-" gitv の設定 {{{
-autocmd myautocmd FileType agit call AgitSettings()
-function! AgitSettings()
-  nmap <buffer> Rv <Plug>(agit-git-revert)
-  nmap <buffer> cB :<C-u>AgitGit branch -f \%# <hash>
-  nnoremap <buffer> [Git]<Space> :<C-u>AgitGit<Space>
+" ### 入力系 ### {{{
+" 入力補完
+NeoBundle 'Shougo/neocomplete', {
+\ 'lazy': 1,
+\ 'insert': 1,
+\ }
+if neobundle#tap('neocomplete')
+  function neobundle#hooks.on_source(_)
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#auto_completion_start_length = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    let g:neocomplete#max_list = 200
+    inoremap <expr><C-l> neocomplete#complete_common_string()
+    autocmd myautocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd myautocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    if !exists('g:neocomplete#force_omni_patterns')
+      let g:neocomplete#force_omni_patterns = {}
+    endif
+    let g:neocomplete#force_omni_patterns.javascript = ''
+    let g:neocomplete#force_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
+    if !exists('g:neocomplete#omni_functions')
+      let g:neocomplete#omni_functions = {}
+    endif
+    let g:neocomplete#dictionary#dictionaries = {
+    \ 'javascript': expand('~/.vim/dict/javascript.dict'),
+    \ 'ocaml': expand('~/.vim/dict/ocaml.dict')
+    \ }
+    call neocomplete#custom#source('_', 'converters',
+    \ ['converter_remove_overlap', 'converter_remove_last_paren', 'converter_delimiter', 'converter_case', 'converter_abbr'])
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  endfunction
+endif
+
+" スニペット補完
+NeoBundle 'Shougo/neosnippet', {
+\ 'depends': 'Shougo/neosnippet-snippets',
+\ 'lazy': 1,
+\ 'insert': 1,
+\ 'filetypes': 'neosnippet',
+\ }
+let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-l> <Plug>(neosnippet_expand_target)
+snoremap <CR> <BS>i
+snoremap <C-l> <Esc>a
+
+" Zen-Coding
+NeoBundle 'mattn/emmet-vim', {
+\ 'lazy': 1,
+\ 'filetypes': ['html', 'eruby', 'jsp', 'xml'],
+\ }
+let g:use_emmet_complete_tag = 1
+let g:user_emmet_leader_key = '<C-c>'
+let g:user_emmet_settings = {
+\ 'lang': 'ja',
+\ 'html': {
+\   'indentation': '  '
+\ }}
+
+" 対応する括弧の自動入力 (kana 神の fork)
+NeoBundle 'cohama/vim-smartinput', {
+\ 'lazy': 0
+\ }
+if neobundle#tap('vim-smartinput')
+  function neobundle#hooks.on_source(_)
+    call smartinput#map_to_trigger('i', '<', '<', '<')
+    call smartinput#map_to_trigger('i', '%', '%', '%')
+    call smartinput#map_to_trigger('i', '*', '*', '*')
+    call smartinput#map_to_trigger('i', 'l', 'l', 'l')
+
+    call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left><Left>', 'filetype': ['javascript']})
+    call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
+    call smartinput#define_rule({'at': '{\%#', 'char': '%', 'input': '%%<Left>'})
+    call smartinput#define_rule({'at': '{%\%#%}', 'char': '<BS>', 'input': '<BS><Del>'})
+    call smartinput#define_rule({'at': '(\%#)', 'char': '*', 'input': '**<Left>', 'filetype': ['ocaml']})
+    call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<BS>', 'input': '<BS><Del>', 'filetype': ['ocaml']})
+    call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml', 'scala', 'haskell']})
+    call smartinput#define_rule({'at': '\[\%#\]', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S'})
+    call smartinput#define_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
+    call smartinput#define_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
+
+    call smartinput#map_to_trigger('c', '/', '/', '/')
+    call smartinput#map_to_trigger('c', ':', ':', ':')
+    call smartinput#map_to_trigger('c', '<Space>', '<Space>', '<Space>')
+    call smartinput#map_to_trigger('c', '?', '?', '?')
+    call smartinput#map_to_trigger('c', 'A', 'A', 'A')
+    call smartinput#map_to_trigger('c', 'B', 'B', 'B')
+    call smartinput#map_to_trigger('c', 'C', 'C', 'C')
+    call smartinput#map_to_trigger('c', 'D', 'D', 'D')
+    call smartinput#map_to_trigger('c', 'F', 'F', 'F')
+    call smartinput#map_to_trigger('c', 'G', 'G', 'G')
+    call smartinput#map_to_trigger('c', 'I', 'I', 'I')
+    call smartinput#map_to_trigger('c', 'J', 'J', 'J')
+    call smartinput#map_to_trigger('c', 'L', 'L', 'L')
+    call smartinput#map_to_trigger('c', 'M', 'M', 'M')
+    call smartinput#map_to_trigger('c', 'N', 'N', 'N')
+    call smartinput#map_to_trigger('c', 'O', 'O', 'O')
+    call smartinput#map_to_trigger('c', 'P', 'P', 'P')
+    call smartinput#map_to_trigger('c', 'R', 'R', 'R')
+    call smartinput#map_to_trigger('c', 'S', 'S', 'S')
+    call smartinput#map_to_trigger('c', 'U', 'U', 'U')
+    call smartinput#map_to_trigger('c', 'c', 'c', 'c')
+    call smartinput#map_to_trigger('c', 'l', 'l', 'l')
+    call smartinput#map_to_trigger('c', 'm', 'm', 'm')
+
+    call smartinput#define_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
+    call smartinput#define_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
+    call smartinput#define_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
+
+    call smartinput#define_rule({'at': 'Unite \%#', 'char': 'I', 'input': '<C-u>UniteWithInput<Space>', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite \%#', 'char': 'C', 'input': '<C-u>UniteWithCursorWord<Space>', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite \%#', 'char': 'B', 'input': '<C-u>UniteWithBufferDir<Space>', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': ':', 'input': '<BS>:', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'F', 'input': 'file ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.*file \%#', 'char': 'R', 'input': '<BS>_rec ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.*file \%#', 'char': 'M', 'input': '<BS>_mru ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.*file_rec \%#', 'char': 'A', 'input': '<BS>/async ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.*file_mru \%#', 'char': 'L', 'input': '<BS>:long ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'D', 'input': 'directory ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.\+ \%#', 'char': 'B', 'input': 'bookmark ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'S', 'input': 'source ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'M', 'input': 'mapping ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'O', 'input': 'out', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.*out\%#', 'char': 'L', 'input': 'line ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.*out\%#', 'char': 'P', 'input': 'put:', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'G', 'input': 'grep ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'J', 'input': 'junkfile junkfile/new ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'N', 'input': 'neobundle ', 'mode': ':'})
+    let log = '<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>-log -no-start-insert <Right><Right><Right><Right><Right><Right><Right><Right><Right><Right>'
+    call smartinput#define_rule({'at': 'Unite.*neobundle \%#', 'char': 'I', 'input': log . '<BS>/install ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.*neobundle \%#', 'char': 'U', 'input': log . '<BS>/update ', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Unite.*neobundle/update \%#', 'char': 'U', 'input': '<BS>:! ', 'mode': ':'})
+
+    call smartinput#define_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
+    call smartinput#define_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
+    call smartinput#define_rule({'at': '\%#', 'char': '<Enter>', 'input': '<Enter>zv:noh<Enter>', 'mode': '/?'})
+    call smartinput#define_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
+    call smartinput#define_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
+  endfunction
+endif
+call neobundle#untap()
+
+" ruby の def end とか自動入力
+NeoBundle 'cohama/vim-smartinput-endwise', {
+\ 'lazy': 1,
+\ 'insert': 1,
+\ }
+function g:neobundle#hooks.on_source(bundle)
+  call smartinput_endwise#define_default_rules()
 endfunction
-nnoremap [Git]k :<C-u>Agit<CR>
 " }}}
 
-" gitgutter の設定 {{{
-let g:gitgutter_enabled = 0
-nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
-nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
-nnoremap [Git]g :<C-u>GitGutterToggle<CR>
+" ### text-object ### {{{
+NeoBundle 'kana/vim-textobj-user', {
+\ 'lazy': 1,
+\ }
+
+" インデントが同じ物をテキストオブジェクト化
+NeoBundle 'kana/vim-textobj-indent', {
+\ 'lazy': 0,
+\ 'depends': 'kana/vim-textobj-user',
+\ 'mappings': [['ox', 'ii', 'ai', 'iI', 'aI']],
+\ }
+
+" 全体をテキストオブジェクト化
+NeoBundle 'kana/vim-textobj-entire', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-textobj-user',
+\ 'mappings': [['ox', 'ie', 'ae']],
+\ }
+
+" 関数をテキストオブジェクト化
+NeoBundle 'kana/vim-textobj-function', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-textobj-user',
+\ 'mappings': [['ox', 'if', 'af']],
+\ 'filetypes': ['vim', 'c'],
+\ }
+
+" JavaScript の関数をテキストオブジェクト化を追加
+NeoBundle 'thinca/vim-textobj-function-javascript', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-textobj-function',
+\ 'filetypes': 'javascript',
+\ }
+
+" 任意の文字に囲まれた部分をテキストオブジェクト化
+NeoBundle 'thinca/vim-textobj-between', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-textobj-user',
+\ 'mappings': '<Plug>',
+\ }
+let g:textobj_between_no_default_key_mappings = 1
+omap i/ <Plug>(textobj-between-i)
+xmap i/ <Plug>(textobj-between-i)
+omap a/ <Plug>(textobj-between-a)
+xmap a/ <Plug>(textobj-between-a)
+
+" Ruby のメソッドをテキストオブジェクト化
+NeoBundle 't9md/vim-textobj-function-ruby', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-textobj-function',
+\ 'filetypes': 'ruby',
+\ }
+
+" 行内の文字をテキストオブジェクト化
+NeoBundle 'kana/vim-textobj-line', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-textobj-user',
+\ 'mappings': [['ox', 'il', 'al']],
+\ }
+
+" 最後に編集した領域
+NeoBundle 'gilligan/textobj-lastpaste', {
+\ 'lazy': 0,
+\ 'depends': 'kana/vim-textobj-user',
+\ 'mappings': '<Plug>',
+\ }
+let g:textobj_lastpaste_no_default_key_mappings = 1
+omap iP <Plug>(textobj-lastpaste-i)
+xmap iP <Plug>(textobj-lastpaste-i)
+
+" コメントをテキストオブジェクト化
+NeoBundle 'thinca/vim-textobj-comment', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-textobj-user',
+\ 'mappings': [['ox', 'ic', 'ac']],
+\ }
+
 " }}}
 
-" git-messenger {{{
-nmap [Git]m <Plug>(git-messenger-commit-summary)
-nmap [Git]M <Plug>(git-messenger-commit-message)
+" ### operator ### {{{
+" テキストオブジェクトのまわりに文字を挿入
+NeoBundle 'tpope/vim-surround', {
+\ 'lazy': 1,
+\ 'mappings': [['n', 'ys', 'ds', 'cs', 'S']],
+\ }
+
+" コメント化
+NeoBundle 'tpope/vim-commentary', {
+\ 'lazy': 1,
+\ 'mappings': [['nx', 'gc', 'gC']],
+\ }
+
+NeoBundle 'kana/vim-operator-user', {
+\ 'lazy': 1,
+\ }
+
+" ヤンクしたものと対象の文字列を置き換える
+NeoBundle 'kana/vim-operator-replace', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-operator-user',
+\ 'mappings': '<Plug>',
+\ }
+map _ <Plug>(operator-replace)
+sunmap _
+
+" snake_case -> CamelCase にするオペレータ
+NeoBundle 'tyru/operator-camelize.vim', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-operator-user',
+\ 'mappings': '<Plug>',
+\ }
+map - <Plug>(operator-camelize-toggle)
+sunmap -
+
 " }}}
 
+" ### 編集を便利にする ### {{{
+" 整形
+NeoBundle 'h1mesuke/vim-alignta', {
+\ 'lazy': 1,
+\ 'commands': ['Alignta', 'Align'],
+\ }
+
+" . による繰り返しをプラグインの機能にも適用
+NeoBundle 'kana/vim-repeat', {
+\ 'lazy': 1,
+\ 'mappings': '.',
+\ }
+
+" }}}
+
+" ### ファイル操作など ### {{{
+" ディレクトリ、ファイルをツリー表示
+NeoBundle 'scrooloose/nerdtree', {
+\ 'lazy': 1,
+\ 'commands': ['NERDTreeToggle', 'NERDTreeToggle'],
+\ }
+nnoremap <silent> <C-p> :<C-u>NERDTreeToggle<CR>
+nnoremap <silent> <C-@> :<C-u>NERDTreeFind<CR>
+nnoremap <silent> <Leader><C-p> :<C-u>NERDTreeFind<CR>
+let g:NERDTreeIgnore = ['\~$', '\.swp', '^\.$', '^\.\.$']
+let g:NERDTreeHijackNetrw = 0
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeWinSize = 36
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeChDirMode = 1
+let g:NERDTreeMapCWD = "cD"
+if !g:is_unicode
+  let g:NERDTreeDirArrows = 0
+endif
+
+" sudo で保存
+NeoBundle 'sudo.vim', {
+\ 'lazy': 1,
+\ }
+
+" ファイラ
+NeoBundle 'Shougo/vimfiler', {
+\ 'lazy': 1,
+\ 'commands': [
+\   {'name': 'VimFiler', 'complete': 'customlist,vimfiler#complete'}],
+\ 'mappings': '<Plug>',
+\ 'explorer': 1,
+\ }
+nnoremap [VimFiler] <Nop>
+nmap <Leader>F [VimFiler]
+nnoremap [VimFiler]<CR> :<C-u>VimFiler<CR>
+nnoremap [VimFiler]s :<C-u>VimFilerSplit<CR>
+nnoremap <M-F> :<C-u>VimFilerSplit<CR>
+nnoremap [VimFiler]t :<C-u>VimFilerTab<CR>
+nnoremap [VimFiler]b :<C-u>VimFilerBufferDir<CR>
+nnoremap [VimFiler]c :<C-u>VimFilerCurrentDir<CR>
+nnoremap [VimFiler]e :<C-u>VimFilerExplorer<CR>
+nnoremap [VimFiler]E :<C-u>VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <M-f> :<C-u>VimFiler<CR>
+nnoremap <M-F> :<C-u>VimFilerBufferDir -explorer -find<CR>
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_as_default_explorer = 1
+autocmd myautocmd FileType vimfiler call s:vimfiler_my_settings()
+function! s:vimfiler_my_settings()
+  if g:is_unicode
+    " Like Textmate icons.
+    let g:vimfiler_tree_leaf_icon = ' '
+    let g:vimfiler_tree_opened_icon = "\u25be" " filled inverse triangle
+    let g:vimfiler_tree_closed_icon = "\u25b8" " filled right-pointed triangle
+    let g:vimfiler_file_icon = '-'
+    let g:vimfiler_readonly_file_icon = "\u2717" " like X
+    let g:vimfiler_marked_file_icon = "\u2713"   " checkmark like レ
+  else
+    let g:vimfiler_tree_leaf_icon = ' '
+    let g:vimfiler_tree_opened_icon = '\' " filled inverse triangle
+    let g:vimfiler_tree_closed_icon = '>' " filled right-pointed triangle
+    let g:vimfiler_file_icon = '-'
+    let g:vimfiler_readonly_file_icon = "x" " like X
+    let g:vimfiler_marked_file_icon = "O"   " checkmark like レ
+  endif
+
+  nmap <buffer><nowait> c <Plug>(vimfiler_copy_file)
+  nmap <buffer><nowait> d <Plug>(vimfiler_delete_file)
+endfunction
+
+" 一時ファイル的な
+NeoBundle 'Shougo/junkfile.vim', {
+\ 'lazy': 1,
+\ 'unite_sources': ["junkfile", "junkfile/new"],
+\ }
+let g:junkfile#edit_command = "tabedit"
+
+" 規則に従ってファイルを開く
+NeoBundle 'kana/vim-altr', {
+\ 'lazy': 1,
+\ 'mappings': ['<M-1>', '<M-2>'],
+\ }
+nnoremap <M-2> :<C-u>call altr#forward()<CR>
+nnoremap <M-1> :<C-u>call altr#back()<CR>
+if neobundle#tap('vim-altr')
+  function neobundle#hooks.on_source(bundle)
+    call altr#remove_all()
+    call altr#define('plugin/%/*.vim', 'autoload/%/*.vim')
+    call altr#define('plugin/%.vim', 'autoload/%.vim')
+    call altr#define('ftplugin/*/%.vim', 'autoload/%.vim')
+    call altr#define('after/ftplugin/*/%.vim', 'autoload/%.vim')
+    call altr#define('%.ml', '%.mli')
+  endfunction
+endif
+
+" }}}
+
+" ### 移動 ### {{{
+" CamelCase や snake_case での単語移動
+NeoBundle 'bkad/CamelCaseMotion', {
+\ 'lazy': 1,
+\ 'mappings' : ['<Plug>CamelCaseMotion_w', '<Plug>CamelCaseMotion_b', '<Plug>CamelCaseMotion_e'],
+\ }
+map + [CamelCaseMotion]
+map <silent> [CamelCaseMotion]w <Plug>CamelCaseMotion_w
+map <silent> [CamelCaseMotion]b <Plug>CamelCaseMotion_b
+map <silent> [CamelCaseMotion]e <Plug>CamelCaseMotion_e
+sunmap +
+sunmap [CamelCaseMotion]w
+sunmap [CamelCaseMotion]b
+sunmap [CamelCaseMotion]e
+
+" カーソルを任意の位置にジャンプさせる
+NeoBundle 'Lokaltog/vim-easymotion', {
+\ 'lazy': 1,
+\ 'mappings': [['nox', '[EasyMotion]']],
+\ }
+nmap <CR> [EasyMotion]
+omap <CR> [EasyMotion]
+xmap <CR> [EasyMotion]
+let g:EasyMotion_leader_key = '[EasyMotion]'
+let bundle = neobundle#get('EasyMotion')
+
+" 記号とかに邪魔されずに w, b, e できる
+NeoBundle 'kana/vim-smartword', {
+\ 'lazy': 1,
+\ 'mappings': '<Plug>',
+\ }
+nmap w <Plug>(smartword-w)
+nmap b <Plug>(smartword-b)
+nmap e <Plug>(smartword-e)
+nmap ge <Plug>(smartword-ge)
+xmap w <Plug>(smartword-w)
+xmap b <Plug>(smartword-b)
+xmap e <Plug>(smartword-e)
+xmap ge <Plug>(smartword-ge)
+
+" 選択したところを検索
+NeoBundleLazy 'thinca/vim-visualstar', {
+\ 'mappings': '<Plug>',
+\ }
+let g:visualstar_no_default_key_mappings = 1
+xmap * <Plug>(visualstar-*)
+xmap # <Plug>(visualstar-#)
+xmap g* <Plug>(visualstar-g*)
+xmap g# <Plug>(visualstar-g#)
+
+NeoBundle 'deris/columnjump', {
+\ 'lazy': 1,
+\ 'mappings': '<Plug>',
+\ }
+nmap <C-k> <Plug>(columnjump-backward)
+xmap <C-k> <Plug>(columnjump-backward)
+nmap <C-j> <Plug>(columnjump-forward)
+xmap <C-j> <Plug>(columnjump-forward)
+let g:columnjump_ignore_wrapped_lines = 1
+
+" Vim で hoge#fuga() みたいなやつのジャンプ
+NeoBundle 'sgur/vim-gf-autoload', {
+\ 'lazy': 1,
+\ 'depends': 'kana/vim-gf-user',
+\ 'filetypes': ['vim'],
+\ }
+" }}}
+
+" ### 見た目、カラースキーム ### {{{
+" インデントの量を可視化
+NeoBundle 'nathanaelkane/vim-indent-guides'
 "indent-guides の設定 {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
+let g:my_background = get(g:, 'my_background', 'dark')
 if g:my_background == 'light'
   let s:indent_guides_odd_guibg = "#0D0D24"
   let s:indent_guides_odd_ctermbg = "231"
@@ -1001,351 +772,474 @@ autocmd myautocmd ColorScheme * exec "hi IndentGuideseven" .
 \ " guifg=" . s:indent_guides_guifg
 " }}}
 
-" coffeescript {{{
+
+" エラー箇所をハイライトする
+NeoBundle 'cohama/vim-hier', {
+\ 'lazy': 1,
+\ }
+
+" エラーの原因をコマンドウィンドウに出力
+NeoBundle 'dannyob/quickfixstatus', {
+\ 'lazy': 1,
+\ }
+
+" 複数箇所をハイライト
+NeoBundleLazy 't9md/vim-quickhl', {
+\ 'mappings': '<Plug>',
+\ }
+nmap gm <Plug>(quickhl-toggle)
+xmap gm <Plug>(quickhl-toggle)
+nmap gM <Plug>(quickhl-reset)
+xmap gM <Plug>(quickhl-reset)
+
+" フォントサイズ変更
+NeoBundleLazy 'thinca/vim-fontzoom', {
+\ 'gui': 1,
+\ 'mappings': '<Plug>',
+\ 'commands': 'Fontzoom',
+\ }
+let g:fontzoom_no_default_key_mappings = 1
+nmap <C-ScrollWheelUp>   <Plug>(fontzoom-larger)
+nmap <C-ScrollWheelDown> <Plug>(fontzoom-smaller)
+
+" インサートモード時に行番号の色を反転
+NeoBundle 'cohama/vim-insert-linenr'
+" }}}
+
+" ### Git ### {{{
+" 直接 Git コマンド実行など
+NeoBundle 'tpope/vim-fugitive', {
+\ 'lazy': 0,
+\ }
+nnoremap [Git] <Nop>
+nmap <Space> [Git]
+nnoremap [Git]<Space> :<C-u>Git<Space>
+nnoremap [Git]<CR> :<C-u>Git<Space>
+nnoremap [Git]s :<C-u>Gstatus<CR>
+nnoremap [Git]d :<C-u>Gdiff<CR>
+nnoremap [Git]a :<C-u>Gwrite<CR>
+nnoremap [Git]A :<C-u>Git add -A<CR>
+nnoremap [Git]c :<C-u>Gcommit -v<CR>
+nnoremap [Git]C :<C-u>Gcommit --amend<Space>
+nnoremap [Git]p :<C-u>Git push<CR>
+nnoremap [Git]f :<C-u>Git fetch<CR>
+nnoremap [Git]F :<C-u>Git pull --rebase<CR>
+nnoremap [Git]b :<C-u>Gblame<CR>
+
+" gitk っぽいものを Vim で
+NeoBundle 'cohama/agit.vim', {
+\ 'lazy': 1,
+\ }
+autocmd myautocmd FileType agit call s:my_agit_settings()
+function! s:my_agit_settings()
+  nmap <buffer> Rv <Plug>(agit-git-revert)
+  nmap <buffer> cB :<C-u>AgitGit branch -f \%# <hash><CR>
+  nnoremap <buffer> [Git]<Space> :<C-u>AgitGit<Space>
+endfunction
+nnoremap [Git]k :<C-u>Agit<CR>
+
+
+" git のステータスを行の横に表示
+NeoBundle 'airblade/vim-gitgutter', {
+\ 'lazy': 1,
+\ 'commands': ['GitGutterToggle'],
+\ }
+let g:gitgutter_enabled = 0
+nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
+nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
+nnoremap [Git]g :<C-u>GitGutterToggle<CR>
+
+" git のコミットメッセージをバルーンで表示
+NeoBundle 'rhysd/git-messenger.vim', {
+\ 'lazy': 1,
+\ 'mappings': '<Plug>',
+\ }
+if neobundle#tap('git-messenger.vim')
+  nmap [Git]m <Plug>(git-messenger-commit-summary)
+  nmap [Git]M <Plug>(git-messenger-commit-message)
+endif
+" }}}
+
+" ### Language ### {{{
+NeoBundle 'tpope/vim-rails'
+
+NeoBundle 'vim-ruby/vim-ruby', {
+\ 'lazy': 1,
+\ 'filetypes': ['ruby', 'eruby'],
+\ }
+let g:rubycomplete_buffer_loadding = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+
+NeoBundle 'kchmck/vim-coffee-script', {
+\ 'lazy': 1,
+\ }
 let coffee_make_options = '--bare'
 let coffee_compiler = 'coffee'
 let coffee_linter = 'coffeelint'
-nnoremap <Leader>cc :CoffeeCompile<CR>
-nnoremap <Leader>cm :CoffeeMake<CR>
-nnoremap <Leader>cl :CoffeeLint<CR>
-" }}}
+autocmd myautocmd FileType coffee call s:my_coffee_settings()
+function! s:my_coffee_settings()
+  nnoremap <buffer> <LocalLeader>cc :<C-u>CoffeeCompile<CR>
+  nnoremap <buffer> <LocalLeader>cm :<C-u>CoffeeMake<CR>
+  nnoremap <buffer> <LocalLeader>cl :<C-u>CoffeeLint<CR>
+endfunction
 
-" tern {{{
+NeoBundle 'derekwyatt/vim-scala', {
+\ 'lazy': 1,
+\ }
+
+NeoBundle 'groenewege/vim-less', {
+\ 'lazy': 1,
+\ }
+
+NeoBundle 'pangloss/vim-javascript', {
+\ 'lazy': 1,
+\ 'filetypes': 'javascript',
+\ }
+
+NeoBundle 'marijnh/tern_for_vim', {
+\ 'lazy': 1,
+\ 'disabled': !executable('npm'),
+\ 'filetypes': 'javascript',
+\ 'build_commands': 'npm install',
+\ }
 let g:tern_show_argument_hints = 'no'
-" }}}
 
-" vimfiler {{{
-nnoremap [VimFiler] <Nop>
-nmap <Leader>F [VimFiler]
-nnoremap [VimFiler]<CR> :<C-u>VimFiler<CR>
-nnoremap [VimFiler]s :<C-u>VimFilerSplit<CR>
-nnoremap <M-F> :<C-u>VimFilerSplit<CR>
-nnoremap [VimFiler]t :<C-u>VimFilerTab<CR>
-nnoremap [VimFiler]b :<C-u>VimFilerBufferDir<CR>
-nnoremap [VimFiler]c :<C-u>VimFilerCurrentDir<CR>
-nnoremap [VimFiler]e :<C-u>VimFilerExplorer<CR>
-nnoremap [VimFiler]E :<C-u>VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
-nnoremap <M-f> :<C-u>VimFiler<CR>
-nnoremap <M-F> :<C-u>VimFilerBufferDir -explorer -find<CR>
-let g:vimfiler_safe_mode_by_default = 0
-autocmd myautocmd FileType vimfiler call s:vimfiler_my_settings()
-function! s:vimfiler_my_settings()
-  if g:is_unicode
-    " Like Textmate icons.
-    let g:vimfiler_tree_leaf_icon = ' '
-    let g:vimfiler_tree_opened_icon = "\u25be" " filled inverse triangle
-    let g:vimfiler_tree_closed_icon = "\u25b8" " filled right-pointed triangle
-    let g:vimfiler_file_icon = '-'
-    let g:vimfiler_readonly_file_icon = "\u2717" " like X
-    let g:vimfiler_marked_file_icon = "\u2713"   " checkmark like レ
-  else
-    let g:vimfiler_tree_leaf_icon = ' '
-    let g:vimfiler_tree_opened_icon = '\' " filled inverse triangle
-    let g:vimfiler_tree_closed_icon = '>' " filled right-pointed triangle
-    let g:vimfiler_file_icon = '-'
-    let g:vimfiler_readonly_file_icon = "x" " like X
-    let g:vimfiler_marked_file_icon = "O"   " checkmark like レ
-  endif
+NeoBundle 'leafgarland/typescript-vim'
 
-  nmap <buffer><nowait> c <Plug>(vimfiler_copy_file)
-  nmap <buffer><nowait> d <Plug>(vimfiler_delete_file)
+NeoBundle 'cohama/the-ocamlspot.vim', {
+\ 'lazy': 1,
+\ 'disabled': !executable('ocamlspot'),
+\ 'filetypes': 'ocaml',
+\ }
+let g:the_ocamlspot_disable_auto_type =1
+let s:the_ocamlspot_tree_ctermbg = '17'
+let s:the_ocamlspot_tree_guibg = '#BBFFDD'
+autocmd myautocmd ColorScheme * call s:the_ocamlspot_highlight()
+function! s:the_ocamlspot_highlight()
+  exec "highlight TheOCamlSpotTree gui=NONE cterm=NONE ctermfg=NONE guifg=NONE"
+  \ . " ctermbg=" . s:the_ocamlspot_tree_ctermbg
+  \ . " guibg=" . s:the_ocamlspot_tree_guibg
 endfunction
-" }}}
 
-" JunkFile の設定 {{{
-let g:junkfile#edit_command = "tabedit"
-" }}}
-
-" altr {{{
-let bundle = neobundle#get('vim-altr')
-function! bundle.hooks.on_source(bundle)
-  call altr#remove_all()
-  call altr#define('plugin/%/*.vim', 'autoload/%/*.vim')
-  call altr#define('plugin/%.vim', 'autoload/%.vim')
-  call altr#define('ftplugin/*/%.vim', 'autoload/%.vim')
-  call altr#define('after/ftplugin/*/%.vim', 'autoload/%.vim')
-  call altr#define('%.ml', '%.mli')
-  nnoremap <M-2> :<C-u>call altr#forward()<CR>
-  nnoremap <M-1> :<C-u>call altr#back()<CR>
+NeoBundle 'https://bitbucket.org/anyakichi/vim-ocp-index', {
+\ 'lazy': 1,
+\ 'disabled': !executable('hg') || !executable('ocp-index'),
+\ 'filetypes': 'ocaml',
+\ }
+autocmd myautocmd FileType ocaml call s:my_ocaml_settings()
+function! s:my_ocaml_settings()
+  " let b:did_ftplugin = 1
+  call ocpindex#init()
+  nmap <buffer> \t <Plug>(ocpindex-echo-type)
 endfunction
+
+NeoBundle 'kana/vim-filetype-haskell', {
+\ 'lazy': 1,
+\ 'filetypes': 'haskell',
+\ }
+
+NeoBundle 'eagletmt/ghcmod-vim', {
+\ 'lazy': 1,
+\ 'disabled': !executable('ghc-mod'),
+\ 'filetypes': 'haskell',
+\ }
+
+NeoBundle 'eagletmt/neco-ghc', {
+\ 'lazy': 1,
+\ 'disabled': !executable('ghc-mod'),
+\ 'filetypes': 'haskell',
+\ }
+let g:necoghc_enable_detailed_browse = 1
+
+NeoBundle 'ujihisa/ref-hoogle', {
+\ 'lazy': 1,
+\ 'disabled': !executable('hoogle'),
+\ 'filetypes': 'haskell',
+\ }
+
+NeoBundle 'ujihisa/unite-haskellimport', {
+\ 'lazy': 1,
+\ 'disabled': !executable('hoogle'),
+\ 'filetypes': 'haskell',
+\ }
+
+NeoBundle 'eagletmt/unite-haddock', {
+\ 'lazy': 1,
+\ 'filetypes': 'haskell',
+\ }
+
+NeoBundle 'jvoorhis/coq.vim', {
+\ 'lazy': 1,
+\ }
+
+NeoBundle 'vim-scripts/CoqIDE', {
+\ 'lazy': 1,
+\ 'filetypes': 'coq',
+\ }
+
+NeoBundle 'jdonaldson/vaxe', {
+\ 'lazy': 1,
+\ }
+
 " }}}
 
-" CamelCaseMotion
-map + [CamelCaseMotion]
-map <silent> [CamelCaseMotion]w <Plug>CamelCaseMotion_w
-map <silent> [CamelCaseMotion]b <Plug>CamelCaseMotion_b
-map <silent> [CamelCaseMotion]e <Plug>CamelCaseMotion_e
-sunmap [CamelCaseMotion]w
-sunmap [CamelCaseMotion]b
-sunmap [CamelCaseMotion]e
-
-" EasyMotion {{{
-nmap <CR> [EasyMotion]
-let g:EasyMotion_leader_key = '[EasyMotion]'
-let bundle = neobundle#get('EasyMotion')
-function! bundle.hooks.on_post_source(bundle)
-  sunmap [EasyMotion]w
-  sunmap [EasyMotion]b
-  sunmap [EasyMotion]e
-  sunmap [EasyMotion]ge
-  sunmap [EasyMotion]W
-  sunmap [EasyMotion]B
-  sunmap [EasyMotion]E
-  sunmap [EasyMotion]gE
-  sunmap [EasyMotion]f
-  sunmap [EasyMotion]F
-  sunmap [EasyMotion]t
-  sunmap [EasyMotion]T
+" ### 何かを実行 ### {{{
+" Vim で動く shell
+NeoBundle 'Shougo/vimshell', {
+\ 'lazy': 1,
+\ 'commands': [{'name': 'VimShell',
+\               'complete': 'customlist,vimshell#complete'},
+\              'VimShellExecute', 'VimShellInteractive',
+\              'VimShellTerminal', 'VimShellPop'],
+\ 'mappings': '<Plug>',
+\ }
+" vimshell の設定 {{{
+autocmd myautocmd FileType vimshell call s:my_vimshell_settings()
+function! s:my_vimshell_settings()
+  let b:smartinput_disable_local = 1
+  call vimshell#altercmd#define('l', 'ls -F')
+  call vimshell#altercmd#define('la', 'ls -FA')
+  call vimshell#altercmd#define('ll', 'ls -alF')
+  call vimshell#altercmd#define('jhw', 'bundle exec jasmine-headless-webkit')
+  call vimshell#altercmd#define('be', 'bundle exec')
+  nmap <buffer> H <Plug>(vimshell_move_head)
+  nmap <buffer> S <Plug>(vimshell_change_line)
 endfunction
+nnoremap <Leader>s <Nop>
+nnoremap <silent> <Leader>s<CR> :<C-u>VimShell<CR>
+nnoremap <silent> <Leader>sh :<C-u>tabnew<CR>:VimShell<CR>
+nnoremap <silent> <Leader>ss :<C-u>botright vnew<CR>:VimShell<CR>
+nnoremap <Leader>si :<C-u>VimShellInteractive<Space>
+nnoremap <silent> <Leader>irb :<C-u>botright VimShellInteractive irb<CR>
+let g:vimshell_prompt = '% '
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 " }}}
 
-" smartword{{{
-nmap w <Plug>(smartword-w)
-nmap b <Plug>(smartword-b)
-nmap e <Plug>(smartword-e)
-nmap ge <Plug>(smartword-ge)
-xmap w <Plug>(smartword-w)
-xmap b <Plug>(smartword-b)
-xmap e <Plug>(smartword-e)
-xmap ge <Plug>(smartword-ge)
-" }}}
 
-" visualstar {{{
-let g:visualstar_no_default_key_mappings = 1
-xmap * <Plug>(visualstar-*)
-xmap # <Plug>(visualstar-#)
-xmap g* <Plug>(visualstar-g*)
-xmap g# <Plug>(visualstar-g#)
-" }}}
+" その場で実行
+NeoBundle 'thinca/vim-quickrun', {
+\ 'lazy': 1,
+\ 'mappings': [['n', '\r']],
+\ 'commands': ['QuickRun'],
+\ }
+if neobundle#tap('vim-quickrun')
+  function neobundle#hooks.on_source(_)
+    let g:quickrun_config = {}
+    let g:quickrun_config['_'] = {
+    \ 'hook/close_buffer/enable_failure'   : 1,
+    \ 'hook/close_buffer/enable_empty_data': 1,
+    \ 'outputter'                          : 'multi:buffer:quickfix',
+    \ 'outputter/buffer/split'             : 'botright 8',
+    \ 'outputter/buffer/name'              : 'QuickRunOut',
+    \ 'outputter/buffer/close_on_empty'    : 1,
+    \ 'outputter/quickfix/open_cmd'        : '',
+    \ 'runner'                             : 'vimproc',
+    \ 'runner/vimproc/updatetime'          : 40
+    \ }
+    let g:quickrun_config['watchdogs_checker/_'] = {
+    \ 'hook/close_unite_quickfix/enable_exit'    : 1,
+    \ 'hook/back_window/enable_exit'             : 0,
+    \ 'hook/quickfix_status_enable/enable_exit'  : 1,
+    \ 'hook/hier_update/enable_exit'             : 1,
+    \ 'hook/back_window/priority_exit'           : 1,
+    \ 'hook/quickfix_status_enable/priority_exit': 2,
+    \ 'hook/hier_update/priority_exit'           : 3,
+    \ }
+    let g:quickrun_config['ocaml/watchdogs_checker'] = {
+    \ 'type': 'watchdogs_checker/ocamlc'
+    \ }
+    let g:quickrun_config['watchdogs_checker/make'] = {
+    \ 'command': 'make',
+    \ 'exec': '%c %o'
+    \ }
+    let g:quickrun_config['watchdogs_checker/ocamlc'] = {
+    \ 'command': 'ocamlc',
+    \ 'exec'   : '%c -i %o - %s:p'
+    \ }
+    let g:quickrun_config['watchdogs_checker/ocamlc_annot'] = {
+    \ 'command': 'ocamlc',
+    \ 'exec'   : '%c -annot -bin-annot -c %o - %s:p'
+    \ }
+    let g:quickrun_config['watchdogs_checker/hxml'] = {
+    \ 'command': 'haxe',
+    \ 'exec'   : '%c build.hxml'
+    \ }
+    let g:quickrun_config['haxe/watchdogs_checker'] = {
+    \ 'type': 'watchdogs_checker/hxml'
+    \ }
+    let g:quickrun_config['ruby.rspec'] = {
+    \ 'command': 'bundle',
+    \ 'exec': '%c exec rspec -f d %s'
+    \ }
+    let g:quickrun_config['ghc_make'] = {
+    \ 'command'                       : 'ghc',
+    \ 'exec'                          : '%c %s',
+    \ 'outputter'                     : 'quickfix',
+    \ 'outputter/quickfix'            : 1,
+    \ 'outputter/quickfix/open_cmd'   : 'cwindow',
+    \ 'hook/back_window/enable_exit'  : 1,
+    \ 'hook/back_window/priority_exit': 1
+    \ }
+    let g:quickrun_config['ghc_doctest'] = {
+    \ 'command': 'doctest',
+    \ 'exec': '%c %s'
+    \ }
+    let g:quickrun_config['themis'] = {
+    \ 'command': 'themis',
+    \ 'exec': '%c --reporter dot %s'
+    \ }
+  endfunction
+  autocmd myautocmd BufWinEnter,BufNewFile test/*.vim let b:quickrun_config = {'type' : 'themis'}
+  autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
+endif
 
-" columnjump {{{
-nmap <C-k> <Plug>(columnjump-backward)
-xmap <C-k> <Plug>(columnjump-backward)
-nmap <C-j> <Plug>(columnjump-forward)
-xmap <C-j> <Plug>(columnjump-forward)
-let g:columnjump_ignore_wrapped_lines = 1
-" }}}
 
-" quickrun {{{
-let g:quickrun_config = {}
-let g:quickrun_config['_'] = {
-\   'hook/close_buffer/enable_failure'            : 1,
-\   'hook/close_buffer/enable_empty_data'         : 1,
-\   'outputter'                                   : 'multi:buffer:quickfix',
-\   'outputter/buffer/split'                      : 'botright 8',
-\   'outputter/buffer/name'                       : 'QuickRunOut',
-\   'outputter/buffer/close_on_empty'             : 1,
-\   'outputter/quickfix/open_cmd'                 : '',
-\   'runner'                                      : 'vimproc',
-\   'runner/vimproc/updatetime'                   : 40
+" 独自のモードを設定
+NeoBundle 'kana/vim-submode', {
+\ 'lazy': 1,
+\ 'mappings': [['n', '<C-W>+', '<C-W>-', '<C-W>>', '<C-W><']],
 \ }
-let g:quickrun_config['watchdogs_checker/_'] = {
-\   'hook/close_unite_quickfix/enable_exit': 1,
-\   'hook/back_window/enable_exit': 0,
-\   'hook/quickfix_status_enable/enable_exit': 1,
-\   'hook/hier_update/enable_exit': 1,
-\   'hook/back_window/priority_exit': 1,
-\   'hook/quickfix_status_enable/priority_exit': 2,
-\   'hook/hier_update/priority_exit': 3,
-\ }
-let g:quickrun_config['ocaml/watchdogs_checker'] = {
-\ 'type' : 'watchdogs_checker/ocamlc'
-\ }
-let g:quickrun_config['watchdogs_checker/make'] = {
-\ 'command' : 'make',
-\ 'exec' : '%c %o'
-\ }
-let g:quickrun_config['watchdogs_checker/ocamlc'] = {
-\ 'command' : 'ocamlc',
-\ 'exec'    : '%c -i %o - %s:p'
-\ }
-let g:quickrun_config['watchdogs_checker/ocamlc_annot'] = {
-\ 'command' : 'ocamlc',
-\ 'exec'    : '%c -annot -bin-annot -c %o - %s:p'
-\ }
-let g:quickrun_config['watchdogs_checker/hxml'] = {
-\ 'command' : 'haxe',
-\ 'exec'    : '%c build.hxml'
-\ }
-let g:quickrun_config['haxe/watchdogs_checker'] = {
-\ 'type' : 'watchdogs_checker/hxml'
-\ }
-let g:quickrun_config['ruby.rspec'] = {
-\   'command': 'bundle',
-\   'exec': '%c exec rspec -f d %s'
-\ }
-let g:quickrun_config['ghc_make'] = {
-\   'command': 'ghc',
-\   'exec': '%c %s',
-\   'outputter' : 'quickfix',
-\   'outputter/quickfix' : 1,
-\   'outputter/quickfix/open_cmd': 'cwindow',
-\   'hook/back_window/enable_exit': 1,
-\   'hook/back_window/priority_exit': 1
-\ }
-let g:quickrun_config['ghc_doctest'] = {
-\   'command': 'doctest',
-\   'exec': '%c %s'
-\ }
-let g:quickrun_config['themis'] = {
-\   'command': 'themis',
-\   'exec': '%c --reporter dot %s'
-\ }
-autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec | setlocal syntax=ruby
-autocmd myautocmd BufWinEnter,BufNewFile test/*.vim let b:quickrun_config = {'type' : 'themis'}
-autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
-nnoremap Q :<C-u>call CloseAnyOther()<CR>
-function! CloseAnyOther()
-  let w = 0
-  let w:current_win = 1
-  for w in reverse(range(1, winnr('$')))
-    let ft = getwinvar(w, '&filetype')
-    let bt = getwinvar(w, '&buftype')
-    let bufnr = winbufnr(w)
-    let name = bufname(bufnr)
-    if (ft ==# 'quickrun' && name ==# 'QuickRunOut')
-    \ || (ft ==# 'vimfiler')
-    \ || (ft ==# 'vimshell')
-    \ || (name =~# '^fugitive:')
-    \ || (bt ==# 'help')
-    \ || (bt ==# 'quickfix')
-    \ || (bt ==# 'nofile')
-      execute w . 'wincmd w'
-      q
-      break
-    endif
-  endfor
-  for w in range(1, winnr('$'))
-    let was_current = getwinvar(w, 'current_win')
-    if was_current
-      execute w . 'wincmd w'
-      unlet w:current_win
-      break
-    endif
-  endfor
-endfunction
-" }}}
+if neobundle#tap('vim-submode')
+  let g:submode_keep_leaving_key = 1
+  let g:submode_timeout = 0
+  function neobundle#hooks.on_source(bundle)
+    call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
+    call submode#enter_with('winsize', 'n', '', '<C-W><', '<C-W><')
+    call submode#enter_with('winsize', 'n', '', '<C-W>+', '<C-W>+')
+    call submode#enter_with('winsize', 'n', '', '<C-W>-', '<C-W>-')
+    call submode#map('winsize', 'n', '', '>', '<C-W>>')
+    call submode#map('winsize', 'n', '', '<', '<C-W><')
+    call submode#map('winsize', 'n', '', '+', '<C-W>+')
+    call submode#map('winsize', 'n', '', '-', '<C-W>-')
+  endfunction
+endif
 
-" submode.vim {{{
-let g:submode_keep_leaving_key = 1
-let g:submode_timeout = 0
-call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
-call submode#enter_with('winsize', 'n', '', '<C-W><', '<C-W><')
-call submode#enter_with('winsize', 'n', '', '<C-W>+', '<C-W>+')
-call submode#enter_with('winsize', 'n', '', '<C-W>-', '<C-W>-')
-call submode#map('winsize', 'n', '', '>', '<C-W>>')
-call submode#map('winsize', 'n', '', '<', '<C-W><')
-call submode#map('winsize', 'n', '', '+', '<C-W>+')
-call submode#map('winsize', 'n', '', '-', '<C-W>-')
-" }}}
-
-" open-browser {{{
+" Vim から URL を開く
+NeoBundle 'tyru/open-browser.vim', {
+\ 'lazy': 1,
+\ 'mappings': '<Plug>(openbrowser-',
+\ }
 let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
 xmap gx <Plug>(openbrowser-smart-search)
-" }}}
 
-" watchdogs {{{
+" vim-quickrun hooks 集
+NeoBundle "osyo-manga/shabadou.vim", {
+\ 'lazy': 1,
+\ }
+
+" 非同期でシンタックスチェック
+NeoBundle 'osyo-manga/vim-watchdogs', {
+\ 'lazy': 1,
+\ 'depends': ['thinca/vim-quickrun', 'osyo-manga/shabadou.vim', 'cohama/vim-hier', 'dannyob/quickfixstatus'],
+\ 'filetypes': ['cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'sh', 'zsh', 'sass', 'scss', 'coffee', 'ocaml', 'haxe'],
+\ }
 let g:watchdogs_check_BufWritePost_enable = 1
 let g:watchdogs_check_BufWritePost_enables = {
 \ 'scala' : 0
 \ }
-nnoremap <Leader>wr :<C-u>WatchdogsRun<CR>
+nnoremap \wr :<C-u>WatchdogsRun<CR>
+
+
+" ref を見る
+NeoBundle 'thinca/vim-ref', {
+\ 'lazy': 1,
+\ 'mappings': 'K',
+\ }
+
+" markdown をブラウザでプレビュー
+NeoBundle 'kannokanno/previm', {
+\ 'lazy': 1,
+\ 'depends': ['tyru/open-browser.vim'],
+\ 'commands': ['PrevimOpen']
+\ }
+
+" Vim script のテスティングフレームワーク
+NeoBundle 'thinca/vim-themis', {
+\ 'lazy': 1,
+\ }
+
+" すでに起動している Vim があればそれを使う
+NeoBundle 'thinca/vim-singleton', {
+\ 'lazy': 0,
+\ 'gui': 1,
+\ }
+if g:is_gui
+  call singleton#enable()
+endif
+
+" 文法チェッカー
+NeoBundle 'rhysd/vim-grammarous', {
+\ 'lazy': 1,
+\ 'commands' : 'GrammarousCheck'
+\ }
 " }}}
 
-" smartinput {{{
-let bundle = neobundle#get('vim-smartinput')
-function bundle.hooks.on_source(bundle)
-  call smartinput_endwise#define_default_rules()
+" ### Unite Sourceses ### {{{
+NeoBundle 'Shougo/unite-outline', {
+\ 'lazy': 1,
+\ }
 
-  call smartinput#map_to_trigger('i', '<', '<', '<')
-  call smartinput#map_to_trigger('i', '%', '%', '%')
-  call smartinput#map_to_trigger('i', '*', '*', '*')
-  call smartinput#map_to_trigger('i', 'l', 'l', 'l')
+NeoBundle 'thinca/vim-unite-history', {
+\ 'lazy': 1,
+\ 'unite_sources': ['history/command', 'history/search']
+\ }
 
-  call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left><Left>', 'filetype': ['javascript']})
-  call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
-  call smartinput#define_rule({'at': '{\%#', 'char': '%', 'input': '%%<Left>'})
-  call smartinput#define_rule({'at': '{%\%#%}', 'char': '<BS>', 'input': '<BS><Del>'})
-  call smartinput#define_rule({'at': '(\%#)', 'char': '*', 'input': '**<Left>', 'filetype': ['ocaml']})
-  call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<BS>', 'input': '<BS><Del>', 'filetype': ['ocaml']})
-  call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml', 'scala', 'haskell']})
-  call smartinput#define_rule({'at': '\[\%#\]', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S'})
-  call smartinput#define_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
-  call smartinput#define_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
+NeoBundle 'osyo-manga/unite-highlight', {
+\ 'lazy': 1,
+\ }
 
-  call smartinput#map_to_trigger('c', '/', '/', '/')
-  call smartinput#map_to_trigger('c', ':', ':', ':')
-  call smartinput#map_to_trigger('c', '<Space>', '<Space>', '<Space>')
-  call smartinput#map_to_trigger('c', '?', '?', '?')
-  call smartinput#map_to_trigger('c', 'A', 'A', 'A')
-  call smartinput#map_to_trigger('c', 'B', 'B', 'B')
-  call smartinput#map_to_trigger('c', 'C', 'C', 'C')
-  call smartinput#map_to_trigger('c', 'D', 'D', 'D')
-  call smartinput#map_to_trigger('c', 'F', 'F', 'F')
-  call smartinput#map_to_trigger('c', 'G', 'G', 'G')
-  call smartinput#map_to_trigger('c', 'I', 'I', 'I')
-  call smartinput#map_to_trigger('c', 'J', 'J', 'J')
-  call smartinput#map_to_trigger('c', 'L', 'L', 'L')
-  call smartinput#map_to_trigger('c', 'M', 'M', 'M')
-  call smartinput#map_to_trigger('c', 'N', 'N', 'N')
-  call smartinput#map_to_trigger('c', 'O', 'O', 'O')
-  call smartinput#map_to_trigger('c', 'P', 'P', 'P')
-  call smartinput#map_to_trigger('c', 'R', 'R', 'R')
-  call smartinput#map_to_trigger('c', 'S', 'S', 'S')
-  call smartinput#map_to_trigger('c', 'U', 'U', 'U')
-  call smartinput#map_to_trigger('c', 'c', 'c', 'c')
-  call smartinput#map_to_trigger('c', 'l', 'l', 'l')
-  call smartinput#map_to_trigger('c', 'm', 'm', 'm')
+NeoBundle 'Shougo/neomru.vim'
 
-  call smartinput#define_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
-  call smartinput#define_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
-  call smartinput#define_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
-
-  call smartinput#define_rule({'at': 'Unite \%#', 'char': 'I', 'input': '<C-u>UniteWithInput<Space>', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite \%#', 'char': 'C', 'input': '<C-u>UniteWithCursorWord<Space>', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite \%#', 'char': 'B', 'input': '<C-u>UniteWithBufferDir<Space>', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': ':', 'input': '<BS>:', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'F', 'input': 'file ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.*file \%#', 'char': 'R', 'input': '<BS>_rec ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.*file \%#', 'char': 'M', 'input': '<BS>_mru ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.*file_rec \%#', 'char': 'A', 'input': '<BS>/async ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.*file_mru \%#', 'char': 'L', 'input': '<BS>:long ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'D', 'input': 'directory ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.\+ \%#', 'char': 'B', 'input': 'bookmark ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'S', 'input': 'source ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'M', 'input': 'mapping ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'O', 'input': 'out', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.*out\%#', 'char': 'L', 'input': 'line ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.*out\%#', 'char': 'P', 'input': 'put:', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'G', 'input': 'grep ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'J', 'input': 'junkfile junkfile/new ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'N', 'input': 'neobundle ', 'mode': ':'})
-  let log = '<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>-log -no-start-insert <Right><Right><Right><Right><Right><Right><Right><Right><Right><Right>'
-  call smartinput#define_rule({'at': 'Unite.*neobundle \%#', 'char': 'I', 'input': log . '<BS>/install ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.*neobundle \%#', 'char': 'U', 'input': log . '<BS>/update ', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Unite.*neobundle/update \%#', 'char': 'U', 'input': '<BS>:! ', 'mode': ':'})
-
-  call smartinput#define_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
-  call smartinput#define_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
-  call smartinput#define_rule({'at': '\%#', 'char': '<Enter>', 'input': '<Enter>zv:noh<Enter>', 'mode': '/?'})
-  call smartinput#define_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
-  call smartinput#define_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
-endfunction
+NeoBundle 'zhaocai/unite-scriptnames', {
+\ 'lazy': 1,
+\ }
 " }}}
 
-" echodoc {{{
-let g:echodoc_enable_at_startup = 1
-" }}}
+" ### Miscellaneous ### {{{
+" コードを Gist に送るためのプラグイン
+NeoBundle 'mattn/gist-vim', {
+\ 'lazy': 1,
+\ 'depends': 'mattn/webapi-vim',
+\ 'commands': 'Gist'
+\ }
 
-" vimhelpgenerator
+" Scouter
+NeoBundle 'thinca/vim-scouter', {
+\ 'lazy': 1,
+\ }
+
+" スクリプトローカルな関数を呼ぶ
+NeoBundle 'thinca/vim-scall', {
+\ 'lazy': 1,
+\ 'functions': ['S', 'Scall']
+\ }
+
+" プロジェクトローカルな vimrc を作成
+NeoBundle 'thinca/vim-localrc'
+
+" pretty print
+NeoBundle 'thinca/vim-prettyprint', {
+\ 'lazy': 1,
+\ 'commands': ['PP', 'PrettyPrint'],
+\ 'functions': ['PP', 'PrettyPrint'],
+\ }
+
+" help 自動生成
+NeoBundle 'LeafCage/vimhelpgenerator', {
+\ 'lazy': 1,
+\ 'commands': ['VimHelpGenerator', 'HelpIntoMarkdown']
+\ }
 let g:vimhelpgenerator_defaultlanguage = 'en'
 let g:vimhelpgenerator_version = 'Version : 1.0.0'
 let g:vimhelpgenerator_author = 'Author  : cohama / cohama@live.jp'
 
+" }}}
 
+call neobundle#end()
+filetype plugin indent on
+NeoBundleCheck
 if !has('vim_starting')
   call neobundle#call_hook('on_source')
 endif
@@ -1520,6 +1414,38 @@ function! CloseTabsByNrList(closing_tabnr_list)
   for i in a:closing_tabnr_list
     exec 'tabclose ' . (str2nr(i) - offset)
     let offset = offset + 1
+  endfor
+endfunction
+
+" 自分以外の特定のウィンドウを閉じる
+nnoremap Q :<C-u>call CloseAnyOther()<CR>
+function! CloseAnyOther()
+  let w = 0
+  let w:current_win = 1
+  for w in reverse(range(1, winnr('$')))
+    let ft = getwinvar(w, '&filetype')
+    let bt = getwinvar(w, '&buftype')
+    let bufnr = winbufnr(w)
+    let name = bufname(bufnr)
+    if (ft ==# 'quickrun' && name ==# 'QuickRunOut')
+    \ || (ft ==# 'vimfiler')
+    \ || (ft ==# 'vimshell')
+    \ || (name =~# '^fugitive:')
+    \ || (bt ==# 'help')
+    \ || (bt ==# 'quickfix')
+    \ || (bt ==# 'nofile')
+      execute w . 'wincmd w'
+      q
+      break
+    endif
+  endfor
+  for w in range(1, winnr('$'))
+    let was_current = getwinvar(w, 'current_win')
+    if was_current
+      execute w . 'wincmd w'
+      unlet w:current_win
+      break
+    endif
   endfor
 endfunction
 
