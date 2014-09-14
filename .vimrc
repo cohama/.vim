@@ -1168,7 +1168,7 @@ let g:quickrun_config['ghc_doctest'] = {
 \ }
 let g:quickrun_config['themis'] = {
 \   'command': 'themis',
-\   'exec': '%c %s'
+\   'exec': '%c --reporter dot %s'
 \ }
 autocmd myautocmd BufWinEnter,BufNewFile *_spec.rb setlocal filetype=ruby.rspec | setlocal syntax=ruby
 autocmd myautocmd BufWinEnter,BufNewFile test/*.vim let b:quickrun_config = {'type' : 'themis'}
