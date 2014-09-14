@@ -1531,7 +1531,7 @@ function! WhenHelpOpened()
   nnoremap <buffer> q ZZ
   setlocal winfixwidth
 endfunction
-autocmd myautocmd FileType help call WhenHelpOpened()
+autocmd myautocmd BufEnter * if &bt ==# 'help' | call WhenHelpOpened() | endif
 
 " my smooth scroll
 let s:scroll_time_ms = 100
