@@ -758,6 +758,8 @@ let g:neocomplete#dictionary#dictionaries = {
 \ 'javascript': expand('~/.vim/dict/javascript.dict'),
 \ 'ocaml' : expand('~/.vim/dict/ocaml.dict')
 \ }
+call neocomplete#custom#source('_', 'converters',
+\ ['converter_remove_overlap', 'converter_remove_last_paren', 'converter_delimiter', 'converter_case', 'converter_abbr'])
 
 " 補完メニューの設定
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
