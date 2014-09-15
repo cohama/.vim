@@ -54,6 +54,7 @@ hi CursorIM        ctermfg=16   ctermbg=124
 hi CursorLine                   ctermbg=232  cterm=none
 hi CursorColumn                 ctermbg=232
 hi ColorColumn                  ctermbg=23
+hi Conceal         ctermfg=240
 hi LineNr          ctermfg=246  ctermbg=233
 hi CursorLineNr    ctermfg=227  ctermbg=233
 hi FoldColumn      ctermfg=240  ctermbg=233
