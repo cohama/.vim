@@ -437,9 +437,11 @@ NeoBundle 'cohama/vim-smartinput-endwise', {
 \ 'lazy': 1,
 \ 'insert': 1,
 \ }
-function g:neobundle#hooks.on_source(bundle)
-  call smartinput_endwise#define_default_rules()
-endfunction
+if neobundle#tap('vim-smartinput-endwise')
+  function neobundle#hooks.on_source(_)
+    call smartinput_endwise#define_default_rules()
+  endfunction
+endif
 " }}}
 
 " ### text-object ### {{{
@@ -658,7 +660,7 @@ NeoBundle 'kana/vim-altr', {
 nnoremap <M-2> :<C-u>call altr#forward()<CR>
 nnoremap <M-1> :<C-u>call altr#back()<CR>
 if neobundle#tap('vim-altr')
-  function neobundle#hooks.on_source(bundle)
+  function neobundle#hooks.on_source(_)
     call altr#remove_all()
     call altr#define('plugin/%/*.vim', 'autoload/%/*.vim')
     call altr#define('plugin/%.vim', 'autoload/%.vim')
@@ -829,6 +831,7 @@ nnoremap [Git]b :<C-u>Gblame<CR>
 " gitk っぽいものを Vim で
 NeoBundle 'cohama/agit.vim', {
 \ 'lazy': 1,
+\ 'commands': 'Agit',
 \ }
 autocmd myautocmd FileType agit call s:my_agit_settings()
 function! s:my_agit_settings()
@@ -1103,7 +1106,7 @@ NeoBundle 'kana/vim-submode', {
 if neobundle#tap('vim-submode')
   let g:submode_keep_leaving_key = 1
   let g:submode_timeout = 0
-  function neobundle#hooks.on_source(bundle)
+  function neobundle#hooks.on_source(_)
     call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
     call submode#enter_with('winsize', 'n', '', '<C-W><', '<C-W><')
     call submode#enter_with('winsize', 'n', '', '<C-W>+', '<C-W>+')
