@@ -569,8 +569,7 @@ NeoBundle 'h1mesuke/vim-alignta', {
 
 " . による繰り返しをプラグインの機能にも適用
 NeoBundle 'kana/vim-repeat', {
-\ 'lazy': 1,
-\ 'mappings': '.',
+\ 'lazy': 0,
 \ }
 
 " }}}
