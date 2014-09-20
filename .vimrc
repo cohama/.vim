@@ -747,21 +747,24 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:my_background = get(g:, 'my_background', 'dark')
-if g:my_background == 'light'
-  let s:indent_guides_odd_guibg = "#0D0D24"
-  let s:indent_guides_odd_ctermbg = "231"
-  let s:indent_guides_even_guibg = "#151538"
-  let s:indent_guides_even_ctermbg = "255"
-  let s:indent_guides_guifg = "#444466"
-  let s:indent_guides_ctermfg = "248"
-else
-  let s:indent_guides_odd_ctermbg = "235"
-  let s:indent_guides_odd_guibg = "#0D0D24"
-  let s:indent_guides_even_ctermbg = "233"
-  let s:indent_guides_even_guibg = "#151538"
-  let s:indent_guides_guifg = "#444466"
-  let s:indent_guides_ctermfg = "238"
-endif
+function! MyIndentGuidesSettings()
+  if g:my_background == 'light'
+    let s:indent_guides_odd_guibg = "#0D0D24"
+    let s:indent_guides_odd_ctermbg = "231"
+    let s:indent_guides_even_guibg = "#151538"
+    let s:indent_guides_even_ctermbg = "255"
+    let s:indent_guides_guifg = "#444466"
+    let s:indent_guides_ctermfg = "248"
+  else
+    let s:indent_guides_odd_ctermbg = "235"
+    let s:indent_guides_odd_guibg = "#0D0D24"
+    let s:indent_guides_even_ctermbg = "233"
+    let s:indent_guides_even_guibg = "#151538"
+    let s:indent_guides_guifg = "#444466"
+    let s:indent_guides_ctermfg = "238"
+  endif
+endfunction
+call MyIndentGuidesSettings()
 autocmd myautocmd ColorScheme * exec "hi IndentGuidesOdd" .
 \ " ctermbg=" . s:indent_guides_odd_ctermbg .
 \ " ctermfg=" . s:indent_guides_ctermfg .
@@ -2106,10 +2109,6 @@ endfunction
 
 " ColorScheme {{{
 if g:is_gui
-  let s:indent_guides_guifg = "#c0c0c0"
-  let s:indent_guides_odd_guibg = "#F9F9F9"
-  let s:indent_guides_even_guibg = "#F0F0F0"
-  set background=light
   autocmd myautocmd ColorScheme * highlight TheOCamlSpotTree gui=NONE guifg=NONE guibg=#BBFFDD
   colorscheme gui_cohama_light
 else
@@ -2118,5 +2117,7 @@ else
   else
     colorscheme cui_cohama
   endif
+  command! Lighten let g:my_background = 'light' | call MyIndentGuidesSettings() | colorscheme cui_cohama_light
+  command! Darken  let g:my_background = 'dark' | call MyIndentGuidesSettings() | colorscheme cui_cohama
 endif
 " }}}
