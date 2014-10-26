@@ -222,7 +222,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim', {
 \ 'lazy': 1,
 \ 'commands': [
-\   {'name': 'Unite', 'complete': 'customlist,unite#complete_source'}
+\   {'name': 'Unite', 'complete': 'customlist,unite#complete_source'},
+\   'UniteWithProjectDir', 'UniteWithBufferDir', 'UniteWithInput', 'UniteWithInputDirectory',
+\   'UniteWithCursorWord', 'UniteBookmarkAdd',
 \ ]}
 nnoremap U :<C-u>Unite<Space>
 nnoremap <Leader>u <Nop>
@@ -264,6 +266,20 @@ if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden --ignore .git'
   let g:unite_source_grep_recursive_opt = ''
+endif
+if neobundle#tap('unite.vim')
+  function neobundle#hooks.on_source(_)
+    let agit_action = {}
+    function! agit_action.func(dir)
+      if isdirectory(a:dir.word)
+        let dir = fnamemodify(a:dir.word, ':p')
+      else
+        let dir = fnamemodify(a:dir.word, ':p:h')
+      endif
+      execute 'Agit --dir=' . dir
+    endfunction
+    call unite#custom#action('file,cdable', 'agit', agit_action)
+  endfunction
 endif
 
 " 非同期実行
@@ -603,7 +619,8 @@ NeoBundle 'sudo.vim', {
 NeoBundle 'Shougo/vimfiler', {
 \ 'lazy': 1,
 \ 'commands': [
-\   {'name': 'VimFiler', 'complete': 'customlist,vimfiler#complete'}],
+\   {'name': 'VimFiler', 'complete': 'customlist,vimfiler#complete'},
+\   'VimFilerTab', 'VimFilerSplit', 'VimFilerBufferDir'],
 \ 'mappings': '<Plug>',
 \ 'explorer': 1,
 \ }
@@ -878,6 +895,7 @@ let g:rubycomplete_rails = 1
 
 NeoBundle 'kchmck/vim-coffee-script', {
 \ 'lazy': 1,
+\ 'filetypes': 'coffee',
 \ }
 let coffee_make_options = '--bare'
 let coffee_compiler = 'coffee'
@@ -1163,7 +1181,16 @@ NeoBundle 'kannokanno/previm', {
 " Vim script のテスティングフレームワーク
 NeoBundle 'thinca/vim-themis', {
 \ 'lazy': 1,
+\ 'filetypes': 'vimspec',
+\ 'rev': 'v1.3dev',
+\ 'directory': 'vim-themis',
 \ }
+if neobundle#tap('vim-themis')
+  autocmd myautocmd ColorScheme * hi link vimspecCommand Constant |
+  \ hi link vimspecHook Constant |
+  \ hi link vimspecDescription Title |
+  \ hi vimspecExample ctermfg=NONE cterm=bold
+endif
 
 " すでに起動している Vim があればそれを使う
 NeoBundle 'thinca/vim-singleton', {
