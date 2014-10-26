@@ -363,102 +363,66 @@ let g:user_emmet_settings = {
 \   'indentation': '  '
 \ }}
 
-" 対応する括弧の自動入力 (kana 神の fork)
-NeoBundle 'cohama/vim-smartinput', {
-\ 'lazy': 0
+" 対応する括弧の自動入力
+NeoBundle 'cohama/lexima.vim', {
+\ 'lazy': 0,
 \ }
-if neobundle#tap('vim-smartinput')
+let g:lexima_no_default_rules = 1
+if neobundle#tap('lexima.vim')
   function neobundle#hooks.on_source(_)
-    call smartinput#map_to_trigger('i', '<', '<', '<')
-    call smartinput#map_to_trigger('i', '%', '%', '%')
-    call smartinput#map_to_trigger('i', '*', '*', '*')
-    call smartinput#map_to_trigger('i', 'l', 'l', 'l')
+    call lexima#init()
+    call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
 
-    call smartinput#define_rule({'at': '\$("\%#")', 'char': '<', 'input': '</><Left><Left>', 'filetype': ['javascript']})
-    call smartinput#define_rule({'at': '<\%#', 'char': '%', 'input': '%<Space>%><Left><Left><Left>'})
-    call smartinput#define_rule({'at': '{\%#', 'char': '%', 'input': '%%<Left>'})
-    call smartinput#define_rule({'at': '{%\%#%}', 'char': '<BS>', 'input': '<BS><Del>'})
-    call smartinput#define_rule({'at': '(\%#)', 'char': '*', 'input': '**<Left>', 'filetype': ['ocaml']})
-    call smartinput#define_rule({'at': '(\*\%#\*)', 'char': '<BS>', 'input': '<BS><Del>', 'filetype': ['ocaml']})
-    call smartinput#define_rule({'at': '\%#', 'char': "'", 'input': "'", 'filetype': ['ocaml', 'scala', 'haskell']})
-    call smartinput#define_rule({'at': '\[\%#\]', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S'})
-    call smartinput#define_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
-    call smartinput#define_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
+    call lexima#add_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
+    call lexima#add_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
+    call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
 
-    call smartinput#map_to_trigger('c', '/', '/', '/')
-    call smartinput#map_to_trigger('c', ':', ':', ':')
-    call smartinput#map_to_trigger('c', '<Space>', '<Space>', '<Space>')
-    call smartinput#map_to_trigger('c', '?', '?', '?')
-    call smartinput#map_to_trigger('c', 'A', 'A', 'A')
-    call smartinput#map_to_trigger('c', 'B', 'B', 'B')
-    call smartinput#map_to_trigger('c', 'C', 'C', 'C')
-    call smartinput#map_to_trigger('c', 'D', 'D', 'D')
-    call smartinput#map_to_trigger('c', 'F', 'F', 'F')
-    call smartinput#map_to_trigger('c', 'G', 'G', 'G')
-    call smartinput#map_to_trigger('c', 'I', 'I', 'I')
-    call smartinput#map_to_trigger('c', 'J', 'J', 'J')
-    call smartinput#map_to_trigger('c', 'L', 'L', 'L')
-    call smartinput#map_to_trigger('c', 'M', 'M', 'M')
-    call smartinput#map_to_trigger('c', 'N', 'N', 'N')
-    call smartinput#map_to_trigger('c', 'O', 'O', 'O')
-    call smartinput#map_to_trigger('c', 'P', 'P', 'P')
-    call smartinput#map_to_trigger('c', 'R', 'R', 'R')
-    call smartinput#map_to_trigger('c', 'S', 'S', 'S')
-    call smartinput#map_to_trigger('c', 'U', 'U', 'U')
-    call smartinput#map_to_trigger('c', 'c', 'c', 'c')
-    call smartinput#map_to_trigger('c', 'l', 'l', 'l')
-    call smartinput#map_to_trigger('c', 'm', 'm', 'm')
-
-    call smartinput#define_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
-    call smartinput#define_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
-    call smartinput#define_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
-
-    call smartinput#define_rule({'at': 'Unite \%#', 'char': 'I', 'input': '<C-u>UniteWithInput<Space>', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite \%#', 'char': 'C', 'input': '<C-u>UniteWithCursorWord<Space>', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite \%#', 'char': 'B', 'input': '<C-u>UniteWithBufferDir<Space>', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': ':', 'input': '<BS>:', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'F', 'input': 'file ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.*file \%#', 'char': 'R', 'input': '<BS>_rec ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.*file \%#', 'char': 'M', 'input': '<BS>_mru ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.*file_rec \%#', 'char': 'A', 'input': '<BS>/async ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.*file_mru \%#', 'char': 'L', 'input': '<BS>:long ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'D', 'input': 'directory ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.\+ \%#', 'char': 'B', 'input': 'bookmark ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'S', 'input': 'source ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'M', 'input': 'mapping ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'O', 'input': 'out', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.*out\%#', 'char': 'L', 'input': 'line ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.*out\%#', 'char': 'P', 'input': 'put:', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'G', 'input': 'grep ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'J', 'input': 'junkfile junkfile/new ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.* \%#', 'char': 'N', 'input': 'neobundle ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite \%#', 'char': 'I', 'input': '<C-u>UniteWithInput<Space>', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite \%#', 'char': 'C', 'input': '<C-u>UniteWithCursorWord<Space>', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite \%#', 'char': 'B', 'input': '<C-u>UniteWithBufferDir<Space>', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.* \%#', 'char': ':', 'input': '<BS>:', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.* \%#', 'char': 'F', 'input': 'file ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.*file \%#', 'char': 'R', 'input': '<BS>_rec ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.*file \%#', 'char': 'M', 'input': '<BS>_mru ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.*file_rec \%#', 'char': 'A', 'input': '<BS>/async ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.*file_mru \%#', 'char': 'L', 'input': '<BS>:long ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.* \%#', 'char': 'D', 'input': 'directory ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.\+ \%#', 'char': 'B', 'input': 'bookmark ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.* \%#', 'char': 'S', 'input': 'source ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.* \%#', 'char': 'M', 'input': 'mapping ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.* \%#', 'char': 'O', 'input': 'out', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.*out\%#', 'char': 'L', 'input': 'line ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.*out\%#', 'char': 'P', 'input': 'put:', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.* \%#', 'char': 'G', 'input': 'grep ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.* \%#', 'char': 'J', 'input': 'junkfile junkfile/new ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.* \%#', 'char': 'N', 'input': 'neobundle ', 'mode': ':'})
     let log = '<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>-log -no-start-insert <Right><Right><Right><Right><Right><Right><Right><Right><Right><Right>'
-    call smartinput#define_rule({'at': 'Unite.*neobundle \%#', 'char': 'I', 'input': log . '<BS>/install ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.*neobundle \%#', 'char': 'U', 'input': log . '<BS>/update ', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Unite.*neobundle/update \%#', 'char': 'U', 'input': '<BS>:! ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.*neobundle \%#', 'char': 'I', 'input': log . '<BS>/install ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.*neobundle \%#', 'char': 'U', 'input': log . '<BS>/update ', 'mode': ':'})
+    call lexima#add_rule({'at': 'Unite.*neobundle/update \%#', 'char': 'U', 'input': '<BS>:! ', 'mode': ':'})
 
-    call smartinput#define_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
-    call smartinput#define_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
-    call smartinput#define_rule({'at': '\%#', 'char': '<Enter>', 'input': '<Enter>zv:noh<Enter>', 'mode': '/?'})
-    call smartinput#define_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
-    call smartinput#define_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
+    call lexima#add_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
+    call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
+    call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
+    call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
+    call lexima#add_rule({'at': '\%#', 'char': '<Enter>', 'input': '<Enter>zv:noh<Enter>', 'mode': '/?'})
+    call lexima#add_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
+    call lexima#add_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
   endfunction
 endif
 call neobundle#untap()
 
-" ruby の def end とか自動入力
-NeoBundle 'cohama/vim-smartinput-endwise', {
-\ 'lazy': 1,
-\ 'insert': 1,
-\ }
-if neobundle#tap('vim-smartinput-endwise')
-  function neobundle#hooks.on_source(_)
-    call smartinput_endwise#define_default_rules()
-  endfunction
-endif
-" }}}
+" " ruby の def end とか自動入力
+" NeoBundle 'cohama/vim-smartinput-endwise', {
+" \ 'lazy': 1,
+" \ 'insert': 1,
+" \ }
+" if neobundle#tap('vim-smartinput-endwise')
+"   function neobundle#hooks.on_source(_)
+"     call smartinput_endwise#define_default_rules()
+"   endfunction
+" endif
+" " }}}
 
 " ### text-object ### {{{
 NeoBundle 'kana/vim-textobj-user', {
@@ -1113,7 +1077,7 @@ if neobundle#tap('vim-quickrun')
     \ 'exec': '%c --reporter dot %s'
     \ }
   endfunction
-  autocmd myautocmd BufWinEnter,BufNewFile test/*.vim let b:quickrun_config = {'type' : 'themis'}
+  autocmd myautocmd BufWinEnter,BufNewFile test/*.vim,test/*.vimspec let b:quickrun_config = {'type' : 'themis'}
   autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
 endif
 
