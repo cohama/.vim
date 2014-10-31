@@ -1144,10 +1144,7 @@ NeoBundle 'kannokanno/previm', {
 
 " Vim script のテスティングフレームワーク
 NeoBundle 'thinca/vim-themis', {
-\ 'lazy': 1,
-\ 'filetypes': 'vimspec',
-\ 'rev': 'v1.3dev',
-\ 'directory': 'vim-themis',
+\ 'lazy': 0,
 \ }
 if neobundle#tap('vim-themis')
   autocmd myautocmd ColorScheme * hi link vimspecCommand Constant |
