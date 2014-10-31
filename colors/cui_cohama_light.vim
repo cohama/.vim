@@ -61,7 +61,7 @@ hi SignColumn                   ctermbg=234
 hi Folded          ctermfg=109  ctermbg=255
 hi Search                       ctermbg=225  cterm=underline
 hi IncSearch       ctermfg=14   ctermbg=209  cterm=NONE
-hi NonText         ctermfg=253  ctermbg=15
+hi NonText         ctermfg=251  ctermbg=231
 hi StatusLine      ctermfg=27  ctermbg=117  cterm=bold
 hi StatusLineNC    ctermfg=242   ctermbg=252  cterm=NONE
 hi Todo            ctermfg=33   ctermbg=NONE cterm=bold
