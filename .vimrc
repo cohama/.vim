@@ -245,7 +245,6 @@ let g:unite_update_time = 100
 let g:unite_enable_start_insert = 1
 autocmd myautocmd FileType unite call s:my_unite_settings()
 function! s:my_unite_settings()
-  let b:smartinput_disable_local = 1
   imap <silent><buffer> <C-q> <Plug>(unite_exit)
   imap <buffer><C-w> <Plug>(unite_delete_backward_path)
   map <silent><buffer><nowait> <Esc> <Plug>(unite_exit)
@@ -372,6 +371,7 @@ if neobundle#tap('lexima.vim')
   function neobundle#hooks.on_source(_)
     call lexima#init()
     call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
+    call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
 
     call lexima#add_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
     call lexima#add_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
@@ -984,7 +984,6 @@ NeoBundle 'Shougo/vimshell', {
 " vimshell の設定 {{{
 autocmd myautocmd FileType vimshell call s:my_vimshell_settings()
 function! s:my_vimshell_settings()
-  let b:smartinput_disable_local = 1
   call vimshell#altercmd#define('l', 'ls -F')
   call vimshell#altercmd#define('la', 'ls -FA')
   call vimshell#altercmd#define('ll', 'ls -alF')
