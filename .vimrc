@@ -507,7 +507,7 @@ NeoBundle 'thinca/vim-textobj-comment', {
 " テキストオブジェクトのまわりに文字を挿入
 NeoBundle 'tpope/vim-surround', {
 \ 'lazy': 1,
-\ 'mappings': [['n', 'ys', 'ds', 'cs', 'S']],
+\ 'mappings': [['n', 'ys', 'ds', 'cs'], ['x', 'S']],
 \ }
 
 " コメント化
