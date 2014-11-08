@@ -373,8 +373,6 @@ if neobundle#tap('lexima.vim')
     call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
     call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
 
-    call lexima#add_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
-    call lexima#add_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
     call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
 
     call lexima#add_rule({'at': 'Unite \%#', 'char': 'I', 'input': '<C-u>UniteWithInput<Space>', 'mode': ':'})
@@ -405,7 +403,6 @@ if neobundle#tap('lexima.vim')
     call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
     call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
     call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
-    call lexima#add_rule({'at': '\%#', 'char': '<Enter>', 'input': '<Enter>zv:noh<Enter>', 'mode': '/?'})
     call lexima#add_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
     call lexima#add_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
   endfunction
@@ -719,6 +716,18 @@ NeoBundle 'sgur/vim-gf-autoload', {
 \ 'filetypes': ['vim'],
 \ }
 " }}}
+
+NeoBundle 'haya14busa/incsearch.vim', {
+\ 'lazy': 0,
+\ }
+map / <Plug>(incsearch-forward)
+sunmap /
+map ? <Plug>(incsearch-backward)
+sunmap ?
+let g:incsearch#auto_nohlsearch = 1
+" work around
+nnoremap // :Unite line<CR>
+nnoremap ?? :Unite line<CR>
 
 " ### 見た目、カラースキーム ### {{{
 " インデントの量を可視化
