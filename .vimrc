@@ -983,6 +983,11 @@ NeoBundle 'jdonaldson/vaxe', {
 \ 'lazy': 1,
 \ }
 
+NeoBundle 'kongo2002/fsharp-vim', {
+\ 'lazy': 1,
+\ 'filetypes': 'fsharp',
+\ }
+
 " }}}
 
 " ### 何かを実行 ### {{{
