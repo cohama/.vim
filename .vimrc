@@ -657,8 +657,7 @@ endif
 " ### 移動 ### {{{
 " CamelCase や snake_case での単語移動
 NeoBundle 'bkad/CamelCaseMotion', {
-\ 'lazy': 1,
-\ 'mappings' : ['<Plug>CamelCaseMotion_w', '<Plug>CamelCaseMotion_b', '<Plug>CamelCaseMotion_e'],
+\ 'lazy': 0,
 \ }
 map + [CamelCaseMotion]
 map <silent> [CamelCaseMotion]w <Plug>CamelCaseMotion_w
