@@ -367,9 +367,14 @@ NeoBundle 'cohama/lexima.vim', {
 \ 'lazy': 0,
 \ }
 let g:lexima_no_default_rules = 1
+let g:lexima_no_map_to_escape = 1
+inoremap <silent> <Esc> <C-r>=neocomplete#close_popup()<CR><C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>
 if neobundle#tap('lexima.vim')
   function neobundle#hooks.on_source(_)
-    call lexima#init()
+    call lexima#set_default_rules()
+
+    call lexima#insmode#map_hook('before', '<CR>', "\<C-r>=neocomplete#close_popup()\<CR>")
+
     call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
     call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
 
@@ -1407,7 +1412,6 @@ function! FixedInsertLeave()
     return "\<Esc>"
   endif
 endfunction
-imap <silent><expr> <Esc> FixedInsertLeave()
 
 " 指定したタブをすべて閉じる
 function! CloseTabsByNrList(closing_tabnr_list)
