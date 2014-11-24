@@ -394,6 +394,12 @@ sunmap _
 map - <Plug>(operator-camelize-toggle)
 sunmap -
 
+" vim-exchange
+let g:exchange_no_mappings = 1
+nmap cx <Plug>(Exchange)
+nmap cxx <Plug>(ExchangeLine)
+autocmd myautocmd TextChanged * ExchangeClear
+
 " NERDTree
 nnoremap <silent> <C-p> :<C-u>NERDTreeToggle<CR>
 nnoremap <silent> <C-@> :<C-u>NERDTreeFind<CR>
