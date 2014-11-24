@@ -214,7 +214,7 @@ if has('vim_starting')
 endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-if neobundle#has_fresh_cache(expand('<sfile>:p'))
+if neobundle#has_fresh_cache(expand('~/.vim/bundles.vim'))
   NeoBundleLoadCache
 else
   source `=expand('~/.vim/bundles.vim')`
