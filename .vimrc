@@ -409,6 +409,9 @@ if !g:is_unicode
   let g:NERDTreeDirArrows = 0
 endif
 
+" junkfile
+let g:junkfile#edit_command = "tabedit"
+
 " vimfiler
 nnoremap [VimFiler] <Nop>
 nmap <Leader>F [VimFiler]

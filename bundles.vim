@@ -203,7 +203,6 @@ NeoBundle 'Shougo/junkfile.vim', {
 \ 'lazy': 1,
 \ 'unite_sources': ["junkfile", "junkfile/new"],
 \ }
-let g:junkfile#edit_command = "tabedit"
 
 " 規則に従ってファイルを開く
 NeoBundle 'kana/vim-altr', {
