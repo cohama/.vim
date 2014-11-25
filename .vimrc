@@ -814,8 +814,17 @@ if g:is_unix && executable('fcitx')
 endif
 
 " ハイライトを消す
-nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
-nnoremap <silent> <C-n> :<C-u>nohlsearch<CR>
+nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>:call Cancel()<CR>
+nnoremap <silent> <C-n> :<C-u>nohlsearch<CR>:call Cancel()<CR>
+
+function! Cancel()
+  if neobundle#is_sourced('vim-exchange')
+    ExchangeClear
+  endif
+  if &ft ==# 'haskell' && neobundle#is_sourced('ghcmod-vim')
+    GhcModTypeClear
+  endif
+endfunction
 
 " terminal でも Meta キーを使いたい
 if g:is_unix && g:is_terminal
@@ -1606,7 +1615,6 @@ function! OnHaskell()
   xnoremap <buffer> \S "qygv:<C-u>call vimshell#interactive#send_string(@q)<CR>
   nnoremap <buffer> \D :<C-u>QuickRun ghc_doctest<CR>
   nnoremap <buffer> \t :<C-u>GhcModType<CR>
-  nnoremap <buffer><silent> <C-n> :<C-u>GhcModTypeClear<CR>:nohlsearch<CR>
   nnoremap <buffer> \R :<C-u>QuickRun ghc_make<CR>
 endfunction
 autocmd myautocmd FileType haskell call OnHaskell()
