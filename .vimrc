@@ -1617,6 +1617,8 @@ function! OnHaskell()
   nnoremap <buffer> \D :<C-u>QuickRun ghc_doctest<CR>
   nnoremap <buffer> \t :<C-u>GhcModType<CR>
   nnoremap <buffer> \R :<C-u>QuickRun ghc_make<CR>
+  nnoremap <buffer> \uh :<C-u>Unite haskellimport<CR>
+  nnoremap <buffer> \uH :<C-u>Unite haskellimport -input=<C-r><C-w><CR>
 endfunction
 autocmd myautocmd FileType haskell call OnHaskell()
 function! SynHaskell()
