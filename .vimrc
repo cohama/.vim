@@ -797,6 +797,7 @@ if g:is_unix && executable('fcitx')
   let g:im_fix_mode = 0
   function! s:toggle_im_fix_mode()
     let g:im_fix_mode = !g:im_fix_mode
+    call FcitxPySet(g:im_fix_mode)
     echo g:im_fix_mode ? 'IM Fix On' : 'IM Fix Off'
     return ''
   endfunction
