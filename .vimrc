@@ -1619,6 +1619,7 @@ function! OnHaskell()
   nnoremap <buffer> \R :<C-u>QuickRun ghc_make<CR>
   nnoremap <buffer> \uh :<C-u>Unite haskellimport<CR>
   nnoremap <buffer> \uH :<C-u>Unite haskellimport -input=<C-r><C-w><CR>
+  nnoremap <buffer> \h :<C-u>WatchdogsRun watchdogs_checker/hlint<CR>
 endfunction
 autocmd myautocmd FileType haskell call OnHaskell()
 function! SynHaskell()
