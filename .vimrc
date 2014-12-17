@@ -516,6 +516,8 @@ sunmap /
 map ? <Plug>(incsearch-backward)
 sunmap ?
 let g:incsearch#auto_nohlsearch = 1
+let g:incsearch#vim_cmdline_keymap = 0
+let g:incsearch#emacs_like_keymap = 1
 " work around
 nnoremap // :Unite line<CR>
 nnoremap ?? :Unite line<CR>
