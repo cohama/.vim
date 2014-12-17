@@ -328,7 +328,7 @@ let g:user_emmet_settings = {
 
 " lexima
 let g:lexima_no_default_rules = 1
-let g:lexima_no_map_to_escape = 1
+let g:lexima_map_escape = ''
 inoremap <silent> <Esc> <C-r>=neocomplete#close_popup()<CR><C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>
 if neobundle#tap('lexima.vim')
   function neobundle#hooks.on_source(_)
