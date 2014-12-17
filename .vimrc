@@ -809,8 +809,8 @@ if g:is_unix && executable('fcitx')
       call FcitxPySet(1)
     endif
   endfunction
-  autocmd myautocmd InsertEnter * call s:on_insertenter()
-  autocmd myautocmd InsertLeave * call FcitxPySet(0)
+  autocmd myautocmd InsertEnter * silent! call s:on_insertenter()
+  autocmd myautocmd InsertLeave * silent! call FcitxPySet(0)
 
   inoremap <C-j> <C-r>=<SID>toggle_im_fix_mode()<CR>
   nnoremap \<C-j> :<C-u>call <SID>toggle_im_fix_mode()<CR>
