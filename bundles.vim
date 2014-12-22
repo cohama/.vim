@@ -407,9 +407,10 @@ NeoBundle 'jdonaldson/vaxe', {
 \ 'lazy': 1,
 \ }
 
-NeoBundle 'kongo2002/fsharp-vim', {
+NeoBundle 'fsharp/fsharpbinding', {
 \ 'lazy': 1,
 \ 'filetypes': 'fsharp',
+\ 'rtp': 'vim'
 \ }
 
 " }}}
