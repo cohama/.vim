@@ -338,6 +338,8 @@ if neobundle#tap('lexima.vim')
 
     call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
     call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
+    call lexima#add_rule({'at': '{\%#}', 'char': '<CR>', 'input': '<CR><Bslash> ', 'input_after': '<CR><Bslash> ', 'filetype': 'vim'})
+    call lexima#add_rule({'at': '\\\s.*\%#$', 'char': '<CR>', 'input': '<CR><Bslash> ', 'filetype': 'vim'})
 
     call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
 
