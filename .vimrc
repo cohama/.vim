@@ -796,7 +796,7 @@ endif
 "
 " Settings and keymaps {{{
 " 「日本語入力固定モード」切り替えキー
-if g:is_unix && executable('fcitx')
+if g:is_unix && executable('fcitx') && (g:is_gui || ($SSH_TTY == '' && $SSH_CLIENT == ''))
   source ~/.vim/fcitx-python/fcitx-py.vim
   let g:im_fix_mode = 0
   function! s:toggle_im_fix_mode()
