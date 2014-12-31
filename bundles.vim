@@ -413,6 +413,11 @@ NeoBundle 'fsharp/fsharpbinding', {
 \ 'rtp': 'vim'
 \ }
 
+NeoBundle 'cespare/vim-toml', {
+\ 'lazy': 1,
+\ 'filetypes': 'toml'
+\ }
+
 " }}}
 
 " ### 何かを実行 ### {{{
