@@ -418,6 +418,10 @@ NeoBundle 'cespare/vim-toml', {
 \ 'filetypes': 'toml'
 \ }
 
+NeoBundle 'wting/rust.vim', {
+\ 'lazy': 0,
+\ 'filetypes': 'rust'
+\ }
 " }}}
 
 " ### 何かを実行 ### {{{
