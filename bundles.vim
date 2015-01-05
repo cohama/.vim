@@ -191,6 +191,7 @@ NeoBundle 'scrooloose/nerdtree', {
 " sudo で保存
 NeoBundle 'sudo.vim', {
 \ 'lazy': 1,
+\ 'commands': ['SudoWrite', 'SudoRead'],
 \ }
 
 " ファイラ
