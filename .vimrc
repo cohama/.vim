@@ -402,6 +402,15 @@ nmap cx <Plug>(Exchange)
 nmap cxx <Plug>(ExchangeLine)
 autocmd myautocmd TextChanged * ExchangeClear
 
+" template.vim
+autocmd User plugin-template-loaded call MyTemplateLoaded()
+
+function! MyTemplateLoaded()
+  if search('<CURSOR>')
+    execute 'normal! "_da>'
+  endif
+endfunction
+
 " NERDTree
 nnoremap <silent> <C-p> :<C-u>NERDTreeToggle<CR>
 nnoremap <silent> <C-@> :<C-u>NERDTreeFind<CR>

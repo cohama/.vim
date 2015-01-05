@@ -1,0 +1,25 @@
+pkgname=
+pkgbase=
+conflicts=()
+pkgver=
+pkgrel=1
+arch=('i686' 'x86_64')
+license=('MIT')
+url=""
+makedepends=()
+source=("git+git://github.com/")
+sha1sums=('SKIP')
+
+pkgver() {
+
+}
+
+build() {
+
+}
+
+package() {
+
+}
+
+# vim:set sw=2 sts=2 et:

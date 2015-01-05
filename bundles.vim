@@ -179,6 +179,11 @@ NeoBundle 'kana/vim-repeat', {
 \ 'lazy': 0,
 \ }
 
+" ファイルを新規作成するときにひな型を読み込む
+NeoBundle 'thinca/vim-template', {
+\ 'lazy': 0,
+\ }
+
 " }}}
 
 " ### ファイル操作など ### {{{
