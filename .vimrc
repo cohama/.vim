@@ -403,6 +403,7 @@ sunmap -
 let g:exchange_no_mappings = 1
 nmap cx <Plug>(Exchange)
 nmap cxx <Plug>(ExchangeLine)
+xmap X <Plug>(Exchange)
 autocmd myautocmd TextChanged * ExchangeClear
 
 " template.vim
