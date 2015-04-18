@@ -37,6 +37,9 @@ set expandtab
 
 " 空白文字をいいかんじで挿入する
 set smarttab
+
+" 折り返しの際にインデントを考慮
+set breakindent
 " }}}
 
 " ### Folding ### {{{
