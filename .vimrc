@@ -744,6 +744,11 @@ if neobundle#tap('vim-quickrun')
     \ 'command': 'doctest',
     \ 'exec': '%c %s'
     \ }
+    let g:quickrun_config['cabal_run'] = {
+    \ 'command': 'cabal',
+    \ 'outputter': 'buffer',
+    \ 'exec': '%c run %s'
+    \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
     \ 'exec': '%c --reporter dot %s'
@@ -1628,6 +1633,7 @@ xnoremap . :normal .<CR>
 " haskell
 function! OnHaskell()
   setl sw=4 sts=4 ts=4
+  setlocal omnifunc=necoghc#omnifunc
   nnoremap <buffer> \I :<C-u>VimShellInteractive ghci <C-r>%<CR>
   nnoremap <buffer> \S :<C-u>call vimshell#interactive#send(getline("."))<CR>
   xnoremap <buffer> \S "qygv:<C-u>call vimshell#interactive#send_string(@q)<CR>
