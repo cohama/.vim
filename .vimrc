@@ -1557,15 +1557,20 @@ onoremap ( T(
 
 " 行末の空白とか最終行の空行を削除
 function! RemoveUnwantedSpaces()
-  keeppatterns %s/\s\+$//e
-  while 1
-    let lastline = getline('$')
-    if lastline =~ '^\s*$' && line('$') != 1
-      $delete
-    else
-      break
-    endif
-  endwhile
+  let pos_save = getpos('.')
+  try
+    keeppatterns %s/\s\+$//e
+    while 1
+      let lastline = getline('$')
+      if lastline =~ '^\s*$' && line('$') != 1
+        $delete
+      else
+        break
+      endif
+    endwhile
+  finally
+    call setpos('.', pos_save)
+  endtry
 endfunction
 command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
 
