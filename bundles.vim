@@ -334,6 +334,7 @@ NeoBundle 'kchmck/vim-coffee-script', {
 
 NeoBundle 'derekwyatt/vim-scala', {
 \ 'lazy': 1,
+\ 'filetypes': 'scala',
 \ }
 
 NeoBundle 'groenewege/vim-less', {
