@@ -408,7 +408,7 @@ let g:exchange_no_mappings = 1
 nmap cx <Plug>(Exchange)
 nmap cxx <Plug>(ExchangeLine)
 xmap X <Plug>(Exchange)
-autocmd myautocmd TextChanged * ExchangeClear
+autocmd myautocmd TextChanged * XchangeClear
 
 " template.vim
 autocmd User plugin-template-loaded call MyTemplateLoaded()
@@ -846,7 +846,7 @@ nnoremap <silent> <C-n> :<C-u>nohlsearch<CR>:call Cancel()<CR>
 
 function! Cancel()
   if neobundle#is_sourced('vim-exchange')
-    ExchangeClear
+    XchangeClear
   endif
   if &ft ==# 'haskell' && neobundle#is_sourced('ghcmod-vim')
     GhcModTypeClear

@@ -163,6 +163,7 @@ NeoBundle 'tyru/operator-camelize.vim', {
 NeoBundle 'tommcdo/vim-exchange', {
 \ 'lazy': 1,
 \ 'mappings': ['<Plug>(Exchange)', '<Plug>(ExchangeLine)', '<Plug>(ExchangeClear)'],
+\ 'commands': ['XchangeClear'],
 \ }
 
 " }}}
