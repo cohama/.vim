@@ -376,6 +376,10 @@ if neobundle#tap('lexima.vim')
     call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
     call lexima#add_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
     call lexima#add_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
+
+    call lexima#add_rule({'at': '^\s*Describe\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
+    call lexima#add_rule({'at': '^\s*It\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
+    call lexima#add_rule({'at': '^\s*Context\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
   endfunction
 endif
 
