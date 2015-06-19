@@ -138,7 +138,10 @@ set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 let g:vim_indent_cont = 0
 
 " シンプル・イズ・ベストなステータスライン
-set statusline=%f%M%R%H%W%q%{&ff=='unix'?'':',['.&ff.']'}%{&fenc=='utf-8'\|\|&fenc==''?'':',['.&fenc.']'}%{len(getqflist())==0?'':'\ [!'.len(getqflist()).']'}%=%(\|%3p%%%)
+set statusline=%f%M%R%H%W%q%{&ff=='unix'?'':',['.&ff.']'}%{&fenc=='utf-8'\|\|&fenc==''?'':',['.&fenc.']'}%{GetQuickFixCount()==0?'':'\ [!'.GetQuickFixCount().']'}%=%(\|%3p%%%)
+function! GetQuickFixCount() abort
+  return len(filter(getqflist(), 'v:val.valid != 0'))
+endfunction
 
 " 補完メニューで preview しない
 set completeopt-=preview
