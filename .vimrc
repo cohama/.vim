@@ -754,6 +754,15 @@ if neobundle#tap('vim-quickrun')
     \ 'outputter': 'buffer',
     \ 'exec': '%c run %s'
     \ }
+    let g:quickrun_config['cabal_build'] = {
+    \ 'command'                       : 'cabal',
+    \ 'exec'                          : '%c build',
+    \ 'outputter'                     : 'quickfix',
+    \ 'outputter/quickfix'            : 1,
+    \ 'outputter/quickfix/open_cmd'   : 'botright cwindow',
+    \ 'hook/back_window/enable_exit'  : 1,
+    \ 'hook/back_window/priority_exit': 1
+    \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
     \ 'exec': '%c --reporter dot %s'
@@ -1649,7 +1658,7 @@ function! OnHaskell()
   xnoremap <buffer> \S "qygv:<C-u>call vimshell#interactive#send_string(@q)<CR>
   nnoremap <buffer> \D :<C-u>QuickRun ghc_doctest<CR>
   nnoremap <buffer> \t :<C-u>GhcModType<CR>
-  nnoremap <buffer> \R :<C-u>QuickRun ghc_make<CR>
+  nnoremap <buffer> \R :<C-u>QuickRun cabal_build<CR>
   nnoremap <buffer> \uh :<C-u>Unite haskellimport<CR>
   nnoremap <buffer> \uH :<C-u>Unite haskellimport -input=<C-r><C-w><CR>
   nnoremap <buffer> \h :<C-u>WatchdogsRun watchdogs_checker/hlint<CR>
