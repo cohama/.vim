@@ -761,7 +761,8 @@ if neobundle#tap('vim-quickrun')
     \ 'outputter/quickfix'            : 1,
     \ 'outputter/quickfix/open_cmd'   : 'botright cwindow',
     \ 'hook/back_window/enable_exit'  : 1,
-    \ 'hook/back_window/priority_exit': 1
+    \ 'hook/back_window/priority_exit': 1,
+    \ 'hook/nuko/enable'  : 1,
     \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
