@@ -1064,7 +1064,7 @@ command! Only call ExtendedOnly()
 
 " help を開いたとき
 function! WhenHelpOpened()
-  wincmd H
+  wincmd L
   82wincmd |
   nnoremap <buffer> q ZZ
   setlocal winfixwidth
