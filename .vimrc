@@ -226,6 +226,9 @@ if neobundle#load_cache(expand('~/.vim/bundles.vim'))
   NeoBundleSaveCache
 endif
 
+call neobundle#end()
+filetype plugin indent on
+
 " Plugin Settings {{{
 " unite.vim
 nnoremap U :<C-u>Unite<Space>
@@ -818,8 +821,6 @@ let g:vimhelpgenerator_version = 'Version : 1.0.0'
 let g:vimhelpgenerator_author = 'Author  : cohama / cohama@live.jp'
 
 " neobundle
-call neobundle#end()
-filetype plugin indent on
 if !has('vim_starting')
   call neobundle#call_hook('on_source')
 endif
