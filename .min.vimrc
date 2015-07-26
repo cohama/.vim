@@ -71,6 +71,11 @@ set keywordprg=:help
 set updatetime=1000
 set nostartofline
 
+" Plugins
+if isdirectory(expand('~/.vim/bundle/vim-prettyprint'))
+  set runtimepath+=~/.vim/bundle/vim-prettyprint/
+endif
+
 filetype plugin indent on
 
 " terminal でも Meta キーを使いたい
