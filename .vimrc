@@ -233,7 +233,7 @@ filetype plugin indent on
 " unite.vim
 nnoremap U :<C-u>Unite<Space>
 nnoremap <Leader>u <Nop>
-nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
+nnoremap <silent> <Leader>b :<C-u>Unite buffer -default-action=goto<CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite grep -no-quit<CR>
 nnoremap <silent> <Leader>f :<C-u>UniteWithProjectDir file_rec/async<CR>
 nnoremap <silent> <Leader>ur :<C-u>UniteResume<CR>
@@ -253,7 +253,7 @@ function! s:my_unite_settings()
   imap <silent><buffer> <C-q> <Plug>(unite_exit)
   imap <buffer><C-w> <Plug>(unite_delete_backward_path)
   map <silent><buffer><nowait> <Esc> <Plug>(unite_exit)
-  noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('vsplit'))
+  noremap <silent><buffer><expr> s unite#smart_map("s", unite#do_action('right'))
   noremap <silent><buffer><expr> S unite#smart_map("S", unite#do_action('split'))
   noremap <silent><buffer><expr> n unite#smart_map("n", unite#do_action('insert'))
   noremap <silent><buffer><expr> f unite#smart_map("f", unite#do_action('vimfiler'))
