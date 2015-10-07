@@ -544,36 +544,35 @@ nnoremap ?? :Unite line<CR>
 " indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-let g:my_background = get(g:, 'my_background', 'dark')
 function! MyIndentGuidesSettings()
-  if g:my_background == 'light'
-    let s:indent_guides_odd_guibg = "#0D0D24"
-    let s:indent_guides_odd_ctermbg = "231"
-    let s:indent_guides_even_guibg = "#151538"
-    let s:indent_guides_even_ctermbg = "255"
-    let s:indent_guides_guifg = "#444466"
-    let s:indent_guides_ctermfg = "248"
+  if &background ==# 'light'
+    let indent_guides_ctermfg = "248"
+    let indent_guides_odd_ctermbg = "231"
+    let indent_guides_even_ctermbg = "255"
+    let indent_guides_guifg = "#a0a0a0"
+    let indent_guides_odd_guibg = "#fafafa"
+    let indent_guides_even_guibg = "#f0f0fc"
   else
-    let s:indent_guides_odd_ctermbg = "235"
-    let s:indent_guides_odd_guibg = "#0D0D24"
-    let s:indent_guides_even_ctermbg = "233"
-    let s:indent_guides_even_guibg = "#151538"
-    let s:indent_guides_guifg = "#444466"
-    let s:indent_guides_ctermfg = "238"
+    let indent_guides_ctermfg = "238"
+    let indent_guides_odd_ctermbg = "235"
+    let indent_guides_even_ctermbg = "233"
+    let indent_guides_guifg = "#444466"
+    let indent_guides_odd_guibg = "#0D0D24"
+    let indent_guides_even_guibg = "#151538"
   endif
-endfunction
+  exec "hi IndentGuidesOdd" .
+  \ " ctermbg=" . indent_guides_odd_ctermbg .
+  \ " ctermfg=" . indent_guides_ctermfg .
+  \ " guibg=" . indent_guides_odd_guibg .
+  \ " guifg=" . indent_guides_guifg
+  exec "hi IndentGuideseven" .
+  \ " ctermbg=" . indent_guides_even_ctermbg .
+  \ " ctermfg=" . indent_guides_ctermfg .
+  \ " guibg=" . indent_guides_even_guibg .
+  \ " guifg=" . indent_guides_guifg
+  endfunction
 call MyIndentGuidesSettings()
-autocmd myautocmd ColorScheme * exec "hi IndentGuidesOdd" .
-\ " ctermbg=" . s:indent_guides_odd_ctermbg .
-\ " ctermfg=" . s:indent_guides_ctermfg .
-\ " guibg=" . s:indent_guides_odd_guibg .
-\ " guifg=" . s:indent_guides_guifg
-autocmd myautocmd ColorScheme * exec "hi IndentGuideseven" .
-\ " ctermbg=" . s:indent_guides_even_ctermbg .
-\ " ctermfg=" . s:indent_guides_ctermfg .
-\ " guibg=" . s:indent_guides_even_guibg .
-\ " guifg=" . s:indent_guides_guifg
-
+autocmd myautocmd ColorScheme * call MyIndentGuidesSettings()
 " quickhl
 nmap gm <Plug>(quickhl-toggle)
 xmap gm <Plug>(quickhl-toggle)
@@ -1698,9 +1697,14 @@ endfunction
 "}}}
 
 " ColorScheme {{{
+let g:my_background = get(g:, 'my_background', 'dark')
 if g:is_gui
   autocmd myautocmd ColorScheme * highlight TheOCamlSpotTree gui=NONE guifg=NONE guibg=#BBFFDD
-  colorscheme gui_cohama_light
+  if g:my_background ==# 'light'
+    colorscheme gui_cohama_light
+  else
+    colorscheme cohama
+  endif
 else
   if g:my_background ==# 'light'
     colorscheme cui_cohama_light
