@@ -544,8 +544,9 @@ nnoremap ?? :Unite line<CR>
 " indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
+let g:my_background = get(g:, 'my_background', 'dark')
 function! MyIndentGuidesSettings()
-  if &background ==# 'light'
+  if g:my_background ==# 'light'
     let indent_guides_ctermfg = "248"
     let indent_guides_odd_ctermbg = "231"
     let indent_guides_even_ctermbg = "255"
@@ -570,7 +571,7 @@ function! MyIndentGuidesSettings()
   \ " ctermfg=" . indent_guides_ctermfg .
   \ " guibg=" . indent_guides_even_guibg .
   \ " guifg=" . indent_guides_guifg
-  endfunction
+endfunction
 call MyIndentGuidesSettings()
 autocmd myautocmd ColorScheme * call MyIndentGuidesSettings()
 " quickhl
@@ -1697,13 +1698,12 @@ endfunction
 "}}}
 
 " ColorScheme {{{
-let g:my_background = get(g:, 'my_background', 'dark')
 if g:is_gui
   autocmd myautocmd ColorScheme * highlight TheOCamlSpotTree gui=NONE guifg=NONE guibg=#BBFFDD
   if g:my_background ==# 'light'
     colorscheme gui_cohama_light
   else
-    colorscheme cohama
+    colorscheme gui_cohama
   endif
 else
   if g:my_background ==# 'light'
