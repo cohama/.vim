@@ -39,7 +39,9 @@ set expandtab
 set smarttab
 
 " 折り返しの際にインデントを考慮
-set breakindent
+if exists('+breakindent')
+  set breakindent
+endif
 " }}}
 
 " ### Folding ### {{{
@@ -408,7 +410,9 @@ let g:exchange_no_mappings = 1
 nmap cx <Plug>(Exchange)
 nmap cxx <Plug>(ExchangeLine)
 xmap X <Plug>(Exchange)
-autocmd myautocmd TextChanged * XchangeClear
+if exists('#TextChanged')
+  autocmd myautocmd TextChanged * XchangeClear
+endif
 
 " template.vim
 autocmd User plugin-template-loaded call MyTemplateLoaded()
@@ -1439,7 +1443,11 @@ function! FullAutoWriteToggle()
     let s:full_auto_write = 1
     set autowriteall
     augroup FullAutoWriteToggle
-      autocmd InsertLeave,CursorHold,TextChanged * update
+      if exists('#TextChanged')
+        autocmd InsertLeave,CursorHold,TextChanged * update
+      else
+        autocmd InsertLeave,CursorHold * update
+      endif
     augroup END
     echo 'FullAutoWrite Enabled.'
   endif
@@ -1619,7 +1627,9 @@ endfunction
 command! -nargs=0 Presentation call Presentation()
 
 " diff のときに便利
-autocmd myautocmd TextChanged * call AutoDiffUpdate()
+if exists('#TextChanged')
+  autocmd myautocmd TextChanged * call AutoDiffUpdate()
+endif
 function! AutoDiffUpdate()
   if &diff
     diffupdate
