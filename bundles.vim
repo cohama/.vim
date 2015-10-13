@@ -429,6 +429,11 @@ NeoBundle 'wting/rust.vim', {
 \ 'lazy': 0,
 \ 'filetypes': 'rust'
 \ }
+
+NeoBundle 'digitaltoad/vim-jade', {
+\ 'lazy': 1,
+\ 'filetypes': 'jade'
+\ }
 " }}}
 
 " ### 何かを実行 ### {{{
