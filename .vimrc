@@ -286,6 +286,7 @@ if neobundle#tap('unite.vim')
     endfunction
     call unite#custom#action('file,cdable', 'agit', agit_action)
   endfunction
+  call neobundle#untap()
 endif
 
 " neocomplete
@@ -317,6 +318,7 @@ if neobundle#tap('neocomplete')
     \ ['converter_remove_overlap', 'converter_remove_last_paren', 'converter_delimiter', 'converter_case', 'converter_abbr'])
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
   endfunction
+  call neobundle#untap()
 endif
 
 " neosnippet
@@ -743,6 +745,7 @@ if neobundle#tap('vim-quickrun')
     \ 'exec': '%c --reporter dot %s'
     \ }
   endfunction
+  call neobundle#untap()
   autocmd myautocmd BufWinEnter,BufNewFile test/*.vim,test/*.vimspec let b:quickrun_config = {'type' : 'themis'}
   autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
 endif
