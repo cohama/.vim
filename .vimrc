@@ -1688,6 +1688,6 @@ if g:my_background ==# 'light'
 else
   colorscheme cohama
 endif
-command! Lighten let g:my_background = 'light' | call MyIndentGuidesSettings() | colorscheme cohama_light
-command! Darken  let g:my_background = 'dark' | call MyIndentGuidesSettings() | colorscheme cohama
+command! Lighten let g:my_background = 'light' | colorscheme cohama_light
+command! Darken  let g:my_background = 'dark' | colorscheme cohama
 " }}}
