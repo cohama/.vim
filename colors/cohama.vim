@@ -108,8 +108,8 @@ hi WildMenu        ctermfg=110  ctermbg=16                   guifg=#DEDEFA guibg
 " plugin settings
 hi IndentGuidesOdd ctermfg=238  ctermbg=235                  guifg=#444466 guibg=#151538
 hi IndentGuidesEven ctermfg=238 ctermbg=233                  guifg=#444466 guibg=#0D0D24
-hi diffAdded       ctermfg=19                cterm=bold      guifg=#34CF36 guibg=#133311 gui=bold
-hi agitDiffAdd     ctermfg=19                cterm=bold      guifg=#34CF36 guibg=#133311 gui=bold
+hi diffAdded       ctermfg=40                cterm=bold      guifg=#34CF36 guibg=#133311 gui=bold
+hi agitDiffAdd     ctermfg=40                cterm=bold      guifg=#34CF36 guibg=#133311 gui=bold
 hi diffRemoved     ctermfg=204                               guifg=#A31D1D guibg=#331111
 hi agitDiffRemove  ctermfg=204                               guifg=#A31D1D guibg=#331111
 
