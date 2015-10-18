@@ -60,7 +60,7 @@ NeoBundle 'cohama/lexima.vim', {
 
 " ### text-object ### {{{
 NeoBundle 'kana/vim-textobj-user', {
-\ 'lazy': 1,
+\ 'lazy': 0,
 \ }
 
 " インデントが同じ物をテキストオブジェクト化
