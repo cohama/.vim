@@ -434,6 +434,14 @@ NeoBundle 'digitaltoad/vim-jade', {
 \ 'lazy': 1,
 \ 'filetypes': 'jade'
 \ }
+
+NeoBundle 'vimperator/vimperator-labs', {
+\ 'lazy': 0,
+\ 'name': 'vimperator.vim',
+\ 'regular_name': 'vimperator.vim',
+\ 'rtp': 'vimperator/contrib/vim',
+\ 'filetypes': 'vimperator'
+\ }
 " }}}
 
 " ### 何かを実行 ### {{{
