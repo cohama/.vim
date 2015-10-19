@@ -1172,6 +1172,8 @@ function! WhenGitCommitOpened()
   nnoremap <buffer> q ZZ
   nnoremap <buffer> Q ggdGZZ
   setlocal winfixwidth
+  setlocal spell
+  setlocal nocursorline
 endfunction
 autocmd myautocmd FileType gitcommit,gitrebase call WhenGitCommitOpened()
 
