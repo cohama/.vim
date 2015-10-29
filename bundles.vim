@@ -367,7 +367,7 @@ NeoBundle 'https://bitbucket.org/anyakichi/vim-ocp-index', {
 \ 'filetypes': 'ocaml',
 \ }
 
-NeoBundle 'kana/vim-filetype-haskell', {
+NeoBundle 'itchyny/vim-haskell-indent', {
 \ 'lazy': 1,
 \ 'filetypes': 'haskell',
 \ }
