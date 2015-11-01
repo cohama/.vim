@@ -1375,7 +1375,7 @@ xnoremap id  i"
 xnoremap x "_x
 
 " o, O でコメントを継続しない
-autocmd myautocmd FileType * setlocal formatoptions-=o
+autocmd myautocmd BufWinEnter * setlocal formatoptions-=o
 
 " トグルコマンド
 function! Toggle(option, ...)
