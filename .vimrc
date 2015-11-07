@@ -675,7 +675,10 @@ if neobundle#tap('vim-quickrun')
     \ 'outputter/buffer/close_on_empty'    : 1,
     \ 'outputter/quickfix/open_cmd'        : '',
     \ 'runner'                             : 'vimproc',
-    \ 'runner/vimproc/updatetime'          : 40
+    \ 'runner/vimproc/updatetime'          : 40,
+    \ 'hook/echo/enable'                   : 1,
+    \ 'hook/echo/output_success'           : 'success',
+    \ 'hook/echo/output_failure'           : 'failure',
     \ }
     let g:quickrun_config['watchdogs_checker/_'] = {
     \ 'hook/close_unite_quickfix/enable_exit'    : 1,
@@ -685,6 +688,7 @@ if neobundle#tap('vim-quickrun')
     \ 'hook/back_window/priority_exit'           : 1,
     \ 'hook/quickfix_status_enable/priority_exit': 2,
     \ 'hook/hier_update/priority_exit'           : 3,
+    \ 'hook/nuko/enable'  : 1,
     \ }
     let g:quickrun_config['ocaml/watchdogs_checker'] = {
     \ 'type': 'watchdogs_checker/ocamlc'
@@ -731,14 +735,12 @@ if neobundle#tap('vim-quickrun')
     \ 'exec': '%c run %s'
     \ }
     let g:quickrun_config['cabal_build'] = {
-    \ 'command'                       : 'cabal',
-    \ 'exec'                          : '%c build',
-    \ 'outputter'                     : 'quickfix',
-    \ 'outputter/quickfix'            : 1,
-    \ 'outputter/quickfix/open_cmd'   : 'botright cwindow',
-    \ 'hook/back_window/enable_exit'  : 1,
-    \ 'hook/back_window/priority_exit': 1,
-    \ 'hook/nuko/enable'  : 1,
+    \ 'command'                    : 'cabal',
+    \ 'exec'                       : '%c build',
+    \ 'outputter'                  : 'quickfix',
+    \ 'outputter/quickfix'         : 1,
+    \ 'outputter/quickfix/open_cmd': 'botright cwindow',
+    \ 'hook/nuko/enable'           : 1,
     \ }
     let g:quickrun_config['stack_build'] = {
     \ 'command'                       : 'stack',
@@ -748,7 +750,7 @@ if neobundle#tap('vim-quickrun')
     \ 'outputter/quickfix/open_cmd'   : 'botright cwindow',
     \ 'hook/back_window/enable_exit'  : 1,
     \ 'hook/back_window/priority_exit': 1,
-    \ 'hook/nuko/enable'  : 1,
+    \ 'hook/nuko/enable'              : 1,
     \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
