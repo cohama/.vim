@@ -752,6 +752,11 @@ if neobundle#tap('vim-quickrun')
     \ 'hook/back_window/priority_exit': 1,
     \ 'hook/nuko/enable'              : 1,
     \ }
+    let g:quickrun_config['stack_exec'] = {
+    \ 'command'                       : 'stack',
+    \ 'exec'                          : '%c exec %a',
+    \ 'outputter'                     : 'buffer',
+    \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
     \ 'exec': '%c --reporter dot %s'
