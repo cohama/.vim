@@ -729,19 +729,6 @@ if neobundle#tap('vim-quickrun')
     \ 'command': 'doctest',
     \ 'exec': '%c %s'
     \ }
-    let g:quickrun_config['cabal_run'] = {
-    \ 'command': 'cabal',
-    \ 'outputter': 'buffer',
-    \ 'exec': '%c run %s'
-    \ }
-    let g:quickrun_config['cabal_build'] = {
-    \ 'command'                    : 'cabal',
-    \ 'exec'                       : '%c build',
-    \ 'outputter'                  : 'quickfix',
-    \ 'outputter/quickfix'         : 1,
-    \ 'outputter/quickfix/open_cmd': 'botright cwindow',
-    \ 'hook/nuko/enable'           : 1,
-    \ }
     let g:quickrun_config['stack_build'] = {
     \ 'command'                       : 'stack',
     \ 'exec'                          : '%c build',
@@ -756,6 +743,13 @@ if neobundle#tap('vim-quickrun')
     \ 'command'                       : 'stack',
     \ 'exec'                          : '%c exec %a',
     \ 'outputter'                     : 'buffer',
+    \ }
+    let g:quickrun_config['haskell'] = {'type': 'haskell/stack_runghc'}
+    let g:quickrun_config['haskell/stack_runghc'] = {
+    \ 'command'           : 'stack',
+    \ 'exec'              : '%c runghc %s %a',
+    \ 'tempfile'          : '%{tempname()}.hs',
+    \ 'hook/eval/template': 'main = print \$ %s',
     \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
