@@ -761,7 +761,7 @@ if neobundle#tap('vim-quickrun')
   call neobundle#untap()
   autocmd myautocmd BufWinEnter,BufNewFile test/*.vim,test/*.vimspec let b:quickrun_config = {'type' : 'themis'}
   autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
-  autocmd myautocmd BufDelete QuickRunOut call quickrun#sweep_sessions()
+  autocmd myautocmd BufWinLeave QuickRunOut call quickrun#sweep_sessions()
   command! QuickRunCancel call quickrun#sweep_sessions()
 endif
 
