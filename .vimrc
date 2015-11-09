@@ -589,6 +589,7 @@ function! s:my_agit_settings()
   nnoremap <buffer> [Git]<Space> :<C-u>AgitGit<Space>
 endfunction
 nnoremap [Git]k :<C-u>Agit<CR>
+nnoremap [Git]K :<C-u>AgitFile<CR>
 
 " gitgutter
 let g:gitgutter_enabled = 0
