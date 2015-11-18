@@ -1,7 +1,6 @@
 :%s!MODULE_NAME!\=expand('%:r:s?src/??:gs?/?.?')!
 module MODULE_NAME
-(
-
+( main
 )
 where
 
