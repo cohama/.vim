@@ -1694,7 +1694,8 @@ command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>)
 function! PluginTest(is_gui, extraCommand)
   let cmd = a:is_gui ? 'gvim' : 'vim'
   let extraCommand = empty(a:extraCommand) ? '' : ' -c"au VimEnter * ' . a:extraCommand . '"'
-  execute '!' . cmd . ' -u ~/.vim/.min.vimrc -i NONE -N --cmd "set rtp+=' . getcwd() . '"' . extraCommand
+  let plugintestrc = empty(findfile('.plugintest.vimrc', getcwd())) ? '' : ' -S .plugintest.vimrc'
+  execute '!' . cmd . ' -u ~/.vim/.min.vimrc -i NONE -N --cmd "set rtp+=' . getcwd() . '"' . plugintestrc .  extraCommand
 endfunction
 "}}}
 
