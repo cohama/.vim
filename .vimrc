@@ -108,9 +108,6 @@ let g:cursorcolumn_flg = 0
 " ステータス行を常に表示
 set laststatus=2
 
-" 再描画しない (gitv.vim で推奨されている)
-set lazyredraw
-
 " 不可侵文字を可視化
 set list
 set listchars=tab:>\ "
