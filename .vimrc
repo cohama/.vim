@@ -1646,6 +1646,7 @@ nnoremap <M-O> :<C-u>browse edit<CR>
 xnoremap . :normal .<CR>
 
 " haskell
+autocmd myautocmd BufNewFile,BufRead *.hsc setl ft=haskell
 function! OnHaskell()
   setl sw=4 sts=4 ts=4
   setlocal omnifunc=necoghc#omnifunc
