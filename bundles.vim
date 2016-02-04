@@ -257,10 +257,6 @@ NeoBundle 'sgur/vim-gf-autoload', {
 \ 'depends': 'kana/vim-gf-user',
 \ 'filetypes': ['vim'],
 \ }
-
-NeoBundle 'haya14busa/incsearch.vim', {
-\ 'lazy': 0,
-\ }
 " }}}
 
 " ### 見た目、カラースキーム ### {{{

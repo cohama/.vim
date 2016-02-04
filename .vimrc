@@ -348,6 +348,8 @@ call lexima#add_rule({'at': '{-\%#}', 'char': '#', 'input': '# ', 'input_after':
 call lexima#add_rule({'at': '{\%#}', 'char': '<CR>', 'input': '<CR><Bslash> ', 'input_after': '<CR><Bslash> ', 'filetype': 'vim'})
 call lexima#add_rule({'at': '\\\s.*\%#$', 'char': '<CR>', 'input': '<CR><Bslash> ', 'filetype': 'vim'})
 
+call lexima#add_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
+call lexima#add_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
 call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
 
 call lexima#add_rule({'at': 'Unite \%#', 'char': 'I', 'input': '<C-u>UniteWithInput<Space>', 'mode': ':'})
@@ -532,18 +534,6 @@ xmap <C-k> <Plug>(columnjump-backward)
 nmap <C-j> <Plug>(columnjump-forward)
 xmap <C-j> <Plug>(columnjump-forward)
 let g:columnjump_ignore_wrapped_lines = 1
-
-" incsearch.vim
-map / <Plug>(incsearch-forward)
-sunmap /
-map ? <Plug>(incsearch-backward)
-sunmap ?
-let g:incsearch#auto_nohlsearch = 1
-let g:incsearch#vim_cmdline_keymap = 0
-let g:incsearch#emacs_like_keymap = 1
-" work around
-nnoremap // :Unite line<CR>
-nnoremap ?? :Unite line<CR>
 
 " indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
