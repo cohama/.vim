@@ -318,6 +318,22 @@ if neobundle#tap('neocomplete')
   call neobundle#untap()
 endif
 
+" deoplete
+if neobundle#tap('deoplete.nvim')
+  function neobundle#hooks.on_source(_)
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#auto_completion_start_length = 1
+    let g:deoplete#enable_smart_case = 1
+    let g:deoplete#max_list = 200
+    autocmd myautocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd myautocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  endfunction
+  call neobundle#untap()
+endif
+
 " neosnippet
 let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -335,12 +351,15 @@ let g:user_emmet_settings = {
 \ }}
 
 " lexima
+function! ClosePopup() abort
+  return pumvisible() ? "\<C-y>" : ''
+endfunction
 let g:lexima_no_default_rules = 1
 let g:lexima_map_escape = ''
-inoremap <silent> <Esc> <C-r>=neocomplete#close_popup()<CR><C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>
+inoremap <silent> <Esc> <C-r>=ClosePopup()<CR><C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>
 call lexima#set_default_rules()
 
-call lexima#insmode#map_hook('before', '<CR>', "\<C-r>=neocomplete#close_popup()\<CR>")
+call lexima#insmode#map_hook('before', '<CR>', "\<C-r>=ClosePopup()\<CR>")
 
 call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
 call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})

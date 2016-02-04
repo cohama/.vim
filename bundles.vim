@@ -31,10 +31,17 @@ NeoBundle 'vim-jp/vimdoc-ja', {
 
 " ### 入力系 ### {{{
 " 入力補完
-NeoBundle 'Shougo/neocomplete', {
-\ 'lazy': 1,
-\ 'insert': 1,
-\ }
+if has('nvim')
+  NeoBundle 'Shougo/deoplete.nvim', {
+  \ 'lazy': 1,
+  \ 'insert': 1,
+  \ }
+else
+  NeoBundle 'Shougo/neocomplete', {
+  \ 'lazy': 1,
+  \ 'insert': 1,
+  \ }
+endif
 
 " スニペット補完
 NeoBundle 'Shougo/neosnippet', {
