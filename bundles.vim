@@ -209,6 +209,7 @@ NeoBundle 'sudo.vim', {
 " ファイラ
 NeoBundle 'Shougo/vimfiler', {
 \ 'lazy': 1,
+\ 'depends': 'unite.vim',
 \ 'commands': [
 \   {'name': 'VimFiler', 'complete': 'customlist,vimfiler#complete'},
 \   'VimFilerTab', 'VimFilerSplit', 'VimFilerBufferDir'],
