@@ -339,6 +339,7 @@ let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-l> <Plug>(neosnippet_expand_target)
+snoremap <C-l> <Esc>a
 snoremap <CR> <BS>i
 
 " emmet

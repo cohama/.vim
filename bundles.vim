@@ -50,7 +50,6 @@ NeoBundle 'Shougo/neosnippet', {
 \ 'insert': 1,
 \ 'filetypes': 'neosnippet',
 \ }
-snoremap <C-l> <Esc>a
 
 " Zen-Coding
 NeoBundle 'mattn/emmet-vim', {
