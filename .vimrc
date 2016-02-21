@@ -1698,9 +1698,10 @@ function! MyCoqSettings()
   nnoremap <buffer><silent> \P :<C-u>CoqIDEUndo<CR>
 endfunction
 
-command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>)
-function! PluginTest(is_gui, extraCommand)
-  let cmd = (g:is_gui || a:is_gui) ? 'gvim' : 'vim'
+command! -bang -nargs=* PluginTest call PluginTest(<bang>0, 0, <q-args>)
+command! -bang -nargs=* PluginTestNeo call PluginTest(<bang>0, 1, <q-args>)
+function! PluginTest(is_gui, is_nvim, extraCommand)
+  let cmd = (g:is_gui || a:is_gui) ? 'gvim' : (a:is_nvim) ? 'nvim' : 'vim'
   let extraCommand = empty(a:extraCommand) ? '' : ' -c"au VimEnter * ' . a:extraCommand . '"'
   let plugintestrc = empty(findfile('.plugintest.vimrc', getcwd())) ? '' : ' -S .plugintest.vimrc'
   execute '!' . cmd . ' -u ~/.vim/.min.vimrc -N --cmd "set rtp+=' . getcwd() . '"' . plugintestrc .  extraCommand
