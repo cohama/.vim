@@ -219,7 +219,7 @@ NeoBundle 'Shougo/vimfiler', {
 " 一時ファイル的な
 NeoBundle 'Shougo/junkfile.vim', {
 \ 'lazy': 1,
-\ 'unite_sources': ["junkfile", "junkfile/new"],
+\ 'on_source': 'unite.vim',
 \ }
 
 " 規則に従ってファイルを開く
@@ -523,21 +523,24 @@ NeoBundle 'rhysd/vim-grammarous', {
 " ### Unite Sourceses ### {{{
 NeoBundle 'Shougo/unite-outline', {
 \ 'lazy': 1,
+\ 'on_source': 'unite.vim',
 \ }
 
 NeoBundle 'thinca/vim-unite-history', {
 \ 'lazy': 1,
-\ 'unite_sources': ['history/command', 'history/search']
+\ 'on_source': 'unite.vim',
 \ }
 
 NeoBundle 'osyo-manga/unite-highlight', {
 \ 'lazy': 1,
+\ 'on_source': 'unite.vim',
 \ }
 
 NeoBundle 'Shougo/neomru.vim'
 
 NeoBundle 'zhaocai/unite-scriptnames', {
 \ 'lazy': 1,
+\ 'on_source': 'unite.vim',
 \ }
 " }}}
 
