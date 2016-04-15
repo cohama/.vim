@@ -403,9 +403,7 @@ call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --a
 call lexima#add_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
 call lexima#add_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
 
-call lexima#add_rule({'at': '^\s*Describe\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
-call lexima#add_rule({'at': '^\s*It\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
-call lexima#add_rule({'at': '^\s*Context\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
+call lexima#add_rule({'at': '^\s*\%(Describe\|Context\|It\|Before\|After\)\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
 
 " textobj-between
 let g:textobj_between_no_default_key_mappings = 1
