@@ -691,6 +691,7 @@ if neobundle#tap('vim-quickrun')
     \ 'hook/close_unite_quickfix/enable_exit'    : 1,
     \ 'hook/back_window/enable_exit'             : 0,
     \ 'hook/quickfix_status_enable/enable_exit'  : 1,
+    \ 'outputter/quickfix/open_cmd'              : '',
     \ 'hook/hier_update/enable_exit'             : 1,
     \ 'hook/back_window/priority_exit'           : 1,
     \ 'hook/quickfix_status_enable/priority_exit': 2,
@@ -757,6 +758,12 @@ if neobundle#tap('vim-quickrun')
     \ 'exec'              : '%c runghc %s %a',
     \ 'tempfile'          : '%{tempname()}.hs',
     \ 'hook/eval/template': 'main = print \$ %s',
+    \ }
+    let g:quickrun_config['haskell/watchdogs_checker'] = {'type': 'watchdogs_checker/stack_ghcmod'}
+    let g:quickrun_config['watchdogs_checker/stack_ghcmod'] = {
+    \ 'command'           : 'stack',
+    \ 'exec'              : '%c exec ghc-mod check %s:p | sed ''s/\x0/\n/g''',
+    \ 'tempfile'          : 'TemporaryWatchDogSourceFile.hs'
     \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
