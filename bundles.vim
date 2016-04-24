@@ -5,11 +5,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " アレをアレする
 NeoBundle 'Shougo/unite.vim', {
 \ 'lazy': 1,
-\ 'commands': [
-\   {'name': 'Unite', 'complete': 'customlist,unite#complete_source'},
-\   'UniteWithProjectDir', 'UniteWithBufferDir', 'UniteWithInput', 'UniteWithInputDirectory',
-\   'UniteWithCursorWord', 'UniteBookmarkAdd',
-\ ]}
+\ 'precmd': ['Unite']
+\ }
 
 " 非同期実行
 NeoBundle 'Shougo/vimproc', {
@@ -536,7 +533,10 @@ NeoBundle 'osyo-manga/unite-highlight', {
 \ 'on_source': 'unite.vim',
 \ }
 
-NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neomru.vim', {
+\ 'lazy': 1,
+\ 'on_source': 'unite.vim',
+\ }
 
 NeoBundle 'zhaocai/unite-scriptnames', {
 \ 'lazy': 1,
