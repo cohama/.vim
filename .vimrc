@@ -763,6 +763,7 @@ if neobundle#tap('vim-quickrun')
     let g:quickrun_config['watchdogs_checker/stack_ghcmod'] = {
     \ 'command'           : 'stack',
     \ 'exec'              : '%c exec ghc-mod check %s:p | sed ''s/\x0/\n/g''',
+    \ 'errorformat'       : '%f:%l:%c:%trror: %m,%f:%l:%c:%tarning: %m,%f:%l:%c:parse %trror %m,%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l:%c:%m,%E%f:%l:%c:,%Z%m',
     \ 'tempfile'          : 'TemporaryWatchDogSourceFile.hs'
     \ }
     let g:quickrun_config['themis'] = {
