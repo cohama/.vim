@@ -1707,6 +1707,9 @@ function! PluginTest(is_gui, is_nvim, extraCommand)
   let plugintestrc = empty(findfile('.plugintest.vimrc', getcwd())) ? '' : ' -S .plugintest.vimrc'
   execute '!' . cmd . ' -u ~/.vim/.min.vimrc -N --cmd "set rtp+=' . getcwd() . '"' . plugintestrc .  extraCommand
 endfunction
+
+" QuickFix Window
+nnoremap \c :<C-u>botright copen<CR>
 "}}}
 
 " ColorScheme {{{
