@@ -108,7 +108,7 @@ let g:cursorcolumn_flg = 0
 " ステータス行を常に表示
 set laststatus=2
 
-" 不可侵文字を可視化
+" 不可視文字を可視化
 set list
 set listchars=tab:>\ "
 
@@ -154,9 +154,7 @@ set backspace=indent,eol,start
 set clipboard=unnamed
 
 " ヤンクなどで + レジスタにも書き込む
-if has('unnamedplus')
-  set clipboard+=unnamedplus
-endif
+set clipboard+=unnamedplus
 
 " マッピングの受付時間 (<Leader> とか)
 set timeout
@@ -855,7 +853,6 @@ if g:is_unix && executable('fcitx') && (g:is_gui || ($SSH_TTY == '' && $SSH_CLIE
 endif
 
 " ハイライトを消す
-nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>:call Cancel()<CR>
 nnoremap <silent> <C-n> :<C-u>nohlsearch<CR>:call Cancel()<CR>
 
 function! Cancel()
@@ -957,17 +954,6 @@ endif
 nnoremap <silent> <Leader>v :<C-u>SmartDrop ~/.vim/.vimrc<CR>
 nnoremap <silent> <Leader>gv :<C-u>SmartDrop ~/.vim/.gvimrc<CR>
 
-" magic comment
-function! MagicComment()
-  let magic_comment = "# encoding: utf-8\n"
-  let pos = getpos(".")
-  call cursor(1, 0)
-  0put =magic_comment
-  call setpos(".", pos)
-endfunction
-
-nnoremap <silent> <F12> :call MagicComment()<CR>
-
 " JavaScript を開いたとき
 function! WhenJavaScriptOpened()
   setlocal foldmethod=syntax
@@ -1043,28 +1029,6 @@ function! CloseAnyOther()
   endfor
 endfunction
 
-" 自分と vimshell, git, gitv 以外のウィンドウを全て閉じる
-function! ExtendedOnly()
-  let tabcount = tabpagenr('$')
-  let current_tabnr = tabpagenr()
-  let deleting_tabs = []
-  for t in range(1, tabcount)
-    let wincount = tabpagewinnr(t, '$')
-    for w in range(1, wincount)
-      let filetype = gettabwinvar(t, w, '&filetype')
-      if filetype !=? 'vimshell' && filetype !=? 'git' && filetype !=? 'gitv'
-        if current_tabnr !=# t
-          call add(deleting_tabs, t)
-          break
-        endif
-      endif
-    endfor
-  endfor
-  call CloseTabsByNrList(deleting_tabs)
-  only
-endfunction
-command! Only call ExtendedOnly()
-
 " help を開いたとき
 function! WhenHelpOpened()
   wincmd L
@@ -1100,10 +1064,10 @@ function! CohamaSmoothScroll(dir, windiv, factor)
   let &cursorline = cl
   let &cursorcolumn = cc
 endfunction
-nnoremap <silent> <C-d> :call CohamaSmoothScroll("down", 2, 1)<CR>
-nnoremap <silent> <C-u> :call CohamaSmoothScroll("up", 2, 1)<CR>
-nnoremap <silent> <C-f> :call CohamaSmoothScroll("down", 1, 2)<CR>
-nnoremap <silent> <C-b> :call CohamaSmoothScroll("up", 1, 2)<CR>
+nnoremap <silent><expr> <C-d> v:count == 0 ? ":call CohamaSmoothScroll('down', 2, 1)\<CR>" : "\<C-d>"
+nnoremap <silent><expr> <C-u> v:count == 0 ? ":call CohamaSmoothScroll('up', 2, 1)\<CR>" : "\<C-u>"
+nnoremap <silent><expr> <C-f> v:count == 0 ? ":call CohamaSmoothScroll('down', 1, 2)\<CR>" : "\<C-f>"
+nnoremap <silent><expr> <C-b> v:count == 0 ? ":call CohamaSmoothScroll('up', 1, 2)\<CR>" : "\<C-b>"
 
 " ビジュアルモードで選択した部分を置換
 xnoremap / y:%s/\C<C-r>"//g<Left><Left>
@@ -1236,7 +1200,7 @@ command! TabJoin call JointNextTabpage()
 nnoremap <silent> <C-t>J :<C-u>TabJoin<CR>
 
 " dk と dj を対称にする
-nnoremap dk dkk
+nnoremap <expr> dk line('.') == line('$') ? 'dk' : 'dkk'
 
 " 再描画したい
 nnoremap <Leader><C-l> :<C-u>redraw!<CR>
@@ -1699,6 +1663,7 @@ function! MyCoqSettings()
   nnoremap <buffer><silent> \P :<C-u>CoqIDEUndo<CR>
 endfunction
 
+" Plugin のテストのために最小構成の Vim を起動する
 command! -bang -nargs=* PluginTest call PluginTest(<bang>0, 0, <q-args>)
 command! -bang -nargs=* PluginTestNeo call PluginTest(<bang>0, 1, <q-args>)
 function! PluginTest(is_gui, is_nvim, extraCommand)
