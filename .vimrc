@@ -218,7 +218,7 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 if neobundle#load_cache(expand('~/.vim/bundles.vim'))
-  source `=expand('~/.vim/bundles.vim')`
+  execute 'source ' . expand('~/.vim/bundles.vim')
   NeoBundleCheck
   NeoBundleSaveCache
 endif
