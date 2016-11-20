@@ -1287,14 +1287,6 @@ function! ColorSchemeSettings()
     endif
   endfunction
 
-  " JavaScript の console.log をハイライト
-  function! MatchConsoleLog()
-    if !exists("w:console_log")
-      let w:console_log = matchadd("Error", 'console\.log')
-    endif
-  endfunction
-  autocmd myautocmd WinEnter,BufEnter *.js call MatchConsoleLog()
-  autocmd myautocmd FileType javascript call MatchConsoleLog()
 endfunction
 autocmd myautocmd ColorScheme * call ColorSchemeSettings()
 
