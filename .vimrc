@@ -1662,7 +1662,7 @@ function! PluginTest(is_gui, is_nvim, extraCommand)
   let cmd = (g:is_gui || a:is_gui) ? 'gvim' : (a:is_nvim) ? 'nvim' : 'vim'
   let extraCommand = empty(a:extraCommand) ? '' : ' -c"au VimEnter * ' . a:extraCommand . '"'
   let plugintestrc = empty(findfile('.plugintest.vimrc', getcwd())) ? '' : ' -S .plugintest.vimrc'
-  execute '!' . cmd . ' -u ~/.vim/.min.vimrc -N --cmd "set rtp+=' . getcwd() . '"' . plugintestrc .  extraCommand
+  execute 'silent !' . cmd . ' -u ~/.vim/.min.vimrc -N --cmd "set rtp+=' . getcwd() . '"' . plugintestrc .  extraCommand
 endfunction
 
 " QuickFix Window
