@@ -1,0 +1,44 @@
+
+snippet     impl
+abbr        impl Struct
+options     head
+    impl ${1:#:struct_name} {
+        ${0:TARGET}
+    }
+
+snippet     implg
+abbr        impl <T> Struct <T>
+options     head
+    impl <${1:#:types}> ${2:#:struct_name}<$1> {
+        ${0:TARGET}
+    }
+
+snippet     implt
+abbr        impl Trait for Struct
+options     head
+    impl ${1:#:trait_name} for ${2:#:struct_name} {
+        ${0:TARGET}
+    }
+
+snippet     impltg
+abbr        impl <T> Trait<T> for Struct<T>
+options     head
+    impl <${1:#:types}> ${2:#:trait_name}<$1> for ${3:#:struct_name}<$1> {
+        ${0:TARGET}
+    }
+
+snippet     derivedbg
+abbr        #[derive(Debug)]
+options     head
+    #[derive(Debug)]
+
+
+snippet     stru
+abbr        struct Struct(..);
+options     head
+    struct ${1:#:struct_name}(${0:TARGET});
+
+snippet     printd
+abbr        println!("{:?}", x);
+options     head
+    println!("{:?}", ${0:TARGET});
