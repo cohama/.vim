@@ -656,7 +656,6 @@ function! s:my_rust_settings() abort
                     \ '%Eerror: %m,' .
                     \ '%Eerror[E%n]: %m,' .
                     \ '%Wwarning: ,' .
-                    \ '%Inote: %m,' .
                     \ '%C %#--> %f:%l:%c'
   nnoremap <buffer> <C-]> :<C-u>call MyRacerFindDefinition()<CR>
   nnoremap <buffer> gx :<C-u>call openbrowser#open('https://doc.rust-lang.org/std/?search=<C-r><C-w>')<CR>
