@@ -425,8 +425,13 @@ NeoBundle 'cespare/vim-toml', {
 \ 'filetypes': 'toml'
 \ }
 
-NeoBundle 'wting/rust.vim', {
+NeoBundle 'rust-lang/rust.vim', {
 \ 'lazy': 0,
+\ 'filetypes': 'rust'
+\ }
+
+NeoBundle 'racer-rust/vim-racer', {
+\ 'lazy': 1,
 \ 'filetypes': 'rust'
 \ }
 
@@ -483,7 +488,7 @@ NeoBundle "osyo-manga/shabadou.vim", {
 NeoBundle 'osyo-manga/vim-watchdogs', {
 \ 'lazy': 1,
 \ 'depends': ['thinca/vim-quickrun', 'osyo-manga/shabadou.vim', 'cohama/vim-hier', 'dannyob/quickfixstatus'],
-\ 'filetypes': ['cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'sh', 'zsh', 'sass', 'scss', 'coffee', 'ocaml', 'haxe'],
+\ 'filetypes': ['cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'sh', 'zsh', 'sass', 'scss', 'coffee', 'ocaml', 'haxe', 'rust'],
 \ }
 
 " ref を見る

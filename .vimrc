@@ -647,6 +647,40 @@ endif
 " neco-ghc
 let g:necoghc_enable_detailed_browse = 1
 
+" rust.vim / vim-racer
+let g:racer_experimental_completer = 1
+autocmd myautocmd FileType rust call s:my_rust_settings()
+function! s:my_rust_settings() abort
+  let &l:errorformat= '%-Gerror: aborting %.%#,' .
+                    \ '%-Gerror: Could not compile %.%#,' .
+                    \ '%Eerror: %m,' .
+                    \ '%Eerror[E%n]: %m,' .
+                    \ '%Wwarning: ,' .
+                    \ '%Inote: %m,' .
+                    \ '%C %#--> %f:%l:%c'
+  nnoremap <buffer> <C-]> :<C-u>call MyRacerFindDefinition()<CR>
+  nnoremap <buffer> gx :<C-u>call openbrowser#open('https://doc.rust-lang.org/std/?search=<C-r><C-w>')<CR>
+  nmap <buffer> K <Plug>(rust-doc)
+endfunction
+
+function! MyRacerFindDefinition() abort
+  if !executable('racer')
+    echomsg 'racer 設定して'
+  endif
+  let [_, lnum, col, __] = getpos('.')
+  let filename = expand('%:p')
+  let res = system('racer find-definition ' . lnum . ' ' . col . ' ' . filename)
+  " MATCH Box,108,11,/usr/src/rust/src/libstd/../liballoc/boxed.rs,Struct,pub struct Box<T: ?Sized>(Unique<T>);
+  " END
+  if res =~# '^MATCH'
+    let [_, line, col, filename; __] = split(res, ',', 1)
+    tab drop `=fnamemodify(filename, ':p')`
+    keepjump call cursor(line, col+1)
+  else
+    echo 'No definition found'
+  endif
+endfunction
+
 " vimshell
 autocmd myautocmd FileType vimshell call s:my_vimshell_settings()
 function! s:my_vimshell_settings()
@@ -763,6 +797,11 @@ if neobundle#tap('vim-quickrun')
     \ 'exec'              : '%c exec ghc-mod check %s:p | sed ''s/\x0/\n/g''',
     \ 'errorformat'       : '%f:%l:%c:%trror: %m,%f:%l:%c:%tarning: %m,%f:%l:%c:parse %trror %m,%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l:%c:%m,%E%f:%l:%c:,%Z%m',
     \ 'tempfile'          : 'TemporaryWatchDogSourceFile.hs'
+    \ }
+    let g:quickrun_config['rust/watchdogs_checker'] = {'type': 'watchdogs_checker/myrustc'}
+    let g:quickrun_config['watchdogs_checker/myrustc'] = {
+    \ 'command'           : 'rustc',
+    \ 'exec'              : '%c -Z no-trans %s:p',
     \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
