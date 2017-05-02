@@ -653,9 +653,10 @@ autocmd myautocmd FileType rust call s:my_rust_settings()
 function! s:my_rust_settings() abort
   let &l:errorformat= '%-Gerror: aborting %.%#,' .
                     \ '%-Gerror: Could not compile %.%#,' .
+                    \ '%-Gwarning: the option `Z` is unstable%.%#,' .
                     \ '%Eerror: %m,' .
                     \ '%Eerror[E%n]: %m,' .
-                    \ '%Wwarning: ,' .
+                    \ '%Wwarning: %m,' .
                     \ '%C %#--> %f:%l:%c'
   nnoremap <buffer> <C-]> :<C-u>call MyRacerFindDefinition()<CR>
   nnoremap <buffer> gx :<C-u>call openbrowser#open('https://doc.rust-lang.org/std/?search=<C-r><C-w>')<CR>
