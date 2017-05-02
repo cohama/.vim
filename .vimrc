@@ -649,8 +649,8 @@ let g:necoghc_enable_detailed_browse = 1
 
 " rust.vim / vim-racer
 let g:racer_experimental_completer = 1
-autocmd myautocmd FileType rust call s:my_rust_settings()
-function! s:my_rust_settings() abort
+autocmd myautocmd FileType rust call OnRust()
+function! OnRust() abort
   let &l:errorformat= '%-Gerror: aborting %.%#,' .
                     \ '%-Gerror: Could not compile %.%#,' .
                     \ '%-Gwarning: the option `Z` is unstable%.%#,' .
@@ -661,6 +661,8 @@ function! s:my_rust_settings() abort
   nnoremap <buffer> <C-]> :<C-u>call MyRacerFindDefinition()<CR>
   nnoremap <buffer> gx :<C-u>call openbrowser#open('https://doc.rust-lang.org/std/?search=<C-r><C-w>')<CR>
   nmap <buffer> K <Plug>(rust-doc)
+  nnoremap <buffer> \T :<C-u>QuickRun cargo_test<CR>
+  nnoremap <buffer> \R :<C-u>QuickRun cargo_run<CR>
 endfunction
 
 function! MyRacerFindDefinition() abort
@@ -802,6 +804,18 @@ if neobundle#tap('vim-quickrun')
     let g:quickrun_config['watchdogs_checker/myrustc'] = {
     \ 'command'           : 'rustc',
     \ 'exec'              : '%c -Z no-trans %s:p',
+    \ }
+    let g:quickrun_config['watchdogs_checker/cargo_check'] = {
+    \ 'command'           : 'cargo',
+    \ 'exec'              : '%c check',
+    \ }
+    let g:quickrun_config['cargo_run'] = {
+    \ 'command'           : 'cargo',
+    \ 'exec'              : '%c run',
+    \ }
+    let g:quickrun_config['cargo_test'] = {
+    \ 'command'           : 'cargo',
+    \ 'exec'              : '%c test',
     \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
