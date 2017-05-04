@@ -816,6 +816,7 @@ if neobundle#tap('vim-quickrun')
     let g:quickrun_config['cargo_test'] = {
     \ 'command'           : 'cargo',
     \ 'exec'              : '%c test',
+    \ 'outputter/buffer/split'             : 'botright vertical 80',
     \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
