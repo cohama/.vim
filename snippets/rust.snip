@@ -42,3 +42,25 @@ snippet     printd
 abbr        println!("{:?}", x);
 options     head
     println!("{:?}", ${0:TARGET});
+
+snippet     modtest
+abbr        mod tests {..}
+options     head
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        ${0:TARGET}
+    }
+
+snippet     cl
+abbr        |x|y
+options     word
+    |${1:arg}|${0:TARGET}
+
+snippet     clm
+abbr        |x| {...}
+options     word
+    |${1:arg}| {
+        ${0:TARGET}
+    }
