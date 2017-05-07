@@ -1721,6 +1721,26 @@ endfunction
 
 " QuickFix Window
 nnoremap \c :<C-u>botright copen<CR>
+
+" Remember last current directory
+function! SaveCurrentDirectory() abort
+  try
+    if !isdirectory(expand('~/.vimremember'))
+      call mkdir(expand('~/.vimremember'), 'p')
+    endif
+    call writefile([getcwd()], expand('~/.vimremember/lastcwd'))
+  catch /.*/
+    call confirm(v:exception)
+  endtry
+endfunction
+function! RememberLastCurrentDirectory() abort
+  if filereadable(expand('~/.vimremember/lastcwd'))
+    let cwd = readfile(expand('~/.vimremember/lastcwd'))
+    cd `=cwd`
+  endif
+endfunction
+autocmd myautocmd VimLeavePre * call SaveCurrentDirectory()
+autocmd myautocmd VimEnter * call RememberLastCurrentDirectory()
 "}}}
 
 " ColorScheme {{{
