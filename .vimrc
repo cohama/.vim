@@ -662,7 +662,7 @@ function! OnRust() abort
   nnoremap <buffer> gx :<C-u>call openbrowser#open('https://doc.rust-lang.org/std/?search=<C-r><C-w>')<CR>
   nmap <buffer> K <Plug>(rust-doc)
   nnoremap <buffer> \T :<C-u>QuickRun cargo_test<CR>
-  nnoremap <buffer> \R :<C-u>QuickRun cargo_run<CR>
+  nnoremap <buffer> \R :<C-u>QuickRun cargo_build<CR>
 endfunction
 
 function! MyRacerFindDefinition() abort
@@ -812,6 +812,10 @@ if neobundle#tap('vim-quickrun')
     let g:quickrun_config['cargo_run'] = {
     \ 'command'           : 'cargo',
     \ 'exec'              : '%c run',
+    \ }
+    let g:quickrun_config['cargo_build'] = {
+    \ 'command'           : 'cargo',
+    \ 'exec'              : '%c build',
     \ }
     let g:quickrun_config['cargo_test'] = {
     \ 'command'           : 'cargo',
