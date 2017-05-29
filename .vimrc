@@ -137,9 +137,17 @@ set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 let g:vim_indent_cont = 0
 
 " シンプル・イズ・ベストなステータスライン
-set statusline=%f%M%R%H%W%q%{&ff=='unix'?'':',['.&ff.']'}%{&fenc=='utf-8'\|\|&fenc==''?'':',['.&fenc.']'}%{GetQuickFixCount()==0?'':'\ [!'.GetQuickFixCount().']'}%=%(\|%3p%%%)
-function! GetQuickFixCount() abort
-  return len(filter(getqflist(), 'v:val.valid != 0'))
+set statusline=%f%M%R%H%W%q%{&ff=='unix'?'':',['.&ff.']'}%{&fenc=='utf-8'\|\|&fenc==''?'':',['.&fenc.']'}%{QuickFixAlert()}%=%(\|%3p%%%)
+function! QuickFixAlert() abort
+  let warns = len(filter(getqflist(), {_, x -> x.type ==# 'W'}))
+  let errs = len(filter(getqflist(), {_, x -> x.type ==# 'E'}))
+  if warns == 0 && errs == 0
+    return ''
+  else
+    let errs_s = errs == 0 ? '' : '!' . errs . (warns == 0 ? '' : ' ')
+    let warns_s = warns == 0 ? '' : '?' . warns
+    return ' [' . errs_s . warns_s . ']'
+  endif
 endfunction
 
 " 補完メニューで preview しない
