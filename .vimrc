@@ -1750,8 +1750,8 @@ function! RememberLastCurrentDirectory() abort
     cd `=cwd`
   endif
 endfunction
-autocmd myautocmd VimLeavePre * call SaveCurrentDirectory()
-autocmd myautocmd VimEnter * call RememberLastCurrentDirectory()
+autocmd myautocmd VimLeavePre * if g:is_gui | call SaveCurrentDirectory() | endif
+autocmd myautocmd VimEnter * if g:is_gui | call RememberLastCurrentDirectory() | endif
 "}}}
 
 " ColorScheme {{{
