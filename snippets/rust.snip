@@ -43,6 +43,34 @@ abbr        println!("{:?}", x);
 options     head
     println!("{:?}", ${0:TARGET});
 
+snippet     print
+abbr        println!("{}", x);
+options     head
+    println!("{}", ${0:TARGET});
+
+snippet     vec
+abbr        vec![];
+options     word
+  vec![${0:TARGET}];
+
+snippet     assert
+abbr        vec![];
+options     head
+  assert!(${0:TARGET});
+
+snippet     asseq
+abbr        vec![];
+options     head
+  assert_eq!(${1:TARGET}, ${2});
+
+snippet     asseq2
+abbr        vec![];
+options     head
+  assert_eq!{
+      ${1:TARGET},
+      ${2}
+  };
+
 snippet     modtest
 abbr        mod tests {..}
 options     head
