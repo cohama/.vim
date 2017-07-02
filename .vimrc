@@ -1761,9 +1761,14 @@ function! RememberLastCurrentDirectory() abort
     cd `=cwd`
   endif
 endfunction
-autocmd myautocmd VimLeavePre * if g:is_gui | call SaveCurrentDirectory() | endif
-autocmd myautocmd VimEnter * if g:is_gui | call RememberLastCurrentDirectory() | endif
 
+if g:is_gui
+  autocmd myautocmd VimLeavePre * call SaveCurrentDirectory()
+  autocmd myautocmd VimEnter * call RememberLastCurrentDirectory()
+endif
+
+
+" フォーカスを得たタイミングで全てのウィンドウサイズを揃える
 autocmd myautocmd FocusGained * wincmd =
 "}}}
 
