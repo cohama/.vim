@@ -1752,6 +1752,8 @@ function! RememberLastCurrentDirectory() abort
 endfunction
 autocmd myautocmd VimLeavePre * if g:is_gui | call SaveCurrentDirectory() | endif
 autocmd myautocmd VimEnter * if g:is_gui | call RememberLastCurrentDirectory() | endif
+
+autocmd myautocmd FocusGained * wincmd =
 "}}}
 
 " ColorScheme {{{
