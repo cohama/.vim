@@ -1,0 +1,9 @@
+snippet     debug
+abbr        IPython.core.debugger
+options     head
+	from IPython.core.debugger import Pdb; Pdb().set_trace()
+
+snippet     plt
+options     head
+	from matplotlib import pyplot as plt
+	plt.imshow((${0:TARGET}).astype(np.uint8)); plt.show()
