@@ -150,6 +150,8 @@ function! QuickFixAlert() abort
   endif
 endfunction
 
+set redrawtime=2000
+
 " 補完メニューで preview しない
 set completeopt-=preview
 " }}}
@@ -894,24 +896,33 @@ endif
 " }}}
 "
 " Settings and keymaps {{{
+function ImActivateFunc(active)
+  if a:active
+    call system('fcitx-remote -o')
+  else
+    call system('fcitx-remote -c')
+  endif
+endfunction
 " 「日本語入力固定モード」切り替えキー
 if g:is_unix && executable('fcitx') && (g:is_gui || ($SSH_TTY == '' && $SSH_CLIENT == ''))
-  source ~/.vim/fcitx-python/fcitx-py.vim
+  set iminsert=0
+  set imactivatefunc=ImActivateFunc
+  " source ~/.vim/fcitx-python/fcitx-py.vim
   let g:im_fix_mode = 0
   function! s:toggle_im_fix_mode()
     let g:im_fix_mode = !g:im_fix_mode
-    call FcitxPySet(g:im_fix_mode)
+    call ImActivateFunc(g:im_fix_mode)
     echo g:im_fix_mode ? 'IM Fix On' : 'IM Fix Off'
     return ''
   endfunction
 
   function! s:on_insertenter()
     if g:im_fix_mode
-      call FcitxPySet(1)
+      call ImActivateFunc(1)
     endif
   endfunction
   autocmd myautocmd InsertEnter * silent! call s:on_insertenter()
-  autocmd myautocmd InsertLeave * silent! call FcitxPySet(0)
+  autocmd myautocmd InsertLeave * silent! call ImActivateFunc(0)
 
   inoremap <C-j> <C-r>=<SID>toggle_im_fix_mode()<CR>
   nnoremap \<C-j> :<C-u>call <SID>toggle_im_fix_mode()<CR>
