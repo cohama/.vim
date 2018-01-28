@@ -305,13 +305,13 @@ if neobundle#tap('neocomplete')
     inoremap <expr><C-l> neocomplete#complete_common_string()
     autocmd myautocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd myautocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    if !exists('g:neocomplete#force_omni_patterns')
-      let g:neocomplete#force_omni_patterns = {}
+    if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {}
     endif
-    let g:neocomplete#force_omni_patterns.javascript = ''
-    let g:neocomplete#force_omni_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
+    let g:neocomplete#force_omni_input_patterns.javascript = ''
+    let g:neocomplete#force_omni_input_patterns.ruby = '[^. \t]\.\%(\h\w*\)\?\|\h\w*::'
+    let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
     if !exists('g:neocomplete#omni_functions')
       let g:neocomplete#omni_functions = {}
     endif
@@ -335,7 +335,6 @@ if neobundle#tap('deoplete.nvim')
     let g:deoplete#max_list = 200
     autocmd myautocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd myautocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd myautocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd myautocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
   endfunction
@@ -692,6 +691,12 @@ function! MyRacerFindDefinition() abort
     echo 'No definition found'
   endif
 endfunction
+
+" jedi
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
 
 " vimshell
 autocmd myautocmd FileType vimshell call s:my_vimshell_settings()
@@ -1766,6 +1771,15 @@ if g:is_gui
   autocmd myautocmd VimLeavePre * call SaveCurrentDirectory()
   autocmd myautocmd VimEnter * call RememberLastCurrentDirectory()
 endif
+
+
+" Python
+function! OnPython()
+  if executable('yapf')
+    let &l:formatprg = "yapf 2> /dev/null"
+  endif
+endfunction
+autocmd myautocmd FileType python call OnPython()
 
 
 " フォーカスを得たタイミングで全てのウィンドウサイズを揃える

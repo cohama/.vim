@@ -440,6 +440,16 @@ NeoBundle 'digitaltoad/vim-jade', {
 \ 'filetypes': 'jade'
 \ }
 
+NeoBundle 'Vimjas/vim-python-pep8-indent', {
+\ 'lazy': 1,
+\ 'filetypes': 'python'
+\ }
+
+NeoBundle 'davidhalter/jedi-vim', {
+\ 'lazy': 1,
+\ 'filetypes': 'python'
+\ }
+
 " }}}
 
 " ### 何かを実行 ### {{{
