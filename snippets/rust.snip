@@ -92,3 +92,12 @@ options     word
     |${1:arg}| {
         ${0:TARGET}
     }
+
+snippet     impldebug
+abbr        impl Debug for ..
+options     head
+    impl fmt::Debug for ${1} {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "{:?}", self)
+        }
+    }
