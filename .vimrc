@@ -1201,7 +1201,12 @@ xnoremap id  i"
 xnoremap x "_x
 
 " o, O でコメントを継続しない
-autocmd myautocmd BufWinEnter * setlocal formatoptions-=o
+" 代わりに改行でコメント継続
+function! SetFormatOptions() abort
+  setlocal formatoptions-=o
+  setlocal formatoptions+=rmBj
+endfunction
+autocmd myautocmd BufWinEnter * call SetFormatOptions()
 
 " トグルコマンド
 function! Toggle(option, ...)
