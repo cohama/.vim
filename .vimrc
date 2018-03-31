@@ -836,6 +836,10 @@ if neobundle#tap('vim-quickrun')
     \ 'exec'              : '%c test',
     \ 'outputter/buffer/split'             : 'botright vertical 80',
     \ }
+    let g:quickrun_config['watchdogs_checker/cargo_clippy'] = {
+    \ 'command'           : 'cargo',
+    \ 'exec'              : '%c clippy',
+    \ }
     let g:quickrun_config['themis'] = {
     \ 'command': 'themis',
     \ 'exec': '%c --reporter dot %s'
