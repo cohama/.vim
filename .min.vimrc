@@ -78,6 +78,18 @@ endif
 
 filetype plugin indent on
 
+if g:is_unix && executable('fcitx') && (g:is_gui || ($SSH_TTY == '' && $SSH_CLIENT == ''))
+  function ImActivateFunc(active)
+    if a:active
+      call system('fcitx-remote -o')
+    else
+      call system('fcitx-remote -c')
+    endif
+  endfunction
+  autocmd myautocmd InsertEnter * silent! call ImActivateFunc(1)
+  autocmd myautocmd InsertLeave * silent! call ImActivateFunc(0)
+endif
+
 " terminal でも Meta キーを使いたい
 if g:is_unix && g:is_terminal
   " Use meta keys in console.
