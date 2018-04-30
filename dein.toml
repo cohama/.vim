@@ -1,0 +1,577 @@
+# Fundamentals
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+  nnoremap \f :<C-u>Denite file_rec<CR>
+'''
+
+# Filetypes
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+
+# Insersion
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+depends = ['nvim-yarp', 'vim-hug-neovim-rpc']
+on_i = 1
+hook_source = '''
+  call deoplete#enable()
+  call deoplete#custom#source('_', 'min_pattern_length', 1)
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+depends = 'neosnippet-snippets'
+filetypes = 'neosnippet'
+on_i = 1
+hook_source = '''
+  let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-l> <Plug>(neosnippet_expand_target)
+  snoremap <C-l> <Esc>a
+  snoremap <CR> <BS>i
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_i = 1
+hook_source = '''
+  " lexima settings {{{
+  function! ClosePopup() abort
+    return pumvisible() ? "\<C-y>" : ''
+  endfunction
+  let g:lexima_no_default_rules = 1
+  let g:lexima_map_escape = ''
+  inoremap <silent> <Esc> <C-r>=ClosePopup()<CR><C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>
+  call lexima#set_default_rules()
+
+  call lexima#insmode#map_hook('before', '<CR>', "\<C-r>=ClosePopup()\<CR>")
+
+  call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
+  call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
+  call lexima#add_rule({'at': '{-\%#}', 'char': '#', 'input': '# ', 'input_after': ' #-', 'filetype': ['haskell']})
+  call lexima#add_rule({'at': '{\%#}', 'char': '<CR>', 'input': '<CR><Bslash> ', 'input_after': '<CR><Bslash> ', 'filetype': 'vim'})
+  call lexima#add_rule({'at': '\\\s.*\%#$', 'char': '<CR>', 'input': '<CR><Bslash> ', 'filetype': 'vim'})
+
+  call lexima#add_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
+  call lexima#add_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
+  call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
+
+  call lexima#add_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
+  call lexima#add_rule({'at': 'Gina commit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
+  call lexima#add_rule({'at': 'Gina commit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
+  call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
+  call lexima#add_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
+  call lexima#add_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
+
+  call lexima#add_rule({'at': '^\s*\%(Describe\|Context\|It\|Before\|After\)\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
+  " }}}
+'''
+
+# TextObj
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'kana/vim-textobj-indent'
+depends = 'vim-textobj-user'
+
+[[plugins]]
+repo = 'kana/vim-textobj-entire'
+depends = 'vim-textobj-user'
+on_map = {ox = ['ie', 'ae']}
+
+[[plugins]]
+repo = 'thinca/vim-textobj-between'
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+  let g:textobj_between_no_default_key_mappings = 1
+  omap i/ <Plug>(textobj-between-i)
+  xmap i/ <Plug>(textobj-between-i)
+  omap a/ <Plug>(textobj-between-a)
+  xmap a/ <Plug>(textobj-between-a)
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-line'
+depends = 'vim-textobj-user'
+on_map = {ox = ['il', 'al']}
+
+[[plugins]]
+repo = 'gilligan/textobj-lastpaste'
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+  let g:textobj_lastpaste_no_default_key_mappings = 1
+  omap iP <Plug>(textobj-lastpaste-i)
+  xmap iP <Plug>(textobj-lastpaste-i)
+'''
+
+[[plugins]]
+repo = 'thinca/vim-textobj-comment'
+depends = 'vim-textobj-user'
+on_map = {ox = ['ic', 'ac']}
+
+# Operator
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_map = {n = ['ys', 'ds', 'cs'], x = 'S'}
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+on_map = {nx = ['gc', 'gC']}
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+depends = 'vim-operator-user'
+on_map = {nox = '<Plug>'}
+hook_add = '''
+  map _ <Plug>(operator-replace)
+  sunmap _
+'''
+
+[[plugins]]
+repo = 'tyru/operator-camelize.vim'
+depends = 'kana/vim-operator-user'
+on_map = {nox = '<Plug>'}
+hook_add = '''
+  map - <Plug>(operator-camelize-toggle)
+  sunmap -
+'''
+
+[[plugins]]
+repo = 'tommcdo/vim-exchange'
+on_map = {nox = ['<Plug>(Exchange)', '<Plug>(ExchangeLine)', '<Plug>(ExchangeClear)']}
+on_cmd = 'XchangeClear'
+hook_add = '''
+  let g:exchange_no_mappings = 1
+  nmap cx <Plug>(Exchange)
+  nmap cxx <Plug>(ExchangeLine)
+  xmap X <Plug>(Exchange)
+  autocmd myautocmd TextChanged * XchangeClear
+'''
+
+# Editing
+[[plugins]]
+repo = 'h1mesuke/vim-alignta'
+on_cmd = ['Alignta', 'Align']
+
+[[plugins]]
+repo = 'kana/vim-repeat'
+
+[[plugins]]
+repo = 'thinca/vim-template'
+hook_add = '''
+  autocmd User plugin-template-loaded call MyTemplateLoaded()
+
+  function! MyTemplateLoaded()
+    if search('<CURSOR>')
+      execute 'normal! "_da>'
+    endif
+  endfunction
+'''
+
+# File
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+on_cmd = ['NERDTreeToggle', 'NERDTreeToggle']
+hook_add = '''
+  nnoremap <silent> <C-p> :<C-u>NERDTreeToggle<CR>
+  nnoremap <silent> <C-@> :<C-u>NERDTreeFind<CR>
+  nnoremap <silent> <Leader><C-p> :<C-u>NERDTreeFind<CR>
+  let g:NERDTreeIgnore = ['\~$', '\.swp', '^\.$', '^\.\.$']
+  let g:NERDTreeHijackNetrw = 0
+  let g:NERDTreeQuitOnOpen = 1
+  let g:NERDTreeWinSize = 36
+  let g:NERDTreeMinimalUI = 1
+  let g:NERDTreeChDirMode = 1
+  let g:NERDTreeMapCWD = "cD"
+  if !g:is_unicode
+    let g:NERDTreeDirArrows = 0
+  endif
+'''
+
+[[plugins]]
+repo = 'vim-scripts/sudo.vim'
+on_cmd = ['SudoWrite']
+
+
+# Motion
+[[plugins]]
+repo = 'bkad/CamelCaseMotion'
+hook_add = '''
+  map + [CamelCaseMotion]
+  map <silent> [CamelCaseMotion]w <Plug>CamelCaseMotion_w
+  map <silent> [CamelCaseMotion]b <Plug>CamelCaseMotion_b
+  map <silent> [CamelCaseMotion]e <Plug>CamelCaseMotion_e
+  sunmap +
+  sunmap [CamelCaseMotion]w
+  sunmap [CamelCaseMotion]b
+  sunmap [CamelCaseMotion]e
+'''
+
+[[plugins]]
+repo = 'bkad/CamelCaseMotion'
+on_map = {nox = '[EasyMotion]'}
+hook_add = '''
+nmap <CR> [EasyMotion]
+omap <CR> [EasyMotion]
+xmap <CR> [EasyMotion]
+let g:EasyMotion_leader_key = '[EasyMotion]'
+'''
+
+[[plugins]]
+repo = 'kana/vim-smartword'
+on_map = '<Plug>'
+hook_add = '''
+nmap w <Plug>(smartword-w)
+nmap b <Plug>(smartword-b)
+nmap e <Plug>(smartword-e)
+nmap ge <Plug>(smartword-ge)
+xmap w <Plug>(smartword-w)
+xmap b <Plug>(smartword-b)
+xmap e <Plug>(smartword-e)
+xmap ge <Plug>(smartword-ge)
+'''
+
+[[plugins]]
+repo = 'thinca/vim-visualstar'
+on_map = '<Plug>'
+hook_add = '''
+  let g:visualstar_no_default_key_mappings = 1
+  xmap * <Plug>(visualstar-*)
+  xmap # <Plug>(visualstar-#)
+  xmap g* <Plug>(visualstar-g*)
+  xmap g# <Plug>(visualstar-g#)
+'''
+
+[[plugins]]
+repo = 'deris/columnjump'
+on_map = '<Plug>'
+hook_add = '''
+  let g:columnjump_ignore_wrapped_lines = 1
+  nmap <C-k> <Plug>(columnjump-backward)
+  xmap <C-k> <Plug>(columnjump-backward)
+  nmap <C-j> <Plug>(columnjump-forward)
+  xmap <C-j> <Plug>(columnjump-forward)
+'''
+
+[[plugins]]
+repo = 'kana/vim-gf-user'
+lazy = 1
+
+[[plugins]]
+repo = 'sgur/vim-gf-autoload'
+depends = 'vim-gf-user'
+on_ft = 'vim'
+
+# Appearance
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+  let g:indent_guides_enable_on_vim_startup = 1
+  let g:indent_guides_auto_colors = 0
+'''
+
+[[plugins]]
+repo = 'thinca/vim-fontzoom'
+on_if = 'g:is_gui'
+on_map = {n = '<Plug>'}
+hook_add = '''
+  let g:fontzoom_no_default_key_mappings = 1
+  nmap <C-ScrollWheelUp>   <Plug>(fontzoom-larger)
+  nmap <C-ScrollWheelDown> <Plug>(fontzoom-smaller)
+'''
+
+[[plugins]]
+repo = 'cohama/vim-insert-linenr'
+on_i = 1
+
+# Git
+[[plugins]]
+repo = 'lambdalisue/gina.vim'
+hook_add = '''
+  nnoremap [Git] <Nop>
+  nmap <Space> [Git]
+  nnoremap [Git]<Space> :<C-u>Gina<Space>
+  nnoremap [Git]s :<C-u>Gina status -s --opener=80vsplit<CR>
+  nnoremap [Git]d :<C-u>Gina compare --opener=vsplit<CR>
+  nnoremap [Git]a :<C-u>Gina! add %:p<CR>
+  nnoremap [Git]A :<C-u>Gina! add -A<CR>
+  nnoremap [Git]c :<C-u>Gina commit -v --opener=80vsplit<CR>
+  nnoremap [Git]C :<C-u>Gina commit --amend<Space>
+  nnoremap [Git]p :<C-u>Gina! push<CR>
+  nnoremap [Git]f :<C-u>Gina! fetch<CR>
+'''
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+on_cmd = ['Agit', 'AgitFile']
+hook_add = '''
+  autocmd myautocmd FileType agit call s:my_agit_settings()
+  function! s:my_agit_settings()
+    nmap <buffer> Rv <Plug>(agit-git-revert)
+    nmap <buffer> cB :<C-u>AgitGit branch -f \%# <hash><CR>
+    nnoremap <buffer> [Git]<Space> :<C-u>AgitGit<Space>
+  endfunction
+  nnoremap [Git]k :<C-u>Agit<CR>
+  nnoremap [Git]K :<C-u>AgitFile<CR>
+'''
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+on_cmd = ['GitGutterToggle', 'GitGutterNextHunk', 'GitGutterNextHunk']
+hook_add = '''
+  let g:gitgutter_enabled = 0
+  nmap <silent> ]h :<C-u>execute v:count1 . "GitGutterNextHunk"<CR>
+  nmap <silent> [h :<C-u>execute v:count1 . "GitGutterPrevHunk"<CR>
+  nnoremap [Git]g :<C-u>GitGutterToggle<CR>
+'''
+
+# Language Support
+[[plugins]]
+repo = 'itchyny/vim-haskell-indent'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim'
+on_if = 'executable("ghc-mod")'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'eagletmt/neco-ghc'
+on_if = 'executable("ghc-mod")'
+on_ft = 'haskell'
+hook_add = '''
+  let g:necoghc_enable_detailed_browse = 1
+'''
+
+[[plugins]]
+repo = 'racer-rust/vim-racer'
+on_ft = 'rust'
+hook_add = '''
+  let g:racer_experimental_completer = 1
+'''
+
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+on_ft = 'python'
+
+# Execution
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_map = {n = '\r'}
+on_cmd = 'QuickRun'
+hook_add = '''
+  autocmd myautocmd BufWinEnter,BufNewFile test/*.vim,test/*.vimspec let b:quickrun_config = {'type' : 'themis'}
+  autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
+  autocmd myautocmd BufWinLeave QuickRunOut call quickrun#sweep_sessions()
+  command! QuickRunCancel call quickrun#sweep_sessions()
+'''
+hook_source = '''
+  " quickrun settings {{{
+  let g:quickrun_config = {}
+  let g:quickrun_config['_'] = {
+  \ 'hook/close_buffer/enable_failure'   : 1,
+  \ 'hook/close_buffer/enable_empty_data': 1,
+  \ 'outputter'                          : 'multi:buffer:quickfix',
+  \ 'outputter/buffer/split'             : 'botright 8',
+  \ 'outputter/buffer/name'              : 'QuickRunOut',
+  \ 'outputter/buffer/close_on_empty'    : 1,
+  \ 'outputter/quickfix/open_cmd'        : '',
+  \ 'runner'                             : 'job',
+  \ 'hook/echo/enable'                   : 1,
+  \ 'hook/echo/output_success'           : 'success',
+  \ 'hook/echo/output_failure'           : 'failure',
+  \ }
+  let g:quickrun_config['watchdogs_checker/_'] = {
+  \ 'hook/close_unite_quickfix/enable_exit'    : 1,
+  \ 'hook/back_window/enable_exit'             : 0,
+  \ 'hook/quickfix_status_enable/enable_exit'  : 1,
+  \ 'outputter/quickfix/open_cmd'              : '',
+  \ 'hook/hier_update/enable_exit'             : 1,
+  \ 'hook/back_window/priority_exit'           : 1,
+  \ 'hook/quickfix_status_enable/priority_exit': 2,
+  \ 'hook/hier_update/priority_exit'           : 3,
+  \ 'hook/nuko/enable'  : 1,
+  \ }
+  let g:quickrun_config['ocaml/watchdogs_checker'] = {
+  \ 'type': 'watchdogs_checker/ocamlc'
+  \ }
+  let g:quickrun_config['watchdogs_checker/make'] = {
+  \ 'command': 'make',
+  \ 'exec': '%c %o'
+  \ }
+  let g:quickrun_config['watchdogs_checker/ocamlc'] = {
+  \ 'command': 'ocamlc',
+  \ 'exec'   : '%c -i %o - %s:p'
+  \ }
+  let g:quickrun_config['watchdogs_checker/ocamlc_annot'] = {
+  \ 'command': 'ocamlc',
+  \ 'exec'   : '%c -annot -bin-annot -c %o - %s:p'
+  \ }
+  let g:quickrun_config['watchdogs_checker/hxml'] = {
+  \ 'command': 'haxe',
+  \ 'exec'   : '%c build.hxml'
+  \ }
+  let g:quickrun_config['haxe/watchdogs_checker'] = {
+  \ 'type': 'watchdogs_checker/hxml'
+  \ }
+  let g:quickrun_config['ruby.rspec'] = {
+  \ 'command': 'bundle',
+  \ 'exec': '%c exec rspec -f d %s'
+  \ }
+  let g:quickrun_config['ghc_make'] = {
+  \ 'command'                       : 'ghc',
+  \ 'exec'                          : '%c %s',
+  \ 'outputter'                     : 'quickfix',
+  \ 'outputter/quickfix'            : 1,
+  \ 'outputter/quickfix/open_cmd'   : 'cwindow',
+  \ 'hook/back_window/enable_exit'  : 1,
+  \ 'hook/back_window/priority_exit': 1
+  \ }
+  let g:quickrun_config['ghc_doctest'] = {
+  \ 'command': 'doctest',
+  \ 'exec': '%c %s'
+  \ }
+  let g:quickrun_config['stack_build'] = {
+  \ 'command'                       : 'stack',
+  \ 'exec'                          : '%c build',
+  \ 'outputter'                     : 'quickfix',
+  \ 'outputter/quickfix'            : 1,
+  \ 'outputter/quickfix/open_cmd'   : 'botright cwindow',
+  \ 'hook/back_window/enable_exit'  : 1,
+  \ 'hook/back_window/priority_exit': 1,
+  \ 'hook/nuko/enable'              : 1,
+  \ }
+  let g:quickrun_config['stack_exec'] = {
+  \ 'command'                       : 'stack',
+  \ 'exec'                          : '%c exec %a',
+  \ 'outputter'                     : 'buffer',
+  \ }
+  let g:quickrun_config['haskell'] = {'type': 'haskell/stack_runghc'}
+  let g:quickrun_config['haskell/stack_runghc'] = {
+  \ 'command'           : 'stack',
+  \ 'exec'              : '%c runghc %s %a',
+  \ 'tempfile'          : '%{tempname()}.hs',
+  \ 'hook/eval/template': 'main = print \$ %s',
+  \ }
+  let g:quickrun_config['haskell/watchdogs_checker'] = {'type': 'watchdogs_checker/stack_ghcmod'}
+  let g:quickrun_config['watchdogs_checker/stack_ghcmod'] = {
+  \ 'command'           : 'stack',
+  \ 'exec'              : '%c exec ghc-mod check %s:p | sed "s/\x0/\n/g"',
+  \ 'errorformat'       : '%f:%l:%c:%trror: %m,%f:%l:%c:%tarning: %m,%f:%l:%c:parse %trror %m,%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l:%c:%m,%E%f:%l:%c:,%Z%m',
+  \ 'tempfile'          : 'TemporaryWatchDogSourceFile.hs'
+  \ }
+  let g:quickrun_config['rust/watchdogs_checker'] = {'type': 'watchdogs_checker/myrustc'}
+  let g:quickrun_config['watchdogs_checker/myrustc'] = {
+  \ 'command'           : 'rustc',
+  \ 'exec'              : '%c -Z no-trans %s:p',
+  \ }
+  let g:quickrun_config['watchdogs_checker/cargo_check'] = {
+  \ 'command'           : 'cargo',
+  \ 'exec'              : '%c check',
+  \ }
+  let g:quickrun_config['cargo_run'] = {
+  \ 'command'           : 'cargo',
+  \ 'exec'              : '%c run',
+  \ }
+  let g:quickrun_config['cargo_build'] = {
+  \ 'command'           : 'cargo',
+  \ 'exec'              : '%c build',
+  \ }
+  let g:quickrun_config['cargo_test'] = {
+  \ 'command'           : 'cargo',
+  \ 'exec'              : '%c test',
+  \ 'outputter/buffer/split'             : 'botright vertical 80',
+  \ }
+  let g:quickrun_config['watchdogs_checker/cargo_clippy'] = {
+  \ 'command'           : 'cargo',
+  \ 'exec'              : '%c clippy',
+  \ }
+  let g:quickrun_config['themis'] = {
+  \ 'command': 'themis',
+  \ 'exec': '%c --reporter dot %s'
+  \ }
+  " }}}
+'''
+
+[[plugins]]
+repo = 'kana/vim-submode'
+on_map = {n = ['<C-W>+', '<C-W>-', '<C-W>>', '<C-W><']}
+hook_add = '''
+  let g:submode_keep_leaving_key = 1
+  let g:submode_timeout = 0
+'''
+hook_source = '''
+  call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
+  call submode#enter_with('winsize', 'n', '', '<C-W><', '<C-W><')
+  call submode#enter_with('winsize', 'n', '', '<C-W>+', '<C-W>+')
+  call submode#enter_with('winsize', 'n', '', '<C-W>-', '<C-W>-')
+  call submode#map('winsize', 'n', '', '>', '<C-W>>')
+  call submode#map('winsize', 'n', '', '<', '<C-W><')
+  call submode#map('winsize', 'n', '', '+', '<C-W>+')
+  call submode#map('winsize', 'n', '', '-', '<C-W>-')
+'''
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_map = '<Plug>(openbrowser-'
+hook_add = '''
+  let g:netrw_nogx = 1
+  nmap gx <Plug>(openbrowser-smart-search)
+  xmap gx <Plug>(openbrowser-smart-search)
+'''
+
+[[plugins]]
+repo = 'thinca/vim-themis'
+
+[[plugins]]
+repo = 'thinca/vim-singleton'
+on_if = 'g:is_gui'
+hook_source = '''
+  call singleton#enable()
+'''
+
+[[plugins]]
+repo = 'w0rp/ale'
+
+
+# Miscellaneous
+[[plugins]]
+repo = 'mattn/webapi-vim'
+lazy = 1
+
+[[plugins]]
+repo = 'mattn/gist-vim'
+depends = 'webapi-vim'
+on_cmd = 'Gist'
+
+[[plugins]]
+repo = 'thinca/vim-localrc'
+
+[[plugins]]
+repo = 'thinca/vim-prettyprint'
+on_cmd = ['PP', 'PrettyPrint']
