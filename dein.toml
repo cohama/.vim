@@ -30,6 +30,11 @@ hook_source = '''
 '''
 
 [[plugins]]
+repo = 'zchee/deoplete-jedi'
+depends = 'deoplete.nvim'
+on_ft = 'python'
+
+[[plugins]]
 repo = 'Shougo/neosnippet'
 depends = 'neosnippet-snippets'
 filetypes = 'neosnippet'
