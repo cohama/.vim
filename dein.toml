@@ -549,13 +549,6 @@ hook_add = '''
 repo = 'thinca/vim-themis'
 
 [[plugins]]
-repo = 'thinca/vim-singleton'
-on_if = 'g:is_gui'
-hook_source = '''
-  call singleton#enable()
-'''
-
-[[plugins]]
 repo = 'w0rp/ale'
 
 
