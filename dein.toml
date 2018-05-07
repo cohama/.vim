@@ -555,6 +555,11 @@ repo = 'thinca/vim-themis'
 
 [[plugins]]
 repo = 'w0rp/ale'
+hook_source = '''
+  let g:ale_lint_on_text_changed = "normal"
+  let g:ale_lint_on_insert_leave = 1
+  let g:ale_python_pylint_change_directory = 0
+'''
 
 
 # Miscellaneous
