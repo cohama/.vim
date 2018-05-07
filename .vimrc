@@ -1282,9 +1282,15 @@ function! SuperRuler(count)
   redir => ruler_out
     silent execute 'silent normal! ' . cnt . "\<C-g>"
   redir END
-  " なぜか改行が入るので
-  let super_ruler = ruler_out[2:] . "    | " . &fileformat . " | " . &fileencoding . " | " . &filetype . " | " . fugitive#statusline()[1:]
+  let super_ruler = ruler_out[2:] . "    | " . &fileformat . " | " . &fileencoding . " | " . &filetype . " | " . VCSRepoInfo()
   echo super_ruler
+endfunction
+
+function! VCSRepoInfo() abort
+  if !dein#is_sourced("gina.vim")
+    dein#source("gina.vim")
+  endif
+  return gina#component#repo#preset() . " " . gina#component#status#preset()
 endfunction
 nnoremap <C-G> :<C-u>call SuperRuler(v:count)<CR>
 
