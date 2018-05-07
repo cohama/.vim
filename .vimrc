@@ -155,6 +155,9 @@ set redrawtime=2000
 
 " 補完メニューで preview しない
 set completeopt-=preview
+
+" diff で必ず垂直分割を使う
+set diffopt& diffopt+=vertical
 " }}}
 
 " ### Input ### {{{
