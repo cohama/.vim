@@ -234,7 +234,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'bkad/CamelCaseMotion'
+repo = 'Lokaltog/vim-easymotion'
 on_map = {nox = '[EasyMotion]'}
 hook_add = '''
 nmap <CR> [EasyMotion]
