@@ -318,7 +318,7 @@ hook_add = '''
   nmap <Space> [Git]
   nnoremap [Git]<Space> :<C-u>Gina<Space>
   nnoremap [Git]s :<C-u>Gina status -s --opener=80vsplit<CR>
-  nnoremap [Git]d :<C-u>Gina compare --opener=vsplit<CR>
+  nnoremap [Git]d :<C-u>Gina patch --oneside<CR>
   nnoremap [Git]a :<C-u>Gina! add %:p<CR>
   nnoremap [Git]A :<C-u>Gina! add -A<CR>
   nnoremap [Git]c :<C-u>Gina commit -v --opener=80vsplit<CR>
