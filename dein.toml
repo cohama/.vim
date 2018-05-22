@@ -331,6 +331,7 @@ hook_add = '''
   nnoremap [Git]C :<C-u>Gina commit --amend<Space>
   nnoremap [Git]p :<C-u>Gina! push<CR>
   nnoremap [Git]f :<C-u>Gina! fetch<CR>
+  nnoremap [Git]<CR> :<C-u>Gina lcd<CR>:pwd<CR>
 '''
 
 [[plugins]]
