@@ -228,7 +228,11 @@ set nostartofline
 " NeoBundle の設定
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-let s:dein_cache_path = '~/.cache/dein'
+if g:is_gui
+  let s:dein_cache_path = '~/.cache/dein'
+else
+  let s:dein_cache_path = '~/.cache/dein_cui'
+endif
 
 if dein#load_state(s:dein_cache_path)
   call dein#begin(s:dein_cache_path, expand("<sfile>"))
