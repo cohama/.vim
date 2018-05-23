@@ -10,9 +10,12 @@ repo = 'roxma/vim-hug-neovim-rpc'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-hook_add = '''
+hook_source = '''
   nnoremap \f :<C-u>Denite file_rec<CR>
   nnoremap <M-m> :<C-u>Denite file_mru<CR>
+  if executable('ag')
+    call denite#custom#var('file/rec', 'command', ['ag', '--nocolor', '--nogroup', '--hidden', '--ignore', '.git', '-g',  ''])
+  endif
 '''
 
 [[plugins]]
