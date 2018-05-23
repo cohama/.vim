@@ -335,6 +335,12 @@ hook_add = '''
   nnoremap [Git]p :<C-u>Gina! push<CR>
   nnoremap [Git]f :<C-u>Gina! fetch<CR>
   nnoremap [Git]<CR> :<C-u>Gina lcd<CR>:pwd<CR>
+
+  function MyGinaMapping()
+    nnoremap q :<C-u>x<CR>
+    nnoremap Q :<C-u>q!<CR>
+  endfunction
+  autocmd myautocmd FileType gina-commit call MyGinaMapping()
 '''
 
 [[plugins]]
