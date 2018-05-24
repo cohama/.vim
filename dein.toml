@@ -18,7 +18,7 @@ hook_source = '''
   if executable('ag')
     call denite#custom#var('file_rec', 'command', ['ag', '--nocolor', '--nogroup', '--hidden', '--ignore', '.git', '-g',  ''])
   endif
-  call denite#custom#source('_', 'matchers', ['matcher/fuzzy', 'matcher/hide_hidden_files'])
+  call denite#custom#source('_', 'matchers', ['matcher/regexp', 'matcher/hide_hidden_files'])
 '''
 
 [[plugins]]
