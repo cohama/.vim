@@ -39,6 +39,7 @@ on_i = 1
 hook_source = '''
   call deoplete#enable()
   call deoplete#custom#source('_', 'min_pattern_length', 1)
+  call deoplete#custom#source('file', 'min_pattern_length', 0)
 '''
 
 [[plugins]]
