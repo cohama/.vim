@@ -221,6 +221,9 @@ set updatetime=1000
 
 " いろんなコマンドの後にカーソルを先頭に移動させない
 set nostartofline
+
+" spellcheck で日本語は対象外にする
+set spelllang=en,cjk
 " }}}
 " }}}
 
