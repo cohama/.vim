@@ -1291,10 +1291,7 @@ function! SuperRuler(count)
 endfunction
 
 function! VCSRepoInfo() abort
-  if !dein#is_sourced("gina.vim")
-    dein#source("gina.vim")
-  endif
-  return gina#component#repo#preset() . " " . gina#component#status#preset()
+  return fugitive#statusline()[1:]
 endfunction
 nnoremap <C-G> :<C-u>call SuperRuler(v:count)<CR>
 
@@ -1571,7 +1568,6 @@ function! OnPython()
   endif
 endfunction
 autocmd myautocmd FileType python call OnPython()
-
 
 " フォーカスを得たタイミングで全てのウィンドウサイズを揃える
 autocmd myautocmd FocusGained * wincmd =

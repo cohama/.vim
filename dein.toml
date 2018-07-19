@@ -88,8 +88,8 @@ hook_source = '''
   call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
 
   call lexima#add_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
-  call lexima#add_rule({'at': 'Gina commit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
-  call lexima#add_rule({'at': 'Gina commit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
+  call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
+  call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
   call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
   call lexima#add_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
   call lexima#add_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
@@ -323,26 +323,22 @@ on_i = 1
 
 # Git
 [[plugins]]
-repo = 'lambdalisue/gina.vim'
+repo = 'tpope/vim-fugitive'
 hook_add = '''
   nnoremap [Git] <Nop>
   nmap <Space> [Git]
-  nnoremap [Git]<Space> :<C-u>Gina<Space>
-  nnoremap [Git]s :<C-u>Gina status -s --opener=80vsplit<CR>
-  nnoremap [Git]d :<C-u>Gina patch --oneside<CR>
-  nnoremap [Git]a :<C-u>Gina! add %:p<CR>
-  nnoremap [Git]A :<C-u>Gina! add -A<CR>
-  nnoremap [Git]c :<C-u>Gina commit -v --opener=80vsplit<CR>
-  nnoremap [Git]C :<C-u>Gina commit --amend<Space>
-  nnoremap [Git]p :<C-u>Gina! push<CR>
-  nnoremap [Git]f :<C-u>Gina! fetch<CR>
-  nnoremap [Git]<CR> :<C-u>Gina lcd<CR>:pwd<CR>
-
-  function MyGinaMapping()
-    nnoremap <buffer> q :<C-u>x<CR>
-    nnoremap <buffer> Q :<C-u>q!<CR>
-  endfunction
-  autocmd myautocmd FileType gina-commit call MyGinaMapping()
+  nnoremap [Git]<Space> :<C-u>Git<Space>
+  nnoremap [Git]s :<C-u>Gstatus<CR>
+  nnoremap [Git]d :<C-u>Gdiff<CR>
+  nnoremap [Git]a :<C-u>Gwrite<CR>
+  nnoremap [Git]A :<C-u>Git add -A<CR>
+  nnoremap [Git]c :<C-u>Gcommit -v<CR>
+  nnoremap [Git]C :<C-u>Gcommit --amend<Space>
+  nnoremap [Git]p :<C-u>Git push<CR>
+  nnoremap [Git]f :<C-u>Git fetch<CR>
+  nnoremap [Git]F :<C-u>Git pull --rebase<CR>
+  nnoremap [Git]b :<C-u>Gblame<CR>
+  nnoremap [Git]<CR> :<C-u>Glcd<CR>:pwd<CR>
 '''
 
 [[plugins]]
