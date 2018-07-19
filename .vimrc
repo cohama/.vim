@@ -1563,7 +1563,9 @@ endif
 
 " Python
 function! OnPython()
-  if executable('yapf')
+  if executable('autopep8')
+    let &l:formatprg = "autopep8 --max-line-length 120 - 2> /dev/null"
+  elseif executable('yapf')
     let &l:formatprg = "yapf 2> /dev/null"
   endif
 endfunction
