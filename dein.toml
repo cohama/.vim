@@ -11,12 +11,92 @@ repo = 'roxma/vim-hug-neovim-rpc'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-  nnoremap \f :<C-u>Denite file_rec<CR>
+  call denite#custom#option("_", "split", "floating")
+  call denite#custom#option("_", "start_filter", 1)
+  nnoremap \f :<C-u>Denite file/rec<CR>
   nnoremap <M-m> :<C-u>Denite file_mru<CR>
   if executable('ag')
-    call denite#custom#var('file_rec', 'command', ['ag', '--nocolor', '--nogroup', '--hidden', '--ignore', '.git', '-g',  ''])
+    call denite#custom#var('file/rec', 'command', ['ag', '--nocolor', '--nogroup', '--hidden', '--ignore', '.git', '-g',  ''])
   endif
   call denite#custom#source('_', 'matchers', ['matcher/regexp', 'matcher/hide_hidden_files'])
+  autocmd FileType denite call MyDeniteSettings()
+  function! MyDeniteSettings() abort
+    nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> s denite#do_map('do_action', 'vsplit')
+    nnoremap <silent><buffer><expr> S denite#do_map('do_action', 'split')
+    nnoremap <silent><buffer><expr> t denite#do_map('do_action', 'tabopen')
+    nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
+    nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> q denite#do_map('quit')
+    nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
+    nmap <silent><buffer><expr> <Esc> denite#do_map('quit')
+  endfunction
+
+  autocmd FileType denite-filter call MyDeniteFilterSettings()
+  function! MyDeniteFilterSettings() abort
+    imap <silent><buffer> <Esc> <Plug>(denite_filter_quit)
+    inoremap <silent><buffer><expr> <C-l> denite#do_map('redraw')
+    inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+  endfunction
+'''
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+hook_add = '''
+  let g:LanguageClient_serverCommands = {
+  \ 'rust': ['/usr/bin/rustup', 'run', 'nightly', 'rls'],
+  \ 'python': ['pyls', '--log-file', '/tmp/LanguageClient-log.txt', '-vvv'],
+  \ }
+  let g:LanguageClient_diagnosticsList = 'Disabled'
+  let g:LanguageClient_settingsPath = '~/.config/nvim/lsp_settings.json'
+
+  let g:LanguageClient_diagnosticsDisplay = {
+  \ 1: {
+  \     "name": "Error",
+  \     "texthl": "ALEError",
+  \     "signText": "✖",
+  \     "signTexthl": "ALEErrorSign",
+  \     "virtualTexthl": "VirtualError",
+  \ },
+  \ 2: {
+  \     "name": "Warning",
+  \     "texthl": "ALEWarning",
+  \     "signText": "⚠",
+  \     "signTexthl": "ALEWarningSign",
+  \     "virtualTexthl": "VirtualWarning",
+  \ },
+  \ 3: {
+  \     "name": "Information",
+  \     "texthl": "ALEInfo",
+  \     "signText": "ℹ",
+  \     "signTexthl": "ALEInfoSign",
+  \     "virtualTexthl": "VirtualWarning",
+  \ },
+  \ 4: {
+  \     "name": "Hint",
+  \     "texthl": "ALEInfo",
+  \     "signText": "➤",
+  \     "signTexthl": "ALEInfoSign",
+  \     "virtualTexthl": "VirtualWarning",
+  \ }}
+
+  function! LSRestart() abort
+    LanguageClientStop
+    LanguageClientStart
+  endfunction
+
+  function! OnLSP() abort
+    command! -buffer LSRestart call LSRestart()
+    nnoremap <buffer> K :<C-u>call LanguageClient#textDocument_hover()<CR>
+    nnoremap <buffer> gd :<C-u>call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> gR :<C-u>call LanguageClient#textDocument_rename()<CR>
+  endfunction
+
+  autocmd myautocmd FileType rust,python call OnLSP()
+
 '''
 
 [[plugins]]
@@ -41,9 +121,22 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'zchee/deoplete-jedi'
-depends = 'deoplete.nvim'
-on_ft = 'python'
+repo = 'ncm2/float-preview.nvim'
+hook_add = '''
+  let g:float_preview#docked = 0
+  let g:float_preview#max_height = 100
+  let g:float_preview#max_width = 80
+
+  function! FloatPreviewOpen() abort
+    echom nvim_win_set_option(g:float_preview#win, "foldcolumn", 0)
+  endfunction
+  autocmd myautocmd User FloatPreviewWinOpen call FloatPreviewOpen()
+'''
+
+# [[plugins]]
+# repo = 'zchee/deoplete-jedi'
+# depends = 'deoplete.nvim'
+# on_ft = 'python'
 
 [[plugins]]
 repo = 'Shougo/neosnippet'
@@ -51,7 +144,7 @@ depends = 'neosnippet-snippets'
 filetypes = 'neosnippet'
 on_i = 1
 hook_source = '''
-  let g:neosnippet#snippets_directory = expand('~/.vim/snippets')
+  let g:neosnippet#snippets_directory = expand('~/.config/nvim/snippets')
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-l> <Plug>(neosnippet_expand_target)
@@ -72,10 +165,9 @@ hook_source = '''
   endfunction
   let g:lexima_no_default_rules = 1
   let g:lexima_map_escape = ''
-  inoremap <silent> <Esc> <C-r>=ClosePopup()<CR><C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>
+  let g:lexima_nvim_accept_pum_with_enter = 0
+  inoremap <silent> <Esc> <C-r>=ClosePopup()<CR><C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>:call ImActivateFunc(0)<CR>
   call lexima#set_default_rules()
-
-  call lexima#insmode#map_hook('before', '<CR>', "\<C-r>=ClosePopup()\<CR>")
 
   call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<C-y><CR><CR><Esc>kS', 'filetype': ['markdown']})
   call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
@@ -83,9 +175,9 @@ hook_source = '''
   call lexima#add_rule({'at': '{\%#}', 'char': '<CR>', 'input': '<CR><Bslash> ', 'input_after': '<CR><Bslash> ', 'filetype': 'vim'})
   call lexima#add_rule({'at': '\\\s.*\%#$', 'char': '<CR>', 'input': '<CR><Bslash> ', 'filetype': 'vim'})
 
-  call lexima#add_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Unite line<CR>', 'mode': '/'})
-  call lexima#add_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Unite line<CR>', 'mode': '?'})
-  call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Unite history/command command<CR>', 'mode': ':'})
+  call lexima#add_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Denite line<CR>', 'mode': '/'})
+  call lexima#add_rule({'at': '^\%#', 'char': '?', 'input': '<BS>:Denite line<CR>', 'mode': '?'})
+  call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Denite command_history<CR>', 'mode': ':'})
 
   call lexima#add_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
   call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
@@ -131,7 +223,6 @@ on_map = {ox = ['il', 'al']}
 [[plugins]]
 repo = 'gilligan/textobj-lastpaste'
 depends = 'vim-textobj-user'
-on_map = {ox = '<Plug>'}
 hook_add = '''
   let g:textobj_lastpaste_no_default_key_mappings = 1
   omap iP <Plug>(textobj-lastpaste-i)
@@ -409,6 +500,7 @@ hook_source = '''
 repo = 'thinca/vim-quickrun'
 on_map = {n = '\r'}
 on_cmd = 'QuickRun'
+depends = 'quickrun-job-runner.nvim'
 hook_add = '''
   autocmd myautocmd BufWinEnter,BufNewFile test/*.vim,test/*.vimspec let b:quickrun_config = {'type' : 'themis'}
   autocmd myautocmd BufWinEnter QuickRunOut setlocal winfixheight
@@ -426,7 +518,7 @@ hook_source = '''
   \ 'outputter/buffer/name'              : 'QuickRunOut',
   \ 'outputter/buffer/close_on_empty'    : 1,
   \ 'outputter/quickfix/open_cmd'        : '',
-  \ 'runner'                             : 'job',
+  \ 'runner'                             : 'nvim_job',
   \ 'hook/echo/enable'                   : 1,
   \ 'hook/echo/output_success'           : 'success',
   \ 'hook/echo/output_failure'           : 'failure',
@@ -544,6 +636,10 @@ hook_source = '''
 '''
 
 [[plugins]]
+repo = 'tamy0612/quickrun-job-runner.nvim'
+lazy = 1
+
+[[plugins]]
 repo = 'kana/vim-submode'
 on_map = {n = ['<C-W>+', '<C-W>-', '<C-W>>', '<C-W><']}
 hook_add = '''
@@ -579,8 +675,23 @@ hook_add = '''
   let g:ale_lint_on_text_changed = "normal"
   let g:ale_lint_on_insert_leave = 1
   let g:ale_python_pylint_change_directory = 0
+  let g:ale_virtualtext_cursor = 1
   let g:ale_virtualenv_dir_names = ['.env', 'env', 've-py3', 've', 'virtualenv', 'venv', '.venv']
   let g:ale_python_pylint_options = "--rcfile setup.cfg"
+
+  let g:ale_sign_error = "✖"
+  let g:ale_sign_warning = "⚠"
+  let g:ale_sign_info = "ℹ"
+  let g:ale_sign_style_error = "✖"
+  let g:ale_sign_style_warning = "⚠"
+  function! s:ale_highlight_groups() abort
+    hi def link ALEVirtualTextError VirtualError
+    hi def link ALEVirtualTextWarning VirtualWarning
+    hi def link ALEVirtualTextInfo VirtualWarning
+    hi def link ALEVirtualTextStyleError VirtualError
+    hi def link ALEVirtualTextStyleWarning VirtualWarning
+  endfunction
+  autocmd myautocmd ColorScheme * call s:ale_highlight_groups()
 '''
 
 
