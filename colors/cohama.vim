@@ -60,8 +60,8 @@ hi CursorLineNr    ctermfg=227  ctermbg=233                  guifg=#E6E229 guibg
 hi FoldColumn      ctermfg=240  ctermbg=233                  guifg=#80809C guibg=#36364D
 hi SignColumn                   ctermbg=234                  guifg=NONE    guibg=#121230
 hi Folded          ctermfg=109  ctermbg=16                   guifg=#7F7FB5 guibg=#333342
-hi Search          ctermfg=251  ctermbg=24   cterm=underline guifg=#DCDCF5 guibg=#2F919E gui=underline
-hi IncSearch       ctermfg=16   ctermbg=202                  guifg=#000000 guibg=#9C9C11 gui=underline
+hi Search          ctermfg=251  ctermbg=24   cterm=underline guifg=#DCDCF5 guibg=#2F919E gui=underline guisp=#888844
+hi IncSearch       ctermfg=16   ctermbg=202                  guifg=#000000 guibg=#9C9C11 gui=underline guisp=#FF0000
 hi NonText         ctermfg=239  ctermbg=235                  guifg=#393980 guibg=#0F0F29
 hi StatusLine      ctermfg=255  ctermbg=238  cterm=bold      guifg=#0D0DB5 guibg=#DEDEFA gui=bold
 hi StatusLineNC    ctermfg=239  ctermbg=233  cterm=NONE      guifg=#5D5DBA guibg=#1E1E45 gui=NONE
@@ -75,7 +75,7 @@ hi Title           ctermfg=227               cterm=bold      guifg=#C7C561      
 hi DiffAdd                      ctermbg=17                   guifg=NONE    guibg=#133311
 hi DiffChange      ctermfg=181  ctermbg=236                  guifg=NONE    guibg=#240D23
 hi DiffDelete      ctermfg=162  ctermbg=53                   guifg=#521111 guibg=#331111
-hi DiffText                     ctermbg=239  cterm=bold      guifg=NONE    guibg=#4C1354 gui=bold,underline
+hi DiffText                     ctermbg=239  cterm=bold      guifg=NONE    guibg=#4C1354 gui=bold,underline guisp=#999999
 
 " complete menus
 hi Pmenu           ctermfg=NONE ctermbg=237  cterm=NONE      guifg=NONE    guibg=#36364D gui=NONE
@@ -98,7 +98,7 @@ hi MatchParen      ctermfg=255  ctermbg=53   cterm=bold      guifg=NONE    guibg
 hi ModeMsg         ctermfg=229                               guifg=#235E1C               gui=italic
 hi MoreMsg         ctermfg=229               cterm=NONE      guifg=#5B7573               gui=NONE
 hi Question        ctermfg=110                               guifg=#3A3A85
-hi Underlined      ctermfg=244               cterm=underline guifg=#D5D6EB               gui=underline
+hi Underlined      ctermfg=244               cterm=underline guifg=#D5D6EB               gui=underline guisp=#999999
 hi VertSplit       ctermfg=244  ctermbg=232  cterm=bold      guifg=#2A2A75 guibg=#02021A gui=bold
 hi Visual          ctermfg=255  ctermbg=33                   guifg=NONE    guibg=#2F2F52
 hi VisualNOS       ctermfg=255  ctermbg=33                   guifg=NONE    guibg=#2F2F52
