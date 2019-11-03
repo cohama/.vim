@@ -7,3 +7,8 @@ snippet     plt
 options     head
 	from matplotlib import pyplot as plt
 	plt.imshow((${0:TARGET}).astype(np.uint8)); plt.show()
+
+snippet     pylint
+abbr        pylint: disable=
+options     word
+	# pylint: disable=${0:TARGET}
