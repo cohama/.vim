@@ -929,9 +929,6 @@ function! MultipleInsersion(next_key)
   endif
 endfunction
 
-" 短縮入力
-abbreviate Ocaml OCaml
-
 " 今開いているファイルを削除
 function! DeleteMe(force)
   if a:force || !&modified
@@ -1178,4 +1175,5 @@ command! Darken  let g:my_background = 'dark' | colorscheme cohama
 if exists("g:gnvim")
   source ~/.config/nvim/ginit.vim
 endif
+
 " }}}
