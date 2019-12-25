@@ -2,6 +2,6 @@
   "pyls.plugins.pylint.enabled": false,
   "pyls.plugins.pycodestyle.enabled": false,
   "pyls.plugins.pyflakes.enabled": false,
-  "pyls.plugins.mypy.enabled": false,
+  "pyls.plugins.pyls_mypy.enabled": false,
   "pyls.plugins.mccabe.enabled": false
 }
