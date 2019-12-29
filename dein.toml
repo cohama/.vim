@@ -184,7 +184,6 @@ hook_source = '''
   call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
   call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
   call lexima#add_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
-  call lexima#add_rule({'at': 'SudoWrite\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
 
   call lexima#add_rule({'at': '^\s*\%(Describe\|Context\|It\|Before\|After\)\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
   " }}}
@@ -317,8 +316,10 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'vim-scripts/sudo.vim'
-on_cmd = ['SudoWrite']
+repo = 'lambdalisue/suda.vim'
+hook_add = '''
+  command! SudoWrite w suda://%
+'''
 
 
 # Motion
