@@ -1210,9 +1210,6 @@ endfunction
 " かつ、ファイルを開き直したりする
 autocmd myautocmd FocusGained * wincmd = | checktime
 
-" varb
-autocmd myautocmd BufNewFile,BufRead *.args setf varb
-
 " tcd 版 :Gcd
 function! GetRootDir(path) abort
   let parent_dir = fnamemodify(expand(a:path), ":p:h")
