@@ -1176,4 +1176,9 @@ if exists("g:gnvim")
   source ~/.config/nvim/ginit.vim
 endif
 
+" local 用 vimrc
+if filereadable(fnamemodify("~/.config/nvim/.local.vim", ':p'))
+  source ~/.config/nvim/.local.vim
+endif
+
 " }}}

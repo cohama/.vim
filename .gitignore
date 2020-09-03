@@ -2,3 +2,4 @@ bundle/*
 !bundle/.gitkeep
 !bundle/neobundle.sh
 .netrwhist
+/.local.vim
