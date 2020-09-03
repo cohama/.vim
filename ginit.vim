@@ -13,9 +13,3 @@ else
   let g:font_size = get(g:, 'font_size', 12)
   let &guifont = g:font_name . ':h' . g:font_size
 endif
-
-
-augroup myautocmd_gui
-  autocmd!
-  autocmd FocusGained * checktime
-augroup END

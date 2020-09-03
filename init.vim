@@ -1207,7 +1207,8 @@ function! PythonRunPytestOnFunctionName() abort
 endfunction
 
 " フォーカスを得たタイミングで全てのウィンドウサイズを揃える
-autocmd myautocmd FocusGained * wincmd =
+" かつ、ファイルを開き直したりする
+autocmd myautocmd FocusGained * wincmd = | checktime
 
 " varb
 autocmd myautocmd BufNewFile,BufRead *.args setf varb
