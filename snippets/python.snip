@@ -8,7 +8,14 @@ options     head
 	from matplotlib import pyplot as plt
 	plt.imshow((${0:TARGET}).astype(np.uint8)); plt.show()
 
-snippet     pylint
-abbr        pylint: disable=
-options     word
-	# pylint: disable=${0:TARGET}
+snippet     pylint_disable
+regexp     '# '
+	pylint: disable=
+
+snippet     from_abc
+options     head
+	from abc import ABC, abstractmethod
+
+snippet     from
+options     head
+	from ${1:typing} import ${2:List}
