@@ -1211,6 +1211,14 @@ autocmd myautocmd FocusGained * wincmd =
 
 " varb
 autocmd myautocmd BufNewFile,BufRead *.args setf varb
+
+" tcd 版 :Gcd
+function! GetRootDir(path) abort
+  let parent_dir = fnamemodify(expand(a:path), ":p:h")
+  return system("git -C " . parent_dir . " rev-parse --show-toplevel")
+endfunction
+command! Gtcd execute "tcd " . GetRootDir(expand("%"))
+nnoremap [Git]<CR> :<C-u>Gtcd<CR>:pwd<CR>
 "}}}
 
 " ColorScheme {{{

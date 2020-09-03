@@ -430,7 +430,6 @@ hook_add = '''
   nnoremap [Git]f :<C-u>Git fetch<CR>
   nnoremap [Git]F :<C-u>Git pull --rebase<CR>
   nnoremap [Git]b :<C-u>Gblame<CR>
-  nnoremap [Git]<CR> :<C-u>Glcd<CR>:pwd<CR>
 '''
 
 [[plugins]]
