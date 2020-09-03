@@ -363,6 +363,10 @@ xmap ge <Plug>(smartword-ge)
 '''
 
 [[plugins]]
+repo = 'deton/jasentence.vim'
+on_map = {nox = ['(', ')'], ox = ['as', 'is']}
+
+[[plugins]]
 repo = 'thinca/vim-visualstar'
 on_map = '<Plug>'
 hook_add = '''
