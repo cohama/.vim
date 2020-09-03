@@ -430,6 +430,7 @@ function! CloseAnyOther()
     \ || (bt ==# 'help')
     \ || (bt ==# 'quickfix')
     \ || (bt ==# 'nofile')
+    \ || (bt ==# 'terminal')
       execute w . 'wincmd w'
       q
       break
