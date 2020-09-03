@@ -1115,16 +1115,21 @@ endif
 
 
 " Python
-function! OnPython()
+function! OnPython() abort
   if executable('autopep8')
     let &l:formatprg = "autopep8 --max-line-length 120 - 2> /dev/null"
   elseif executable('yapf')
     let &l:formatprg = "yapf 2> /dev/null"
   endif
-  command! -bang PyFmt call PythonFormat(<bang>0)
-  command! PyDoc call PythonGenerateDocstring()
+  command! -buffer -bang PyFmt call PythonFormat(<bang>0)
+  command! -buffer Yapf !yapf -i %
+  command! -buffer PyDoc call PythonGenerateDocstring()
+  command! -buffer PyAutoImport call PythonAutoImport("")
+
+  nnoremap <buffer> \gq :<C-u>update<CR>:PyFmt!<CR>
 
   " nnoremap <buffer> <C-]> :<C-u>call jedi#goto()<CR>
+  nnoremap <buffer> \R :<C-u>call PythonRunPytestOnFunctionName()<CR>
 endfunction
 autocmd myautocmd FileType python call OnPython()
 
@@ -1135,7 +1140,7 @@ function! PythonFormat(remove_unused_imports) abort
     silent !pipenv run autoflake -i --remove-all-unused-imports %
   endif
   silent !pipenv run isort -w 120 %
-  silent !pipenv run autopep8 --max-line-length 120 -i %
+  " silent !pipenv run autopep8 --max-line-length 120 -i %
 endfunction
 autocmd myautocmd FileType python call OnPython()
 
@@ -1145,6 +1150,60 @@ function! PythonGenerateDocstring() abort
   let indent_spaces = repeat(' ', indent)
   execute 'r !pydocstring -f google % ' . lnum . ',' . col . '| sed -E -e "s/ (\(.+\)):/:/" -e 1d -e "s/./' . indent_spaces . '\0/" | cat -s'
   call setpos('.', [bufnum, lnum, col, off])
+endfunction
+
+let g:MyPythonAutoImportPresets = {
+\ "List": "typing",
+\ "Tuple": "typing",
+\ "Dict": "typing",
+\ "Any": "typing",
+\ "Union": "typing",
+\ "Set": "typing",
+\ "Callable": "typing",
+\ "Optional": "typing",
+\ "Iterable": "typing",
+\ "Iterator": "typing",
+\ "Sequence": "typing",
+\ "TypeVar": "typing",
+\ "Path": "pathlib",
+\ }
+
+function! PythonAutoImport(word) abort
+  if empty(a:word)
+    let word = expand("<cword>")
+  else
+    let word = a:word
+  endif
+  if has_key(g:MyPythonAutoImportPresets, word)
+    call PythonInsertImportClause(g:MyPythonAutoImportPresets[word], word)
+    return
+  endif
+  let defs = taglist(word)
+  for def in defs
+    if def["name"] == word
+      let from_clause = substitute(substitute(def["filename"], "\.py$", "", ""), "/", ".", "g")
+      call PythonInsertImportClause(from_clause, word)
+      return
+    endif
+  endfor
+  echoerr "not found " . word
+endfunction
+
+function! PythonInsertImportClause(from, import) abort
+  if empty(a:from)
+    let from_statement = ""
+  else
+    let from_statement = "from " . a:from . " "
+  endif
+  call append(0, from_statement . "import " . a:import)
+endfunction
+
+function! PythonRunPytestOnFunctionName() abort
+  let m = matchstr(getline('.'), '^\s*def\s\+\zstest_[^(]*\ze(.*$')
+  echom m
+  if m !=# ''
+    execute 'bot split term://pipenv run pytest -vk ' . m
+  endif
 endfunction
 
 " フォーカスを得たタイミングで全てのウィンドウサイズを揃える
