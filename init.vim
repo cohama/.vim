@@ -1123,7 +1123,7 @@ function! OnPython() abort
   nnoremap <buffer> \gq :<C-u>update<CR>:PyFmt!<CR>
 
   " nnoremap <buffer> <C-]> :<C-u>call jedi#goto()<CR>
-  nnoremap <buffer> \R :<C-u>call PythonRunPytestOnFunctionName()<CR>
+  nnoremap <buffer> \R :<C-u>call PythonRunPytestOnFunctionName()<CR><C-w>p
 endfunction
 autocmd myautocmd FileType python call OnPython()
 
