@@ -130,7 +130,7 @@ hook_add = '''
   let g:float_preview#max_width = 80
 
   function! FloatPreviewOpen() abort
-    echom nvim_win_set_option(g:float_preview#win, "foldcolumn", 0)
+    echom nvim_win_set_option(g:float_preview#win, "foldcolumn", "0")
   endfunction
   autocmd myautocmd User FloatPreviewWinOpen call FloatPreviewOpen()
 '''
