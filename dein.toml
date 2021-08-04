@@ -35,7 +35,7 @@ hook_add = '''
 
   autocmd FileType denite-filter call MyDeniteFilterSettings()
   function! MyDeniteFilterSettings() abort
-    imap <silent><buffer> <Esc> <Plug>(denite_filter_quit)
+    imap <silent><buffer> <Esc> <Plug>(denite_filter_update)
     inoremap <silent><buffer><expr> <C-l> denite#do_map('redraw')
     inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
   endfunction
