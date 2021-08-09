@@ -102,6 +102,9 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/neomru.vim'
 depends = 'denite.nvim'
+hook_add = '''
+  let g:neomru#file_mru_limit = 10000
+'''
 
 
 # Filetypes
