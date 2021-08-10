@@ -11,10 +11,18 @@ repo = 'roxma/vim-hug-neovim-rpc'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-  call denite#custom#option("_", "split", "floating")
-  call denite#custom#option("_", "start_filter", 1)
+  call denite#custom#option("default", {
+    \ "split": "floating",
+    \ "start_filter": v:true,
+    \ "highlight_matched_char": "None",
+    \ "highlight_matched_range": "Search",
+    \ "match_highlight": v:true,
+    \ "smartcase": v:true,
+    \ })
+
   nnoremap \f :<C-u>Denite file/rec<CR>
   nnoremap <M-m> :<C-u>Denite file_mru<CR>
+  nnoremap <M-o> :<C-u>Denite outline<CR>
   if executable('ag')
     call denite#custom#var('file/rec', 'command', ['ag', '--nocolor', '--nogroup', '--hidden', '--ignore', '.git', '-g',  ''])
   endif
