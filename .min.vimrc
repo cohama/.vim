@@ -86,7 +86,6 @@ if g:is_unix && executable('fcitx') && (g:is_gui || ($SSH_TTY == '' && $SSH_CLIE
       call system('fcitx-remote -c')
     endif
   endfunction
-  autocmd myautocmd InsertEnter * silent! call ImActivateFunc(1)
   autocmd myautocmd InsertLeave * silent! call ImActivateFunc(0)
 endif
 
