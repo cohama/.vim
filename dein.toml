@@ -23,6 +23,8 @@ hook_add = '''
     \ "smartcase": v:true,
     \ })
 
+  nnoremap \d :<C-u>Denite<Space>
+  nnoremap \D :<C-u>Denite<Space>
   nnoremap \f :<C-u>Denite file/rec<CR>
   nnoremap <M-m> :<C-u>Denite file_mru<CR>
   nnoremap <M-o> :<C-u>Denite outline<CR>
@@ -30,6 +32,8 @@ hook_add = '''
     call denite#custom#var('file/rec', 'command', ['ag', '--nocolor', '--nogroup', '--hidden', '--ignore', '.git', '-g',  ''])
   endif
   call denite#custom#source('_', 'matchers', ['matcher/regexp', 'matcher/hide_hidden_files'])
+  call denite#custom#source('command_history', 'matchers', ['matcher/fuzzy'])
+  call denite#custom#source('source', 'matchers', ['matcher/substring'])
   autocmd FileType denite call MyDeniteSettings()
   function! MyDeniteSettings() abort
     nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
@@ -193,7 +197,12 @@ hook_source = '''
   call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
   call lexima#add_rule({'at': 'Gcommit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
   call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
-  call lexima#add_rule({'at': 'Ocam\%#', 'char': 'l', 'input': '<BS><BS><BS>Caml', 'mode': 'i:/?'})
+
+  call lexima#add_rule({'at': 'Denite \%#', 'char': 'O', 'input': 'outline', 'mode': ':'})
+  call lexima#add_rule({'at': 'Denite \%#', 'char': 'F', 'input': 'file', 'mode': ':'})
+  call lexima#add_rule({'at': 'Denite \%#', 'char': 'B', 'input': 'buffer', 'mode': ':'})
+  call lexima#add_rule({'at': 'Denite \%#', 'char': 'C', 'input': 'change', 'mode': ':'})
+  call lexima#add_rule({'at': 'Denite \%#', 'char': 'J', 'input': 'jump', 'mode': ':'})
 
   call lexima#add_rule({'at': '^\s*\%(Describe\|Context\|It\|Before\|After\)\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
   " }}}
