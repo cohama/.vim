@@ -160,6 +160,11 @@ set completeopt-=preview
 
 " diff で必ず垂直分割を使う
 set diffopt& diffopt+=vertical
+
+" neovim で terminal でも GUI カラーを使う
+if has('nvim')
+  set termguicolors
+endif
 " }}}
 
 " ### Input ### {{{
