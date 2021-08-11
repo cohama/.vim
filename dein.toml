@@ -171,7 +171,7 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
-on_i = 1
+on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
   " lexima settings {{{
   function! ClosePopup() abort
@@ -179,7 +179,7 @@ hook_source = '''
   endfunction
   let g:lexima_no_default_rules = 1
   let g:lexima_map_escape = ''
-  let g:lexima_nvim_accept_pum_with_enter = 0
+  let g:lexima_accept_pum_with_enter = 0
   inoremap <silent> <Esc> <C-r>=ClosePopup()<CR><C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>:call ImActivateFunc(0)<CR>
   call lexima#set_default_rules()
 
