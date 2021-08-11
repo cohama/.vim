@@ -427,6 +427,9 @@ hook_add = '''
 repo = 'cohama/vim-insert-linenr'
 on_i = 1
 
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
 # Git
 [[plugins]]
 repo = 'tpope/vim-fugitive'
