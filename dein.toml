@@ -26,6 +26,7 @@ hook_add = '''
   call denite#custom#source('_', 'matchers', ['matcher/regexp', 'matcher/hide_hidden_files'])
   call denite#custom#source('command_history', 'matchers', ['matcher/fuzzy'])
   call denite#custom#source('source', 'matchers', ['matcher/substring'])
+  call denite#custom#source('output', 'matchers', ['matcher/fuzzy'])
   autocmd FileType denite call MyDeniteSettings()
   function! MyDeniteSettings() abort
     nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
