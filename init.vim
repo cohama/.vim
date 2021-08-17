@@ -238,10 +238,19 @@ set spelllang=en,cjk
 " NeoBundle の設定
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-let s:dein_cache_path = '~/.cache/dein'
+if has('nvim')
+  let s:dein_cache_path = '~/.cache/dein'
+else
+  let s:dein_cache_path = '~/.cache/dein_vim/'
+endif
 
 if dein#load_state(s:dein_cache_path)
   call dein#begin(s:dein_cache_path, expand("<sfile>"))
+
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
 
   echo "load toml"
   call dein#load_toml('~/.config/nvim/dein.toml')
