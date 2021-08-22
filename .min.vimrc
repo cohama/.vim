@@ -379,4 +379,5 @@ command! CdCurrent cd %:p:h
 command! LcdCurrent lcd %:p:h
 command! CopyFullPath let @+ = expand('%:p')
 
+autocmd myautocmd ColorScheme * hi MatchParen ctermfg=255 ctermbg=53 cterm=bold guifg=NONE guibg=#571C5E gui=bold
 colorscheme desert
