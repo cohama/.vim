@@ -437,7 +437,7 @@ function! CloseAnyOther()
     let bt = getwinvar(w, '&buftype')
     let bufnr = winbufnr(w)
     let name = bufname(bufnr)
-    if (ft ==# 'quickrun' && name ==# 'QuickRunOut') || (ft ==# 'vimfiler') || (ft ==# 'vimshell') || (name =~# '^fugitive:') || (bt ==# 'help') || (bt ==# 'quickfix') || (bt ==# 'nofile') || (bt ==# 'terminal')
+    if (ft ==# 'quickrun' && name ==# 'QuickRunOut') || (ft ==# 'vimfiler') || (ft ==# 'vimshell') || (ft ==# 'fugitive') || (name =~# '^fugitive:') || (bt ==# 'help') || (bt ==# 'quickfix') || (bt ==# 'nofile') || (bt ==# 'terminal')
       execute w . 'wincmd w'
       q
       break

@@ -439,16 +439,22 @@ hook_add = '''
   nnoremap [Git] <Nop>
   nmap <Space> [Git]
   nnoremap [Git]<Space> :<C-u>Git<Space>
-  nnoremap [Git]s :<C-u>Gstatus<CR>
-  nnoremap [Git]d :<C-u>Gdiff<CR>
+  nnoremap [Git]s :<C-u>Git<CR>
+  nnoremap [Git]d :<C-u>Gvdiffsplit<CR>
   nnoremap [Git]a :<C-u>Gwrite<CR>
   nnoremap [Git]A :<C-u>Git add -A<CR>
-  nnoremap [Git]c :<C-u>Gcommit -v<CR>
-  nnoremap [Git]C :<C-u>Gcommit --amend<Space>
+  nnoremap [Git]c :<C-u>Git commit -v<CR>
+  nnoremap [Git]C :<C-u>Git commit --amend<Space>
   nnoremap [Git]p :<C-u>Git push<CR>
   nnoremap [Git]f :<C-u>Git fetch<CR>
   nnoremap [Git]F :<C-u>Git pull --rebase<CR>
-  nnoremap [Git]b :<C-u>Gblame<CR>
+  nnoremap [Git]b :<C-u>Git_blame<CR>
+
+  autocmd myautocmd FileType fugitive call MyFugitiveSettings()
+  function MyFugitiveSettings() abort
+    nmap <buffer> D dd
+    nnoremap <buffer> q :<C-u>q<CR>
+  endfunction
 '''
 
 [[plugins]]
