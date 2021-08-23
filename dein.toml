@@ -91,6 +91,8 @@ hook_add = '''
   \     "virtualTexthl": "VirtualWarning",
   \ }}
 
+  let g:LanguageClient_hoverPreview = 'Always'
+
   function! LSRestart() abort
     LanguageClientStop
     LanguageClientStart
