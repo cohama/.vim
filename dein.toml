@@ -125,6 +125,7 @@ repo = 'cespare/vim-toml'
 # Insersion
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+depends = ['deoplete-tag']
 on_i = 1
 hook_source = '''
   call deoplete#enable()
@@ -133,6 +134,9 @@ hook_source = '''
   call deoplete#custom#var('file', 'enable_buffer_path', v:false)
   call deoplete#custom#var('file', 'force_completion_length', 2)
 '''
+
+[[plugins]]
+repo = 'deoplete-plugins/deoplete-tag'
 
 [[plugins]]
 repo = 'ncm2/float-preview.nvim'
