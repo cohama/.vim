@@ -1152,9 +1152,9 @@ autocmd myautocmd BufNewFile,BufRead Pipfile set filetype=toml
 
 function! PythonFormat(remove_unused_imports) abort
   if a:remove_unused_imports
-    silent !pipenv run autoflake -i --remove-all-unused-imports %
+    silent !autoflake -i --remove-all-unused-imports %
   endif
-  silent !pipenv run isort -w 120 %
+  silent !isort -w 120 %
   " silent !pipenv run autopep8 --max-line-length 120 -i %
 endfunction
 autocmd myautocmd FileType python call OnPython()
