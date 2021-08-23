@@ -715,6 +715,11 @@ hook_add = '''
   autocmd myautocmd ColorScheme * call s:ale_highlight_groups()
 '''
 
+[[plugins]]
+repo = 'previm/previm'
+on_cmd = 'PrevimOpen'
+depends = ['open-browser.vim']
+
 
 # Miscellaneous
 [[plugins]]
