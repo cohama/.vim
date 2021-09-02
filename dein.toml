@@ -321,6 +321,17 @@ hook_add = '''
   endfunction
 '''
 
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_cmd = 'Qfreplace'
+hook_add = '''
+  function! QfreplaceSettings() abort
+    nnoremap <buffer> r :<C-u>Qfreplace<CR>
+  endfunction
+  autocmd myautocmd FileType qf call QfreplaceSettings()
+'''
+
 # File
 [[plugins]]
 repo = 'scrooloose/nerdtree'
