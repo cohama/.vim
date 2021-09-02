@@ -364,8 +364,8 @@ hook_add = '''
 
 [[plugins]]
 repo = 'Lokaltog/vim-easymotion'
-on_map = {nox = '[EasyMotion]'}
-hook_add = '''
+on_map = {nox = '<CR>'}
+hook_source = '''
 nmap <CR> [EasyMotion]
 omap <CR> [EasyMotion]
 xmap <CR> [EasyMotion]
