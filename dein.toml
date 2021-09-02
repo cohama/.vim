@@ -462,7 +462,7 @@ hook_add = '''
   nnoremap [Git]p :<C-u>Git push<CR>
   nnoremap [Git]f :<C-u>Git fetch<CR>
   nnoremap [Git]F :<C-u>Git pull --rebase<CR>
-  nnoremap [Git]b :<C-u>Git_blame<CR>
+  nnoremap [Git]b :<C-u>Git blame<CR>
 
   autocmd myautocmd FileType fugitive call MyFugitiveSettings()
   function MyFugitiveSettings() abort
