@@ -760,7 +760,8 @@ repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_update = '''
   TSUpdate
 '''
-hook_add = '''
+on_event = 'VimEnter'
+hook_source = '''
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
@@ -771,7 +772,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false
   },
   indent = {
-    enable = true
+    enable = false
   }
 }
 EOF
