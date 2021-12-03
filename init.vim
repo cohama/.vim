@@ -235,6 +235,11 @@ set spelllang=en,cjk
 " }}}
 " }}}
 
+" local 用 vimrc
+if filereadable(fnamemodify("~/.config/nvim/.local.vim", ':p'))
+  source ~/.config/nvim/.local.vim
+endif
+
 " Plugin Bundles {{{
 " NeoBundle の設定
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -1257,10 +1262,4 @@ command! Darken  let g:my_background = 'dark' | colorscheme cohama
 if exists("g:gnvim") || exists("g:nvui")
   source ~/.config/nvim/ginit.vim
 endif
-
-" local 用 vimrc
-if filereadable(fnamemodify("~/.config/nvim/.local.vim", ':p'))
-  source ~/.config/nvim/.local.vim
-endif
-
 " }}}
