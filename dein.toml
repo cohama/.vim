@@ -178,6 +178,7 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
+rev = 'dev'
 on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
   " lexima settings {{{
