@@ -64,7 +64,7 @@ build = 'bash install.sh'
 hook_add = '''
   let g:LanguageClient_serverCommands = {
   \ 'rust': ['rust-analyzer'],
-  \ 'python': ['pyls', '--log-file', '/tmp/LanguageClient-log.txt', '-vvv'],
+  \ 'python': ['pylsp', '--log-file', '/tmp/LanguageClient-log.txt', '-vvv'],
   \ }
   let g:LanguageClient_diagnosticsList = 'Disabled'
   let g:LanguageClient_settingsPath = '~/.config/nvim/lsp_settings.json'

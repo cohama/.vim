@@ -1,7 +1,7 @@
 {
-  "pyls.plugins.pylint.enabled": false,
-  "pyls.plugins.pycodestyle.enabled": false,
-  "pyls.plugins.pyflakes.enabled": false,
-  "pyls.plugins.pyls_mypy.enabled": false,
-  "pyls.plugins.mccabe.enabled": false
+  "pylsp.plugins.pylint.enabled": false,
+  "pylsp.plugins.pycodestyle.enabled": false,
+  "pylsp.plugins.pyflakes.enabled": false,
+  "pylsp.plugins.pyls_mypy.enabled": false,
+  "pylsp.plugins.mccabe.enabled": false
 }
