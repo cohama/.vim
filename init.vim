@@ -1143,11 +1143,13 @@ function! OnPython() abort
     let &l:formatprg = "yapf 2> /dev/null"
   endif
   command! -buffer -bang PyFmt call PythonFormat(<bang>0)
-  command! -buffer Yapf !yapf -i %
+  command! -buffer Yapf silent !yapf -i %
+  command! -buffer Black silent !black % 2>/dev/null
   command! -buffer PyDoc call PythonGenerateDocstring()
-  command! -buffer PyAutoImport call PythonAutoImport("")
+  command! -buffer -bang PyAutoImport call PythonAutoImport("", <bang>0)
 
-  nnoremap <buffer> \gq :<C-u>update<CR>:PyFmt!<CR>
+  nnoremap <buffer> \gq :<C-u>update<CR>:PyFmt!<CR>:Black<CR>
+  nnoremap <buffer> \I :<C-u>update<CR>:PyAutoImport!<CR>
 
   " nnoremap <buffer> <C-]> :<C-u>call jedi#goto()<CR>
   nnoremap <buffer> \R :<C-u>call PythonRunPytestOnFunctionName()<CR><C-w>p
@@ -1189,34 +1191,38 @@ let g:MyPythonAutoImportPresets = {
 \ "Path": "pathlib",
 \ }
 
-function! PythonAutoImport(word) abort
+function! PythonAutoImport(word, format) abort
   if empty(a:word)
     let word = expand("<cword>")
   else
     let word = a:word
   endif
   if has_key(g:MyPythonAutoImportPresets, word)
-    call PythonInsertImportClause(g:MyPythonAutoImportPresets[word], word)
+    call PythonInsertImportClause(g:MyPythonAutoImportPresets[word], word, a:format)
     return
   endif
   let defs = taglist(word)
   for def in defs
     if def["name"] == word
       let from_clause = substitute(substitute(def["filename"], "\.py$", "", ""), "/", ".", "g")
-      call PythonInsertImportClause(from_clause, word)
+      call PythonInsertImportClause(from_clause, word, a:format)
       return
     endif
   endfor
   echoerr "not found " . word
 endfunction
 
-function! PythonInsertImportClause(from, import) abort
+function! PythonInsertImportClause(from, import, format) abort
   if empty(a:from)
     let from_statement = ""
   else
     let from_statement = "from " . a:from . " "
   endif
   call append(0, from_statement . "import " . a:import)
+  if a:format
+    w
+    PyFmt!
+  endif
 endfunction
 
 function! PythonRunPytestOnFunctionName() abort

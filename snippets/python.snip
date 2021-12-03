@@ -1,5 +1,4 @@
 snippet     debug
-abbr        IPython.core.debugger
 options     head
 	from IPython.core.debugger import Pdb; Pdb().set_trace()
 
@@ -9,7 +8,7 @@ options     head
 	plt.imshow((${0:TARGET}).astype(np.uint8)); plt.show()
 
 snippet     pylint_disable
-regexp     '# '
+regexp     '#'
 	pylint: disable=
 
 snippet     from_abc
@@ -19,3 +18,12 @@ options     head
 snippet     from
 options     head
 	from ${1:typing} import ${2:List}
+
+snippet     bp
+options     head
+	breakpoint()
+
+snippet     with_open
+options     head
+	with open(${1:#:file}, "${2:r}", ${3:encoding="utf-8"}) as ${4:f}:
+		${0:pass}
