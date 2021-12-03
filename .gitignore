@@ -3,3 +3,4 @@ bundle/*
 !bundle/neobundle.sh
 .netrwhist
 /.local.vim
+/spell/*
