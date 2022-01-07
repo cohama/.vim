@@ -1088,7 +1088,7 @@ endfunction
 command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>, 0)
 command! -bang -nargs=* PluginTestNoPlugin call PluginTest(<bang>0, <q-args>, 1)
 function! PluginTest(is_vim, extraCommand, no_plugin) abort
-  let cmd = a:is_vim ? 'terminal vim' : 'terminal nvim'
+  let cmd = a:is_vim ? 'terminal env VIMRUNTIME= vim' : 'terminal nvim'
   let extraCommand = empty(a:extraCommand) ? '' : ' -c"au VimEnter * ' . a:extraCommand . '"'
   let plugintestrc = empty(findfile('.plugintest.vimrc', getcwd())) ? '' : ' -S .plugintest.vimrc'
   let min_vimrc_path = "~/.config/nvim/.min.vimrc"
