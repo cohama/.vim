@@ -3,6 +3,10 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'vim-denops/denops.vim'
+lazy = true
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 depends = ['vim-devicons']
 hook_add = '''
@@ -77,31 +81,112 @@ repo = 'cespare/vim-toml'
 
 # Insersion
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-depends = ['deoplete-tag']
-on_event = 'InsertEnter'
+repo = 'Shougo/ddc.vim'
+depends = [
+  'denops.vim',
+  'neosnippet',
+  'ddc-matcher_head',
+  'ddc-sorter_rank',
+  'ddc-file',
+  'ddc-fuzzy',
+  'ddc-nvim-lsp',
+  'ddc-buffer',
+  'ddc-ctags',
+  'pum.vim',
+  'denops-popup-preview.vim',
+]
+on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
-  call deoplete#enable()
-  call deoplete#custom#source('_', 'min_pattern_length', 1)
-  call deoplete#custom#source('file', 'min_pattern_length', 0)
-  call deoplete#custom#var('file', 'enable_buffer_path', v:false)
-  call deoplete#custom#var('file', 'force_completion_length', 2)
+  call ddc#custom#patch_global({
+    \ 'sources': ['nvim-lsp', 'neosnippet', 'ctags', 'buffer', 'file'],
+    \ 'completionMenu': 'pum.vim',
+    \ 'backspaceCompletion': v:true,
+    \ 'sourceOptions': {
+    \   '_': {
+    \     'matchers': ['matcher_fuzzy'],
+    \     'sorters': ['sorter_fuzzy'],
+    \     'converters': ['converter_fuzzy'],
+    \     'minAutoCompleteLength': 1,
+    \   },
+    \   'buffer': {'mark': 'Buff'},
+    \   'ctags': {'mark': 'Tag'},
+    \   'neosnippet': {'mark': 'Snip'},
+    \   'file': {
+    \     'mark': 'File',
+    \     'isVolatile': v:true,
+    \     'forceCompletionPattern': '\S/\S*',
+    \   },
+    \   'nvim-lsp': {
+    \     'mark': 'LSP',
+    \     'forceCompletionPattern': '\.\w*|:\w*',
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   'buffer': {
+    \     'requireSameFiletype': v:false,
+    \     'limitBytes': 5000000,
+    \     'fromAltBuf': v:true,
+    \     'forceCollect': v:true,
+    \   },
+    \   'ctags': {'executable': '/usr/bin/ctags'},
+    \ },
+    \ 'filterParams': {
+    \   'matcher_fuzzy': {'splitMode': 'word'},
+    \ },
+    \ })
+  call ddc#custom#patch_filetype(['python'], 'sourceOptions', {
+    \  'nvim-lsp': {
+    \   'forceCompletionPattern': '\.\w*|:\s\w*|import\s\w*|@\w*',
+    \ },
+    \ })
+  call ddc#enable()
 '''
 
 [[plugins]]
-repo = 'deoplete-plugins/deoplete-tag'
+repo = 'matsui54/ddc-buffer'
+lazy = 1
 
 [[plugins]]
-repo = 'ncm2/float-preview.nvim'
-hook_add = '''
-  let g:float_preview#docked = 0
-  let g:float_preview#max_height = 100
-  let g:float_preview#max_width = 80
+repo = 'Shougo/ddc-matcher_head'
+lazy = 1
 
-  function! FloatPreviewOpen() abort
-    echom nvim_win_set_option(g:float_preview#win, "foldcolumn", "0")
-  endfunction
-  autocmd myautocmd User FloatPreviewWinOpen call FloatPreviewOpen()
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+lazy = 1
+
+[[plugins]]
+repo = 'LumaKernel/ddc-file'
+lazy = 1
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
+lazy = 1
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+lazy = 1
+
+[[plugins]]
+repo = 'delphinus/ddc-ctags'
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
+lazy = 1
+hook_source = '''
+  inoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
+  inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
+  inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
+
+  call pum#set_option({
+    \ 'border': 'single',
+    \ })
+'''
+
+[[plugins]]
+repo = 'matsui54/denops-popup-preview.vim'
+lazy = 1
+hook_source = '''
+  call popup_preview#enable()
 '''
 
 [[plugins]]
@@ -127,13 +212,10 @@ rev = 'dev'
 on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
   " lexima settings {{{
-  function! ClosePopup() abort
-    return pumvisible() ? "\<C-y>" : ''
-  endfunction
   let g:lexima_no_default_rules = 1
   let g:lexima_map_escape = ''
   let g:lexima_accept_pum_with_enter = 0
-  inoremap <silent> <Esc> <C-r>=ClosePopup()<CR><C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>:call ImActivateFunc(0)<CR>
+  inoremap <silent> <Esc> <C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>:call ImActivateFunc(0)<CR>
   call lexima#set_default_rules()
 
   call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<CR>', 'input_after': '<CR>'})
