@@ -276,15 +276,15 @@ endif
 filetype plugin indent on
 "
 " Settings and keymaps {{{
-function ImActivateFunc(active)
+function! ImActivateFunc(active)
   if a:active
-    call system('fcitx-remote -o')
+    call system('fcitx5-remote -o')
   else
-    call system('fcitx-remote -c')
+    call system('fcitx5-remote -c')
   endif
 endfunction
 " 「日本語入力固定モード」切り替えキー
-if g:is_unix && executable('fcitx') && (g:is_gui || ($SSH_TTY == '' && $SSH_CLIENT == ''))
+if g:is_unix && executable('fcitx5') && (g:is_gui || ($SSH_TTY == '' && $SSH_CLIENT == ''))
   set iminsert=0
   if !has('nvim')
     set imactivatefunc=ImActivateFunc
@@ -1262,6 +1262,8 @@ command! Darken  let g:my_background = 'dark' | colorscheme cohama
 " gnvim 対応
 " nvui 対応
 if exists("g:gnvim") || exists("g:nvui")
+  " 無変換キーで文字が入力されてしまう問題に対処
+  execute "inoremap \u1122 \<Nop>"
   source ~/.config/nvim/ginit.vim
 endif
 " }}}
