@@ -12,7 +12,12 @@ elseif exists('g:nvui')
   NvuiScrollAnimationDuration 0.1
   let g:font_name = get(g:, 'font_name', 'Monospace')
   let g:font_size = get(g:, 'font_size', 12)
-  let &guifont = g:font_name . ':h' . g:font_size
+  nunmap <C-d>
+  nunmap <C-u>
+  nunmap <C-f>
+  nunmap <C-b>
+  set wrapscan
+  let &guifont = g:font_name . ':h' . g:font_size . ",NasuM"
 else
   let g:font_name = get(g:, 'font_name', 'Monospace')
   let g:font_size = get(g:, 'font_size', 12)
