@@ -78,10 +78,10 @@ hi DiffDelete      ctermfg=162  ctermbg=53                   guifg=#521111 guibg
 hi DiffText                     ctermbg=239  cterm=bold      guifg=NONE    guibg=#4C1354 gui=bold,underline guisp=#999999
 
 " complete menus
-hi Pmenu           ctermfg=NONE ctermbg=237  cterm=NONE      guifg=NONE    guibg=#36364D gui=NONE
+hi Pmenu           ctermfg=NONE ctermbg=237  cterm=NONE      guifg=NONE    guibg=#25254a gui=NONE
 hi PmenuSel        ctermfg=NONE ctermbg=19                   guifg=#FFFFFF guibg=#6B6B96 gui=bold
-hi PmenuSbar                    ctermbg=239                                guibg=#444496
-hi PmenuThumb      ctermbg=244                                             guibg=#5959C2
+hi PmenuSbar                    ctermbg=239                                guibg=#303059
+hi PmenuThumb      ctermbg=244                                             guibg=#43437d
 
 " errors
 hi Error           ctermfg=219  ctermbg=88                   guifg=NONE    guibg=#0F0F29 gui=undercurl guisp=#E32935
@@ -113,4 +113,7 @@ hi agitDiffAdd     ctermfg=40                cterm=bold      guifg=#34CF36 guibg
 hi diffRemoved     ctermfg=204                               guifg=#A31D1D guibg=#331111
 hi agitDiffRemove  ctermfg=204                               guifg=#A31D1D guibg=#331111
 
-" vim: set colorcolumn=20,33,46,62,76,90 :
+if has('nvim')
+  hi FloatBorder   ctermfg=244  ctermbg=53   cterm=bold      guifg=NONE    guibg=#25254a gui=bold
+endif
+" vim: set colorcolumn=20,33,46,62,76,90 h:
