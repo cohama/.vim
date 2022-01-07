@@ -267,6 +267,7 @@ if dein#load_state(s:dein_cache_path)
   call dein#end()
   call dein#save_state()
 endif
+autocmd myautocmd VimEnter * call dein#call_hook('post_source')
 
 if dein#check_install()
   call dein#install()
