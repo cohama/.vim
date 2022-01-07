@@ -232,6 +232,9 @@ set nostartofline
 
 " spellcheck で日本語は対象外にする
 set spelllang=en,cjk
+
+" camelcase でもスペルチェックする
+set spelloptions=camel
 " }}}
 " }}}
 
@@ -800,28 +803,20 @@ nnoremap [Toggle]t :<C-u>call Toggle("expandtab", "local")<CR>
 nnoremap [Toggle]c <Nop>
 nnoremap [Toggle]cl :<C-u>let g:cursorline_flg = !g:cursorline_flg<CR>:call Toggle("cursorline")<CR>
 nnoremap [Toggle]cc :<C-u>let g:cursorcolumn_flg = !g:cursorcolumn_flg<CR>:call Toggle("cursorcolumn")<CR>
-nnoremap [Toggle]s :<C-u>call Toggle("spell", "local")<CR>
-nnoremap [Toggle]n :<C-u>call ToggleNumber()<CR>
-nnoremap [Toggle]r :<C-u>call ToggleRelativeNumber()<CR>
+nnoremap [Toggle]s :<C-u>call ToggleSpell()<CR>
+nnoremap [Toggle]n :<C-u>call Toggle("number", "local")<CR>
+nnoremap [Toggle]r :<C-u>call Toggle("relativenumber", "local")<CR>
 nnoremap [Toggle]h :<C-u>call Toggle("hlsearch")<CR>
 nnoremap [Toggle]N :<C-u>NeoCompleteToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 nnoremap [Toggle]G :<C-u>GitGutterToggle<CR>
-function! ToggleNumber()
-  if &l:number && !&l:relativenumber
-    setlocal nonumber
+function! ToggleSpell() abort
+  if &l:spell
+    setlocal nospell
+    syntax spell default
   else
-    setlocal number
-  endif
-  setlocal norelativenumber
-endfunction
-function! ToggleRelativeNumber()
-  if &l:number && &l:relativenumber
-    setlocal nonumber
-    setlocal norelativenumber
-  else
-    setlocal number
-    setlocal relativenumber
+    setlocal spell
+    syntax spell toplevel
   endif
 endfunction
 
