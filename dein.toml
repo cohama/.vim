@@ -288,8 +288,16 @@ on_map = {ox = ['ic', 'ac']}
 
 # Operator
 [[plugins]]
-repo = 'tpope/vim-surround'
-on_map = {n = ['ys', 'ds', 'cs'], x = 'S'}
+repo = 'machakann/vim-sandwich'
+hook_add = '''
+  let g:sandwich_no_default_key_mappings = 1
+  let g:operator_sandwich_no_default_key_mappings = 1
+  let g:textobj_sandwich_no_default_key_mappings = 1
+  nmap ys <Plug>(sandwich-add)
+  nmap ds <Plug>(sandwich-delete)
+  nmap cs <Plug>(sandwich-replace)
+  xmap S <Plug>(sandwich-add)
+'''
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
@@ -332,9 +340,6 @@ hook_add = '''
 [[plugins]]
 repo = 'h1mesuke/vim-alignta'
 on_cmd = ['Alignta', 'Align']
-
-[[plugins]]
-repo = 'kana/vim-repeat'
 
 [[plugins]]
 repo = 'thinca/vim-template'
