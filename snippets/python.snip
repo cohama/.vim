@@ -27,3 +27,7 @@ snippet     with_open
 options     head
 	with open(${1:#:file}, "${2:r}", ${3:encoding="utf-8"}) as ${4:f}:
 		${0:pass}
+
+snippet     super_init
+options     head
+	super().__init__(${1:#:**kwargs})${0}
