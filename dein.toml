@@ -58,63 +58,9 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-rev = 'next'
-build = 'bash install.sh'
+repo = 'neovim/nvim-lspconfig'
 hook_add = '''
-  let g:LanguageClient_serverCommands = {
-  \ 'rust': ['rust-analyzer'],
-  \ 'python': ['pylsp', '--log-file', '/tmp/LanguageClient-log.txt', '-vvv'],
-  \ }
-  let g:LanguageClient_diagnosticsList = 'Disabled'
-  let g:LanguageClient_settingsPath = '~/.config/nvim/lsp_settings.json'
-
-  let g:LanguageClient_diagnosticsDisplay = {
-  \ 1: {
-  \     "name": "Error",
-  \     "texthl": "ALEError",
-  \     "signText": "✖",
-  \     "signTexthl": "ALEErrorSign",
-  \     "virtualTexthl": "VirtualError",
-  \ },
-  \ 2: {
-  \     "name": "Warning",
-  \     "texthl": "ALEWarning",
-  \     "signText": "⚠",
-  \     "signTexthl": "ALEWarningSign",
-  \     "virtualTexthl": "VirtualWarning",
-  \ },
-  \ 3: {
-  \     "name": "Information",
-  \     "texthl": "ALEInfo",
-  \     "signText": "ℹ",
-  \     "signTexthl": "ALEInfoSign",
-  \     "virtualTexthl": "VirtualWarning",
-  \ },
-  \ 4: {
-  \     "name": "Hint",
-  \     "texthl": "ALEInfo",
-  \     "signText": "➤",
-  \     "signTexthl": "ALEInfoSign",
-  \     "virtualTexthl": "VirtualWarning",
-  \ }}
-
-  let g:LanguageClient_hoverPreview = 'Always'
-
-  function! LSRestart() abort
-    LanguageClientStop
-    LanguageClientStart
-  endfunction
-
-  function! OnLSP() abort
-    command! -buffer LSRestart call LSRestart()
-    nnoremap <buffer> K :<C-u>call LanguageClient#textDocument_hover()<CR>
-    nnoremap <buffer> gd :<C-u>call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> gR :<C-u>call LanguageClient#textDocument_rename()<CR>
-  endfunction
-
-  autocmd myautocmd FileType rust,python call OnLSP()
-
+  luafile ~/.config/nvim/lsp.lua
 '''
 
 [[plugins]]
@@ -123,7 +69,6 @@ depends = 'denite.nvim'
 hook_add = '''
   let g:neomru#file_mru_limit = 10000
 '''
-
 
 # Filetypes
 [[plugins]]
@@ -711,35 +656,9 @@ hook_add = '''
 repo = 'thinca/vim-themis'
 
 [[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-  let g:ale_lint_on_text_changed = "normal"
-  let g:ale_lint_on_insert_leave = 1
-  let g:ale_python_pylint_change_directory = 0
-  let g:ale_virtualtext_cursor = 1
-  let g:ale_virtualenv_dir_names = ['.env', 'env', 've-py3', 've', 'virtualenv', 'venv', '.venv']
-  let g:ale_python_pylint_options = "--rcfile setup.cfg"
-
-  let g:ale_sign_error = "✖"
-  let g:ale_sign_warning = "⚠"
-  let g:ale_sign_info = "ℹ"
-  let g:ale_sign_style_error = "✖"
-  let g:ale_sign_style_warning = "⚠"
-  function! s:ale_highlight_groups() abort
-    hi def link ALEVirtualTextError VirtualError
-    hi def link ALEVirtualTextWarning VirtualWarning
-    hi def link ALEVirtualTextInfo VirtualWarning
-    hi def link ALEVirtualTextStyleError VirtualError
-    hi def link ALEVirtualTextStyleWarning VirtualWarning
-  endfunction
-  autocmd myautocmd ColorScheme * call s:ale_highlight_groups()
-'''
-
-[[plugins]]
 repo = 'previm/previm'
 on_cmd = 'PrevimOpen'
 depends = ['open-browser.vim']
-
 
 # Miscellaneous
 [[plugins]]
