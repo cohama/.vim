@@ -811,6 +811,7 @@ nnoremap [Toggle]h :<C-u>call Toggle("hlsearch")<CR>
 nnoremap [Toggle]N :<C-u>NeoCompleteToggle<CR>
 nnoremap [Toggle]I :<C-u>IndentGuidesToggle<CR>
 nnoremap [Toggle]G :<C-u>GitGutterToggle<CR>
+nnoremap [Toggle]T :<C-u>TSBufToggle highlight<CR>
 function! ToggleSpell() abort
   if &l:spell
     setlocal nospell
