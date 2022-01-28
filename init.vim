@@ -1166,9 +1166,9 @@ autocmd myautocmd FileType python call OnPython()
 
 function! PythonGenerateDocstring() abort
   let [bufnum, lnum, col, off] = getpos('.')
-  let indent = indent(lnum + 1)
-  let indent_spaces = repeat(' ', indent)
-  execute 'r !pydocstring -f google % ' . lnum . ',' . col . '| sed -E -e "s/ (\(.+\)):/:/" -e 1d -e "s/./' . indent_spaces . '\0/" | cat -s'
+  let [start_line, _] = searchpos('\v^\s*def ', 'bcWn')
+  let [end_line, _] = searchpos('\v:\n', 'cWn')
+  execute start_line . ',' . (end_line + 1) . '!doq --formatter google | sed -E -e "s/ (\(.+\)):/:/" '
   call setpos('.', [bufnum, lnum, col, off])
 endfunction
 
