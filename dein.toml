@@ -8,7 +8,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-lazy = true
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
