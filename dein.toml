@@ -10,71 +10,122 @@ hook_add = '''
 repo = 'vim-denops/denops.vim'
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-depends = ['vim-devicons']
+repo = 'Shougo/ddu.vim'
+depends = [
+  'denops.vim',
+]
 hook_add = '''
-  call denite#custom#option("default", {
-    \ "split": "floating",
-    \ "start_filter": v:true,
-    \ "highlight_matched_char": "None",
-    \ "highlight_matched_range": "Search",
-    \ "match_highlight": v:true,
-    \ "smartcase": v:true,
+  let ignored_dirs = readfile(fnamemodify($MYVIMRC, ':p:h') . '/ddu-source-file_rec-ignored_dirs.txt')
+  call ddu#custom#patch_global({
+  \   'ui': 'ff',
+  \   'sourceOptions': {
+  \     '_': {
+  \       'matchers': ['matcher_substring'],
+  \     },
+  \   },
+  \   'filterParams': {
+  \     'matcher_substring': {'highlightMatched': 'Search'}
+  \   },
+  \   'uiParams': {
+  \     'ff': {
+  \       'split': 'floating',
+  \       'startFilter': 'v:true',
+  \       'floatingBorder': 'single',
+  \       'filterFloatingPosition': 'top',
+  \     },
+  \   },
+  \   'sourceParams': {
+  \     'file_external': {'cmd': ['fd', '.', '-H', '-E', '.git', '-tf']},
+  \     'file_rec': {'ignoredDirectories': ignored_dirs},
+  \     'rg': {'args': ['--column', '--no-heading', '--color', 'never']},
+  \   },
+  \   'kindOptions:': {
+  \     'file': {
+  \       'defaultAction': 'open',
+  \     },
+  \   },
+  \ })
+  command! DduRgLive call <SID>ddu_rg_live()
+  function! s:ddu_rg_live() abort
+    call ddu#start({
+    \   'volatile': v:true,
+    \   'sources': [{
+    \     'name': 'rg',
+    \     'options': {'matchers': []},
+    \   }],
+    \   'uiParams': {'ff': {
+    \     'ignoreEmpty': v:false,
+    \     'autoResize': v:false,
+    \   }},
     \ })
+  endfunction
+  nnoremap \F <Cmd>Ddu file_rec<CR>
+  nnoremap \f <Cmd>Ddu file_external<CR>
+  nnoremap <M-m> <Cmd>Ddu mr<CR>
+  nnoremap \ur <Cmd>Ddu -resume<CR>
+  nnoremap \ug <Cmd>DduRgLive<CR>
 
-  nnoremap \d :<C-u>Denite<Space>
-  nnoremap \D :<C-u>Denite<Space>
-  nnoremap \f :<C-u>Denite file/rec<CR>
-  nnoremap <M-m> :<C-u>Denite file_mru<CR>
-  nnoremap <M-o> :<C-u>Denite outline<CR>
-  if executable('ag')
-    call denite#custom#var('file/rec', 'command', ['ag', '--nocolor', '--nogroup', '--hidden', '--ignore', '.git', '-g',  ''])
-    call denite#custom#var('grep', {
-    \ 'command': ['ag'],
-    \ 'default_opts': ['-i', '--vimgrep'],
-    \ 'recursive_opts': [],
-    \ 'pattern_opt': [],
-    \ 'separator': ['--'],
-    \ 'final_opts': [],
-    \ })
-  endif
-  call denite#custom#source('_', 'matchers', ['matcher/regexp', 'matcher/hide_hidden_files'])
-  call denite#custom#source('command_history', 'matchers', ['matcher/fuzzy'])
-  call denite#custom#source('source', 'matchers', ['matcher/substring'])
-  call denite#custom#source('output', 'matchers', ['matcher/fuzzy'])
-  autocmd FileType denite call MyDeniteSettings()
-  function! MyDeniteSettings() abort
-    nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
-    nnoremap <silent><buffer><expr> s denite#do_map('do_action', 'vsplit')
-    nnoremap <silent><buffer><expr> S denite#do_map('do_action', 'split')
-    nnoremap <silent><buffer><expr> t denite#do_map('do_action', 'tabopen')
-    nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
-    nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr> q denite#do_map('quit')
-    nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
-    nmap <silent><buffer><expr> <Esc> denite#do_map('quit')
+  autocmd FileType ddu-ff call s:ddu_my_settings()
+  function! s:ddu_my_settings() abort
+    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open'})<CR>
+    nnoremap <buffer><silent> s <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
+    nnoremap <buffer><silent> S <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
+    nnoremap <buffer><silent> t <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
+    nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+    nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+    nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
   endfunction
 
-  autocmd FileType denite-filter call MyDeniteFilterSettings()
-  function! MyDeniteFilterSettings() abort
-    imap <silent><buffer> <Esc> <Plug>(denite_filter_update)
-    inoremap <silent><buffer><expr> <C-l> denite#do_map('redraw')
-    inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+  autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+  function! s:ddu_filter_my_settings() abort
+    inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open'})<CR>
+    inoremap <buffer><silent> <Esc> <Esc><Cmd>close<CR>
+    nnoremap <buffer><silent> <CR> <Cmd>close<CR>
+    inoremap <buffer><silent> <C-l> <Esc><Cmd>call ddu#ui#ff#do_action('refreshItems')<CR>a
   endfunction
 '''
+
+[[plugins]]
+repo = 'Shougo/ddu-commands.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-line'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-file_external'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-command_history'
+
+[[plugins]]
+repo = 'kuuote/ddu-source-mr'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-rg'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+
+[[plugins]]
+repo = 'lambdalisue/mr.vim'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 hook_add = '''
   luafile ~/.config/nvim/lsp.lua
-'''
-
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-depends = 'denite.nvim'
-hook_add = '''
-  let g:neomru#file_mru_limit = 10000
 '''
 
 # Filetypes
@@ -235,11 +286,9 @@ hook_source = '''
   call lexima#add_rule({'at': 'Git commit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
   call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
 
-  call lexima#add_rule({'at': 'Denite \%#', 'char': 'O', 'input': 'outline', 'mode': ':'})
-  call lexima#add_rule({'at': 'Denite \%#', 'char': 'F', 'input': 'file', 'mode': ':'})
-  call lexima#add_rule({'at': 'Denite \%#', 'char': 'B', 'input': 'buffer', 'mode': ':'})
-  call lexima#add_rule({'at': 'Denite \%#', 'char': 'C', 'input': 'change', 'mode': ':'})
-  call lexima#add_rule({'at': 'Denite \%#', 'char': 'J', 'input': 'jump', 'mode': ':'})
+  call lexima#add_rule({'at': 'Ddu \%#', 'char': 'O', 'input': 'outline', 'mode': ':'})
+  call lexima#add_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Ddu line<CR>', 'mode': '/'})
+  call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Ddu command_history<CR>', 'mode': ':'})
 
   call lexima#add_rule({'at': '^\s*\%(Describe\|Context\|It\|Before\|After\)\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
   " }}}
@@ -517,9 +566,6 @@ hook_add = '''
 [[plugins]]
 repo = 'cohama/vim-insert-linenr'
 on_event = 'InsertEnter'
-
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'
 
 # Git
 [[plugins]]
