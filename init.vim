@@ -1145,7 +1145,8 @@ function! OnPython() abort
   command! -buffer PyDoc call PythonGenerateDocstring()
   command! -buffer -bang PyAutoImport call PythonAutoImport("", <bang>0)
 
-  nnoremap <buffer> \gq :<C-u>update<CR>:PyFmt!<CR>:Black<CR>
+  nnoremap <buffer> \gq :<C-u>update<CR>:Black<CR>:e<CR>
+  nnoremap <buffer> \gQ :<C-u>update<CR>:PyFmt!<CR>:Black<CR>
   nnoremap <buffer> \I :<C-u>update<CR>:PyAutoImport!<CR>
 
   " nnoremap <buffer> <C-]> :<C-u>call jedi#goto()<CR>
@@ -1168,7 +1169,9 @@ function! PythonGenerateDocstring() abort
   let [bufnum, lnum, col, off] = getpos('.')
   let [start_line, _] = searchpos('\v^\s*def ', 'bcWn')
   let [end_line, _] = searchpos('\v:\n', 'cWn')
+  call append(end_line, repeat(' ', 40) .. '!!!PythonGenerateDocstring!!!')
   execute start_line . ',' . (end_line + 1) . '!doq --formatter google | sed -E -e "s/ (\(.+\)):/:/" '
+  global /!!!PythonGenerateDocstring!!!/d
   call setpos('.', [bufnum, lnum, col, off])
 endfunction
 
