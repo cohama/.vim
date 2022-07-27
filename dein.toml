@@ -366,6 +366,14 @@ hook_add = '''
   nmap ds <Plug>(sandwich-delete)
   nmap cs <Plug>(sandwich-replace)
   xmap S <Plug>(sandwich-add)
+  let g:sandwich#magicchar#f#patterns = [
+  \   {
+  \     'header' : '\<\%(\h\k*\.\)*\h\k*',
+  \     'bra'    : '(',
+  \     'ket'    : ')',
+  \     'footer' : '',
+  \   },
+  \ ]
 '''
 
 [[plugins]]
