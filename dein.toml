@@ -145,6 +145,7 @@ depends = [
   'neosnippet',
   'ddc-matcher_head',
   'ddc-sorter_rank',
+  'ddc-around',
   'ddc-file',
   'ddc-fuzzy',
   'ddc-nvim-lsp',
@@ -192,13 +193,26 @@ hook_source = '''
     \   'matcher_fuzzy': {'splitMode': 'word'},
     \ },
     \ })
+  call ddc#custom#patch_filetype(['python'], 'sources', ['nvim-lsp', 'neosnippet', 'ctags', 'file', 'around'])
   call ddc#custom#patch_filetype(['python'], 'sourceOptions', {
-    \  'nvim-lsp': {
+    \ 'nvim-lsp': {
     \   'forceCompletionPattern': '\.\w*|:\s\w*|import\s\w*|@\w*',
+    \ },
+    \ 'around': {
+    \   'mark': 'A',
+    \ },
+    \ })
+  call ddc#custom#patch_filetype(['python'], 'sourceParams', {
+    \ 'around': {
+    \   'maxSize': 500,
     \ },
     \ })
   call ddc#enable()
 '''
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+lazy = 1
 
 [[plugins]]
 repo = 'matsui54/ddc-buffer'
@@ -254,7 +268,7 @@ filetypes = 'neosnippet'
 on_event = 'InsertEnter'
 hook_source = '''
   let g:neosnippet#snippets_directory = expand('~/.config/nvim/snippets')
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  imap <C-k> <C-y><Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-l> <Plug>(neosnippet_expand_target)
   snoremap <C-l> <Esc>a
@@ -272,6 +286,7 @@ hook_source = '''
   let g:lexima_no_default_rules = 1
   let g:lexima_map_escape = ''
   let g:lexima_accept_pum_with_enter = 0
+  inoremap <expr> <CR> pum#visible() ? "\<Cmd>call pum#map#confirm()\<CR>" : "\<C-r>=lexima#expand('<CR>', 'i')\<CR>"
   inoremap <silent> <Esc> <C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>:call ImActivateFunc(0)<CR>
   call lexima#set_default_rules()
 
