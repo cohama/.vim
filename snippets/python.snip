@@ -31,3 +31,11 @@ options     head
 snippet     super_init
 options     head
 	super().__init__(${1:#:**kwargs})${0}
+
+snippet     typevar
+options     head
+	_T = TypeVar('_T')
+
+snippet     self__
+options     head
+	self.__$1 = ${1:var}

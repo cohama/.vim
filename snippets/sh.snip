@@ -1,0 +1,19 @@
+snippet     getopt
+options     head
+	args=$(getopt -o ho: -l help,output: -- "$@") || exit 1
+	eval "set -- $args"
+
+	while [[ $# -gt 0 ]]; do
+		case \$1 in
+			-h | --help)
+				usage()
+				exit 0
+			-o | --output)
+				output_path=\$2;
+				shift 2;;
+			--)
+				shift;
+				break;;
+		esac
+	done
+
