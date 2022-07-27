@@ -129,8 +129,6 @@ hook_add = '''
 '''
 
 # Filetypes
-[[plugins]]
-repo = 'cespare/vim-toml'
 
 
 # Insersion
