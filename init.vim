@@ -698,7 +698,7 @@ nnoremap <Leader><Tab> <C-W>W
 
 " Jump
 nmap <C-O> <Nop>
-nnoremap <C-O><C-I> <C-O>
+nnoremap <C-O><Tab> <C-O>
 nnoremap <C-O><C-P> <C-I>
 
 function! ColorSchemeSettings()
@@ -1267,4 +1267,8 @@ if exists("g:gnvim") || exists("g:nvui")
   execute "inoremap \u1122 \<Nop>"
   source ~/.config/nvim/ginit.vim
 endif
+
+" neovim 0.7.0 対策
+map <C-[> <Esc>
+imap <C-[> <Esc>
 " }}}
