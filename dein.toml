@@ -129,7 +129,13 @@ hook_add = '''
 '''
 
 # Filetypes
-
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'
+on_ft = ['csv', 'tsv']
+hook_add = '''
+  let g:disable_rainbow_key_mappings = 1
+  autocmd myautocmd BufReadPost,BufNewFile *.tsv setfiletype tsv
+'''
 
 # Insersion
 [[plugins]]
