@@ -340,7 +340,6 @@ hook_add = '''
 [[plugins]]
 repo = 'kana/vim-textobj-line'
 depends = 'vim-textobj-user'
-on_map = {ox = ['il', 'al']}
 
 [[plugins]]
 repo = 'gilligan/textobj-lastpaste'
