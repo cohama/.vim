@@ -1,6 +1,10 @@
 # Fundamentals
 [[plugins]]
 repo = 'Shougo/dein.vim'
+hook_add = '''
+  let g:dein#install_progress_type = 'floating'
+  autocmd myautocmd BufWinEnter *dein.toml call dein#toml#syntax()
+'''
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
