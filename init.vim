@@ -1251,6 +1251,8 @@ autocmd myautocmd ColorScheme * call AddMyHighlight()
 function! AddMyHighlight() abort
   hi VirtualError ctermfg=8 gui=italic guifg=#753A5A
   hi VirtualWarning ctermfg=8 gui=italic guifg=#654458
+  hi DiagnosticUnderlineError gui=undercurl
+  hi DiagnosticUnderlineWarn gui=undercurl
 endfunction
 
 
@@ -1274,4 +1276,10 @@ endif
 " neovim 0.7.0 対策
 map <C-[> <Esc>
 imap <C-[> <Esc>
+
+" sign
+sign define DiagnosticSignError text=E texthl=DiagnosticSignError linehl= numhl=
+sign define DiagnosticSignWarn text=W texthl=DiagnosticSignWarn linehl= numhl=
+sign define DiagnosticSignInfo text=I texthl=DiagnosticSignInfo linehl= numhl=
+sign define DiagnosticSignHint text=H texthl=DiagnosticSignHint linehl= numhl=
 " }}}
