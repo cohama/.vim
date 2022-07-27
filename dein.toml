@@ -290,7 +290,8 @@ hook_source = '''
   inoremap <silent> <Esc> <C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>:call ImActivateFunc(0)<CR>
   call lexima#set_default_rules()
 
-  call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<CR>', 'input_after': '<CR>'})
+  call lexima#add_rule({'at': '\S\s*\%#', 'char': '<Tab>', 'input': '', 'leave': 1})
+
   call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
   call lexima#add_rule({'at': '{-\%#}', 'char': '#', 'input': '# ', 'input_after': ' #-', 'filetype': ['haskell']})
   call lexima#add_rule({'at': '{\%#}', 'char': '<CR>', 'input': '<CR><Bslash> ', 'input_after': '<CR><Bslash> ', 'filetype': 'vim'})
@@ -306,6 +307,8 @@ hook_source = '''
   call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Ddu command_history<CR>', 'mode': ':'})
 
   call lexima#add_rule({'at': '^\s*\%(Describe\|Context\|It\|Before\|After\)\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
+
+  call lexima#add_rule({'at': '\<\(\k\+\)\.\(_*\)self\%#', 'char': '<Space>', 'input': '<C-u>self.\2\1 = \1', 'filetype': 'python', 'with_submatch': 1})
   " }}}
 '''
 
