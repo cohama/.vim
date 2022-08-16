@@ -11,14 +11,6 @@ snippet     pylint_disable
 regexp     '#'
 	pylint: disable=
 
-snippet     from_abc
-options     head
-	from abc import ABC, abstractmethod
-
-snippet     from
-options     head
-	from ${1:typing} import ${2:List}
-
 snippet     bp
 options     head
 	breakpoint()
@@ -39,3 +31,23 @@ options     head
 snippet     self__
 options     head
 	self.__$1 = ${1:var}
+
+snippet     imp_numpy
+options     head
+	import numpy as np
+
+snippet     imp_pandas
+options     head
+	import pandas as pd
+
+snippet     from_matplotlib
+options     head
+	from matplotlib import pyplot as plt
+
+snippet     from_abc
+options     head
+	from abc import ABC, abstractmethod
+
+snippet     from_dataclasses
+options     head
+	from dataclasses import dataclass
