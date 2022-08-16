@@ -1244,6 +1244,15 @@ function! GetRootDir(path) abort
 endfunction
 command! Gtcd execute "tcd " . GetRootDir(expand("%"))
 nnoremap [Git]<CR> :<C-u>Gtcd<CR>:pwd<CR>
+
+" カレントディレクトリを title に表示
+function! SetTitleCwd() abort
+  let cwd = getcwd()
+  set title
+  let &titlestring = "Neovim - " .. cwd
+endfunction
+autocmd myautocmd DirChanged * call SetTitleCwd()
+autocmd myautocmd BufWinEnter,WinEnter * call SetTitleCwd()
 "}}}
 
 " ColorScheme {{{
