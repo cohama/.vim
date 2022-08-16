@@ -287,8 +287,6 @@ hook_source = '''
   let g:lexima_no_default_rules = 1
   let g:lexima_map_escape = ''
   let g:lexima_accept_pum_with_enter = 0
-  inoremap <expr> <CR> pum#visible() ? "\<Cmd>call pum#map#confirm()\<CR>" : "\<C-r>=lexima#expand('<CR>', 'i')\<CR>"
-  inoremap <silent> <Esc> <C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>:call ImActivateFunc(0)<CR>
   call lexima#set_default_rules()
 
   call lexima#add_rule({'at': '\S\s*\%#', 'char': '<Tab>', 'input': '', 'leave': 1})
@@ -310,6 +308,8 @@ hook_source = '''
   call lexima#add_rule({'at': '^\s*\%(Describe\|Context\|It\|Before\|After\)\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
 
   call lexima#add_rule({'at': '\<\(\k\+\)\.\(_*\)self\%#', 'char': '<Space>', 'input': '<C-u>self.\2\1 = \1', 'filetype': 'python', 'with_submatch': 1})
+  " inoremap <expr> <CR> pum#visible() ? "\<Cmd>call pum#map#confirm()\<CR>" : "\<C-r>=lexima#expand('<LT>CR>', 'i')\<CR>"
+  inoremap <silent> <Esc> <C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>:call ImActivateFunc(0)<CR>
   " }}}
 '''
 
