@@ -96,6 +96,9 @@ nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach,
 }
 
+nvim_lsp.hls.setup{
+  on_attach = on_attach,
+}
 -- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 --   vim.lsp.diagnostic.on_publish_diagnostics, {
 --     float = true,
