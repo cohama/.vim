@@ -77,7 +77,7 @@ nvim_lsp.efm.setup {
   flags = {
     debounce_text_changes = 500,
   },
-  filetypes = {'sh'},
+  filetypes = {'sh', 'dockerfile'},
   settings =  {
     rootMarkers = {'.git'},
     languages = {
@@ -86,6 +86,12 @@ nvim_lsp.efm.setup {
           lintCommand = 'shellcheck -f gcc -x',
           lintSource = 'shellcheck',
           lintFormats= {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
+        },
+      },
+      dockerfile = {
+        {
+          lintCommand = 'hadolint --no-color',
+          lintFormats = {'%f:%l DL%n %trror: %m', '%f:%l DL%n %tarning: %m'},
         },
       },
     }
