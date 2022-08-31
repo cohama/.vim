@@ -62,19 +62,36 @@ hook_add = '''
   nnoremap \F <Cmd>Ddu file_rec<CR>
   nnoremap \f <Cmd>Ddu file_external<CR>
   nnoremap <M-m> <Cmd>Ddu mr<CR>
+  nnoremap <M-M> <Cmd>call ddu#start({
+  \ "name": "mr",
+  \ "sources": [
+  \   {
+  \     "name": "mr",
+  \     "params": {"kind": "mrr"}
+  \   }
+  \ ]
+  \ })<CR>
   nnoremap \ur <Cmd>Ddu -resume<CR>
   nnoremap \ug <Cmd>DduRgLive<CR>
 
+  function! DduFileExternal(dir) abort
+    call ddu#start({"name": "file_ext_custom", "sources": [{"name": "file_external"}]})
+  endfunction
+
+  command! -nargs=1 -complete=dir DduFileExternal Ddu file_external -source-param-path=<args>
   autocmd FileType ddu-ff call s:ddu_my_settings()
   function! s:ddu_my_settings() abort
     nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open'})<CR>
     nnoremap <buffer><silent> s <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
     nnoremap <buffer><silent> S <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
     nnoremap <buffer><silent> t <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
+    nnoremap <buffer><silent> C <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'tcd'}})<CR>
     nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
     nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
     nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
     nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+
+    nnoremap <buffer><silent> F <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'DduFileExternal'}})<CR>
   endfunction
 
   autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
