@@ -373,9 +373,47 @@ repo = 'thinca/vim-textobj-comment'
 depends = 'vim-textobj-user'
 on_map = {ox = ['ic', 'ac']}
 
+[[plugins]]
+repo = 'machakann/vim-textobj-functioncall'
+depends = ['vim-textobj-user']
+on_map = {ox = ['iF', 'aF', 'ia', 'aa', 'ig', 'ag']}
+hook_source = '''
+  let g:textobj_functioncall_no_default_key_mappings = 1
+  xmap iF <Plug>(textobj-functioncall-i)
+  omap iF <Plug>(textobj-functioncall-i)
+  xmap aF <Plug>(textobj-functioncall-a)
+  omap aF <Plug>(textobj-functioncall-a)
+
+  let g:my_textobj_functioncall_bracket_patterns = [
+  \ {
+  \   'header' : '\<\%(\h\k*\.\)*\h\k*',
+  \   'bra': '\[',
+  \   'ket': '\]',
+  \   'footer' : '',
+  \ }]
+  onoremap <silent> ig :<C-u>call textobj#functioncall#i('o', g:my_textobj_functioncall_bracket_patterns)<CR>
+  xnoremap <silent> ig :<C-u>call textobj#functioncall#i('x', g:my_textobj_functioncall_bracket_patterns)<CR>
+  onoremap <silent> ag :<C-u>call textobj#functioncall#a('o', g:my_textobj_functioncall_bracket_patterns)<CR>
+  xnoremap <silent> ag :<C-u>call textobj#functioncall#a('x', g:my_textobj_functioncall_bracket_patterns)<CR>
+
+  let g:my_textobj_functioncall_angle_bracket_patterns = [
+  \ {
+  \   'header' : '\<\%(\h\k*\.\)*\h\k*',
+  \   'bra': '<',
+  \   'ket': '>',
+  \   'footer' : '',
+  \ }]
+
+  onoremap <silent> ia :<C-u>call textobj#functioncall#i('o', g:my_textobj_functioncall_angle_bracket_patterns)<CR>
+  xnoremap <silent> ia :<C-u>call textobj#functioncall#i('x', g:my_textobj_functioncall_angle_bracket_patterns)<CR>
+  onoremap <silent> aa :<C-u>call textobj#functioncall#a('o', g:my_textobj_functioncall_angle_bracket_patterns)<CR>
+  xnoremap <silent> aa :<C-u>call textobj#functioncall#a('x', g:my_textobj_functioncall_angle_bracket_patterns)<CR>
+'''
+
 # Operator
 [[plugins]]
 repo = 'machakann/vim-sandwich'
+depends = ['vim-textobj-functioncall']
 hook_add = '''
   let g:sandwich_no_default_key_mappings = 1
   let g:operator_sandwich_no_default_key_mappings = 1
@@ -384,6 +422,46 @@ hook_add = '''
   nmap ds <Plug>(sandwich-delete)
   nmap cs <Plug>(sandwich-replace)
   xmap S <Plug>(sandwich-add)
+  let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+  let g:sandwich#recipes += [
+  \ {
+  \   'buns': ['MySandwichFuncName("[")', '"]"'],
+  \   'expr': 1,
+  \   'cursor': 'inner_tail',
+  \   'kind': ['add', 'replace'],
+  \   'action': ['add'],
+  \   'input': ['g']
+  \ },
+  \ {
+  \   'buns': ['MySandwichFuncName("<")', '">"'],
+  \   'expr': 1,
+  \   'cursor': 'inner_tail',
+  \   'kind': ['add', 'replace'],
+  \   'action': ['add'],
+  \   'input': ['a']
+  \ },
+  \ {
+  \   'external': ['i[', "ig"],
+  \   'noremap': 0,
+  \   'kind': ['delete', 'replace', 'query'],
+  \   'input': ['g']
+  \ },
+  \ {
+  \   'external': ['i<', "ia"],
+  \   'noremap': 0,
+  \   'kind': ['delete', 'replace', 'query'],
+  \   'input': ['a']
+  \ },
+  \ ]
+
+  function! MySandwichFuncName(prompt, bra) abort
+    let funcname = input('name: ', '')
+    if funcname ==# ''
+      throw 'OperatorSandwichCancel'
+    endif
+    return funcname .. a:bra
+  endfunction
+
   let g:sandwich#magicchar#f#patterns = [
   \   {
   \     'header' : '\<\%(\h\k*\.\)*\h\k*',

@@ -751,14 +751,6 @@ nnoremap gV `[v`]
 " set nopaste をできるだけ維持
 autocmd myautocmd InsertLeave * set nopaste
 
-" 括弧を扱う textobj を簡単に入力できるようにする
-" thanks to Shougo
-" <angle>
-onoremap aa  a>
-xnoremap aa  a>
-onoremap ia  i>
-xnoremap ia  i>
-
 " [rectangle]
 onoremap ar  a]
 xnoremap ar  a]
