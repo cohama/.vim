@@ -462,11 +462,11 @@ hook_add = '''
 # File
 [[plugins]]
 repo = 'scrooloose/nerdtree'
-on_cmd = ['NERDTreeToggle', 'NERDTreeToggle']
+on_cmd = ['NERDTreeToggle', 'NERDTreeFind']
 hook_add = '''
   nnoremap <silent> <C-p> :<C-u>NERDTreeToggle<CR>
   nnoremap <silent> <C-@> :<C-u>NERDTreeFind<CR>
-  nnoremap <silent> <Leader><C-p> :<C-u>NERDTreeFind<CR>
+  nnoremap <silent> \<C-p> :<C-u>NERDTreeFind<CR>
   let g:NERDTreeIgnore = ['\~$', '\.swp', '^\.$', '^\.\.$']
   let g:NERDTreeHijackNetrw = 0
   let g:NERDTreeQuitOnOpen = 1
