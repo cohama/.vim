@@ -932,3 +932,7 @@ EOF
 
 set foldexpr=nvim_treesitter#foldexpr()
 '''
+
+[[plugins]]
+repo = 'tweekmonster/helpful.vim'
+on_cmd = ['HelpfulVersion']
