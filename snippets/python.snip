@@ -51,3 +51,32 @@ options     head
 snippet     from_dataclasses
 options     head
 	from dataclasses import dataclass
+
+
+snippet     bench
+options     head
+	from benchmarker import Benchmarker
+
+
+	with Benchmarker(1_000_000, width=20) as bench:
+		s1, s2, s3, s4, s5 = "Haruhi", "Mikuru", "Yuki", "Itsuki", "Kyon"
+
+		@bench(None)                ## empty loop
+		def _(bm):
+			for i in bm:
+					pass
+
+		@bench("join")
+		def _(bm):
+			for i in bm:
+				sos = ''.join((s1, s2, s3, s4, s5))
+
+		@bench("concat")
+		def _(bm):
+			for i in bm:
+				sos = s1 + s2 + s3 + s4 + s5
+
+		@bench("format")
+		def _(bm):
+			for i in bm:
+				sos = f"{s1}{s2}{s3}{s4}{s5}"
