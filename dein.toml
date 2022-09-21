@@ -168,14 +168,13 @@ depends = [
   'ddc-fuzzy',
   'ddc-nvim-lsp',
   'ddc-buffer',
-  'ddc-ctags',
   'pum.vim',
   'denops-popup-preview.vim',
 ]
 on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
   call ddc#custom#patch_global({
-    \ 'sources': ['nvim-lsp', 'neosnippet', 'ctags', 'buffer', 'file'],
+    \ 'sources': ['nvim-lsp', 'neosnippet', 'buffer', 'file'],
     \ 'completionMenu': 'pum.vim',
     \ 'backspaceCompletion': v:true,
     \ 'sourceOptions': {
@@ -186,7 +185,6 @@ hook_source = '''
     \     'minAutoCompleteLength': 1,
     \   },
     \   'buffer': {'mark': 'Buff'},
-    \   'ctags': {'mark': 'Tag'},
     \   'neosnippet': {'mark': 'Snip'},
     \   'file': {
     \     'mark': 'File',
@@ -205,13 +203,12 @@ hook_source = '''
     \     'fromAltBuf': v:true,
     \     'forceCollect': v:true,
     \   },
-    \   'ctags': {'executable': '/usr/bin/ctags'},
     \ },
     \ 'filterParams': {
     \   'matcher_fuzzy': {'splitMode': 'word'},
     \ },
     \ })
-  call ddc#custom#patch_filetype(['python'], 'sources', ['nvim-lsp', 'neosnippet', 'ctags', 'file', 'around'])
+  call ddc#custom#patch_filetype(['python'], 'sources', ['nvim-lsp', 'neosnippet', 'file', 'around'])
   call ddc#custom#patch_filetype(['python'], 'sourceOptions', {
     \ 'nvim-lsp': {
     \   'forceCompletionPattern': '\.\w*|:\s\w*|import\s\w*|@\w*',
@@ -255,9 +252,6 @@ lazy = 1
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
 lazy = 1
-
-[[plugins]]
-repo = 'delphinus/ddc-ctags'
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
