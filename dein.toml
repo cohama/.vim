@@ -170,6 +170,7 @@ depends = [
   'ddc-buffer',
   'pum.vim',
   'denops-popup-preview.vim',
+  'ddc-converter_remove_overlap',
 ]
 on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
@@ -181,7 +182,7 @@ hook_source = '''
     \   '_': {
     \     'matchers': ['matcher_fuzzy'],
     \     'sorters': ['sorter_fuzzy'],
-    \     'converters': ['converter_fuzzy'],
+    \     'converters': ['converter_fuzzy', 'converter_remove_overlap'],
     \     'minAutoCompleteLength': 1,
     \   },
     \   'buffer': {'mark': 'Buff'},
@@ -252,6 +253,12 @@ lazy = 1
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
 lazy = 1
+
+[[plugins]]
+repo = 'Shougo/ddc-converter_remove_overlap'
+lazy = 1
+hook_source ='''
+'''
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
