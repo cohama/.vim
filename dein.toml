@@ -324,6 +324,9 @@ hook_source = '''
   let g:lexima_accept_pum_with_enter = 0
   call lexima#set_default_rules()
 
+  nnoremap / <Cmd>set wrapscan<CR>/
+  call lexima#add_rule({'char': '<CR>', 'input': '<CR><Cmd>set nowrapscan<CR>', 'mode': '/'})
+
   call lexima#add_rule({'at': '\S\s*\%#', 'char': '<Tab>', 'input': '', 'leave': 1})
 
   call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
