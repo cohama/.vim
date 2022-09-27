@@ -1249,6 +1249,9 @@ function! SetTitleCwd() abort
 endfunction
 autocmd myautocmd DirChanged * call SetTitleCwd()
 autocmd myautocmd BufWinEnter,WinEnter * call SetTitleCwd()
+
+" Arch で fzf を入れると勝手にプラグインが入ってしまうので無効化する
+let g:loaded_fzf = 1
 "}}}
 
 " ColorScheme {{{
