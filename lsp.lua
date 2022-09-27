@@ -58,6 +58,11 @@ nvim_lsp.pylsp.setup {
         pycodestyle = {
           enabled = false,
         },
+        pydocstyle = {
+          enabled = true,
+          addIgnore = {"D100", "D415", "D400"},
+          convention = "google",
+        },
         pyflakes = {
           enabled = false,
         },
