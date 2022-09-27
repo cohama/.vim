@@ -238,13 +238,13 @@ set spelloptions=camel
 " }}}
 " }}}
 
+" Plugin Bundles {{{
 " local 用 vimrc
 if filereadable(fnamemodify("~/.config/nvim/.local.vim", ':p'))
   source ~/.config/nvim/.local.vim
 endif
 
-" Plugin Bundles {{{
-" NeoBundle の設定
+" dein の設定
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 if has('nvim')
@@ -274,7 +274,8 @@ if dein#check_install()
 endif
 
 filetype plugin indent on
-"
+" }}}
+
 " Settings and keymaps {{{
 function! ImActivateFunc(active)
   if a:active
@@ -1064,6 +1065,9 @@ command! LcdCurrent lcd %:p:h
 
 " 現在編集中のフルパスをクリップボードにコピー
 command! CopyFullPath let @+ = expand('%:p')
+
+" 現在編集中のファイルの権限を変更
+command! -nargs=1 Chmod !chmod <args> %
 
 " Markdown
 autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown ts=4 sw=4 sts=4
