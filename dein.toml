@@ -160,6 +160,7 @@ hook_add = '''
 repo = 'Shougo/ddc.vim'
 depends = [
   'denops.vim',
+  'ddc-ui-pum',
   'neosnippet',
   'ddc-matcher_head',
   'ddc-sorter_rank',
@@ -175,8 +176,8 @@ depends = [
 on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
   call ddc#custom#patch_global({
+    \ 'ui': 'pum',
     \ 'sources': ['nvim-lsp', 'neosnippet', 'buffer', 'file'],
-    \ 'completionMenu': 'pum.vim',
     \ 'backspaceCompletion': v:true,
     \ 'sourceOptions': {
     \   '_': {
@@ -225,6 +226,10 @@ hook_source = '''
     \ })
   call ddc#enable()
 '''
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+lazy = 1
 
 [[plugins]]
 repo = 'Shougo/ddc-around'
