@@ -480,7 +480,7 @@ hook_add = '''
   \ },
   \ ]
 
-  function! MySandwichFuncName(prompt, bra) abort
+  function! MySandwichFuncName(bra) abort
     let funcname = input('name: ', '')
     if funcname ==# ''
       throw 'OperatorSandwichCancel'
