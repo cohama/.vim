@@ -59,7 +59,7 @@ nvim_lsp.pylsp.setup {
         },
         pydocstyle = {
           enabled = true,
-          addIgnore = {"D100", "D415", "D400"},
+          addIgnore = {"D100", "D103", "D101", "D415", "D400", "D102", "D107", "D212", "D202", "D403", "D105"},
           convention = "google",
         },
         pyflakes = {
