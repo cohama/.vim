@@ -681,7 +681,7 @@ hook_add = '''
 repo = 'lukas-reineke/indent-blankline.nvim'
 if = 'has("nvim")'
 hook_post_source = '''
-lua << EOF
+lua <<EOF
   require('indent_blankline').setup {
     char = "",
     char_highlight_list = {
