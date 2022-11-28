@@ -294,12 +294,16 @@ hook_source = '''
   \ 'border': v:true,
   \ 'maxWidth': 80,
   \ 'maxHeight': 30,
-  \ 'style': "full",
+  \ 'style': "labelOnly",
   \ 'onTriggerChar': v:false,
   \ 'multiLabel': v:false,
   \ 'fallbackToBelow': v:true,
   \ }
   call signature_help#enable()
+  inoremap <C-l> <Cmd>call signature_help#disable()<CR><Cmd>call SetSignatureHelpEnable()<CR>
+  function! SetSignatureHelpEnable() abort
+    autocmd myautocmd InsertLeave * ++once call signature_help#enable()
+  endfunction
 '''
 
 [[plugins]]
