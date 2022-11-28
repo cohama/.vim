@@ -1261,6 +1261,7 @@ function! AddMyHighlight() abort
   hi VirtualWarning ctermfg=8 gui=italic guifg=#654458
   hi DiagnosticUnderlineError gui=undercurl
   hi DiagnosticUnderlineWarn gui=undercurl
+  hi! default link markdownError NONE
 endfunction
 
 
