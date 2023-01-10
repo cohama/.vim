@@ -52,10 +52,14 @@ nvim_lsp.pylsp.setup {
     pylsp = {
       plugins = {
         pylint = {
-          enabled = false,
+          enabled = true,
+          args = {"-j0"},
         },
         pycodestyle = {
           enabled = false,
+        },
+        flake8 = {
+          enabled = true,
         },
         pydocstyle = {
           enabled = true,
@@ -71,6 +75,9 @@ nvim_lsp.pylsp.setup {
         mccabe = {
           enabled = false,
         },
+        rope_autoimport = {
+          enabled = true,
+        }
       }
     }
   }
