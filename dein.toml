@@ -15,7 +15,7 @@ depends = [
   'denops.vim',
 ]
 hook_add = '''
-  let ignored_dirs = readfile(fnamemodify($MYVIMRC, ':p:h') . '/ddu-source-file_rec-ignored_dirs.txt')
+  let ignored_dirs = readfile(expand('~') . '/.config/nvim/ddu-source-file_rec-ignored_dirs.txt')
   call ddu#custom#patch_global({
   \   'ui': 'ff',
   \   'sourceOptions': {
@@ -142,6 +142,7 @@ repo = 'lambdalisue/mr.vim'
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_event = 'VimEnter'
+if = 'has("nvim")'
 hook_source = '''
   luafile ~/.config/nvim/lsp.lua
 '''
@@ -721,7 +722,7 @@ EOF
 
 [[plugins]]
 repo = 'thinca/vim-fontzoom'
-on_if = 'g:is_gui'
+if = 'g:is_gui'
 on_map = {n = '<Plug>'}
 hook_add = '''
   let g:fontzoom_no_default_key_mappings = 1
@@ -996,6 +997,7 @@ on_cmd = ['PP', 'PrettyPrint']
 
 [[plugins]]
 repo = 'subnut/nvim-ghost.nvim'
+on_event = 'FocusLost'
 hook_post_update = '''
   call nvim_ghost#installer#install()
 '''
@@ -1009,6 +1011,7 @@ hook_post_update = '''
   TSUpdate
 '''
 on_event = 'VimEnter'
+if = 'has("nvim")'
 hook_source = '''
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
