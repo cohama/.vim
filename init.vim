@@ -74,6 +74,14 @@ set incsearch
 set smartcase
 
 set nowrapscan
+
+if executable('ag')
+  " grep の代わりに ag を使う
+  set grepprg=ag\ --column\ --no-heading\ --color\ never
+else
+  " ag がなければ git grep
+  set grepprg=git\ grep\ --no-index\ -I\ --line-number
+endif
 " }}}
 
 " ### Buffer ### {{{
@@ -317,9 +325,6 @@ nnoremap <silent> <C-n> :<C-u>nohlsearch<CR>:call Cancel()<CR>
 function! Cancel()
   if dein#is_sourced('vim-exchange')
     XchangeClear
-  endif
-  if &ft ==# 'haskell' && dein#is_sourced('ghcmod-vim')
-    GhcModTypeClear
   endif
 endfunction
 
@@ -1039,16 +1044,6 @@ xnoremap . :normal .<CR>
 autocmd myautocmd BufNewFile,BufRead *.hsc setl ft=haskell
 function! OnHaskell()
   setl sw=4 sts=4 ts=4
-  setlocal omnifunc=necoghc#omnifunc
-  nnoremap <buffer> \I :<C-u>VimShellInteractive ghci <C-r>%<CR>
-  nnoremap <buffer> \S :<C-u>call vimshell#interactive#send(getline("."))<CR>
-  xnoremap <buffer> \S "qygv:<C-u>call vimshell#interactive#send_string(@q)<CR>
-  nnoremap <buffer> \D :<C-u>QuickRun ghc_doctest<CR>
-  nnoremap <buffer> \t :<C-u>GhcModType<CR>
-  nnoremap <buffer> \R :<C-u>QuickRun stack_build<CR>
-  nnoremap <buffer> \uh :<C-u>Unite haskellimport<CR>
-  nnoremap <buffer> \uH :<C-u>Unite haskellimport -input=<C-r><C-w><CR>
-  nnoremap <buffer> \h :<C-u>WatchdogsRun watchdogs_checker/hlint<CR>
 endfunction
 autocmd myautocmd FileType haskell call OnHaskell()
 function! SynHaskell()

@@ -788,19 +788,6 @@ repo = 'itchyny/vim-haskell-indent'
 on_ft = 'haskell'
 
 [[plugins]]
-repo = 'eagletmt/ghcmod-vim'
-on_if = 'executable("ghc-mod")'
-on_ft = 'haskell'
-
-[[plugins]]
-repo = 'eagletmt/neco-ghc'
-on_if = 'executable("ghc-mod")'
-on_ft = 'haskell'
-hook_add = '''
-  let g:necoghc_enable_detailed_browse = 1
-'''
-
-[[plugins]]
 repo = 'racer-rust/vim-racer'
 on_ft = 'rust'
 hook_add = '''
