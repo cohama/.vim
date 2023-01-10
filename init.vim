@@ -252,6 +252,9 @@ if filereadable(fnamemodify("~/.config/nvim/.local.vim", ':p'))
   source ~/.config/nvim/.local.vim
 endif
 
+" disable default plugins
+let g:loaded_python3_provider = 1
+
 " dein の設定
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
