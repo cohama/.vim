@@ -698,7 +698,15 @@ function! GetSyntaxInfo()
         \ " guifg: " . linkedSyn.guifg .
         \ " guibg: " . linkedSyn.guibg
 endfunction
-command! SyntaxInfo call GetSyntaxInfo()
+function! IsTreesitterEnabled() abort
+  let bufnr = bufnr('.')
+  let lang = &filetype
+  return luaeval('require("nvim-treesitter.configs").is_enabled("highlight", ' .. string(lang) .. ', ' .. bufnr .. ')')
+endfunction
+function! GetTreesitterSyntax() abort
+  lua vim.pretty_print(vim.treesitter.get_captures_at_cursor())
+endfunction
+command! SyntaxInfo eval IsTreesitterEnabled() ? GetTreesitterSyntax() : GetSyntaxInfo()
 
 " Window の移動
 nnoremap <Tab> <C-W>w
