@@ -905,6 +905,10 @@ repo = 'gamoutatsumi/dps-ghosttext.vim'
 on_event = 'FocusLost'
 
 [[plugins]]
+repo = 'dstein64/vim-startuptime'
+on_cmd = ['StartupTime']
+
+[[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_update = '''
   TSUpdate
