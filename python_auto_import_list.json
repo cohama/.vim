@@ -1,0 +1,16 @@
+{
+  "List": "typing",
+  "Tuple": "typing",
+  "Dict": "typing",
+  "Mapping": "typing",
+  "Any": "typing",
+  "Union": "typing",
+  "Set": "typing",
+  "Callable": "typing",
+  "Optional": "typing",
+  "Iterable": "typing",
+  "Iterator": "typing",
+  "Sequence": "typing",
+  "TypeVar": "typing",
+  "Path": "pathlib"
+}
