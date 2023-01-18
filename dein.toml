@@ -78,7 +78,7 @@ hook_add = '''
     call ddu#start({"name": "file_ext_custom", "sources": [{"name": "file_external"}]})
   endfunction
 
-  command! -nargs=1 -complete=dir DduFileExternal Ddu file_external -source-param-path=<args>
+  command! -nargs=1 -complete=dir DduFileExternal Ddu file_external -source-option-path=<args>
   autocmd FileType ddu-ff call s:ddu_my_settings()
   function! s:ddu_my_settings() abort
     nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open'})<CR>
@@ -138,6 +138,9 @@ repo = 'Shougo/ddu-kind-file'
 
 [[plugins]]
 repo = 'lambdalisue/mr.vim'
+hook_add = '''
+  let g:mr_disable_warning = 1
+'''
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
@@ -162,11 +165,11 @@ repo = 'Shougo/ddc.vim'
 depends = [
   'denops.vim',
   'ddc-ui-pum',
-  'neosnippet',
+  'neosnippet.vim',
   'ddc-matcher_head',
   'ddc-sorter_rank',
   'ddc-around',
-  'ddc-file',
+  'ddc-source-file',
   'ddc-fuzzy',
   'ddc-nvim-lsp',
   'ddc-buffer',
@@ -249,7 +252,7 @@ repo = 'Shougo/ddc-sorter_rank'
 lazy = 1
 
 [[plugins]]
-repo = 'LumaKernel/ddc-file'
+repo = 'LumaKernel/ddc-source-file'
 lazy = 1
 
 [[plugins]]
@@ -308,7 +311,7 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/neosnippet'
+repo = 'Shougo/neosnippet.vim'
 depends = 'neosnippet-snippets'
 filetypes = 'neosnippet'
 on_event = 'InsertEnter'
