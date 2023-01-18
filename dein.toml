@@ -721,6 +721,40 @@ lua <<EOF
 EOF
 '''
 
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+hook_post_update = '''
+  TSUpdate
+'''
+on_event = 'VimEnter'
+if = 'has("nvim")'
+hook_source = '''
+  lua <<EOF
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = "all",
+    ignore_install = {},
+    highlight = {
+      enable = true,
+      disable = {"vim", "help", "toml", "gitcommit"},
+      additional_vim_regex_highlighting = false
+    },
+    indent = {
+      enable = true,
+      disable = {"python"}
+    }
+  }
+EOF
+  function MyUpdateHighlight() abort
+    hi link @text.diff.add diffAdded
+    hi link @text.diff.delete diffRemoved
+    hi link @attribute Structure
+    hi link @variable.builtin @constant.builtin
+  endfunction
+  call MyUpdateHighlight()
+  autocmd myautocmd ColorScheme * call MyUpdateHighlight()
+
+  set foldexpr=nvim_treesitter#foldexpr()
+'''
 
 [[plugins]]
 repo = 'thinca/vim-fontzoom'
@@ -907,33 +941,6 @@ on_event = 'FocusLost'
 [[plugins]]
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
-
-[[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter'
-hook_post_update = '''
-  TSUpdate
-'''
-on_event = 'VimEnter'
-if = 'has("nvim")'
-hook_source = '''
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
-  ignore_install = {},
-  highlight = {
-    enable = true,
-    disable = {"vim", "help", "toml"},
-    additional_vim_regex_highlighting = false
-  },
-  indent = {
-    enable = true,
-    disable = {"python"}
-  }
-}
-EOF
-
-set foldexpr=nvim_treesitter#foldexpr()
-'''
 
 [[plugins]]
 repo = 'tweekmonster/helpful.vim'
