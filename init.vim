@@ -1134,9 +1134,8 @@ function! OnPython() abort
   command! -buffer PyDoc call PythonGenerateDocstring()
   command! -buffer -bang PyAutoImport call PythonAutoImport("", <bang>0)
 
-  nnoremap <buffer> \gq :<C-u>update<CR>:Black<CR>:e<CR>
-  nnoremap <buffer> \gQ :<C-u>update<CR>:PyFmt!<CR>:Black<CR>
-  nnoremap <buffer> \I :<C-u>update<CR>:PyAutoImport!<CR>
+  nnoremap <buffer> \gq <Cmd>update<CR><Cmd>PyFmt!<CR><Cmd>update<CR>
+  nnoremap <buffer> \I <Cmd>PyAutoImport!<CR>
 
   " nnoremap <buffer> <C-]> :<C-u>call jedi#goto()<CR>
   nnoremap <buffer> \R :<C-u>call PythonRunPytestOnFunctionName()<CR><C-w>p
@@ -1164,21 +1163,7 @@ function! PythonGenerateDocstring() abort
   call setpos('.', [bufnum, lnum, col, off])
 endfunction
 
-let g:MyPythonAutoImportPresets = {
-\ "List": "typing",
-\ "Tuple": "typing",
-\ "Dict": "typing",
-\ "Any": "typing",
-\ "Union": "typing",
-\ "Set": "typing",
-\ "Callable": "typing",
-\ "Optional": "typing",
-\ "Iterable": "typing",
-\ "Iterator": "typing",
-\ "Sequence": "typing",
-\ "TypeVar": "typing",
-\ "Path": "pathlib",
-\ }
+let g:MyPythonAutoImportPresets = json_decode(readfile(expand('~') .. '/.config/nvim/python_auto_import_list.json'))
 
 function! PythonAutoImport(word, format) abort
   if empty(a:word)
@@ -1207,7 +1192,16 @@ function! PythonInsertImportClause(from, import, format) abort
   else
     let from_statement = "from " . a:from . " "
   endif
-  call append(0, from_statement . "import " . a:import)
+  let save_pos = getpos('.')
+  if getline(1) =~ '^"""'
+    call setpos('.', [save_pos[0], 1, 2, save_pos[3]])
+    call search('"""')
+    let append_line_num = line('.')
+    call setpos('.', save_pos)
+  else
+    let append_line_num = 0
+  endif
+  call append(append_line_num, from_statement . "import " . a:import)
   if a:format
     w
     PyFmt!
