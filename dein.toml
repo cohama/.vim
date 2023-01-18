@@ -901,14 +901,8 @@ repo = 'thinca/vim-prettyprint'
 on_cmd = ['PP', 'PrettyPrint']
 
 [[plugins]]
-repo = 'subnut/nvim-ghost.nvim'
+repo = 'gamoutatsumi/dps-ghosttext.vim'
 on_event = 'FocusLost'
-hook_post_update = '''
-  call nvim_ghost#installer#install()
-'''
-hook_add = '''
-  autocmd myautocmd User *github.com set filetype=markdown
-'''
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
