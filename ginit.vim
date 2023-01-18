@@ -12,6 +12,7 @@ elseif exists(':GuiFont')
   GuiFont! Monospace:h12
   GuiPopupmenu 0
   GuiTabline 0
+  GuiRenderLigatures 1
 elseif exists('g:nvui')
   NvuiScrollAnimationDuration 0.1
   let g:font_name = get(g:, 'font_name', 'Monospace')
