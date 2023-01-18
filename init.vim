@@ -1195,10 +1195,17 @@ function! PythonAutoImport(word, format) abort
 endfunction
 
 function! PythonInsertImportClause(from, import, format) abort
-  if empty(a:from)
-    let from_statement = ""
+  if has_key(a:from, 'from')
+    let from_statement = 'from ' . a:from['from'] . ' '
   else
-    let from_statement = "from " . a:from . " "
+    let from_statement = ''
+  endif
+  if has_key(a:from, 'as')
+    let import = a:from['as']
+    let as_statement = ' as ' . a:import
+  else
+    let import = a:import
+    let as_statement = ''
   endif
   let save_pos = getpos('.')
   if getline(1) =~ '^"""'
@@ -1209,7 +1216,7 @@ function! PythonInsertImportClause(from, import, format) abort
   else
     let append_line_num = 0
   endif
-  call append(append_line_num, from_statement . "import " . a:import)
+  call append(append_line_num, from_statement . "import " . import . as_statement)
   if a:format
     w
     PyFmt!
