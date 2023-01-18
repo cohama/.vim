@@ -411,8 +411,7 @@ on_map = {ox = ['ic', 'ac']}
 [[plugins]]
 repo = 'machakann/vim-textobj-functioncall'
 depends = ['vim-textobj-user']
-on_map = {ox = ['iF', 'aF', 'ia', 'aa', 'ig', 'ag']}
-hook_source = '''
+hook_add = '''
   let g:textobj_functioncall_no_default_key_mappings = 1
   xmap iF <Plug>(textobj-functioncall-i)
   omap iF <Plug>(textobj-functioncall-i)
