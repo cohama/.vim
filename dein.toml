@@ -847,7 +847,7 @@ lazy = 1
 
 [[plugins]]
 repo = 'kana/vim-submode'
-on_map = {n = ['<C-W>+', '<C-W>-', '<C-W>>', '<C-W><']}
+on_map = {n = ['<C-W>+', '<C-W>-', '<C-W>>', '<C-W><', '<C-o>']}
 hook_add = '''
   let g:submode_keep_leaving_key = 1
   let g:submode_timeout = 0
@@ -861,6 +861,10 @@ hook_source = '''
   call submode#map('winsize', 'n', '', '<', '<C-W><')
   call submode#map('winsize', 'n', '', '+', '<C-W>+')
   call submode#map('winsize', 'n', '', '-', '<C-W>-')
+
+  call submode#enter_with('histjump', 'n', '', '<C-o>', '<C-o>')
+  call submode#map('histjump', 'n', '', '<C-o>', '<C-o>')
+  call submode#map('histjump', 'n', '', '<C-i>', '<C-i>')
 '''
 
 [[plugins]]

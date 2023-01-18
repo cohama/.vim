@@ -705,11 +705,6 @@ nnoremap <Tab> <C-W>w
 nnoremap <S-Tab> <C-W>W
 nnoremap <Leader><Tab> <C-W>W
 
-" Jump
-nmap <C-o> <Nop>
-nnoremap <C-o><C-i> <C-o>
-nnoremap <C-o><C-p> <C-i>
-
 function! ColorSchemeSettings()
   syntax on
   " 行末の空白と全角スペースをハイライト
