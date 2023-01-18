@@ -2,7 +2,7 @@ local nvim_lsp = require('lspconfig')
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    update_in_insert = true,
+    update_in_insert = false,
   }
 )
 -- Use an on_attach function to only map the following keys
@@ -51,6 +51,9 @@ nvim_lsp.pylsp.setup {
   settings =  {
     pylsp = {
       plugins = {
+        ruff = {
+          enabled = false,
+        },
         pylint = {
           enabled = true,
           args = {"-j0"},
@@ -75,9 +78,15 @@ nvim_lsp.pylsp.setup {
         mccabe = {
           enabled = false,
         },
-        rope_autoimport = {
+        isort = {
           enabled = true,
-        }
+        },
+        black = {
+          enabled = true,
+        },
+        rope_autoimport = {
+          enabled = false,
+        },
       }
     }
   }
