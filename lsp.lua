@@ -3,6 +3,11 @@ local nvim_lsp = require('lspconfig')
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     update_in_insert = false,
+    virtual_text = {
+      format = function(diagnostic)
+        return string.format("%s (%s)", diagnostic.message, diagnostic.source)
+      end
+    }
   }
 )
 -- Use an on_attach function to only map the following keys
@@ -44,9 +49,10 @@ nvim_lsp.gopls.setup{
 
 nvim_lsp.pylsp.setup {
   on_attach = on_attach,
-  cmd = { vim.env.HOME .. "/.config/nvim/run_pylsp.sh", "-vvv" },
+  cmd = { vim.env.HOME .. "/.config/nvim/run_pylsp.sh" },
   flags = {
     debounce_text_changes = 500,
+    allow_incremental_sync = false,
   },
   settings =  {
     pylsp = {
@@ -65,7 +71,7 @@ nvim_lsp.pylsp.setup {
           enabled = true,
         },
         pydocstyle = {
-          enabled = true,
+          enabled = false,
           addIgnore = {"D100", "D103", "D101", "D415", "D400", "D102", "D107", "D212", "D202", "D403", "D105"},
           convention = "google",
         },

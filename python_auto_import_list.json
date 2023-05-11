@@ -12,9 +12,15 @@
   "Iterator": {"from": "typing"},
   "Sequence": {"from": "typing"},
   "TypeVar": {"from": "typing"},
+  "Generic": {"from": "typing"},
   "Path": {"from": "pathlib"},
   "np": {"as": "numpy"},
   "pd": {"as": "pandas"},
   "tf": {"as": "tensorflow"},
-  "plt": {"from": "matplotlib", "as": "pyplot"}
+  "tqdm": {"from": "tqdm"},
+  "plt": {"from": "matplotlib", "as": "pyplot"},
+  "dataclass": {"from": "dataclasses"},
+  "ABC": {"from": "abc"},
+  "abstractmethod": {"from": "abc"},
+  "ArgumentParser": {"from": "argparse"}
 }

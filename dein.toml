@@ -39,7 +39,7 @@ hook_add = '''
   \     'file_rec': {'ignoredDirectories': ignored_dirs},
   \     'rg': {'args': ['--column', '--no-heading', '--color', 'never']},
   \   },
-  \   'kindOptions:': {
+  \   'kindOptions': {
   \     'file': {
   \       'defaultAction': 'open',
   \     },
@@ -48,10 +48,12 @@ hook_add = '''
   command! DduRgLive call <SID>ddu_rg_live()
   function! s:ddu_rg_live() abort
     call ddu#start({
-    \   'volatile': v:true,
     \   'sources': [{
     \     'name': 'rg',
-    \     'options': {'matchers': []},
+    \     'options': {
+    \       'matchers': [],
+    \       'volatile': v:true,
+    \     },
     \   }],
     \   'uiParams': {'ff': {
     \     'ignoreEmpty': v:false,
@@ -128,7 +130,7 @@ repo = 'matsui54/ddu-source-command_history'
 repo = 'kuuote/ddu-source-mr'
 
 [[plugins]]
-repo = 'Shougo/ddu-source-rg'
+repo = 'shun/ddu-source-rg'
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
@@ -140,6 +142,7 @@ repo = 'Shougo/ddu-kind-file'
 repo = 'lambdalisue/mr.vim'
 hook_add = '''
   let g:mr_disable_warning = 1
+  let g:mr#threshold = 100000
 '''
 
 [[plugins]]
@@ -335,6 +338,8 @@ hook_source = '''
   let g:lexima_no_default_rules = 1
   let g:lexima_map_escape = ''
   let g:lexima_accept_pum_with_enter = 0
+  let g:lexima_accept_pum_with_enter = 0
+  let g:lexima_enable_space_rules = 0
   call lexima#set_default_rules()
 
   nnoremap / <Cmd>set wrapscan<CR>/
@@ -735,7 +740,7 @@ hook_source = '''
     ignore_install = {},
     highlight = {
       enable = true,
-      disable = {"vim", "help", "toml", "gitcommit"},
+      disable = {"vim", "help", "toml", "gitcommit", "markdown"},
       additional_vim_regex_highlighting = false
     },
     indent = {
@@ -744,11 +749,16 @@ hook_source = '''
     }
   }
 EOF
-  function MyUpdateHighlight() abort
+  function! MyUpdateHighlight() abort
+    hi link @variable Normal
     hi link @text.diff.add diffAdded
     hi link @text.diff.delete diffRemoved
     hi link @attribute Structure
+    hi link @function.builtin Label
+    hi link @constant.builtin Special
     hi link @variable.builtin @constant.builtin
+    hi link @constructor @type
+    hi link @parameter @field
   endfunction
   call MyUpdateHighlight()
   autocmd myautocmd ColorScheme * call MyUpdateHighlight()
@@ -937,6 +947,9 @@ on_cmd = ['PP', 'PrettyPrint']
 [[plugins]]
 repo = 'gamoutatsumi/dps-ghosttext.vim'
 on_event = 'FocusLost'
+hook_add = '''
+  let g:dps_ghosttext#enable_autostart = 1
+'''
 
 [[plugins]]
 repo = 'dstein64/vim-startuptime'

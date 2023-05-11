@@ -150,6 +150,14 @@ let g:vim_indent_cont = 0
 " シンプル・イズ・ベストなステータスライン
 set statusline=%f%M%R%H%W%q%{&ff=='unix'?'':',['.&ff.']'}%{&fenc=='utf-8'\|\|&fenc==''?'':',['.&fenc.']'}%{QuickFixAlert()}%=%(\|%3p%%%)
 function! QuickFixAlert() abort
+  if has('nvim')
+    let diag_count = luaeval('#vim.diagnostic.get(vim.fn.bufnr())')
+  else
+    let diag_count = 0
+  endif
+  if diag_count > 0
+    return ' [!' .. diag_count .. ']'
+  endif
   let warns = len(filter(getqflist(), {_, x -> x.type ==# 'W'})) + len(filter(getloclist(0), {_, x -> x.type ==# 'W'}))
   let errs = len(filter(getqflist(), {_, x -> x.type ==# 'E'})) + len(filter(getloclist(0), {_, x -> x.type ==# 'E'}))
   if warns == 0 && errs == 0
@@ -1171,7 +1179,7 @@ function! PythonGenerateDocstring() abort
   call setpos('.', [bufnum, lnum, col, off])
 endfunction
 
-let g:MyPythonAutoImportPresets = json_decode(readfile(expand('~') .. '/.config/nvim/python_auto_import_list.json'))
+let g:MyPythonAutoImportPresets = json_decode(join(readfile(expand('~') .. '/.config/nvim/python_auto_import_list.json'), "\n"))
 
 function! PythonAutoImport(word, format) abort
   if empty(a:word)
@@ -1183,10 +1191,10 @@ function! PythonAutoImport(word, format) abort
     call PythonInsertImportClause(g:MyPythonAutoImportPresets[word], word, a:format)
     return
   endif
-  let defs = taglist(word)
+  silent! let defs = taglist(word)
   for def in defs
     if def["name"] == word
-      let from_clause = substitute(substitute(def["filename"], "\.py$", "", ""), "/", ".", "g")
+      let from_clause = {'from': substitute(substitute(def["filename"], "\.py$", "", ""), "/", ".", "g")}
       call PythonInsertImportClause(from_clause, word, a:format)
       return
     endif
@@ -1195,6 +1203,7 @@ function! PythonAutoImport(word, format) abort
 endfunction
 
 function! PythonInsertImportClause(from, import, format) abort
+  echomsg a:from
   if has_key(a:from, 'from')
     let from_statement = 'from ' . a:from['from'] . ' '
   else
@@ -1263,6 +1272,7 @@ function! AddMyHighlight() abort
   hi VirtualWarning ctermfg=8 gui=italic guifg=#654458
   hi DiagnosticUnderlineError gui=undercurl
   hi DiagnosticUnderlineWarn gui=undercurl
+  hi! default link DiagnosticUnnecessary NONE
   hi! default link markdownError NONE
 endfunction
 
