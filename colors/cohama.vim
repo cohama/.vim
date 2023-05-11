@@ -23,7 +23,7 @@ hi Function        ctermfg=114               cterm=NONE      guifg=#78C49C      
 hi Statement       ctermfg=219               cterm=NONE      guifg=#E0A4CE               gui=NONE
 hi Conditional     ctermfg=217               cterm=NONE      guifg=#DFE3B3               gui=NONE
 hi Repeat          ctermfg=217               cterm=NONE      guifg=#DFE3B3               gui=NONE
-hi Label           ctermfg=158               cterm=NONE      guifg=#C1E3B3               gui=NONE
+hi Label           ctermfg=158               cterm=NONE      guifg=#83C9BE               gui=NONE
 hi Operator        ctermfg=229               cterm=NONE      guifg=#EBEAB2               gui=NONE
 hi Keyword         ctermfg=219               cterm=NONE      guifg=#E897CF               gui=NONE
 hi Exception       ctermfg=217               cterm=NONE      guifg=#DFE3B3               gui=NONE
@@ -116,4 +116,4 @@ hi agitDiffRemove  ctermfg=204                               guifg=#A31D1D guibg
 if has('nvim')
   hi FloatBorder   ctermfg=244  ctermbg=53   cterm=bold      guifg=NONE    guibg=#25254a gui=bold
 endif
-" vim: set colorcolumn=20,33,46,62,76,90 h:
+" vim: set colorcolumn=20,33,46,62,76,90 :
