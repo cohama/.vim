@@ -1152,6 +1152,7 @@ function! OnPython() abort
   command! -buffer -bang PyAutoImport call PythonAutoImport("", <bang>0)
 
   nnoremap <buffer> \gq <Cmd>update<CR><Cmd>PyFmt!<CR><Cmd>update<CR>
+  nnoremap <buffer> \i <Cmd>PyAutoImport<CR>
   nnoremap <buffer> \I <Cmd>PyAutoImport!<CR>
 
   " nnoremap <buffer> <C-]> :<C-u>call jedi#goto()<CR>
