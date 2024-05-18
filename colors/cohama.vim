@@ -15,7 +15,6 @@ hi String          ctermfg=174                               guifg=#B07558
 hi Character       ctermfg=166                               guifg=#C9773C
 hi Number          ctermfg=204                               guifg=#C25367
 hi Boolean         ctermfg=204                               guifg=#C4475D
-hi Float           ctermfg=204                               guifg=#C4475D
 
 " programming statements
 hi Identifier      ctermfg=215               cterm=NONE      guifg=#BFAB86               gui=NONE
