@@ -735,7 +735,7 @@ hook_source = '''
     ignore_install = {},
     highlight = {
       enable = true,
-      disable = {"vim", "help", "toml", "gitcommit", "markdown", "ini"},
+      disable = {"toml", "gitcommit", "markdown", "ini", "tsv"},
       additional_vim_regex_highlighting = false
     },
     indent = {
@@ -745,15 +745,25 @@ hook_source = '''
   }
 EOF
   function! MyUpdateHighlight() abort
-    hi link @variable Normal
-    hi link @text.diff.add diffAdded
-    hi link @text.diff.delete diffRemoved
-    hi link @attribute Structure
-    hi link @function.builtin Label
-    hi link @constant.builtin Special
-    hi link @variable.builtin @constant.builtin
-    hi link @constructor @type
-    hi link @parameter @field
+    hi! link @variable Normal
+    hi! link @text.diff.add diffAdded
+    hi! link @text.diff.delete diffRemoved
+    hi! link @attribute Structure
+    hi! link @function.builtin Label
+    hi! link @function.call Function
+    hi! link @method.call @function.call
+    hi! link @constant.builtin Special
+    hi! link @variable.builtin @constant.builtin
+    hi! link @field Normal
+    hi! link @constructor @type
+    hi! link @parameter @field
+    hi! link @exception @keyword
+    hi! link @conditional @keyword
+    hi! link @repeat @keyword
+    hi! link @include Include
+    hi! link @float @number
+    hi! link NormalFloat Pmenu
+    hi! link @keyword.import Include
   endfunction
   call MyUpdateHighlight()
   autocmd myautocmd ColorScheme * call MyUpdateHighlight()
