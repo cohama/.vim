@@ -712,7 +712,7 @@ function! IsTreesitterEnabled() abort
   return luaeval('require("nvim-treesitter.configs").is_enabled("highlight", ' .. string(lang) .. ', ' .. bufnr .. ')')
 endfunction
 function! GetTreesitterSyntax() abort
-  lua vim.pretty_print(vim.treesitter.get_captures_at_cursor())
+  lua vim.print(vim.treesitter.get_captures_at_cursor())
 endfunction
 command! SyntaxInfo eval IsTreesitterEnabled() ? GetTreesitterSyntax() : GetSyntaxInfo()
 
