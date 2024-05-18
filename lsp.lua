@@ -7,7 +7,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       format = function(diagnostic)
         return string.format("%s (%s)", diagnostic.message, diagnostic.source)
       end
-    }
+    },
+    signs = function(namespace, bufnr)
+      return vim.b[bufnr].show_signs == true
+    end
   }
 )
 -- Use an on_attach function to only map the following keys
