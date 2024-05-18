@@ -950,10 +950,11 @@ repo = 'thinca/vim-prettyprint'
 on_cmd = ['PP', 'PrettyPrint']
 
 [[plugins]]
-repo = 'gamoutatsumi/dps-ghosttext.vim'
-on_event = 'FocusLost'
+repo = 'subnut/nvim-ghost.nvim'
+# on_event = 'FocusLost'
 hook_add = '''
-  let g:dps_ghosttext#enable_autostart = 1
+  let g:nvim_ghost_server_port = 4001
+  autocmd myautocmd User *github.com set filetype=markdown
 '''
 
 [[plugins]]
