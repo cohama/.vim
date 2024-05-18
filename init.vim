@@ -1173,7 +1173,7 @@ autocmd myautocmd FileType python call OnPython()
 
 function! PythonGenerateDocstring() abort
   let [bufnum, lnum, col, off] = getpos('.')
-  let [start_line, _] = searchpos('\v^\s*def ', 'bcWn')
+  let [start_line, _] = searchpos('\v^\s*%(def|class) ', 'bcWn')
   let [end_line, _] = searchpos('\v:\n', 'cWn')
   call append(end_line, repeat(' ', 40) .. '!!!PythonGenerateDocstring!!!')
   execute start_line . ',' . (end_line + 1) . '!doq --formatter google | sed -E -e "s/ (\(.+\)):/:/" '
