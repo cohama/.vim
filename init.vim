@@ -77,7 +77,7 @@ set nowrapscan
 
 if executable('ag')
   " grep の代わりに ag を使う
-  set grepprg=ag\ --column\ --no-heading\ --color\ never
+  set grepprg=ag\ --column\ --no-heading\ --nocolor
 else
   " ag がなければ git grep
   set grepprg=git\ grep\ --no-index\ -I\ --line-number
