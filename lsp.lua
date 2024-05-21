@@ -1,5 +1,7 @@
 local nvim_lsp = require('lspconfig')
 
+local capabilities =  require("ddc_source_lsp").make_client_capabilities()
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     update_in_insert = false,
@@ -48,10 +50,12 @@ end
 
 nvim_lsp.gopls.setup{
   on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 nvim_lsp.pylsp.setup {
   on_attach = on_attach,
+  capabilities = capabilities,
   cmd = { vim.env.HOME .. "/.config/nvim/run_pylsp.sh" },
   flags = {
     debounce_text_changes = 500,
@@ -129,10 +133,12 @@ nvim_lsp.efm.setup {
 
 nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 nvim_lsp.hls.setup{
   on_attach = on_attach,
+  capabilities = capabilities,
 }
 -- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 --   vim.lsp.diagnostic.on_publish_diagnostics, {

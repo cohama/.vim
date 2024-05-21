@@ -11,7 +11,6 @@ let g:is_gui = has('gui_running')
 let g:is_terminal = !g:is_gui
 let g:is_unicode = (&termencoding ==# 'utf-8' || &encoding == 'utf-8') && !(exists('g:discard_unicode') && g:discard_unicode != 0)
 
-
 " must be set with multibyte strings
 scriptencoding utf-8
 " }}}
@@ -264,7 +263,7 @@ endif
 let g:loaded_python3_provider = 1
 
 " dein の設定
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/cohama/.cache/dein/repos/github.com/Shougo/dein.vim
 
 if has('nvim')
   let s:dein_cache_path = '~/.cache/dein'

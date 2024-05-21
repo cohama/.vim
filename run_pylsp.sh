@@ -4,8 +4,8 @@ if [[ -x $(command -v pipx) && -x $(command -v pylsp) ]] ; then
 else
   python_cmd=python
 fi
-python_paths=$("$python_cmd" -c "import sys; print(':'.join(sys.path[-2:]))")
-python_version=$("$python_cmd" -c "import sys; print(*sys.version_info[:2], sep='.')")
+python_paths=$("$python_cmd" -c "import sys; print(':'.join(sys.path[-2:]), end='')")
+python_version=$("$python_cmd" -c "import sys; print(*sys.version_info[:2], sep='.', end='')")
 cache_dir=${XDG_CACHE_HOME:-"$HOME/.cache"}/nvim/pylsp
 mkdir -p "$cache_dir"
 echo python_paths="$python_paths" >&2

@@ -29,7 +29,6 @@ hook_add = '''
   \   'uiParams': {
   \     'ff': {
   \       'split': 'floating',
-  \       'startFilter': 'v:true',
   \       'floatingBorder': 'single',
   \       'filterFloatingPosition': 'top',
   \     },
@@ -78,26 +77,33 @@ hook_add = '''
   command! -nargs=1 -complete=dir DduFileExternal Ddu file_external -source-option-path=<args>
   autocmd FileType ddu-ff call s:ddu_my_settings()
   function! s:ddu_my_settings() abort
-    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open'})<CR>
-    nnoremap <buffer><silent> s <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
-    nnoremap <buffer><silent> S <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
-    nnoremap <buffer><silent> t <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
-    nnoremap <buffer><silent> C <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'tcd'}})<CR>
-    nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-    nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
-    nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open'})<CR>
+    nnoremap <buffer><silent> s <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
+    nnoremap <buffer><silent> S <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
+    nnoremap <buffer><silent> t <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
+    nnoremap <buffer><silent> C <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'tcd'}})<CR>
+    nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
+    nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
+    nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#do_action('quit')<CR>
 
-    nnoremap <buffer><silent> F <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'DduFileExternal'}})<CR>
+    nnoremap <buffer><silent> F <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'DduFileExternal'}})<CR>
   endfunction
 
   autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
   function! s:ddu_filter_my_settings() abort
-    inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open'})<CR>
+    inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR><Cmd>call ddu#ui#do_action('itemAction', {'name': 'open'})<CR>
     inoremap <buffer><silent> <Esc> <Esc><Cmd>close<CR>
     nnoremap <buffer><silent> <CR> <Cmd>close<CR>
-    inoremap <buffer><silent> <C-l> <Esc><Cmd>call ddu#ui#ff#do_action('refreshItems')<CR>a
+    inoremap <buffer><silent> <C-l> <Esc><Cmd>call ddu#ui#do_action('refreshItems')<CR>a
   endfunction
+
+  function! s:on_ddu_ui_ready() abort
+    if &filetype ==# 'ddu-ff'
+      call ddu#ui#do_action('openFilterWindow')
+    endif
+  endfunction
+  autocmd myautocmd User Ddu:uiReady call s:on_ddu_ui_ready()
 '''
 
 [[plugins]]
@@ -169,7 +175,7 @@ depends = [
   'ddc-around',
   'ddc-source-file',
   'ddc-fuzzy',
-  'ddc-nvim-lsp',
+  'ddc-source-lsp',
   'ddc-buffer',
   'pum.vim',
   'denops-popup-preview.vim',
@@ -179,7 +185,7 @@ on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
   call ddc#custom#patch_global({
     \ 'ui': 'pum',
-    \ 'sources': ['nvim-lsp', 'neosnippet', 'buffer', 'file'],
+    \ 'sources': ['lsp', 'neosnippet', 'buffer', 'file'],
     \ 'backspaceCompletion': v:true,
     \ 'sourceOptions': {
     \   '_': {
@@ -195,9 +201,10 @@ hook_source = '''
     \     'isVolatile': v:true,
     \     'forceCompletionPattern': '\S/\S*',
     \   },
-    \   'nvim-lsp': {
+    \   'lsp': {
     \     'mark': 'LSP',
     \     'forceCompletionPattern': '\.\w*|:\w*',
+    \     'sorters': ['sorter_lsp-kind']
     \   },
     \ },
     \ 'sourceParams': {
@@ -212,9 +219,9 @@ hook_source = '''
     \   'matcher_fuzzy': {'splitMode': 'word'},
     \ },
     \ })
-  call ddc#custom#patch_filetype(['python'], 'sources', ['nvim-lsp', 'neosnippet', 'file', 'around'])
+  call ddc#custom#patch_filetype(['python'], 'sources', ['lsp', 'neosnippet', 'file', 'around'])
   call ddc#custom#patch_filetype(['python'], 'sourceOptions', {
-    \ 'nvim-lsp': {
+    \ 'lsp': {
     \   'forceCompletionPattern': '\.\w*|:\s\w*|import\s\w*|@\w*',
     \ },
     \ 'around': {
@@ -258,8 +265,7 @@ repo = 'tani/ddc-fuzzy'
 lazy = 1
 
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
-lazy = 1
+repo = 'Shougo/ddc-source-lsp'
 
 [[plugins]]
 repo = 'Shougo/ddc-converter_remove_overlap'
@@ -288,7 +294,9 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'matsui54/denops-signature_help'
+# Wait for #32
+# repo = 'matsui54/denops-signature_help'
+repo = 'ryota2357/denops-signature_help'
 lazy = 1
 on_event = ['InsertEnter']
 hook_source = '''
@@ -685,7 +693,7 @@ repo = 'lukas-reineke/indent-blankline.nvim'
 if = 'has("nvim")'
 hook_post_source = '''
 lua <<EOF
-  require('indent_blankline').setup {
+  require('ibl').setup {
     char = "",
     char_highlight_list = {
       'IndentGuidesOdd',
