@@ -13,46 +13,46 @@ repo = 'vim-denops/denops.vim'
 repo = 'Shougo/ddu.vim'
 depends = [
   'denops.vim',
+  'cmdline.vim'
 ]
 hook_add = '''
   let ignored_dirs = readfile(expand('~') . '/.config/nvim/ddu-source-file_rec-ignored_dirs.txt')
-  call ddu#custom#patch_global({
-  \   'ui': 'ff',
-  \   'sourceOptions': {
-  \     '_': {
-  \       'matchers': ['matcher_substring'],
+  call ddu#custom#patch_global(#{
+  \   ui: 'ff',
+  \   sourceOptions: #{
+  \     _: #{
+  \       matchers: ['matcher_substring'],
   \     },
   \   },
-  \   'filterParams': {
-  \     'matcher_substring': {'highlightMatched': 'Search'}
+  \   filterParams: #{
+  \     matcher_substring: #{highlightMatched: 'Search'}
   \   },
-  \   'uiParams': {
-  \     'ff': {
-  \       'split': 'floating',
-  \       'startFilter': 'v:true',
-  \       'floatingBorder': 'single',
-  \       'filterFloatingPosition': 'top',
+  \   uiParams: #{
+  \     ff: #{
+  \       split: 'floating',
+  \       floatingBorder: 'single',
+  \       filterFloatingPosition: 'top',
   \     },
   \   },
-  \   'sourceParams': {
-  \     'file_external': {'cmd': ['fd', '.', '-H', '-E', '.git', '-tf']},
-  \     'file_rec': {'ignoredDirectories': ignored_dirs},
-  \     'rg': {'args': ['--column', '--no-heading', '--color', 'never']},
+  \   sourceParams: #{
+  \     file_external: #{cmd: ['fd', '.', '-H', '-E', '.git', '-tf']},
+  \     file_rec: #{ignoredDirectories: ignored_dirs},
+  \     rg: #{args: ['--column', '--no-heading', '--color', 'never']},
   \   },
   \ })
   command! DduRgLive call <SID>ddu_rg_live()
   function! s:ddu_rg_live() abort
-    call ddu#start({
-    \   'sources': [{
-    \     'name': 'rg',
-    \     'options': {
-    \       'matchers': [],
-    \       'volatile': v:true,
+    call ddu#start(#{
+    \   sources: [#{
+    \     name: 'rg',
+    \     options: #{
+    \       matchers: [],
+    \       volatile: v:true,
     \     },
     \   }],
-    \   'uiParams': {'ff': {
-    \     'ignoreEmpty': v:false,
-    \     'autoResize': v:false,
+    \   uiParams: #{ff: #{
+    \     ignoreEmpty: v:false,
+    \     autoResize: v:false,
     \   }},
     \ })
   endfunction
@@ -78,26 +78,50 @@ hook_add = '''
   command! -nargs=1 -complete=dir DduFileExternal Ddu file_external -source-option-path=<args>
   autocmd FileType ddu-ff call s:ddu_my_settings()
   function! s:ddu_my_settings() abort
-    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open'})<CR>
-    nnoremap <buffer><silent> s <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
-    nnoremap <buffer><silent> S <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
-    nnoremap <buffer><silent> t <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
-    nnoremap <buffer><silent> C <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'tcd'}})<CR>
-    nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-    nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
-    nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open'})<CR>
+    nnoremap <buffer><silent> s <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
+    nnoremap <buffer><silent> S <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
+    nnoremap <buffer><silent> t <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
+    nnoremap <buffer><silent> C <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'tcd'}})<CR>
+    nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
+    nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
+    nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#do_action('quit')<CR>
 
     nnoremap <buffer><silent> F <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'DduFileExternal'}})<CR>
   endfunction
 
-  autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
-  function! s:ddu_filter_my_settings() abort
-    inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open'})<CR>
-    inoremap <buffer><silent> <Esc> <Esc><Cmd>close<CR>
-    nnoremap <buffer><silent> <CR> <Cmd>close<CR>
-    inoremap <buffer><silent> <C-l> <Esc><Cmd>call ddu#ui#ff#do_action('refreshItems')<CR>a
+  function! s:ddu_ff_filter_my_settings() abort
+    call ddu#ui#ff#save_cmaps(['<C-j>', '<C-k>', '<CR>', '<Esc>'])
+
+    cnoremap <C-j> <Cmd>call ddu#ui#do_action('cursorNext')<CR>
+    cnoremap <C-k> <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
+    cnoremap <CR> <CR><Cmd>call ddu#ui#do_action('itemAction', #{name: 'open'})<CR>
+    cnoremap <Esc> <CR>
   endfunction
+  autocmd myautocmd User Ddu:ui:ff:openFilterWindow call s:ddu_ff_filter_my_settings()
+
+  function! s:ddu_ff_filter_cleanup() abort
+    call ddu#ui#ff#restore_cmaps()
+  endfunction
+  autocmd myautocmd User Ddu:ui:ff:closeFilterWindow call s:ddu_ff_filter_cleanup()
+
+	autocmd myautocmd User Ddu:uiDone ++nested call ddu#ui#async_action('openFilterWindow')
+  autocmd myautocmd User Ddu:ui:ff:openFilterWindow call cmdline#enable()
+'''
+
+[[plugins]]
+repo = 'Shougo/cmdline.vim'
+hook_add = '''
+autocmd myautocmd ColorScheme * hi! CmdlineCursor ctermfg=16 ctermbg=253 guifg=#040410 guibg=#d1ccde
+call cmdline#set_option(#{
+\   highlight_prompt: 'Cursor',
+\   highlight_window: 'Pmenu',
+\   highlight_cursor: 'CmdlineCursor',
+\   col: &columns / 4,
+\   row: &lines / 2 - 13,
+\   width: &columns / 2,
+\ })
 '''
 
 [[plugins]]
