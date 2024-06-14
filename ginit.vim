@@ -23,6 +23,12 @@ elseif exists('g:nvui')
   nunmap <C-b>
   set wrapscan
   let &guifont = g:font_name .. ':h' .. g:font_size .. ",NasuM:h" .. g:font_size
+elseif exists("g:neovide")
+  let g:font_name = get(g:, 'font_name', 'Monospace')
+  let g:font_size = get(g:, 'font_size', 8)
+  let &guifont = g:font_name .. ',NasuM:h' .. g:font_size
+  let g:neovide_cursor_vfx_mode = "railgun"
+  let g:my_smooth_scroll = 0
 else
   let g:font_name = get(g:, 'font_name', 'Monospace')
   let g:font_size = get(g:, 'font_size', 12)
