@@ -13,7 +13,6 @@ repo = 'vim-denops/denops.vim'
 repo = 'Shougo/ddu.vim'
 depends = [
   'denops.vim',
-  'cmdline.vim'
 ]
 hook_add = '''
   let ignored_dirs = readfile(expand('~') . '/.config/nvim/ddu-source-file_rec-ignored_dirs.txt')
