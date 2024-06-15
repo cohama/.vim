@@ -775,20 +775,20 @@ nnoremap gV `[v`]
 autocmd myautocmd InsertLeave * set nopaste
 
 " [rectangle]
-onoremap ar  a]
-xnoremap ar  a]
+onoremap ar  2i]
+xnoremap ar  2i]
 onoremap ir  i]
 xnoremap ir  i]
 
 " 'quote'
-onoremap aq  a'
-xnoremap aq  a'
+onoremap aq  2i'
+xnoremap aq  2i'
 onoremap iq  i'
 xnoremap iq  i'
 
 " "double quote"
-onoremap ad  a"
-xnoremap ad  a"
+onoremap ad  2i"
+xnoremap ad  2i"
 onoremap id  i"
 xnoremap id  i"
 
