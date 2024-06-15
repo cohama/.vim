@@ -117,7 +117,7 @@ call cmdline#set_option(#{
 \   highlight_prompt: 'Cursor',
 \   highlight_window: 'Pmenu',
 \   highlight_cursor: 'CmdlineCursor',
-\   col: &columns / 4,
+\   col: (&columns + 1) / 4,
 \   row: &lines / 2 - 13,
 \   width: &columns / 2,
 \ })
