@@ -1244,6 +1244,13 @@ function! PythonRunPytestOnFunctionName() abort
   endif
 endfunction
 
+" on Vim
+function! OnVim() abort
+  set isf-==
+  set isk-=#
+endfunction
+autocmd myautocmd FileType vim call OnVim()
+
 " フォーカスを得たタイミングで全てのウィンドウサイズを揃える
 " かつ、ファイルを開き直したりする
 autocmd myautocmd FocusGained * wincmd = | checktime
