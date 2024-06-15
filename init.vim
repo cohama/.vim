@@ -976,8 +976,8 @@ endfunction
 command! -nargs=1 RenameMe call RenameMe(<q-args>)
 
 " () まで消すを便利に
-onoremap ) t)
-onoremap ( T(
+onoremap ) ])
+onoremap ( [(
 
 " 行末の空白とか最終行の空行を削除
 function! RemoveUnwantedSpaces()
