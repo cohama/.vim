@@ -75,27 +75,27 @@ hook_add = '''
   endfunction
 
   command! -nargs=1 -complete=dir DduFileExternal Ddu file_external -source-option-path=<args>
-  autocmd FileType ddu-ff call s:ddu_my_settings()
+  autocmd myautocmd FileType ddu-ff call s:ddu_my_settings()
   function! s:ddu_my_settings() abort
-    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open'})<CR>
-    nnoremap <buffer><silent> s <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
-    nnoremap <buffer><silent> S <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
-    nnoremap <buffer><silent> t <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
-    nnoremap <buffer><silent> C <Cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'tcd'}})<CR>
-    nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
-    nnoremap <buffer><silent> i <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
-    nnoremap <buffer><silent> q <Cmd>call ddu#ui#do_action('quit')<CR>
-    nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#do_action('quit')<CR>
+    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open'})<CR>
+    nnoremap <buffer><silent> s <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
+    nnoremap <buffer><silent> S <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
+    nnoremap <buffer><silent> t <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
+    nnoremap <buffer><silent> C <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open', 'params': {'command': 'tcd'}})<CR>
+    nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#sync_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> i <Cmd>call ddu#ui#sync_action('openFilterWindow')<CR>
+    nnoremap <buffer><silent> q <Cmd>call ddu#ui#sync_action('quit')<CR>
+    nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#sync_action('quit')<CR>
 
-    nnoremap <buffer><silent> F <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'DduFileExternal'}})<CR>
+    nnoremap <buffer><silent> F <Cmd>call ddu#ui#ff#sync_action('itemAction', {'name': 'open', 'params': {'command': 'DduFileExternal'}})<CR>
   endfunction
 
   function! s:ddu_ff_filter_my_settings() abort
     call ddu#ui#ff#save_cmaps(['<C-j>', '<C-k>', '<CR>', '<Esc>'])
 
-    cnoremap <C-j> <Cmd>call ddu#ui#do_action('cursorNext')<CR>
-    cnoremap <C-k> <Cmd>call ddu#ui#do_action('cursorPrevious')<CR>
-    cnoremap <CR> <CR><Cmd>call ddu#ui#do_action('itemAction', #{name: 'open'})<CR>
+    cnoremap <C-j> <Cmd>call ddu#ui#sync_action('cursorNext')<CR>
+    cnoremap <C-k> <Cmd>call ddu#ui#sync_action('cursorPrevious')<CR>
+    cnoremap <CR> <CR><Cmd>call ddu#ui#sync_action('itemAction', #{name: 'open'})<CR>
     cnoremap <Esc> <CR>
   endfunction
   autocmd myautocmd User Ddu:ui:ff:openFilterWindow call s:ddu_ff_filter_my_settings()
@@ -105,7 +105,7 @@ hook_add = '''
   endfunction
   autocmd myautocmd User Ddu:ui:ff:closeFilterWindow call s:ddu_ff_filter_cleanup()
 
-	autocmd myautocmd User Ddu:uiDone ++nested call ddu#ui#async_action('openFilterWindow')
+  autocmd myautocmd User Ddu:uiDone ++nested call ddu#ui#async_action('openFilterWindow')
   autocmd myautocmd User Ddu:ui:ff:openFilterWindow call cmdline#enable()
 '''
 
@@ -113,14 +113,21 @@ hook_add = '''
 repo = 'Shougo/cmdline.vim'
 hook_add = '''
 autocmd myautocmd ColorScheme * hi! CmdlineCursor ctermfg=16 ctermbg=253 guifg=#040410 guibg=#d1ccde
+
+function! s:cmdline_set_pos() abort
+  call cmdline#set_option(#{
+  \   col: (&columns + 1) / 4,
+  \   row: &lines / 2 - 13,
+  \   width: &columns / 2,
+  \ })
+endfunction
 call cmdline#set_option(#{
 \   highlight_prompt: 'Cursor',
 \   highlight_window: 'Pmenu',
 \   highlight_cursor: 'CmdlineCursor',
-\   col: (&columns + 1) / 4,
-\   row: &lines / 2 - 13,
-\   width: &columns / 2,
 \ })
+call s:cmdline_set_pos()
+autocmd myautocmd WinResized * call s:cmdline_set_pos()
 '''
 
 [[plugins]]
