@@ -62,17 +62,18 @@ hook_add = '''
   nnoremap \F <Cmd>Ddu file_rec<CR>
   nnoremap \f <Cmd>Ddu file_external<CR>
   nnoremap <M-m> <Cmd>Ddu mr<CR>
-  nnoremap <M-M> <Cmd>call ddu#start({
-  \ "name": "mr",
-  \ "sources": [
-  \   {
-  \     "name": "mr",
-  \     "params": {"kind": "mrr"}
+  nnoremap <M-M> <Cmd>call ddu#start(#{
+  \ name: "mr",
+  \ sources: [
+  \   #{
+  \     name: "mr",
+  \     params: #{kind: "mrr"}
   \   }
   \ ]
   \ })<CR>
   nnoremap \ur <Cmd>Ddu -resume<CR>
   nnoremap \ug <Cmd>DduRgLive<CR>
+  nnoremap \uj <Cmd>Ddu junkfile<CR>
 
   function! DduFileExternal(dir) abort
     call ddu#start({"name": "file_ext_custom", "sources": [{"name": "file_external"}]})
@@ -172,6 +173,13 @@ repo = 'lambdalisue/vim-mr'
 hook_add = '''
   let g:mr_disable_warning = 1
   let g:mr#threshold = 100000
+'''
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim'
+hook_add = '''
+  let g:junkfile#edit_command = "tabedit"
+  command! Junkfile call junkfile#open_immediately(strftime('%d-%H%M%S.md'))
 '''
 
 [[plugins]]
