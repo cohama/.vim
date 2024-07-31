@@ -85,6 +85,30 @@ hook_add = '''
     call ddu#start({"name": "file_ext_custom", "sources": [{"name": "file_external"}]})
   endfunction
 
+  function! MyDduVimScriptnamesSource() abort
+    return execute('scriptnames')
+    \ ->split("\n")
+    \ ->map({_, line -> substitute(line, '\s*\d\+:\s\+\(.*\)', '\1', '')})
+    \ ->map({_, scriptname -> #{
+    \    word: scriptname,
+    \    kind: 'file',
+    \    action: #{
+    \      path: expand(scriptname),
+    \      isDirectory: isdirectory(scriptname),
+    \    }
+    \  }})
+  endfunction
+
+  nnoremap \us <Cmd>call ddu#start(#{
+  \ name: "vim-scriptnames",
+  \ sources: [
+  \   #{
+  \     name: "vim",
+  \     params: #{func: "MyDduVimScriptnamesSource"},
+  \   }
+  \ ]
+  \ })<CR>
+
   command! -nargs=1 -complete=dir DduFileExternal Ddu file_external -source-option-path=<args>
   autocmd myautocmd FileType ddu-ff call s:ddu_my_settings()
   function! s:ddu_my_settings() abort
@@ -167,6 +191,9 @@ repo = 'kuuote/ddu-source-mr'
 
 [[plugins]]
 repo = 'shun/ddu-source-rg'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
