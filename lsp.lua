@@ -1,4 +1,6 @@
 local nvim_lsp = require('lspconfig')
+local configs = require('lspconfig.configs')
+local util = require('lspconfig.util')
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -35,32 +37,24 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = on_attach
 })
 
-nvim_lsp.gopls.setup{
-  on_attach = on_attach,
-}
+nvim_lsp.gopls.setup{}
 
-nvim_lsp.pylsp.setup {
-  on_attach = on_attach,
-  cmd = { vim.env.HOME .. "/.config/nvim/run_pylsp.sh" },
-  flags = {
-    debounce_text_changes = 500,
-    allow_incremental_sync = false,
-  },
-  settings =  {
+function pylsp_default_settings()
+  return {
     pylsp = {
       plugins = {
         ruff = {
-          enabled = false,
+          enabled = true,
         },
         pylint = {
-          enabled = true,
+          enabled = false,
           args = {"-j0"},
         },
         pycodestyle = {
           enabled = false,
         },
         flake8 = {
-          enabled = true,
+          enabled = false,
         },
         pydocstyle = {
           enabled = false,
@@ -77,21 +71,96 @@ nvim_lsp.pylsp.setup {
           enabled = false,
         },
         isort = {
-          enabled = true,
+          enabled = false,
         },
         black = {
-          enabled = true,
+          enabled = false,
         },
         rope_autoimport = {
-          enabled = false,
+          enabled = true,
         },
       }
     }
   }
+end
+
+function is_pylint_root_dir(fname)
+  local root_dir = vim.fs.root(fname, "pyproject.toml")
+  local pyproject_toml = vim.fs.joinpath(root_dir, "pyproject.toml")
+  local lines = vim.iter(vim.fn.readfile(pyproject_toml))
+  return lines:find(function(line)
+    return string.match(line, "tool.pylint")
+  end) ~= nil
+end
+
+function python_root_dir(fname)
+  local root_files = {"pyproject.toml", "setup.py", ".git"}
+  local root_dir = util.root_pattern(unpack(root_files))(fname)
+  return root_dir
+end
+
+nvim_lsp.pylsp.setup {
+  cmd = {vim.env.HOME .. "/.config/nvim/run_pylsp.sh"},
+  flags = {
+    debounce_text_changes = 500,
+    allow_incremental_sync = false,
+  },
+  root_dir = function(fname)
+    local root_dir = python_root_dir(fname)
+    if not is_pylint_root_dir(fname) then
+      return root_dir
+    end
+  end,
+  on_attach = function(client, bufnr)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    if is_pylint_root_dir(fname) then
+      vim.schedule(function()
+        vim.lsp.buf_detach_client(bufnr, client["id"])
+      end)
+    end
+  end,
+  settings = pylsp_default_settings()
 }
 
+configs.pylsp_pylint = {
+  default_config = {
+    cmd = {vim.env.HOME .. '/.config/nvim/run_pylsp.sh'},
+    filetypes = {'python'},
+    root_dir = function(fname)
+      local root_dir = python_root_dir(fname)
+      if is_pylint_root_dir(fname) then
+        return root_dir
+      end
+    end,
+    single_file_support = false,
+    settings = vim.tbl_extend(
+      "force",
+      pylsp_default_settings(),
+      {
+        pylsp = {
+          plugins = {
+            ruff = {
+              enabled = false,
+            },
+            pylint = {
+              enabled = true,
+            },
+            isort = {
+              enabled = true,
+            },
+            black = {
+              enabled = true,
+            },
+          },
+        },
+      }
+    ),
+  },
+}
+
+nvim_lsp.pylsp_pylint.setup {}
+
 nvim_lsp.efm.setup {
-  on_attach = on_attach,
   flags = {
     debounce_text_changes = 500,
   },
@@ -117,11 +186,9 @@ nvim_lsp.efm.setup {
 }
 
 nvim_lsp.rust_analyzer.setup{
-  on_attach = on_attach,
 }
 
 nvim_lsp.hls.setup{
-  on_attach = on_attach,
 }
 -- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 --   vim.lsp.diagnostic.on_publish_diagnostics, {

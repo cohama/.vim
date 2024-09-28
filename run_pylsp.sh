@@ -1,5 +1,7 @@
 #!/bin/bash -eu
-if [[ -x $(command -v pipx) && -x $(command -v pylsp) ]] ; then
+if [[ -x $(command -v rye) && -x $(command -v rye) ]] ; then
+  python_cmd="$HOME/.rye/shims/python"
+elif [[ -x $(command -v pipx) && -x $(command -v pylsp) ]] ; then
   python_cmd=$(pipx environment -v PIPX_LOCAL_VENVS)/python-lsp-server/bin/python
 else
   python_cmd=python
