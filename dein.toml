@@ -121,6 +121,7 @@ hook_add = '''
     nnoremap <buffer><silent> i <Cmd>call ddu#ui#sync_action('openFilterWindow')<CR>
     nnoremap <buffer><silent> q <Cmd>call ddu#ui#sync_action('quit')<CR>
     nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#sync_action('quit')<CR>
+    nnoremap <buffer><silent> <C-[> <Cmd>call ddu#ui#sync_action('quit')<CR>
 
     nnoremap <buffer><silent> F <Cmd>call ddu#ui#ff#sync_action('itemAction', {'name': 'open', 'params': {'command': 'DduFileExternal'}})<CR>
   endfunction
