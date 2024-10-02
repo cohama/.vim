@@ -239,17 +239,17 @@ depends = [
   'denops.vim',
   'ddc-ui-pum',
   'neosnippet.vim',
-  'ddc-matcher_head',
+  'ddc-filter-matcher_head',
   'ddc-sorter_rank',
-  'ddc-around',
+  'ddc-source-around',
   'ddc-source-file',
   'ddc-source-copilot',
   'ddc-fuzzy',
   'ddc-source-lsp',
-  'ddc-buffer',
+  'ddc-source-buffer',
   'pum.vim',
   'denops-popup-preview.vim',
-  'ddc-converter_remove_overlap',
+  'ddc-filter-converter_remove_overlap',
 ]
 on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
@@ -318,15 +318,15 @@ repo = 'Shougo/ddc-ui-pum'
 lazy = 1
 
 [[plugins]]
-repo = 'Shougo/ddc-around'
+repo = 'Shougo/ddc-source-around'
 lazy = 1
 
 [[plugins]]
-repo = 'matsui54/ddc-buffer'
+repo = 'matsui54/ddc-source-buffer'
 lazy = 1
 
 [[plugins]]
-repo = 'Shougo/ddc-matcher_head'
+repo = 'Shougo/ddc-filter-matcher_head'
 lazy = 1
 
 [[plugins]]
@@ -351,7 +351,7 @@ repo = 'Shougo/ddc-source-lsp'
 lazy = 1
 
 [[plugins]]
-repo = 'Shougo/ddc-converter_remove_overlap'
+repo = 'Shougo/ddc-filter-converter_remove_overlap'
 lazy = 1
 hook_source ='''
 '''
@@ -989,17 +989,17 @@ hook_add = '''
 hook_source = '''
   " quickrun settings {{{
   let g:quickrun_config = {}
-  let g:quickrun_config['_'] = #{
-  \ hook/close_buffer/enable_failure   : 1,
-  \ hook/close_buffer/enable_empty_data: 1,
-  \ outputter                          : 'buffer',
-  \ outputter/buffer/opener            : 'botright 8split',
-  \ outputter/buffer/bufname           : 'QuickRunOut',
-  \ outputter/buffer/close_on_empty    : 1,
-  \ outputter/quickfix/open_cmd        : '',
-  \ hook/echo/enable                   : 1,
-  \ hook/echo/output_success           : 'success',
-  \ hook/echo/output_failure           : 'failure',
+  let g:quickrun_config['_'] = {
+  \ 'hook/close_buffer/enable_failure'   : 1,
+  \ 'hook/close_buffer/enable_empty_data': 1,
+  \ 'outputter'                          : 'buffer',
+  \ 'outputter/buffer/opener'            : 'botright 8split',
+  \ 'outputter/buffer/bufname'           : 'QuickRunOut',
+  \ 'outputter/buffer/close_on_empty'    : 1,
+  \ 'outputter/quickfix/open_cmd'        : '',
+  \ 'hook/echo/enable'                   : 1,
+  \ 'hook/echo/output_success'           : 'success',
+  \ 'hook/echo/output_failure'           : 'failure',
   \ }
   if has('nvim')
     let g:quickrun_config['_']['runner'] = 'neovim_job'
