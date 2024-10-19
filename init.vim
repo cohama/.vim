@@ -138,6 +138,9 @@ set textwidth=0
 " タブページのラベルを常に表示
 set showtabline=2
 
+" タブページ消したあとの挙動
+set tabclose=left
+
 " 長い行を @ にさせない
 set display=lastline
 
@@ -346,16 +349,6 @@ nnoremap <silent> <M-n> :<C-u>tabnew<CR>
 nnoremap <silent> <M-w> :<C-u>MyTabClose<CR>
 nnoremap <silent> <M-W> :<C-u>tabonly<CR>
 nnoremap <M-e> :<C-u>tabedit<Space>
-function! MyTabClose()
-  let tabpagenr = tabpagenr()
-  if tabpagenr == 1
-    tabclose
-  else
-    tabprevious
-    execute 'tabclose ' . tabpagenr
-  endif
-endfunction
-command! MyTabClose call MyTabClose()
 
 " タブページの移動
 nnoremap <silent> <M-L> :<C-u>tabmove +1<CR>
