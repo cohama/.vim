@@ -1010,7 +1010,6 @@ autocmd myautocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Presentation mode
 function! Presentation()
-  Fontzoom +11
   set cmdheight=3
   set laststatus=0
   set number norelativenumber
@@ -1043,26 +1042,14 @@ function! DiffThese()
 endfunction
 command! -nargs=0 DiffThese call DiffThese()
 
-" ごめんなさい
-nnoremap <M-S> :<C-u>browse save<CR>
-nnoremap <M-O> :<C-u>browse edit<CR>
-
 " 繰り返しを楽にする
 xnoremap . :normal .<CR>
 
 " haskell
-autocmd myautocmd BufNewFile,BufRead *.hsc setl ft=haskell
-function! OnHaskell()
-  setl sw=4 sts=4 ts=4
-endfunction
-autocmd myautocmd FileType haskell call OnHaskell()
 function! SynHaskell()
   hi def link ConId Constant
 endfunction
 autocmd myautocmd Syntax haskell call SynHaskell()
-
-" digraph を打ちたい時もあるかもしれない
-inoremap <C-g><C-l> <C-k>
 
 " cdcurrent
 command! CdCurrent cd %:p:h
@@ -1073,18 +1060,6 @@ command! CopyFullPath let @+ = expand('%:p')
 
 " 現在編集中のファイルの権限を変更
 command! -nargs=1 Chmod !chmod <args> %
-
-" Markdown
-autocmd myautocmd BufNewFile,BufRead *.md setl ft=markdown ts=4 sw=4 sts=4
-
-" Coq
-autocmd myautocmd ColorScheme * hi SentToCoq ctermbg=17 guibg=#000080
-autocmd myautocmd FileType coq call MyCoqSettings()
-function! MyCoqSettings()
-  nnoremap <buffer><silent> \n :<C-u>CoqIDENext<CR>
-  nnoremap <buffer><silent> \p :<C-u>CoqIDEUndo<CR>
-  nnoremap <buffer><silent> \P :<C-u>CoqIDEUndo<CR>
-endfunction
 
 " Plugin のテストのために最小構成の Vim を起動する
 command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>, 0)
@@ -1135,14 +1110,7 @@ endif
 
 " Python
 function! OnPython() abort
-  if executable('autopep8')
-    let &l:formatprg = "autopep8 --max-line-length 120 - 2> /dev/null"
-  elseif executable('yapf')
-    let &l:formatprg = "yapf 2> /dev/null"
-  endif
   command! -buffer -bang PyFmt call PythonFormat(<bang>0)
-  command! -buffer Yapf silent !yapf -i %
-  command! -buffer Black silent !black % 2>/dev/null
   command! -buffer PyDoc call PythonGenerateDocstring()
   command! -buffer -bang PyAutoImport call PythonAutoImport("", <bang>0)
 
@@ -1150,7 +1118,6 @@ function! OnPython() abort
   nnoremap <buffer> \i <Cmd>PyAutoImport<CR>
   nnoremap <buffer> \I <Cmd>PyAutoImport!<CR>
 
-  " nnoremap <buffer> <C-]> :<C-u>call jedi#goto()<CR>
   nnoremap <buffer> \R <Cmd>call PythonRunPytestOnFunctionName()<CR><C-w>p
 endfunction
 autocmd myautocmd FileType python call OnPython()
@@ -1162,7 +1129,6 @@ function! PythonFormat(remove_unused_imports) abort
     silent !autoflake -i --remove-all-unused-imports %
   endif
   silent !isort -w 120 %
-  " silent !pipenv run autopep8 --max-line-length 120 -i %
 endfunction
 autocmd myautocmd FileType python call OnPython()
 
