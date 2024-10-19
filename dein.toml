@@ -537,10 +537,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'tpope/vim-commentary'
-on_map = {nx = ['gc', 'gC']}
-
-[[plugins]]
 repo = 'kana/vim-operator-user'
 
 [[plugins]]

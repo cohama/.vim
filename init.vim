@@ -1246,8 +1246,8 @@ endfunction
 
 " on Vim
 function! OnVim() abort
-  set isf-==
-  set isk-=#
+  setlocal iskeyword-=#
+  setlocal commentstring=\"\ %s
 endfunction
 autocmd myautocmd FileType vim call OnVim()
 
