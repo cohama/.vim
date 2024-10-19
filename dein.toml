@@ -164,7 +164,7 @@ repo = 'Shougo/ddu-filter-matcher_substring'
 repo = 'Shougo/ddu-kind-file'
 
 [[plugins]]
-repo = 'lambdalisue/mr.vim'
+repo = 'lambdalisue/vim-mr'
 hook_add = '''
   let g:mr_disable_warning = 1
   let g:mr#threshold = 100000
