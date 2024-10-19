@@ -30,9 +30,6 @@ set tabstop=2
 " インデントでずれる幅
 set shiftwidth=2
 
-" タブキーでカーソルが動く幅
-set softtabstop=2
-
 " タブの代わりに空白を挿入
 set expandtab
 
