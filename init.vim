@@ -859,10 +859,8 @@ nnoremap <expr> [Toggle]W FullAutoWriteToggle()
 " <C-G> で fileformat fileencoding filetype とかもだす
 function! SuperRuler(count)
   let cnt = (a:count == 0) ? '' : a:count
-  redir => ruler_out
-    silent execute 'silent normal! ' . cnt . "\<C-g>"
-  redir END
-  let super_ruler = ruler_out[2:] . "    | " . &fileformat . " | " . &fileencoding . " | " . &filetype . " | " . VCSRepoInfo()
+  let ruler_out = execute($"normal! {cnt}\<C-g>")
+  let super_ruler = $"{ruler_out[2:]}   | {&fileformat} | {&fileencoding} | {&filetype} | {VCSRepoInfo()} "
   echo super_ruler
 endfunction
 
@@ -1235,7 +1233,7 @@ function! PythonRunPytestOnFunctionName() abort
   let m = matchstr(getline('.'), '^\s*def\s\+\zstest_[^(]*\ze(.*$')
   echom m
   if m !=# ''
-    execute 'bot split term://pipenv run pytest -vk ' . m
+    execute $"bot split term://pytest -vk {m}"
   endif
 endfunction
 
@@ -1253,9 +1251,9 @@ autocmd myautocmd FocusGained * wincmd = | checktime
 " tcd 版 :Gcd
 function! GetRootDir(path) abort
   let parent_dir = fnamemodify(expand(a:path), ":p:h")
-  return system("git -C " . parent_dir . " rev-parse --show-toplevel")
+  return system($"git -C {parent_dir} rev-parse --show-toplevel")
 endfunction
-command! Gtcd execute "tcd " . GetRootDir(expand("%"))
+command! Gtcd execute $'tcd {GetRootDir(expand("%"))}'
 nnoremap [Git]<CR> <Cmd>Gtcd<CR>:pwd<CR>
 
 " カレントディレクトリを title に表示
