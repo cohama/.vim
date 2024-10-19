@@ -1055,7 +1055,8 @@ autocmd myautocmd Syntax haskell call SynHaskell()
 command! CdCurrent cd %:p:h
 command! LcdCurrent lcd %:p:h
 
-" 現在編集中のフルパスをクリップボードにコピー
+" 現在編集中のパスをクリップボードにコピー
+command! CopyPath let @+ = expand('%')
 command! CopyFullPath let @+ = expand('%:p')
 
 " 現在編集中のファイルの権限を変更
