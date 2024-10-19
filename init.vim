@@ -343,16 +343,16 @@ function! Cancel()
 endfunction
 
 " タブページの設定
-nnoremap <silent> <M-l> :<C-u>tabnext<CR>:pwd<CR>
-nnoremap <silent> <M-h> :<C-u>tabprevious<CR>:pwd<CR>
-nnoremap <silent> <M-n> :<C-u>tabnew<CR>
-nnoremap <silent> <M-w> :<C-u>MyTabClose<CR>
-nnoremap <silent> <M-W> :<C-u>tabonly<CR>
+nnoremap <silent> <M-l> <Cmd>tabnext<CR>:pwd<CR>
+nnoremap <silent> <M-h> <Cmd>tabprevious<CR>:pwd<CR>
+nnoremap <silent> <M-n> <Cmd>tabnew<CR>
+nnoremap <silent> <M-w> <Cmd>tabclose<CR>
+nnoremap <silent> <M-W> <Cmd>tabonly<CR>
 nnoremap <M-e> :<C-u>tabedit<Space>
 
 " タブページの移動
-nnoremap <silent> <M-L> :<C-u>tabmove +1<CR>
-nnoremap <silent> <M-H> :<C-u>tabmove -1<CR>
+nnoremap <silent> <M-L> <Cmd>tabmove +1<CR>
+nnoremap <silent> <M-H> <Cmd>tabmove -1<CR>
 
 " カーソル位置の単語を置換
 nnoremap g/ :<C-u>%s/\C\<<C-R><C-w>\>//g<Left><Left>
@@ -867,7 +867,7 @@ endfunction
 function! VCSRepoInfo() abort
   return fugitive#statusline()[1:]
 endfunction
-nnoremap <C-G> :<C-u>call SuperRuler(v:count)<CR>
+nnoremap <C-g> <Cmd>call SuperRuler(v:count)<CR>
 
 " フォーマット変えて開き直す系
 command! Utf8 edit ++enc=utf-8 %
@@ -1104,9 +1104,9 @@ function! PluginTest(is_vim, extraCommand, no_plugin) abort
 endfunction
 
 " QuickFix Window
-nnoremap \c :<C-u>lopen<CR>
-nnoremap [e :<C-u>lprevious<CR>
-nnoremap ]e :<C-u>lnext<CR>
+nnoremap \c <Cmd>lopen<CR>
+nnoremap [e <Cmd>lprevious<CR>
+nnoremap ]e <Cmd>lnext<CR>
 autocmd myautocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Remember last current directory
@@ -1151,7 +1151,7 @@ function! OnPython() abort
   nnoremap <buffer> \I <Cmd>PyAutoImport!<CR>
 
   " nnoremap <buffer> <C-]> :<C-u>call jedi#goto()<CR>
-  nnoremap <buffer> \R :<C-u>call PythonRunPytestOnFunctionName()<CR><C-w>p
+  nnoremap <buffer> \R <Cmd>call PythonRunPytestOnFunctionName()<CR><C-w>p
 endfunction
 autocmd myautocmd FileType python call OnPython()
 
@@ -1254,7 +1254,7 @@ function! GetRootDir(path) abort
   return system("git -C " . parent_dir . " rev-parse --show-toplevel")
 endfunction
 command! Gtcd execute "tcd " . GetRootDir(expand("%"))
-nnoremap [Git]<CR> :<C-u>Gtcd<CR>:pwd<CR>
+nnoremap [Git]<CR> <Cmd>Gtcd<CR>:pwd<CR>
 
 " カレントディレクトリを title に表示
 function! SetTitleCwd() abort
