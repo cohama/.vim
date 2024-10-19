@@ -254,6 +254,9 @@ set spelllang=en,cjk
 
 " camelcase でもスペルチェックする
 set spelloptions=camel
+
+" ファイル名パターンに = は入らない
+set isf-==
 " }}}
 " }}}
 
