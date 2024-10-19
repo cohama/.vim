@@ -36,6 +36,9 @@ set expandtab
 " 空白文字をいいかんじで挿入する
 set smarttab
 
+" >> などのときに shiftwidth の整数倍に丸める
+set shiftround
+
 " 折り返しの際にインデントを考慮
 if exists('+breakindent')
   set breakindent
