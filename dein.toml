@@ -733,7 +733,7 @@ hook_source = '''
   lua <<EOF
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "all",
-    ignore_install = {},
+    ignore_install = {"hoon"},
     highlight = {
       enable = true,
       disable = {"toml", "gitcommit", "markdown", "ini", "tsv"},
