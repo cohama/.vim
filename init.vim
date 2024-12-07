@@ -33,8 +33,8 @@ set shiftwidth=2
 " タブの代わりに空白を挿入
 set expandtab
 
-" 空白文字をいいかんじで挿入する
-set smarttab
+" 空白文字をいいかんじで挿入しない
+set nosmarttab
 
 " >> などのときに shiftwidth の整数倍に丸める
 set shiftround
@@ -1066,10 +1066,9 @@ command! -nargs=1 Chmod !chmod <args> %
 command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>, 0)
 command! -bang -nargs=* PluginTestNoPlugin call PluginTest(<bang>0, <q-args>, 1)
 function! PluginTest(is_vim, extraCommand, no_plugin) abort
-  let cmd = a:is_vim ? 'terminal env VIMRUNTIME= vim' : 'terminal nvim'
+  let cmd = a:is_vim ? 'terminal env VIMRUNTIME= vim' : 'terminal env NVIM_LISTEN_ADDRESS= nvim'
   let extraCommand = empty(a:extraCommand) ? '' : ' -c"au VimEnter * ' . a:extraCommand . '"'
-  let plugintestrc = empty(findfile('.plugintest.vimrc', getcwd())) ? '' : ' -S .plugintest.vimrc'
-  let min_vimrc_path = "~/.config/nvim/.min.vimrc"
+  let plugintestrc = empty(findfile('.plugintest.vimrc', getcwd())) ? '' : ' --cmd  "source .plugintest.vimrc"'
   vnew
   if a:no_plugin
     execute 'silent ' . cmd . ' -u NONE ' . ' -i NONE' . ' -N --cmd "set rtp+=' . getcwd() . '"' . plugintestrc .  extraCommand
