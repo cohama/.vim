@@ -207,53 +207,53 @@ depends = [
 ]
 on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
-  call ddc#custom#patch_global({
-    \ 'ui': 'pum',
-    \ 'sources': ['lsp', 'neosnippet', 'buffer', 'file'],
-    \ 'backspaceCompletion': v:true,
-    \ 'sourceOptions': {
-    \   '_': {
-    \     'matchers': ['matcher_fuzzy'],
-    \     'sorters': ['sorter_fuzzy'],
-    \     'converters': ['converter_fuzzy', 'converter_remove_overlap'],
-    \     'minAutoCompleteLength': 1,
+  call ddc#custom#patch_global(#{
+    \ ui: 'pum',
+    \ sources: ['lsp', 'neosnippet', 'buffer', 'file'],
+    \ backspaceCompletion: v:true,
+    \ sourceOptions: #{
+    \   _: #{
+    \     matchers: ['matcher_fuzzy'],
+    \     sorters: ['sorter_fuzzy'],
+    \     converters: ['converter_fuzzy', 'converter_remove_overlap'],
+    \     minAutoCompleteLength: 1,
     \   },
-    \   'buffer': {'mark': 'Buff'},
-    \   'neosnippet': {'mark': 'Snip'},
-    \   'file': {
-    \     'mark': 'File',
-    \     'isVolatile': v:true,
-    \     'forceCompletionPattern': '\S/\S*',
+    \   buffer: #{mark: 'Buff'},
+    \   neosnippet: #{mark: 'Snip'},
+    \   file: #{
+    \     mark: 'File',
+    \     isVolatile: v:true,
+    \     forceCompletionPattern: '\S/\S*',
     \   },
-    \   'lsp': {
-    \     'mark': 'LSP',
-    \     'forceCompletionPattern': '\.\w*|:\w*',
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   'buffer': {
-    \     'requireSameFiletype': v:false,
-    \     'limitBytes': 5000000,
-    \     'fromAltBuf': v:true,
-    \     'forceCollect': v:true,
+    \   lsp: #{
+    \     mark: 'LSP',
+    \     forceCompletionPattern: '\.\w*|:\w*',
     \   },
     \ },
-    \ 'filterParams': {
-    \   'matcher_fuzzy': {'splitMode': 'word'},
+    \ sourceParams: #{
+    \   buffer: #{
+    \     requireSameFiletype: v:false,
+    \     limitBytes: 5000000,
+    \     fromAltBuf: v:true,
+    \     forceCollect: v:true,
+    \   },
+    \ },
+    \ filterParams: #{
+    \   matcher_fuzzy: #{splitMode: 'word'},
     \ },
     \ })
-  call ddc#custom#patch_filetype(['python'], 'sources', ['lsp', 'neosnippet', 'file', 'around'])
-  call ddc#custom#patch_filetype(['python'], 'sourceOptions', {
-    \ 'lsp': {
-    \   'forceCompletionPattern': '\.\w*|:\s\w*|import\s\w*|@\w*',
+  call ddc#custom#patch_filetype(['python'], 'sources', ['copilot', 'lsp', 'neosnippet', 'file', 'around'])
+  call ddc#custom#patch_filetype(['python'], 'sourceOptions', #{
+    \ lsp: #{
+    \   forceCompletionPattern: '\.\w*|:\s\w*|import\s\w*|@\w*',
     \ },
-    \ 'around': {
-    \   'mark': 'A',
+    \ around: #{
+    \   mark: 'A',
     \ },
     \ })
-  call ddc#custom#patch_filetype(['python'], 'sourceParams', {
-    \ 'around': {
-    \   'maxSize': 500,
+  call ddc#custom#patch_filetype(['python'], 'sourceParams', #{
+    \ around: #{
+    \   maxSize: 500,
     \ },
     \ })
   call ddc#enable()
@@ -305,8 +305,8 @@ hook_source = '''
   inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
   inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
 
-  call pum#set_option({
-    \ 'border': 'single',
+  call pum#set_option(#{
+    \ border: 'single',
     \ })
 '''
 
@@ -322,14 +322,14 @@ repo = 'matsui54/denops-signature_help'
 lazy = 1
 on_event = ['InsertEnter']
 hook_source = '''
-  let g:signature_help_config = {
-  \ 'border': v:true,
-  \ 'maxWidth': 80,
-  \ 'maxHeight': 30,
-  \ 'style': "labelOnly",
-  \ 'onTriggerChar': v:false,
-  \ 'multiLabel': v:false,
-  \ 'fallbackToBelow': v:true,
+  let g:signature_help_config = #{
+  \ border: v:true,
+  \ maxWidth: 80,
+  \ maxHeight: 30,
+  \ style: "labelOnly",
+  \ onTriggerChar: v:false,
+  \ multiLabel: v:false,
+  \ fallbackToBelow: v:true,
   \ }
   call signature_help#enable()
   inoremap <C-l> <Cmd>call signature_help#disable()<CR><Cmd>call SetSignatureHelpEnable()<CR>
@@ -368,28 +368,28 @@ hook_source = '''
   call lexima#set_default_rules()
 
   nnoremap / <Cmd>set wrapscan<CR>/
-  call lexima#add_rule({'char': '<CR>', 'input': '<CR><Cmd>set nowrapscan<CR>', 'mode': '/'})
-  call lexima#add_rule({'char': '<Esc>', 'input': '<C-c><Cmd>set nowrapscan<CR>', 'mode': '/'})
+  call lexima#add_rule(#{char: '<CR>', input: '<CR><Cmd>set nowrapscan<CR>', mode: '/'})
+  call lexima#add_rule(#{char: '<Esc>', input: '<C-c><Cmd>set nowrapscan<CR>', mode: '/'})
 
-  call lexima#add_rule({'at': '\S\s*\%#', 'char': '<Tab>', 'input': '', 'leave': 1})
+  call lexima#add_rule(#{at: '\S\s*\%#', char: '<Tab>', input: '', leave: 1})
 
-  call lexima#add_rule({'at': '^\k\+\s*::\s*.*\%#', 'char': '<CR>', 'input': '<Esc>^"qyt<Space>o<C-r>q<Space>', 'filetype': ['haskell']})
-  call lexima#add_rule({'at': '{-\%#}', 'char': '#', 'input': '# ', 'input_after': ' #-', 'filetype': ['haskell']})
-  call lexima#add_rule({'at': '{\%#}', 'char': '<CR>', 'input': '<CR><Bslash> ', 'input_after': '<CR><Bslash> ', 'filetype': 'vim'})
-  call lexima#add_rule({'at': '\\\s.*\%#$', 'char': '<CR>', 'input': '<CR><Bslash> ', 'filetype': 'vim'})
+  call lexima#add_rule(#{at: '^\k\+\s*::\s*.*\%#', char: '<CR>', input: '<Esc>^"qyt<Space>o<C-r>q<Space>', filetype: ['haskell']})
+  call lexima#add_rule(#{at: '{-\%#}', char: '#', input: '# ', input_after: ' #-', filetype: ['haskell']})
+  call lexima#add_rule(#{at: '{\%#}', char: '<CR>', input: '<CR><Bslash> ', input_after: '<CR><Bslash> ', filetype: 'vim'})
+  call lexima#add_rule(#{at: '\\\s.*\%#$', char: '<CR>', input: '<CR><Bslash> ', filetype: 'vim'})
 
-  call lexima#add_rule({'at': 'RenameMe\%#', 'char': '<Space>', 'input': '<Space><C-r>%', 'mode': ':'})
-  call lexima#add_rule({'at': 'Git commit --amend \%#', 'char': 'c', 'input': '-C HEAD', 'mode': ':'})
-  call lexima#add_rule({'at': 'Git commit --amend \%#', 'char': 'C', 'input': '-C HEAD', 'mode': ':'})
-  call lexima#add_rule({'at': 'Git ca\%#', 'char': 'm', 'input': '<C-u>Gcommit --amend ', 'mode': ':'})
+  call lexima#add_rule(#{at: 'RenameMe\%#', char: '<Space>', input: '<Space><C-r>%', mode: ':'})
+  call lexima#add_rule(#{at: 'Git commit --amend \%#', char: 'c', input: '-C HEAD', mode: ':'})
+  call lexima#add_rule(#{at: 'Git commit --amend \%#', char: 'C', input: '-C HEAD', mode: ':'})
+  call lexima#add_rule(#{at: 'Git ca\%#', char: 'm', input: '<C-u>Gcommit --amend ', mode: ':'})
 
-  call lexima#add_rule({'at': 'Ddu \%#', 'char': 'O', 'input': 'outline', 'mode': ':'})
-  call lexima#add_rule({'at': '^\%#', 'char': '/', 'input': '<BS>:Ddu line<CR>', 'mode': '/'})
-  call lexima#add_rule({'at': '^\%#', 'char': ':', 'input': '<BS>:Ddu command_history<CR>', 'mode': ':'})
+  call lexima#add_rule(#{at: 'Ddu \%#', char: 'O', input: 'outline', mode: ':'})
+  call lexima#add_rule(#{at: '^\%#', char: '/', input: '<BS>:Ddu line<CR>', mode: '/'})
+  call lexima#add_rule(#{at: '^\%#', char: ':', input: '<BS>:Ddu command_history<CR>', mode: ':'})
 
-  call lexima#add_rule({'at': '^\s*\%(Describe\|Context\|It\|Before\|After\)\s\+.*\%#', 'char': '<CR>', 'input_after': '<CR>End', 'filetype': 'vimspec'})
+  call lexima#add_rule(#{at: '^\s*\%(Describe\|Context\|It\|Before\|After\)\s\+.*\%#', char: '<CR>', input_after: '<CR>End', filetype: 'vimspec'})
 
-  call lexima#add_rule({'at': '\<\(\k\+\)\.\(_*\)self\%#', 'char': '<Space>', 'input': '<C-u>self.\2\1 = \1', 'filetype': 'python', 'with_submatch': 1})
+  call lexima#add_rule(#{at: '\<\(\k\+\)\.\(_*\)self\%#', char: '<Space>', input: '<C-u>self.\2\1 = \1', filetype: 'python', with_submatch: 1})
   " inoremap <expr> <CR> pum#visible() ? "\<Cmd>call pum#map#confirm()\<CR>" : "\<C-r>=lexima#expand('<LT>CR>', 'i')\<CR>"
   inoremap <silent> <Esc> <C-r>=lexima#insmode#escape()<CR><C-r>=FixedInsertLeave()<CR>:call ImActivateFunc(0)<CR>
   " }}}
@@ -449,11 +449,11 @@ hook_add = '''
   omap aF <Plug>(textobj-functioncall-a)
 
   let g:my_textobj_functioncall_bracket_patterns = [
-  \ {
-  \   'header' : '\<\%(\h\k*\.\)*\h\k*',
-  \   'bra': '\[',
-  \   'ket': '\]',
-  \   'footer' : '',
+  \ #{
+  \   header : '\<\%(\h\k*\.\)*\h\k*',
+  \   bra: '\[',
+  \   ket: '\]',
+  \   footer : '',
   \ }]
   onoremap <silent> ig :<C-u>call textobj#functioncall#i('o', g:my_textobj_functioncall_bracket_patterns)<CR>
   xnoremap <silent> ig :<C-u>call textobj#functioncall#i('x', g:my_textobj_functioncall_bracket_patterns)<CR>
@@ -461,11 +461,11 @@ hook_add = '''
   xnoremap <silent> ag :<C-u>call textobj#functioncall#a('x', g:my_textobj_functioncall_bracket_patterns)<CR>
 
   let g:my_textobj_functioncall_angle_bracket_patterns = [
-  \ {
-  \   'header' : '\<\%(\h\k*\.\)*\h\k*',
-  \   'bra': '<',
-  \   'ket': '>',
-  \   'footer' : '',
+  \ #{
+  \   header : '\<\%(\h\k*\.\)*\h\k*',
+  \   bra: '<',
+  \   ket: '>',
+  \   footer : '',
   \ }]
 
   onoremap <silent> ia :<C-u>call textobj#functioncall#i('o', g:my_textobj_functioncall_angle_bracket_patterns)<CR>
@@ -488,33 +488,33 @@ hook_add = '''
   xmap S <Plug>(sandwich-add)
   let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
   let g:sandwich#recipes += [
-  \ {
-  \   'buns': ['MySandwichFuncName("[")', '"]"'],
-  \   'expr': 1,
-  \   'cursor': 'inner_tail',
-  \   'kind': ['add', 'replace'],
-  \   'action': ['add'],
-  \   'input': ['g']
+  \ #{
+  \   buns: ['MySandwichFuncName("[")', '"]"'],
+  \   expr: 1,
+  \   cursor: 'inner_tail',
+  \   kind: ['add', 'replace'],
+  \   action: ['add'],
+  \   input: ['g']
   \ },
-  \ {
-  \   'buns': ['MySandwichFuncName("<")', '">"'],
-  \   'expr': 1,
-  \   'cursor': 'inner_tail',
-  \   'kind': ['add', 'replace'],
-  \   'action': ['add'],
-  \   'input': ['a']
+  \ #{
+  \   buns: ['MySandwichFuncName("<")', '">"'],
+  \   expr: 1,
+  \   cursor: 'inner_tail',
+  \   kind: ['add', 'replace'],
+  \   action: ['add'],
+  \   input: ['a']
   \ },
-  \ {
-  \   'external': ['i[', "ig"],
-  \   'noremap': 0,
-  \   'kind': ['delete', 'replace', 'query'],
-  \   'input': ['g']
+  \ #{
+  \   external: ['i[', "ig"],
+  \   noremap: 0,
+  \   kind: ['delete', 'replace', 'query'],
+  \   input: ['g']
   \ },
-  \ {
-  \   'external': ['i<', "ia"],
-  \   'noremap': 0,
-  \   'kind': ['delete', 'replace', 'query'],
-  \   'input': ['a']
+  \ #{
+  \   external: ['i<', "ia"],
+  \   noremap: 0,
+  \   kind: ['delete', 'replace', 'query'],
+  \   input: ['a']
   \ },
   \ ]
 
@@ -527,11 +527,11 @@ hook_add = '''
   endfunction
 
   let g:sandwich#magicchar#f#patterns = [
-  \   {
-  \     'header' : '\<\%(\h\k*\.\)*\h\k*',
-  \     'bra'    : '(',
-  \     'ket'    : ')',
-  \     'footer' : '',
+  \   #{
+  \     header : '\<\%(\h\k*\.\)*\h\k*',
+  \     bra    : '(',
+  \     ket    : ')',
+  \     footer : '',
   \   },
   \ ]
 '''
@@ -859,26 +859,26 @@ hook_add = '''
 hook_source = '''
   " quickrun settings {{{
   let g:quickrun_config = {}
-  let g:quickrun_config['_'] = {
-  \ 'hook/close_buffer/enable_failure'   : 1,
-  \ 'hook/close_buffer/enable_empty_data': 1,
-  \ 'outputter'                          : 'buffer',
-  \ 'outputter/buffer/opener'            : 'botright 8split',
-  \ 'outputter/buffer/bufname'           : 'QuickRunOut',
-  \ 'outputter/buffer/close_on_empty'    : 1,
-  \ 'outputter/quickfix/open_cmd'        : '',
-  \ 'hook/echo/enable'                   : 1,
-  \ 'hook/echo/output_success'           : 'success',
-  \ 'hook/echo/output_failure'           : 'failure',
+  let g:quickrun_config['_'] = #{
+  \ hook/close_buffer/enable_failure   : 1,
+  \ hook/close_buffer/enable_empty_data: 1,
+  \ outputter                          : 'buffer',
+  \ outputter/buffer/opener            : 'botright 8split',
+  \ outputter/buffer/bufname           : 'QuickRunOut',
+  \ outputter/buffer/close_on_empty    : 1,
+  \ outputter/quickfix/open_cmd        : '',
+  \ hook/echo/enable                   : 1,
+  \ hook/echo/output_success           : 'success',
+  \ hook/echo/output_failure           : 'failure',
   \ }
   if has('nvim')
     let g:quickrun_config['_']['runner'] = 'neovim_job'
   else
     let g:quickrun_config['_']['runner'] = 'job'
   endif
-  let g:quickrun_config['themis'] = {
-  \ 'command': 'themis',
-  \ 'exec': '%c --reporter dot %s'
+  let g:quickrun_config['themis'] = #{
+  \ command: 'themis',
+  \ exec: '%c --reporter dot %s'
   \ }
   " }}}
 '''
