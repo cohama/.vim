@@ -793,16 +793,17 @@ hook_add = '''
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 if = 'has("nvim")'
+on = "ColorScheme"
 hook_post_source = '''
 lua <<EOF
-  require('ibl').setup {
-    debounce = 100,
-    indent = {char = ""},
-    whitespace = {
-      highlight = {'IndentGuidesOdd', 'IndentGuidesEven'}
-    },
-    scope = {enabled = false},
-  }
+require('ibl').setup {
+  debounce = 100,
+  indent = {char = ""},
+  whitespace = {
+    highlight = {'IndentGuidesOdd', 'IndentGuidesEven'}
+  },
+  scope = {enabled = false},
+}
 EOF
 '''
 
