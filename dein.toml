@@ -10,6 +10,10 @@ hook_add = '''
 repo = 'vim-denops/denops.vim'
 
 [[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+if = 'has("nvim")'
+
+[[plugins]]
 repo = 'Shougo/ddu.vim'
 depends = [
   'denops.vim',
