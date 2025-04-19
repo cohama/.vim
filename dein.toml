@@ -198,6 +198,7 @@ depends = [
   'ddc-sorter_rank',
   'ddc-around',
   'ddc-source-file',
+  'ddc-source-copilot',
   'ddc-fuzzy',
   'ddc-source-lsp',
   'ddc-buffer',
@@ -209,7 +210,7 @@ on_event = ['InsertEnter', 'CmdlineEnter']
 hook_source = '''
   call ddc#custom#patch_global(#{
     \ ui: 'pum',
-    \ sources: ['lsp', 'neosnippet', 'buffer', 'file'],
+    \ sources: ['copilot', 'lsp', 'neosnippet', 'buffer', 'file'],
     \ backspaceCompletion: v:true,
     \ sourceOptions: #{
     \   _: #{
@@ -220,6 +221,11 @@ hook_source = '''
     \   },
     \   buffer: #{mark: 'Buff'},
     \   neosnippet: #{mark: 'Snip'},
+    \   copilot: #{
+    \     mark: 'Copilot',
+    \     matchers: [],
+    \     minAutoCompleteLength: 0,
+    \   },
     \   file: #{
     \     mark: 'File',
     \     isVolatile: v:true,
@@ -236,6 +242,9 @@ hook_source = '''
     \     limitBytes: 5000000,
     \     fromAltBuf: v:true,
     \     forceCollect: v:true,
+    \   },
+    \   copilot: #{
+    \     copilot: 'lua',
     \   },
     \ },
     \ filterParams: #{
@@ -281,6 +290,11 @@ lazy = 1
 
 [[plugins]]
 repo = 'LumaKernel/ddc-source-file'
+lazy = 1
+
+[[plugins]]
+repo = 'Shougo/ddc-source-copilot'
+depends = ['copilot.lua']
 lazy = 1
 
 [[plugins]]
@@ -351,6 +365,76 @@ hook_source = '''
   snoremap <C-l> <Esc>a
   snoremap <CR> <BS>i
 '''
+
+[[plugins]]
+repo = 'zbirenbaum/copilot.lua'
+on_event = 'InsertEnter'
+on_cmd = "Copilot"
+if = 'has("nvim")'
+hook_source = '''
+lua <<EOF
+require('copilot').setup {
+  panel = {
+    auto_refresh = true,
+  },
+  suggestion = {
+    auto_trigger = true,
+    hide_during_completion = false,
+  },
+  filetypes = {
+    markdown = true,
+    gitcommit = true,
+  },
+}
+EOF
+'''
+
+# [[plugins]]
+# repo = 'frankroeder/parrot.nvim'
+# depends = ['plenary.nvim']
+# if = 'has("nvim")'
+# hook_source = '''
+# lua <<EOF
+# require('parrot').setup {
+#   providers = {
+#     openai = {
+#       api_key = os.getenv "OPENAI_API_KEY",
+#     },
+#   },
+# }
+# EOF
+# '''
+
+[[plugins]]
+repo = 'olimorris/codecompanion.nvim'
+depends = ['plenary.nvim', 'nvim-treesitter']
+if = 'has("nvim")'
+hook_post_source = '''
+echom "hello codecompanion"
+lua <<EOF
+require('codecompanion').setup {
+  adapters = {
+    openai = function()
+      return require("codecompanion.adapters").extend("openai", {
+        env = { api_key = os.getenv "OPENAI_API_KEY" },
+      })
+    end,
+  },
+  strategies = {
+    chat = {
+      adapter = "openai",
+    },
+    inline = {
+      adapter = "openai",
+    },
+    agent = {
+      adapter = "openai",
+    },
+  },
+}
+EOF
+'''
+
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
