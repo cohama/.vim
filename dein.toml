@@ -32,6 +32,9 @@ hook_add = '''
   \     _: #{
   \       matchers: ['matcher_substring'],
   \     },
+  \     file_external: #{
+  \       ignoreCase: v:true,
+  \     },
   \   },
   \   filterParams: #{
   \     matcher_substring: #{highlightMatched: 'Search'}
