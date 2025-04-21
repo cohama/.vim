@@ -505,6 +505,7 @@ hook_source = '''
   call lexima#set_default_rules()
 
   nnoremap / <Cmd>set wrapscan<CR>/
+  call lexima#add_rule(#{char: '<Tab>', leave: 1})
   call lexima#add_rule(#{char: '<CR>', input: '<CR><Cmd>set nowrapscan<CR>', mode: '/'})
   call lexima#add_rule(#{char: '<Esc>', input: '<C-c><Cmd>set nowrapscan<CR>', mode: '/'})
 
