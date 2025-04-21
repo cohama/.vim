@@ -45,6 +45,28 @@ function pylsp_default_settings()
       plugins = {
         ruff = {
           enabled = true,
+          formatEnabled = true,
+          select = {"ALL"},
+          format = {"I"},
+          ignore = {
+            "ANN101", "ANN102",
+            "BLE001",
+            "D10", "D202", "D203", "D213", "D403", "D400", "D413", "D415",
+            "EM101", "EM102",
+            "FIX002",
+            "PLR0913", "PLR2004",
+            "PT018",
+            "PTH123",
+            "PYI041",
+            "RET505",
+            "RUF001", "RUF002", "RUF003", "RUF005",
+            "S101", "S311", "S324",
+            "T20", "TD002", "TD003",
+            "TRY003",
+            "COM812",
+            "ISC001",
+          },
+          lineLength = 120,
         },
         pylint = {
           enabled = false,
@@ -65,7 +87,7 @@ function pylsp_default_settings()
           enabled = false,
         },
         pylsp_mypy = {
-          enabled = true,
+          enabled = false,
         },
         mccabe = {
           enabled = false,
@@ -77,7 +99,7 @@ function pylsp_default_settings()
           enabled = false,
         },
         rope_autoimport = {
-          enabled = true,
+          enabled = false,
         },
       }
     }
