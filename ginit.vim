@@ -21,7 +21,6 @@ elseif exists('g:nvui')
   nunmap <C-u>
   nunmap <C-f>
   nunmap <C-b>
-  set wrapscan
   let &guifont = g:font_name .. ':h' .. g:font_size .. ",NasuM:h" .. g:font_size
 elseif exists("g:neovide")
   let g:font_name = get(g:, 'font_name', 'Monospace')
