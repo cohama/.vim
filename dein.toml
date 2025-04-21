@@ -315,6 +315,9 @@ hook_source = '''
     \ },
     \ })
   call ddc#enable()
+
+  inoremap <C-x>, <Cmd>call ddc#map#manual_complete()<CR>
+  inoremap <C-x><C-,> <Cmd>call ddc#map#manual_complete()<CR>
 '''
 
 [[plugins]]
