@@ -131,29 +131,27 @@ hook_add = '''
   endfunction
 
   function! s:ddu_ff_filter_my_settings() abort
-    call ddu#ui#ff#save_cmaps(['<C-j>', '<C-k>', '<CR>', '<Esc>'])
+    call ddu#ui#save_cmaps(['<C-j>', '<C-k>', '<CR>', '<Esc>'])
 
     cnoremap <C-j> <Cmd>call ddu#ui#sync_action('cursorNext')<CR>
     cnoremap <C-k> <Cmd>call ddu#ui#sync_action('cursorPrevious')<CR>
     cnoremap <CR> <CR><Cmd>call ddu#ui#sync_action('itemAction', #{name: 'open'})<CR>
     cnoremap <Esc> <CR>
   endfunction
-  autocmd myautocmd User Ddu:ui:ff:openFilterWindow call s:ddu_ff_filter_my_settings()
+  autocmd myautocmd User Ddu:uiOpenFilterWindow call s:ddu_ff_filter_my_settings()
 
   function! s:ddu_ff_filter_cleanup() abort
-    call ddu#ui#ff#restore_cmaps()
+    call ddu#ui#restore_cmaps()
   endfunction
-  autocmd myautocmd User Ddu:ui:ff:closeFilterWindow call s:ddu_ff_filter_cleanup()
+  autocmd myautocmd User Ddu:uiCloseFilterWindow call s:ddu_ff_filter_cleanup()
 
   autocmd myautocmd User Ddu:uiDone ++nested call ddu#ui#async_action('openFilterWindow')
-  autocmd myautocmd User Ddu:ui:ff:openFilterWindow call cmdline#enable()
+  autocmd myautocmd User Ddu:uiOpenFilterWindow call cmdline#enable()
 '''
 
 [[plugins]]
 repo = 'Shougo/cmdline.vim'
 hook_add = '''
-autocmd myautocmd ColorScheme * hi! CmdlineCursor ctermfg=16 ctermbg=253 guifg=#040410 guibg=#d1ccde
-
 function! s:cmdline_set_pos() abort
   call cmdline#set_option(#{
   \   col: (&columns + 1) / 4,
@@ -164,7 +162,6 @@ endfunction
 call cmdline#set_option(#{
 \   highlight_prompt: 'Cursor',
 \   highlight_window: 'Pmenu',
-\   highlight_cursor: 'CmdlineCursor',
 \ })
 call s:cmdline_set_pos()
 autocmd myautocmd WinResized * call s:cmdline_set_pos()
