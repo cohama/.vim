@@ -18,6 +18,7 @@ repo = 'vim-denops/denops.vim'
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 if = 'has("nvim")'
+lazy = true
 
 [[plugins]]
 repo = 'Shougo/ddu.vim'
@@ -984,11 +985,9 @@ hook_add = '''
 # Language Support
 [[plugins]]
 repo = 'itchyny/vim-haskell-indent'
-on_ft = 'haskell'
 
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'
-on_ft = 'python'
 
 # Execution
 [[plugins]]
@@ -1031,7 +1030,6 @@ hook_source = '''
 
 [[plugins]]
 repo = 'lambdalisue/vim-quickrun-neovim-job'
-lazy = 1
 
 [[plugins]]
 repo = 'kana/vim-submode'
@@ -1075,7 +1073,6 @@ depends = ['open-browser.vim']
 # Miscellaneous
 [[plugins]]
 repo = 'mattn/webapi-vim'
-lazy = 1
 
 [[plugins]]
 repo = 'mattn/gist-vim'
