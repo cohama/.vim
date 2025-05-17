@@ -1115,3 +1115,59 @@ require('img-clip').setup {
 }
 EOF
 '''
+
+[[plugins]]
+repo = 'stevearc/dressing.nvim'
+lazy = true
+
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
+lazy = true
+
+[[plugins]]
+repo = 'ravitemer/mcphub.nvim'
+depends = ['plenary.nvim']
+build = '''
+nvim -es -c 'luafile bundled_build.lua' -c 'qa!'
+'''
+lua_post_source = '''
+require('mcphub').setup {
+  use_bundled_binary = true,
+  extensions = {
+    avante = {
+      make_slash_commands = true,
+    }
+  }
+}
+'''
+
+[[plugins]]
+repo = 'yetone/avante.nvim'
+build = 'make'
+depends = ['nvim-treesitter', 'nui.nvim', 'dressing.nvim', 'plenary.nvim', 'copilot.lua', 'mcphub.nvim']
+hook_source = '''
+lua <<EOF
+require('avante').setup {
+  provider = "copilot",
+  -- provider = "claude",
+  -- provider = "openai",
+  auto_suggestions_provider = "copilot",
+  behaviour = {
+    auto_suggestions = true,
+    auto_set_highlight_group = true,
+    auto_set_keymaps = true,
+    auto_apply_diff_after_generation = true,
+    support_paste_from_clipboard = true,
+  },
+  system_prompt = function()
+    local hub = require("mcphub").get_hub_instance()
+    return hub and hub:get_active_servers_prompt() or ""
+  end,
+  custom_tools = function()
+    return {
+      require("mcphub.extensions.avante").mcp_tool(),
+    }
+  end,
+}
+EOF
+'''

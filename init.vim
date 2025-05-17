@@ -734,7 +734,7 @@ function! ColorSchemeSettings()
   autocmd myautocmd WinEnter,BufEnter * call s:clear_error_highlight_if()
   function! s:clear_error_highlight_if()
     " 隠れ状態になっているときに match されるのに対処
-    if &filetype ==# 'help'
+    if &filetype ==# 'help' || &buftype ==# 'nofile'
       call clearmatches()
     endif
   endfunction
