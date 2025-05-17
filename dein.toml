@@ -1104,3 +1104,17 @@ on_cmd = ['StartupTime']
 [[plugins]]
 repo = 'tweekmonster/helpful.vim'
 on_cmd = ['HelpfulVersion']
+
+[[plugins]]
+repo = 'hakonharnes/img-clip.nvim'
+on_ft = ['markdown', 'tex', 'html', 'typst', 'rst', 'asciidoc', 'org']
+hook_source = '''
+lua <<EOF
+require('img-clip').setup {
+  default = {
+    dir_path = '.',
+    relative_to_current_file = true,
+  },
+}
+EOF
+'''
