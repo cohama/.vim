@@ -115,6 +115,7 @@ hook_add = '''
   command! -nargs=1 -complete=dir DduFileExternal Ddu file_external -source-option-path=<args>
   autocmd myautocmd FileType ddu-ff call s:ddu_my_settings()
   function! s:ddu_my_settings() abort
+    setlocal cursorline
     nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open'})<CR>
     nnoremap <buffer><silent> s <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
     nnoremap <buffer><silent> S <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>

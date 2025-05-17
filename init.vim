@@ -658,10 +658,10 @@ nnoremap <Leader><C-l> :<C-u>redraw!<CR>
 xnoremap D x0"_Dp==
 
 " カレントウィンドウだけ行のハイライトをする
-autocmd myautocmd WinEnter * if g:cursorline_flg | setlocal cursorline | endif
-autocmd myautocmd WinLeave * if g:cursorline_flg | setlocal nocursorline | endif
-autocmd myautocmd WinEnter * if g:cursorcolumn_flg | setlocal cursorcolumn | endif
-autocmd myautocmd WinLeave * if g:cursorcolumn_flg | setlocal nocursorcolumn | endif
+autocmd myautocmd WinEnter * if g:cursorline_flg && &filetype !=# "ddu-ff" | setlocal cursorline | endif
+autocmd myautocmd WinLeave * if g:cursorline_flg && &filetype !=# "ddu-ff" | setlocal nocursorline | endif
+autocmd myautocmd WinEnter * if g:cursorcolumn_flg && &filetype !=# "ddu-ff" | setlocal cursorcolumn | endif
+autocmd myautocmd WinLeave * if g:cursorcolumn_flg && &filetype !=# "ddu-ff" | setlocal nocursorcolumn | endif
 
 " xml の folding
 let g:xml_syntax_folding = 1
