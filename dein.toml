@@ -429,8 +429,18 @@ require('copilot').setup {
     auto_refresh = true,
   },
   suggestion = {
+    enabled = true,
     auto_trigger = true,
     hide_during_completion = false,
+    debounce = 300,
+    keymap = {
+      accept = "<C-l>",
+      accept_word = "<M-n>",
+      accept_line = "<M-l>",
+      next = "<M-]>",
+      prev = "<M-[>",
+      dismiss = "<C-]>",
+    },
   },
   filetypes = {
     markdown = true,
@@ -461,7 +471,6 @@ repo = 'olimorris/codecompanion.nvim'
 depends = ['plenary.nvim', 'nvim-treesitter']
 if = 'has("nvim")'
 hook_post_source = '''
-echom "hello codecompanion"
 lua <<EOF
 require('codecompanion').setup {
   adapters = {
