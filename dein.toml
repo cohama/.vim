@@ -873,9 +873,8 @@ repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_update = '''
   TSUpdate
 '''
-on_event = 'VimEnter'
 if = 'has("nvim")'
-hook_source = '''
+hook_post_source = '''
   lua <<EOF
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "all",
@@ -903,6 +902,7 @@ EOF
     hi! link @variable.builtin @constant.builtin
     hi! link @field Normal
     hi! link @constructor @type
+    hi! link @variable.parameter @field
     hi! link @parameter @field
     hi! link @exception @keyword
     hi! link @conditional @keyword
