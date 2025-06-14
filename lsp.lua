@@ -18,6 +18,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(ev)
+  vim.keymap.set('n', 'K', '<Cmd>lua vim.lsp.buf.hover({ border = "single" })<CR>', {buffer = ev.buf})
   vim.keymap.set('n', 'gD', '<Cmd>vs<CR><Cmd>lua vim.lsp.buf.definition()<CR>', {buffer = ev.buf})
   vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {buffer = ev.buf})
   vim.keymap.set('n', '\\ni', '<cmd>lua vim.lsp.buf.implementation()<CR>', {buffer = ev.buf})
@@ -27,8 +28,8 @@ local on_attach = function(ev)
   vim.keymap.set('n', '\\nca', '<cmd>lua vim.lsp.buf.code_action()<CR>', {buffer = ev.buf})
   vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {buffer = ev.buf})
   vim.keymap.set('n', '\\ne', '<cmd>lua vim.diagnostic.open_float({ border = "single" })<CR>', {buffer = ev.buf})
-  vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', {buffer = ev.buf})
-  vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', {buffer = ev.buf})
+  vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>', {buffer = ev.buf})
+  vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.jump({ count = -1, float = true })<CR>', {buffer = ev.buf})
   vim.keymap.set('n', '\\nq', '<cmd>lua vim.diagnostic.setloclist()<CR>', {buffer = ev.buf})
   vim.keymap.set('n', '\\nf', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', {buffer = ev.buf})
 end
