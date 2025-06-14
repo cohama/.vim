@@ -790,11 +790,30 @@ hook_add = '''
 [[plugins]]
 repo = 'Lokaltog/vim-easymotion'
 on_map = {nox = '<CR>'}
+if = "!has('nvim')"
 hook_source = '''
 nmap <CR> [EasyMotion]
 omap <CR> [EasyMotion]
 xmap <CR> [EasyMotion]
 let g:EasyMotion_leader_key = '[EasyMotion]'
+'''
+
+[[plugins]]
+repo = 'smoka7/hop.nvim'
+if = 'has("nvim")'
+on_cmd = ['HopChar1', 'HopChar1AC', 'HopChar1BC']
+hook_add = '''
+nmap <CR> [Hop]
+omap <CR> [Hop]
+xmap <CR> [Hop]
+nnoremap [Hop]s <Cmd>HopChar1<CR>
+nnoremap [Hop]f <Cmd>HopChar1AC<CR>
+nnoremap [Hop]F <Cmd>HopChar1BC<CR>
+'''
+lua_source = '''
+require('hop').setup {
+  keys = 'etovxqpdygfblzhckisuran',
+}
 '''
 
 [[plugins]]
