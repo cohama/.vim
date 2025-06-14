@@ -472,6 +472,9 @@ repo = 'olimorris/codecompanion.nvim'
 depends = ['plenary.nvim', 'nvim-treesitter']
 if = 'has("nvim")'
 hook_post_source = '''
+nnoremap \cc <Cmd>CodeCompanionChat<CR>
+xnoremap \cc :CodeCompanionChat Add<CR>
+nnoremap \C <Cmd>CodeCompanionChat Toggle<CR>
 lua <<EOF
 require('codecompanion').setup {
   adapters = {
