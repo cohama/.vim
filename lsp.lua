@@ -211,8 +211,26 @@ nvim_lsp.efm.setup {
 nvim_lsp.rust_analyzer.setup{
 }
 
-nvim_lsp.hls.setup{
+vim.lsp.config['hls'] = {
+  cmd = {'ghcup', 'run', '--ghc', '9.4.8', '--', 'haskell-language-server-wrapper', 'lsp'},
+  filetypes = {'haskell'},
+  root_markers = {'stack.yaml', 'cabal.project', 'cabal.project.local', 'hie.yaml', '.git', 'xmonad.hs'},
+  single_file_support = true,
+  settings = {
+    haskell = {
+      formattingProvider = 'fourmolu',
+      hlintOn = true,
+      plugins = {
+        ghcide = {
+          showTypeErrors = true,
+          showWarnings = true,
+        },
+      },
+    },
+  },
+  on_attach = on_attach,
 }
+vim.lsp.enable('hls')
 -- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 --   vim.lsp.diagnostic.on_publish_diagnostics, {
 --     float = true,
