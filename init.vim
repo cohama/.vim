@@ -147,6 +147,14 @@ set display=lastline
 " 埋める文字
 set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 
+" 文字幅
+set ambiwidth=single
+call setcellwidths([
+\ [0x2460, 0x2473, 2],
+\ [0x2190, 0x2199, 2],
+\ [0x21c4, 0x21d9, 2],
+\ ])
+
 " vim の継続行(\)のインデント量を 0 にする
 let g:vim_indent_cont = 0
 
