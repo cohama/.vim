@@ -498,16 +498,6 @@ require('codecompanion').setup {
   opts = {
     language = "Japanese",
   },
-  extensions = {
-    mcphub = {
-      callback = "mcphub.extensions.codecompanion",
-      opts = {
-        show_result_in_chat = true,  -- Show mcp tool results in chat
-        make_vars = true,            -- Convert resources to #variables
-        make_slash_commands = true,  -- Add prompts as /slash commands
-      }
-    }
-  }
 }
 EOF
 '''
@@ -1158,21 +1148,4 @@ lazy = true
 [[plugins]]
 repo = 'MunifTanjim/nui.nvim'
 lazy = true
-
-[[plugins]]
-repo = 'ravitemer/mcphub.nvim'
-depends = ['plenary.nvim']
-build = '''
-nvim -es -c 'luafile bundled_build.lua' -c 'qa!'
-'''
-lua_post_source = '''
-require('mcphub').setup {
-  use_bundled_binary = true,
-  extensions = {
-    avante = {
-      make_slash_commands = true,
-    }
-  }
-}
-'''
 
