@@ -907,7 +907,7 @@ hook_post_source = '''
     ignore_install = {"hoon"},
     highlight = {
       enable = true,
-      disable = {"toml", "gitcommit", "markdown", "ini", "tsv", "csv", "dockerfile"},
+      disable = {"toml", "gitcommit", "ini", "tsv", "csv", "dockerfile"},
       additional_vim_regex_highlighting = false
     },
     indent = {
