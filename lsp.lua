@@ -28,8 +28,8 @@ local on_attach = function(ev)
   vim.keymap.set('n', '\\nca', '<cmd>lua vim.lsp.buf.code_action()<CR>', {buffer = ev.buf})
   vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {buffer = ev.buf})
   vim.keymap.set('n', '\\ne', '<cmd>lua vim.diagnostic.open_float({ border = "single" })<CR>', {buffer = ev.buf})
-  vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.jump({ count = 1, float = { border = "single" } })<CR>', {buffer = ev.buf})
-  vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.jump({ count = -1, float = { border = "single" } })<CR>', {buffer = ev.buf})
+  vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.jump({ count = -1, float = { border = "single" } })<CR>', {buffer = ev.buf})
+  vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.jump({ count = 1, float = { border = "single" } })<CR>', {buffer = ev.buf})
   vim.keymap.set('n', '\\nq', '<cmd>lua vim.diagnostic.setloclist()<CR>', {buffer = ev.buf})
   vim.keymap.set('n', '\\nf', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', {buffer = ev.buf})
 end
@@ -38,152 +38,54 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = on_attach
 })
 
-nvim_lsp.gopls.setup{}
+vim.lsp.config('ty', {
+  cmd = {'uvx', 'ty', 'server'},
+  settings = {
+    ty = {
 
-function pylsp_default_settings()
-  return {
-    pylsp = {
-      plugins = {
-        ruff = {
-          enabled = true,
-          formatEnabled = true,
-          select = {"ALL"},
-          format = {"I"},
-          ignore = {
-            "ANN101", "ANN102",
-            "BLE001",
-            "D10", "D202", "D203", "D213", "D403", "D400", "D413", "D415",
-            "EM101", "EM102",
-            "FIX002",
-            "PLR0913", "PLR2004",
-            "PT018",
-            "PTH123",
-            "PYI041",
-            "RET505",
-            "RUF001", "RUF002", "RUF003", "RUF005",
-            "S101", "S311", "S324",
-            "T20", "TD002", "TD003",
-            "TRY003",
-            "COM812",
-            "ISC001",
-          },
-          lineLength = 120,
+    },
+  }
+})
+vim.lsp.enable('ty')
+
+vim.lsp.config('ruff', {
+  cmd = {'uvx', 'ruff', 'server'},
+  init_options = {
+    settings = {
+      lineLength = 120,
+      organizeImports = true,
+      fixAll = true,
+      format = {
+        preview = true,
+      },
+      lint = {
+        select = {'ALL', 'I'},
+        ignore = {
+          'ANN101', 'ANN102',
+          'BLE001',
+          'D10', 'D202', 'D203', 'D213', 'D403', 'D400', 'D413', 'D415',
+          'EM101', 'EM102',
+          'FIX002',
+          'PLR0913', 'PLR2004',
+          'PT018',
+          'PTH123',
+          'PYI041',
+          'RET505',
+          'RUF001', 'RUF002', 'RUF003', 'RUF005',
+          'S101', 'S311', 'S324',
+          'T20', 'TD002', 'TD003',
+          'TRY003',
+          'COM812',
+          'ISC001',
         },
-        pylint = {
-          enabled = false,
-          args = {"-j0"},
-        },
-        pycodestyle = {
-          enabled = false,
-        },
-        flake8 = {
-          enabled = false,
-        },
-        pydocstyle = {
-          enabled = false,
-          addIgnore = {"D100", "D103", "D101", "D415", "D400", "D102", "D107", "D212", "D202", "D403", "D105"},
-          convention = "google",
-        },
-        pyflakes = {
-          enabled = false,
-        },
-        pylsp_mypy = {
-          enabled = false,
-        },
-        mccabe = {
-          enabled = false,
-        },
-        isort = {
-          enabled = false,
-        },
-        black = {
-          enabled = false,
-        },
-        rope_autoimport = {
-          enabled = false,
-        },
-      }
+      },
     }
   }
-end
+})
+vim.lsp.enable('ruff')
 
-function is_pylint_root_dir(fname)
-  local root_dir = vim.fs.root(fname, "pyproject.toml")
-  local pyproject_toml = vim.fs.joinpath(root_dir, "pyproject.toml")
-  local lines = vim.iter(vim.fn.readfile(pyproject_toml))
-  return lines:find(function(line)
-    return string.match(line, "tool.pylint")
-  end) ~= nil
-end
 
-function python_root_dir(fname)
-  local root_files = {"pyproject.toml", "setup.py", ".git"}
-  local root_dir = util.root_pattern(unpack(root_files))(fname)
-  return root_dir
-end
-
-nvim_lsp.pylsp.setup {
-  cmd = {vim.env.HOME .. "/.config/nvim/run_pylsp.sh"},
-  flags = {
-    debounce_text_changes = 500,
-    allow_incremental_sync = false,
-  },
-  root_dir = function(fname)
-    local root_dir = python_root_dir(fname)
-    if not is_pylint_root_dir(fname) then
-      return root_dir
-    end
-  end,
-  on_attach = function(client, bufnr)
-    local fname = vim.api.nvim_buf_get_name(bufnr)
-    if is_pylint_root_dir(fname) then
-      vim.schedule(function()
-        vim.lsp.buf_detach_client(bufnr, client["id"])
-      end)
-    end
-  end,
-  settings = pylsp_default_settings()
-}
-
-configs.pylsp_pylint = {
-  default_config = {
-    cmd = {vim.env.HOME .. '/.config/nvim/run_pylsp.sh'},
-    filetypes = {'python'},
-    root_dir = function(fname)
-      local root_dir = python_root_dir(fname)
-      if is_pylint_root_dir(fname) then
-        return root_dir
-      end
-    end,
-    single_file_support = false,
-    settings = vim.tbl_extend(
-      "force",
-      pylsp_default_settings(),
-      {
-        pylsp = {
-          plugins = {
-            ruff = {
-              enabled = false,
-            },
-            pylint = {
-              enabled = true,
-            },
-            isort = {
-              enabled = true,
-            },
-            black = {
-              enabled = true,
-            },
-          },
-        },
-      }
-    ),
-  },
-}
-
-nvim_lsp.pylsp_pylint.setup {}
-
-nvim_lsp.efm.setup {
+vim.lsp.config('efm', {
   flags = {
     debounce_text_changes = 500,
   },
@@ -206,10 +108,10 @@ nvim_lsp.efm.setup {
       },
     }
   }
-}
+})
+vim.lsp.enalbe('efm')
 
-nvim_lsp.rust_analyzer.setup{
-}
+vim.lsp.enable('rust_analyzer')
 
 vim.lsp.config['hls'] = {
   cmd = {'ghcup', 'run', '--ghc', '9.4.8', '--', 'haskell-language-server-wrapper', 'lsp'},
@@ -231,13 +133,22 @@ vim.lsp.config['hls'] = {
   on_attach = on_attach,
 }
 vim.lsp.enable('hls')
--- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
---   vim.lsp.diagnostic.on_publish_diagnostics, {
---     float = true,
---     set_loclist
---   }
--- )
 
--- nvim_lsp.pylsp.setup {
--- cmd = { 'pylsp', '--log-file', '/home/cohama/pylsp.log' }
--- }
+vim.lsp.config['biome'] = {
+  cmd = {'biome', 'lsp-proxy'},
+  filetypes = {'astro', 'css', 'graphql', 'html', 'javascript', 'javascriptreact', 'json', 'jsonc', 'svelte', 'typescript', 'typescript.tsx', 'typescriptreact', 'vue'},
+  workspace_required = true,
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    local root_files = { 'biome.json', 'biome.jsonc' }
+    root_files = util.insert_package_json(root_files, 'biome', fname)
+    local root_dir = vim.fs.dirname(vim.fs.find(root_files, { path = fname, upward = true })[1])
+    on_dir(root_dir)
+  end,
+}
+vim.lsp.enable('biome')
+
+vim.lsp.config('ts_ls', {
+  root_markers = { 'tsconfig.json', 'package.json' },
+})
+vim.lsp.enable('ts_ls')
