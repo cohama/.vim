@@ -1238,6 +1238,25 @@ autocmd myautocmd BufWinEnter,WinEnter * call SetTitleCwd()
 
 " Arch で fzf を入れると勝手にプラグインが入ってしまうので無効化する
 let g:loaded_fzf = 1
+
+" t レジスタへの保存を tmux send-keys に送る
+if executable("tmux")
+  function! YankToTmuxSendKeys() abort
+    if exists('v:event') && v:event.regname ==# 't'
+      let yanked_text = getreg('t')
+      let lines = split(yanked_text, "\n")
+      call system(['tmux', 'send-keys', yanked_text])
+    endif
+  endfunction
+  autocmd myautocmd TextYankPost * call YankToTmuxSendKeys()
+endif
+
+function! SendCurFileLine() abort
+  let filename = expand('%')
+  let line_num = line('.')
+  call system(['tmux', 'send-keys', filename .. ':' .. line_num])
+endfunction
+command! SendCurFileLine call SendCurFileLine()
 "}}}
 
 " ColorScheme {{{
