@@ -149,11 +149,17 @@ set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 
 " 文字幅
 set ambiwidth=single
-call setcellwidths([
-\ [0x2460, 0x2473, 2],
-\ [0x2190, 0x2199, 2],
-\ [0x21c4, 0x21d9, 2],
-\ ])
+function! SetCellWidth() abort
+  let circle_numbers = [0x2460, 0x2473, 2]  " ① など
+  let arrows = [0x2190, 0x2199, 2] " ← など
+  let double_arrows = [0x21c4, 0x21d9, 2]  " ⇒ など
+  let squares = [0x25a0, 0x25a2, 2]  " ■ など
+  let circles = [0x25cb, 0x25cf, 2]  " ◯ など
+  let checkmarks = [0x2713, 0x2714, 2]  " ✓ など
+  let crossmarks = [0x2715, 0x2718, 2]  "  ✗ など
+  call setcellwidths([circle_numbers, arrows, double_arrows, squares, circles, checkmarks, crossmarks])
+endfunction
+call SetCellWidth()
 
 " vim の継続行(\)のインデント量を 0 にする
 let g:vim_indent_cont = 0
