@@ -313,6 +313,10 @@ hook_source = '''
     \   maxSize: 500,
     \ },
     \ })
+  call ddc#custom#patch_filetype(['codecompanion'], #{
+  \   specialBufferCompletion: v:true,
+  \   sources: ['file', 'around'],
+  \ })
   call ddc#enable()
 
   inoremap <C-x>, <Cmd>call ddc#map#manual_complete()<CR>
@@ -446,6 +450,7 @@ require('copilot').setup {
   filetypes = {
     markdown = true,
     gitcommit = true,
+    codecompanion = false,
   },
 }
 EOF
@@ -473,7 +478,7 @@ depends = ['plenary.nvim', 'nvim-treesitter']
 if = 'has("nvim")'
 hook_post_source = '''
 nnoremap \cc <Cmd>CodeCompanionChat<CR>
-xnoremap \cc :CodeCompanionChat Add<CR>
+xnoremap \cc :CodeCompanionChat<CR>
 nnoremap \C <Cmd>CodeCompanionChat Toggle<CR>
 lua <<EOF
 require('codecompanion').setup {
@@ -481,6 +486,14 @@ require('codecompanion').setup {
     openai = function()
       return require("codecompanion.adapters").extend("openai", {
         env = { api_key = os.getenv "OPENAI_API_KEY" },
+        schema = {
+          model = {
+            default = "gpt-5.2",
+          },
+          reasoning_effor = {
+            default = "minimal",
+          },
+        },
       })
     end,
   },
