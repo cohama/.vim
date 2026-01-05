@@ -273,6 +273,7 @@ hook_source = '''
     \     mark: 'Copilot',
     \     matchers: [],
     \     minAutoCompleteLength: 0,
+    \     isVolatile: v:true,
     \   },
     \   file: #{
     \     mark: 'File',
