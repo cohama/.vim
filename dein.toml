@@ -52,6 +52,17 @@ hook_add = '''
   \     file_rec: #{ignoredDirectories: ignored_dirs},
   \     rg: #{args: ['--column', '--no-heading', '--color', 'never']},
   \   },
+  \   kindOptions: #{
+  \     file: #{
+  \       defaultAction: 'open',
+  \     },
+  \     lsp: #{
+  \       defaultAction: 'open',
+  \     },
+  \     lsp_codeAction: #{
+  \       defaultAction: 'apply',
+  \     },
+  \   },
   \ })
   command! DduRgLive call <SID>ddu_rg_live()
   function! s:ddu_rg_live() abort
@@ -81,9 +92,16 @@ hook_add = '''
   \   }
   \ ]
   \ })<CR>
+  nnoremap \u <Nop>
   nnoremap \ur <Cmd>Ddu -resume<CR>
   nnoremap \ug <Cmd>DduRgLive<CR>
   nnoremap \uj <Cmd>Ddu junkfile<CR>
+  noremap \uc <Cmd>call ddu#start(#{
+  \  sources: [#{name: 'lsp_codeAction'}],
+  \ })<CR>
+  xnoremap \uc <Cmd>call ddu#start(#{
+  \  sources: [#{name: 'lsp_codeAction'}],
+  \ })<CR>
 
   function! DduFileExternal(dir) abort
     call ddu#start({"name": "file_ext_custom", "sources": [{"name": "file_external"}]})
@@ -117,7 +135,7 @@ hook_add = '''
   autocmd myautocmd FileType ddu-ff call s:ddu_my_settings()
   function! s:ddu_my_settings() abort
     setlocal cursorline
-    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open'})<CR>
+    nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#sync_action('itemAction')<CR>
     nnoremap <buffer><silent> s <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
     nnoremap <buffer><silent> S <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open', 'params': {'command': 'split'}})<CR>
     nnoremap <buffer><silent> t <Cmd>call ddu#ui#sync_action('itemAction', {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
@@ -197,6 +215,9 @@ repo = 'shun/ddu-source-rg'
 
 [[plugins]]
 repo = 'Shougo/ddu-source-vim'
+
+[[plugins]]
+repo = 'cohama/ddu-source-lsp'  # Fork from uga-rosa/ddu-source-lsp
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
