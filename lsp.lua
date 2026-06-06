@@ -109,7 +109,7 @@ vim.lsp.config('efm', {
     }
   }
 })
-vim.lsp.enalbe('efm')
+vim.lsp.enable('efm')
 
 vim.lsp.enable('rust_analyzer')
 
