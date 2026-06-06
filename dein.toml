@@ -916,6 +916,10 @@ hook_add = '''
 repo = 'lukas-reineke/indent-blankline.nvim'
 if = 'has("nvim")'
 on = "ColorScheme"
+hook_add = '''
+  hi IndentGuidesOdd guifg=#404040 gui=nocombine
+  hi IndentGuidesEven guifg=#303030 gui=nocombine
+'''
 hook_post_source = '''
 lua <<EOF
 require('ibl').setup {
