@@ -49,7 +49,7 @@ vim.lsp.config('ty', {
 vim.lsp.enable('ty')
 
 vim.lsp.config('ruff', {
-  cmd = {'uvx', 'ruff', 'server'},
+  cmd = {'uvx', 'ruff', 'server', '-v'},
   init_options = {
     settings = {
       lineLength = 120,
