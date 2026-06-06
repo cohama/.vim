@@ -716,9 +716,7 @@ function! GetSyntaxInfo()
         \ " guibg: " . linkedSyn.guibg
 endfunction
 function! IsTreesitterEnabled() abort
-  let bufnr = bufnr('.')
-  let lang = &filetype
-  return luaeval('require("nvim-treesitter.configs").is_enabled("highlight", ' .. string(lang) .. ', ' .. bufnr .. ')')
+  return exists('b:my_nvim_treesitter_enabled') && b:my_nvim_treesitter_enabled
 endfunction
 function! GetTreesitterSyntax() abort
   lua vim.print(vim.treesitter.get_captures_at_cursor())
