@@ -243,7 +243,7 @@ hook_add = '''
 repo = 'neovim/nvim-lspconfig'
 on_event = 'VimEnter'
 if = 'has("nvim")'
-hook_source = '''
+hook_post_source = '''
   luafile ~/.config/nvim/lsp.lua
 '''
 
@@ -939,6 +939,7 @@ hook_post_update = '''
   TSUpdate
 '''
 if = 'has("nvim")'
+rev = 'main'
 lua_post_source = '''
 require('nvim-treesitter').setup({})
 '''
@@ -958,6 +959,7 @@ function! MyNvimTreeSitterSettings() abort
   let b:my_nvim_treesitter_enabled = 1
 endfunction
 
+autocmd myautocmd FileType * lua pcall(vim.treesitter.start)
 
 function! MyUpdateHighlight() abort
   hi! link @variable Normal
@@ -983,6 +985,8 @@ function! MyUpdateHighlight() abort
 endfunction
 call MyUpdateHighlight()
 autocmd myautocmd ColorScheme * call MyUpdateHighlight()
+
+set foldexpr=nvim_treesitter#foldexpr()
 '''
 
 [[plugins]]
