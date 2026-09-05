@@ -738,9 +738,8 @@ function! ColorSchemeSettings()
     endif
   endfunction
   autocmd myautocmd WinEnter,BufEnter * call MatchIllegalSpaces()
-  autocmd myautocmd FileType help call clearmatches()
   autocmd myautocmd TermEnter * call clearmatches()
-  autocmd myautocmd WinEnter,BufEnter * call s:clear_error_highlight_if()
+  autocmd myautocmd WinEnter,BufEnter,FileType * call s:clear_error_highlight_if()
   function! s:clear_error_highlight_if()
     " 隠れ状態になっているときに match されるのに対処
     if &filetype ==# 'help' || &buftype ==# 'nofile'
