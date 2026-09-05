@@ -1,20 +1,27 @@
-local nvim_lsp = require('lspconfig')
-local configs = require('lspconfig.configs')
 local util = require('lspconfig.util')
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    update_in_insert = false,
+vim.diagnostic.config(
+  {
     virtual_text = {
       format = function(diagnostic)
         return string.format("%s (%s)", diagnostic.message, diagnostic.source)
-      end
+      end,
     },
-    signs = function(namespace, bufnr)
-      return vim.b[bufnr].show_signs == true
-    end
   }
 )
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--     update_in_insert = false,
+--     virtual_text = {
+--       format = function(diagnostic)
+--         return string.format("%s (%s)", diagnostic.message, diagnostic.source)
+--       end
+--     },
+--     signs = function(namespace, bufnr)
+--       return vim.b[bufnr].show_signs == true
+--     end
+--   }
+-- )
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(ev)
@@ -42,11 +49,12 @@ vim.lsp.config('ty', {
   cmd = {'uvx', 'ty', 'server'},
   settings = {
     ty = {
-
     },
   }
 })
 vim.lsp.enable('ty')
+
+vim.lsp.enable('gopls')
 
 vim.lsp.config('ruff', {
   cmd = {'uvx', 'ruff', 'server', '-v'},
@@ -83,7 +91,6 @@ vim.lsp.config('ruff', {
   }
 })
 vim.lsp.enable('ruff')
-
 
 vim.lsp.config('efm', {
   flags = {
@@ -130,7 +137,6 @@ vim.lsp.config['hls'] = {
       },
     },
   },
-  on_attach = on_attach,
 }
 vim.lsp.enable('hls')
 
